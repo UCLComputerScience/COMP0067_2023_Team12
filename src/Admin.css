@@ -1,0 +1,20 @@
+.grey {
+    background-color: #f4f7fb;
+    min-height: 100vh;
+}
+
+.ibm_logo {
+    height: 25px;
+    display: flex;
+    padding: 0px 20px;
+
+  
+}
+
+nav {
+    display: flex;
+    align-items: center;
+
+    
+}
+
