@@ -8,6 +8,7 @@ import Link from '@mui/material/Link';
 import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar, Button,
 IconButton, Typography, Autocomplete, TextField, Paper, InputBase, Divider, Stack,
 Grid } from '@mui/material'
+import './Search.css';
 
 function Search() {
 //   const { sections, title } = props;
@@ -41,7 +42,7 @@ function Search() {
 
         {/* <Stack direction='row' spacing={2}> */}
 
-        <Box
+        <Box className='Centering'
             component="form"
             sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 800, 
             backgroundColor: 'white' }}
@@ -49,7 +50,7 @@ function Search() {
             {/* <IconButton sx={{ p: '10px' }} aria-label="menu">
                 <MenuIcon />
             </IconButton> */}
-            <InputBase
+            <InputBase 
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search..."
                 inputProps={{ 'aria-label': 'search' }}
@@ -110,6 +111,7 @@ function Search() {
             </Grid>
             <Grid xs={10}>
                 <Button
+                    className = 'Right_One'
                     variant='contained'
                     size='large'
                     color="inherit"
