@@ -83,6 +83,7 @@ function Search() {
         {/* </Stack> */}
 
       </Toolbar>
+
       <Toolbar
         component="nav"
         variant="dense"
@@ -107,18 +108,16 @@ function Search() {
                     Delete
                 </Button>
             </Grid>
-            <Grid xs={10} mdOffset='auto'>
+            <Grid xs={10}>
                 <Button
                     variant='contained'
                     size='large'
                     color="inherit"
+                    sx={{ justifyContent: "space-between" }}
                 >
                     Create Workbook
                 </Button>
-            </Grid>
-          
-          
-          
+            </Grid>         
         </Grid>
       </Toolbar>
     </React.Fragment>
