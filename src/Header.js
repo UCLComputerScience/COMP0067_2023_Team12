@@ -28,10 +28,10 @@ function Header(props) {
               size='large'
               // color='success'
               color="inherit"
-              // noWrap
-              // key={section.title}
-              // href={section.url}
-              // sx={{ p: 1, flexShrink: 0 }}
+              noWrap
+              key={section.title}
+              href={section.url}
+              sx={{ p: 1, flexShrink: 0 }}
             >
               {section.title}
             </Button>
