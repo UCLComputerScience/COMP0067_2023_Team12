@@ -1,6 +1,5 @@
 import React from 'react'
 import '../Admin_Header.css';
-import "@fontsource/ibm-plex-sans";
 
 
 const Header = () => {
