@@ -12,6 +12,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Header from './Header';
+
+const sections = [
+    { title: 'Sign In', url: './Sign_In.js'},
+    { title: 'Create Projects', url: '#' },
+    { title: 'Edit Projects', url: '#' },
+    { title: 'Create Workbook', url: '#' },
+    { title: 'Log Out & Back To Home', url: '#' },
+  ];
 
 function Copyright(props) {
   return (
@@ -39,7 +48,12 @@ export default function SignIn() {
   };
 
   return (
+
+        
+
     <ThemeProvider theme={theme}>
+      <Header title="Blog" sections={sections} />
+
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -50,60 +64,71 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
-          </Avatar>
+          </Avatar> */}
           <Typography component="h1" variant="h5">
-            Sign in
+            Login as Admin
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
+                sx={{input: {textAlign: "center"}}}
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Username"
+                name="email"
+                autoComplete="email"
+                autoFocus
             />
             <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
+                sx={{textAlign: "right", float:'right'}}
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
             />
+            <Grid container>
+            <Grid item xs>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            </Grid>
+            <Grid item>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+            </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Login
             </Button>
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
-              </Grid>
-              <Grid item>
+              </Grid> */}
+              {/* <Grid item>
                 <Link href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid>
-            </Grid>
+              </Grid> */}
+            {/* </Grid> */}
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );

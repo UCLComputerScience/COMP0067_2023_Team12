@@ -8,7 +8,6 @@ import Link from '@mui/material/Link';
 import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar, Button,
 IconButton, Typography, Autocomplete, TextField, Paper, InputBase, Divider, Stack,
 Grid } from '@mui/material'
-import './Search.css';
 
 function Search() {
 //   const { sections, title } = props;
@@ -42,7 +41,7 @@ function Search() {
 
         {/* <Stack direction='row' spacing={2}> */}
 
-        <Box className='Centering'
+        <Box 
             component="form"
             sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 800, 
             backgroundColor: 'white' }}
@@ -111,11 +110,10 @@ function Search() {
             </Grid>
             <Grid xs={10}>
                 <Button
-                    className = 'Right_One'
                     variant='contained'
                     size='large'
                     color="inherit"
-                    sx={{ justifyContent: "space-between" }}
+                    sx={{ justifyContent: "space-between", float: "right"}}
                 >
                     Create Workbook
                 </Button>
