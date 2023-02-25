@@ -1,6 +1,6 @@
-import logo from './ibm_logo_Z.svg';
+import logo from './ibm_logo.svg';
 import Button from '@mui/material/Button';
-import './AdminHeader-Z.css';
+import './AdminHeader.css';
 
 function Header() {
   return (
