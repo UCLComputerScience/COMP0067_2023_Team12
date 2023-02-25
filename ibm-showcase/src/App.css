@@ -1,4 +1,4 @@
-.App {
+/*.App {
   text-align: center;
 }
 
@@ -35,4 +35,86 @@
   to {
     transform: rotate(360deg);
   }
+}
+*/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white; 
+}
+
+header > section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+/*  background: darkgray; */
+  /*debugging*/
+
+}
+
+header > section > a {
+  margin: 0.5rem 0;
+  padding: 0 0.75rem;
+/*    background: lime; */
+  /*debugging*/
+}
+
+
+header > img {
+  margin: 1rem 2rem;
+}
+
+hr {
+  margin:0rem;
+  height: 1px;
+  color: #E6E6E6;
+  background-color: #E6E6E6;
+  border: none;
+}
+
+h1, h3 {
+  font-family: "Segoe UI"; 
+  font-weight: normal; 
+  color: #1A2834;
+}
+
+h3 {
+  margin: 1.2rem 0 0.5rem;
+}
+
+body {
+  background: #F4F7FE;
+}
+
+.MuiTextField-root, #simple-select{
+  background: white;
+}
+
+#demo-multiple-chip{
+  background: white;
+}
+
+form {
+  margin:0.5rem 6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.Forms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.FormLeft, .FormRight {
+  display: flex;
+  flex-direction: column;
+  width:42%;
+}
+
+.SubmitButton {
+  margin: 2rem 0;
 }
