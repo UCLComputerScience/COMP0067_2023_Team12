@@ -2,7 +2,7 @@ import logo from './ibm_logo.svg';
 import Button from '@mui/material/Button';
 import './AdminHeader.css';
 
-function Header() {
+function AdminHeader() {
   return (
   <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -19,4 +19,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default AdminHeader;

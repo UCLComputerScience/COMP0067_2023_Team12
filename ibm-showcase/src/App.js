@@ -1,12 +1,14 @@
 import './App.css';
 // Different Page Views
 import CreateNewProject from './components/CreateNewProject'
+import HomePage from './components/HomePage'
 // Different Page Views End
 
 function App() {
   return (
     <div className="App">
-      <CreateNewProject />
+      {/*<CreateNewProject />*/}
+      <HomePage />
     </div>
   );
 }

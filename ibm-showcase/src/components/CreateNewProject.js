@@ -13,8 +13,6 @@ import Chip from '@mui/material/Chip';
 import React, { useState } from 'react';
 
 function CreateNewProject() {
-  const divStyle = {
-  color: 'blue'}
   return (
     <div className="App">
       <AdminHeader />
