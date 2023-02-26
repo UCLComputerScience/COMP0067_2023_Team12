@@ -9,7 +9,7 @@ function HomePage() {
     <div className="HomePage">
       <Header />
       <HomeBody />
-      <HomeAbout />
+      {/*<HomeAbout />*/}
     </div>
   );
 }

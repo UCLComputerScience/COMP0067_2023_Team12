@@ -27,11 +27,11 @@ function HomeBody() {
       </Button>
     </Box>
     <ThreeProjectTiles />
-{/*    <Button size="large" variant="contained"
-      sx={{textTransform: "none", fontSize:'2rem'}}
+    <Button size="large" variant="text"
+      sx={{textTransform: "none", fontSize:'2rem', position:'absolute', padding:'0 0 0 0.7rem', right:'7rem', margin:'1rem 0'}}
     >
       Explore All Projects<ChevronRightIcon sx={{fontSize:'2.2rem'}}/>
-    </Button>*/}
+    </Button>
   </div>
   );
 }
