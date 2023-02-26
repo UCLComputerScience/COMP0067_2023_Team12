@@ -1,13 +1,13 @@
 import './HomeBody.css';
 import Box from '@mui/material/Box';
-import ProjectPic2 from './Project2.png';
+import AboutBG from './IBM_About.jpg';
 import Button from '@mui/material/Button';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 function HomeBodyAbout() {
   return (
   <div style={{margin:'auto', position:'relative', maxWidth:'130rem'}}>
-    <Box sx={{minHeight: '20rem',backgroundImage:`url(${ProjectPic2})`, backgroundSize: 'cover'}}>
+    <Box sx={{minHeight: '20rem',backgroundImage:`url(${AboutBG})`, backgroundSize: 'cover'}}>
       <div style={{fontSize: '2rem', padding: '3rem 0 0rem 10rem', lineHeight:'90%'}}>About</div>
       <p style={{fontSize: '1.4rem', padding: '0 0 6rem 10rem ', width: '50%', textAlign: 'justify', maxHeight: '50%'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <Button 
