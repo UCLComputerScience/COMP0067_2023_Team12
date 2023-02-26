@@ -4,7 +4,7 @@ import AboutBG from './IBM_About.jpg';
 import Button from '@mui/material/Button';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-function HomeBodyAbout() {
+function HomeAbout() {
   return (
   <div style={{margin:'auto', position:'relative', maxWidth:'130rem'}}>
     <Box sx={{minHeight: '20rem',backgroundImage:`url(${AboutBG})`, backgroundSize: 'cover'}}>
@@ -22,4 +22,4 @@ function HomeBodyAbout() {
       );
 }
     
-export default HomeBodyAbout;
+export default HomeAbout;

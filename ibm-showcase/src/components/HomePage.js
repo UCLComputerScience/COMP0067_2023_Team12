@@ -1,7 +1,7 @@
 import './HomePage.css';
 import Header from './Header'
 import HomeBody from './HomeBody'
-import HomeBodyAbout from './HomeBodyAbout'
+import HomeAbout from './HomeAbout'
 
 
 function HomePage() {
@@ -9,7 +9,7 @@ function HomePage() {
     <div className="HomePage">
       <Header />
       <HomeBody />
-      <HomeBodyAbout />
+      <HomeAbout />
     </div>
   );
 }
