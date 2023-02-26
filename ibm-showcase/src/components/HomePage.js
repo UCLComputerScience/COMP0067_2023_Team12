@@ -1,6 +1,7 @@
 import './HomePage.css';
 import Header from './Header'
 import HomeBody from './HomeBody'
+import HomeBodyAbout from './HomeBodyAbout'
 
 
 function HomePage() {
@@ -8,6 +9,7 @@ function HomePage() {
     <div className="HomePage">
       <Header />
       <HomeBody />
+      <HomeBodyAbout />
     </div>
   );
 }
