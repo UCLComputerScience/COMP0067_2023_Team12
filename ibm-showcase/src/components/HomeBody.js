@@ -11,10 +11,10 @@ import PagesIcon from '@mui/icons-material/Pages';
 
 function HomeBody() {
   return (
-  <div className="HomeBody" style={{margin:'auto', padding:'0 7rem', maxWidth:'110rem'}}>
+  <section className="HomeBody" style={{margin:'auto', padding:'0 7rem', maxWidth:'110rem'}}>
     <h1 style={{color:'white', fontSize:'4rem', marginBottom:'1rem'}}><PagesIcon sx={{fontSize:'3rem', padding: '0 0.5rem'}}/>Featured Projects</h1>
     <hr style={{margin:'0 0 3rem 0',  height:'1px', color: '#E6E6E6', backgroundColor: '#E6E6E6', border: 'none'}}/>
-    <Box sx={{minHeight: '30.5rem', borderRadius:'1.5rem',backgroundImage:`url(${ProjectPic1})`, backgroundSize: 'cover',backgroundPosition:'center', margin:'0 0 4rem 0', position:'relative'}}>
+    <Box className="TEST" sx={{minHeight: '30.5rem', borderRadius:'1.5rem',backgroundImage:`linear-gradient(90deg, rgba(0,0,0,0.15) 25%, rgba(255,255,255,0) 40%),url(${ProjectPic1})`, backgroundSize: 'cover',backgroundPosition:'center', margin:'0 0 4rem 0', position:'relative'}}>
       <div style={{fontSize: '3rem', color: 'white', padding: '3rem 3rem 1rem 3rem', lineHeight:'90%'}}>UCL Motion Input 3</div>
       <p style={{fontSize: '1.4rem', color: 'white', padding: '0 0 6rem 3rem ', width: '30%', textAlign: 'justify', maxHeight: '50%'}}> 
       Motioninput is a pioneering touchless computing technology devleoped by UCL Computer Science students
@@ -27,12 +27,14 @@ function HomeBody() {
       </Button>
     </Box>
     <ThreeProjectTiles />
-    <Button size="large" variant="text"
-      sx={{textTransform: "none", fontSize:'2rem', position:'absolute', padding:'0 0 0 0.7rem', right:'7rem', margin:'1rem 0'}}
-    >
-      Explore All Projects<ChevronRightIcon sx={{fontSize:'2.2rem'}}/>
-    </Button>
-  </div>
+    <div style={{display:'flex', flexDirection:'row-reverse'}}>
+      <Button size="large" variant="text"
+        sx={{textTransform: "none", fontSize:'2rem', padding:'0 0 0 0.7rem', margin:'1rem 0'}}
+      >
+        Explore All Projects<ChevronRightIcon sx={{fontSize:'2.2rem'}}/>
+      </Button>
+    </div>
+  </section>
   );
 }
 
@@ -40,7 +42,7 @@ export default HomeBody;
 
 function ProjectTile(props){
   return(
-    <Box sx={{minHeight: '20rem', borderRadius:'1.5rem',backgroundImage:`url(${props.img})`, backgroundSize: 'cover', backgroundPosition:'center', flexGrow: 1, position:'relative'}}>
+    <Box sx={{minHeight: '20rem', borderRadius:'1.5rem',backgroundImage:`linear-gradient(0deg, rgba(0,0,0,0.15) 25%, rgba(255,255,255,0) 40%),url(${props.img})`, backgroundSize: 'cover', backgroundPosition:'center', flexGrow: 1, position:'relative'}}>
       <Button size='large' variant="text" 
       sx={{fontSize: '2.2rem', color: 'white', textTransform: "none", padding:'0.5rem 0.5rem', textAlign:'left', margin:'0.5rem 1rem', lineHeight:'1.21', 
            position:'absolute', bottom:'0', fontWeight:'bold'}}
