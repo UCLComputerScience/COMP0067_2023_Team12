@@ -1,0 +1,5 @@
+.footer-left, .footer-center-left,.footer-center-right,.footer-right {
+    display: flex;
+    flex-direction: column;
+    width:50%;
+  }

@@ -2,6 +2,7 @@ import './HomePage.css';
 import Header from './Header'
 import HomeBody from './HomeBody'
 import HomeAbout from './HomeAbout'
+import Footer from './Footer'
 
 
 function HomePage() {
@@ -9,7 +10,8 @@ function HomePage() {
     <div className="HomePage">
       <Header />
       <HomeBody />
-      {/*<HomeAbout />*/}
+      <HomeAbout />
+      <Footer />
     </div>
   );
 }
