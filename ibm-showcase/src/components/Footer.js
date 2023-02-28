@@ -1,5 +1,3 @@
-
-import './Footer.css';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { Box, Grid} from '@mui/material'; 
 import { Twitter, YouTube, Facebook, LinkedIn } from '@mui/icons-material';
