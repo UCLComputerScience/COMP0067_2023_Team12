@@ -42,7 +42,7 @@ function HomeBody() {
 export default HomeBody;
 
 function ProjectTile(props){
-  const [isShown, setIsShown] = useState(true);
+  const [isShown, setIsShown] = useState(false);
 
   return(
     <Box 
