@@ -5,14 +5,17 @@ import App from './App';
 import Items from './Items';
 import InfiniteLoadingGrid from './Items_2';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    {/* <App /> */}
-    <Items />
-    {/* <InfiniteLoadingGrid /> */}
-  </React.StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+          {/* <App /> */}
+          <Items />
+          {/* <InfiniteLoadingGrid /> */}
+        </BrowserRouter>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
