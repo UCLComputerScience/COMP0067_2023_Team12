@@ -1,4 +1,4 @@
-import LockOpenIcon from '@mui/icons-material/LockOpen';
+import LockIcon from '@mui/icons-material/Lock';
 import { Box, Grid} from '@mui/material'; 
 import { Twitter, YouTube, Facebook, LinkedIn } from '@mui/icons-material';
 
@@ -57,7 +57,7 @@ function Footer() {
           </ul>
           <ul style={{ marginTop: "3.5rem" }}>
             Management Access
-            <LockOpenIcon sx={styles.lockIcon} alt="Lock" />
+            <LockIcon sx={styles.lockIcon} alt="Lock" />
           </ul>
         </Box>
       </Grid>
