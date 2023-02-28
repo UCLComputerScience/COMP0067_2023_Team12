@@ -16,7 +16,8 @@ header > section {
 
 header > section > a {
   margin: 0.5rem 0;
-  padding: 0 0.75rem;
+  padding: 0 1.5rem;
+  font-size: 1.2rem;
 /*    background: lime; */
   /*debugging*/
 }

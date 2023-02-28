@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'; 
-import LockOpenIcon from '@mui/icons-material/LockOpen';
+import LockIcon from '@mui/icons-material/Lock';
 import { Twitter, YouTube, Facebook, LinkedIn } from '@mui/icons-material';
 import logo from './ibm_logo.svg';
 import ucl_logo from './ucl_logo.svg';
@@ -10,7 +10,8 @@ function Footer() {
       backgroundColor: '#F4F7FE',
       display:'flex',
       justifyContent: 'space-around',
-      padding: '3rem'
+      padding: '3rem',
+      fontSize:'1.2rem'
     },
     logobox:{
       display:'flex',
@@ -64,7 +65,7 @@ function Footer() {
         </ul>
         <ul style={{ marginTop: "3.5rem" }}>
           Management Access
-          <LockOpenIcon sx={styles.lockIcon} alt="Lock" />
+          <LockIcon sx={styles.lockIcon} alt="Lock" />
         </ul>
       </Box>
     </footer>
