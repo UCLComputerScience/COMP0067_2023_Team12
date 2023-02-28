@@ -1,17 +1,30 @@
 import React, { useEffect, useState, useRef } from "react";
-// import {
-//   useDemoData,
-//   getRealGridData,
-//   getCommodityColumns
-// } from "@mui/x-data-grid-generator";
+import {
+  useDemoData,
+  getRealGridData,
+  getCommodityColumns
+} from "@mui/x-data-grid-generator";
 import {
   Card,
   CardContent,
   Grid,
   Typography,
   LinearProgress,
-  Button
+  Button,
+  AppBar,
+  Toolbar,
+  Box,
+  InputBase,
+  IconButton,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormHelperText
 } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@mui/icons-material/Menu';
+import DirectionsIcon from '@mui/icons-material/Directions';
 // import { makeStyles } from "@material-ui/core/styles";
 import InfiniteScroll from "react-infinite-scroller";
 
@@ -24,6 +37,8 @@ async function sleep(duration) {
     }, duration);
   });
 }
+
+const sections = {};
 
 const useStyles = {};
 // const useStyles = makeStyles({
@@ -50,18 +65,16 @@ export default function InfiniteLoadingGrid() {
   const [loadedRows, setLoadedRows] = useState([]);
   const [hasNextPage, setHasNextPage] = useState(true);
   const mounted = useRef(true);
-//   const { data } = useDemoData({
-//     dataSet: "Commodity",
-//     rowLength: pageSize,
-//     maxColumns: 6
-//   });
-const data = 3;
+  const { data } = useDemoData({
+    dataSet: "Commodity",
+    rowLength: pageSize,
+    maxColumns: 6
+  });
 
   const loadServerRows = async () => {
     setLoading(true);
     try {
-    //   const newData = await getRealGridData(pageSize, getCommodityColumns());
-    const newData = 2;
+      const newData = await getRealGridData(pageSize, getCommodityColumns());
 
       // Simulate network throttle
       await sleep(pageSize * 500 + 100);
@@ -92,8 +105,9 @@ const data = 3;
     };
   }, [setLoadedRows, data.rows]);
 
+
   return (
-    <>
+    <>    
       <InfiniteScroll
         pageStart={0}
         loadMore={handleOnRowsScrollEnd}
