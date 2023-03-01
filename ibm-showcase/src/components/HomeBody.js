@@ -41,7 +41,7 @@ function HomeBody() {
 
 export default HomeBody;
 
-function ProjectTile(props){
+export function ProjectTile(props){
   const [isShown, setIsShown] = useState(false);
 
   return(
@@ -68,7 +68,7 @@ function ProjectTile(props){
   );
 }
 
-function ThreeProjectTiles(){
+export function ThreeProjectTiles(){
   return(
     <section style={{display: 'flex', flexDirection: 'row', columnGap: '2%'}}>
       <ProjectTile img={ProjectPic2} title='Franklin Immersive Social Engagement (FISE)'/>
