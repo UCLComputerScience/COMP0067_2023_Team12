@@ -54,7 +54,14 @@ export default function SignIn() {
 
     <ThemeProvider theme={theme}>
         <Header title="Blog" sections={sections} />
-        <Container component="main" maxWidth="xs" justify="flex-end" alignItems="center">  
+        <Container component="main" maxWidth="xs" justify="flex-end" alignItems="center" 
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '90vh',
+          // not 100vh since this window height includes the browser search bar and stuff so using 90% instead as this avoids the issue
+        }}>  
         {/* TODO trying to vertically centre the whole thing but is not working with the justify and alignItems */}
             <CssBaseline />
             <Box
@@ -73,7 +80,18 @@ export default function SignIn() {
             </Typography>
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                 <TextField
-                    sx={{input: {textAlign: "center"}}}
+                    // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}
+                    variant='outlined'
+                    sx={{
+                      width: '600px',
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderRadius: '50px !important',},
+                      '& .MuiInputLabel-root': {
+                        transform: 'translate(260px, 16px) scale(1)',
+                        transformOrigin: 'top left',
+                      },
+                    }}
+                    // this is so jank to centre the text but it seems to work so eyo - might need to finalise so it actually is centrerd
                     margin="normal"
                     required
                     fullWidth
@@ -84,7 +102,15 @@ export default function SignIn() {
                     autoFocus
                 />
                 <TextField
-                    sx={{labelAlign: "right", float:'right'}}
+                    // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}
+                    sx={{
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderRadius: '50px !important',},
+                      '& .MuiInputLabel-root': {
+                        transform: 'translate(260px, 16px) scale(1)',
+                        transformOrigin: 'top left',
+                      },
+                    }}
                     margin="normal"
                     required
                     fullWidth
@@ -94,7 +120,7 @@ export default function SignIn() {
                     id="password"
                     autoComplete="current-password"
                 />
-                <Grid container>
+                {/* <Grid container>
                 <Grid item xs>
                 <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -106,12 +132,15 @@ export default function SignIn() {
                     Forgot password?
                     </Link>
                 </Grid>
-                </Grid>
+                </Grid> */}
                 <Button
                 type="submit"
-                fullWidth
+                // fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ 
+                  width: '200px',
+                  borderRadius: '50px',
+                  mt: 2, mb: 2 }}
                 >
                 Login
                 </Button>
@@ -131,6 +160,6 @@ export default function SignIn() {
         </Box>
         {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }
