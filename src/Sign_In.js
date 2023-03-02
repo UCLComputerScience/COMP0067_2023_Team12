@@ -87,13 +87,13 @@ export default function SignIn() {
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderRadius: '50px !important',},
                       '& .MuiInputLabel-root': {
-                        transform: 'translate(260px, 16px) scale(1)',
+                        transform: 'translate(265px, 16px) scale(1)',
                         transformOrigin: 'top left',
                       },
                     }}
                     // this is so jank to centre the text but it seems to work so eyo - might need to finalise so it actually is centrerd
                     margin="normal"
-                    required
+                    // required
                     fullWidth
                     id="email"
                     label="Username"
@@ -107,12 +107,12 @@ export default function SignIn() {
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderRadius: '50px !important',},
                       '& .MuiInputLabel-root': {
-                        transform: 'translate(260px, 16px) scale(1)',
+                        transform: 'translate(265px, 16px) scale(1)',
                         transformOrigin: 'top left',
                       },
                     }}
                     margin="normal"
-                    required
+                    // required
                     fullWidth
                     name="password"
                     label="Password"
@@ -133,6 +133,11 @@ export default function SignIn() {
                     </Link>
                 </Grid>
                 </Grid> */}
+                <Box 
+                sx={{
+                  display: 'flex', 
+                  justifyContent: 'center'
+                }}>
                 <Button
                 type="submit"
                 // fullWidth
@@ -140,10 +145,13 @@ export default function SignIn() {
                 sx={{ 
                   width: '200px',
                   borderRadius: '50px',
-                  mt: 2, mb: 2 }}
+                  mt: 2, mb: 2,
+                  // display: 'flex', 
+                  justifyContent: 'center' }}
                 >
                 Login
                 </Button>
+                </Box>
             {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
