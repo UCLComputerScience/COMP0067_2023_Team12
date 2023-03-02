@@ -24,6 +24,7 @@ export default function Items() {
 
   return (
     <div>
+      <Button>madtingsasdf</Button>
       {data.map(item => (
         <div key={item._id}>
           <Button>madtingsasdf</Button>
