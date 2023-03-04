@@ -3,6 +3,7 @@ import './App.css';
 import CreateNewProject from './components/CreateNewProject'
 import HomePage from './components/HomePage'
 import IndividualProjectPage from './components/IndividualProjectPage'
+import About from './components/About'
 // Different Page Views End
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
     <div className="App">
       {/*<CreateNewProject />*/}
       {/* <HomePage /> */}
-      <IndividualProjectPage />
+      {/* <IndividualProjectPage /> */}
+      <About />
     </div>
   );
 }
