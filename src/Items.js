@@ -1,40 +1,50 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import {Container, Grid, Card, CardMedia, CardContent, Typography, CardActions, Button, IconButton} from '@mui/material';
+import {Container, Grid, Card, CardMedia, CardContent, Typography, CardActions, Button, IconButton, dividerClasses} from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
+import TutorialsList from "./components/tutorials-list.component";
+import AddTutorial from "./components/add-tutorial.component";
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-
 export default function Items() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axios.get('/api/data')
-      .then(res => {
-        console.log('Response data:', res.data);
-        setData(res.data);
-      })
-      .catch(err => {
-        console.log('Error:', err);
-      });
-  }, []);
-
-  return (
+  return(
     <div>
-      <Button>madtingsasdf</Button>
-      {data.map(item => (
-        <div key={item._id}>
-          <Button>madtingsasdf</Button>
-          {/* <h3>{item.callLetters}</h3> */}
-          {/* <p>{item.type}</p> */}
-        </div>
-      ))}
+      <TutorialsList/>
+      <AddTutorial/>
     </div>
-  );
+  )
 }
+
+
+// export default function Items() {
+//   const [data, setData] = useState([]);
+
+//   useEffect(() => {
+//     axios.get('/api/data')
+//       .then(res => {
+//         console.log('Response data:', res.data);
+//         setData(res.data);
+//       })
+//       .catch(err => {
+//         console.log('Error:', err);
+//       });
+//   }, []);
+
+//   return (
+//     <div>
+//       <Button>madtingsasdf</Button>
+//       {data.map(item => (
+//         <div key={item._id}>
+//           <Button>madtingsasdf</Button>
+//           {/* <h3>{item.callLetters}</h3> */}
+//           {/* <p>{item.type}</p> */}
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
 
 // const Record = (props) => (
 //     <tr>
