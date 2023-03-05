@@ -25,7 +25,11 @@ export default function Items() {
 
     ProjectDataService.getAll()
       .then((response) => {
-        setItems((prevItems) => [...prevItems, ...response.data]);
+        setItems((prevItems) => {
+          const existingIds = new Set(prevItems.map((item) => item.id));
+          const newItems = response.data.filter((item) => !existingIds.has(item.id));
+          return [...prevItems, ...newItems];
+        });
         setIsLoading(false);
       })
       .catch((error) => {
@@ -96,3 +100,4 @@ export default function Items() {
     </Container>
   );
 }
+
