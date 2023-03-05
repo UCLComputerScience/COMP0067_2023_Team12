@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ProjectDataService from "../services/project.service";
+import FileBase64 from 'react-file-base64';
 
 export default class AddProject extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ export default class AddProject extends Component {
 
   onChangeImages(e) {
     this.setState({
-      images: e.target.value
+      images: e
     });
   }
 
@@ -86,7 +87,7 @@ export default class AddProject extends Component {
       supervisors: this.state.supervisors,
       description: this.state.description,
       video: this.state.video,
-      images: this.state.images,
+      images: typeof this.state.images === 'string' ? this.state.images : this.state.images[0].base64,
       category: this.state.category,
       tags: this.state.tags,
     };
@@ -210,14 +211,22 @@ export default class AddProject extends Component {
 
             <div className="form-group">
               <label htmlFor="images">Images</label>
-              <input
-                type="text"
+              {/* <input
+                type="file"
                 className="form-control"
                 id="images"
                 required
-                value={this.state.images}
-                onChange={this.onChangeImages}
+                onChange={(e) => this.onChangeImages(e.target.files)}
+                // value={this.state.images}
+                // onChange={this.onChangeImages}
                 name="images"
+              /> */}
+              <FileBase64 
+                type="file" 
+                id="images" 
+                multiple={false} 
+                onChange={this.onChangeImages} 
+                name="images" 
               />
             </div>
 
