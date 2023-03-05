@@ -8,6 +8,7 @@ import {
   CardContent,
   Typography,
   IconButton,
+  Button,
 } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
@@ -73,9 +74,10 @@ export default function Items() {
                   borderRadius: '8%',
                   objectFit: 'cover',
                 }}
-                image={item.imageUrl}
+                image={item.images}
                 alt={item.title}
               />
+              <Button> {item.images}</Button>
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom variant="body1" component="h2" fontWeight="bold" style={{ color: 'blue' }}>
                   {item.title}
