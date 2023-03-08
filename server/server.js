@@ -15,26 +15,41 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-const db = require("./app/models");
-db.mongoose
-  .connect(db.url, {
+const db1 = require("./app/models");
+db1.mongoose
+  .connect(db1.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log("Connected to the database!");
+    console.log("Connected to the project_list database!");
   })
   .catch(err => {
-    console.log("Cannot connect to the database!", err);
+    console.log("Cannot connect to the project_list database!", err);
+    process.exit();
+  });
+
+const db2 = require("./app/loginmodels");
+db2.mongoose
+  .connect(db2.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Connected to the admin_details database!");
+  })
+  .catch(err => {
+    console.log("Cannot connect to the admin_details database!", err);
     process.exit();
   });
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to the application." });
 });
 
 require("./app/routes/project.routes")(app);
+require("./app/routes/login.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

@@ -80,9 +80,6 @@ export default class Register extends Component {
           submitted: true
         });
         console.log(response.data);
-        // console.log("Submitted");
-        console.log("TESTY SCRIPT")
-        alert(response.data.user);
       })
       .catch(e => {
         console.log(e);
@@ -100,6 +97,7 @@ export default class Register extends Component {
     });
   }
 
+
   handleFocusUser = () => {
     this.setState({
       labelStateUser: true,
@@ -113,7 +111,6 @@ export default class Register extends Component {
       });
     }
   }
-
 
   handleFocusPass = () => {
     this.setState({
@@ -178,18 +175,12 @@ export default class Register extends Component {
                         transform: 'translate(14px, -6px) scale(0.75)',
                         transformOrigin: 'top left',
                       },
-                      // '&': {
-                      //   color: '#FF0000', // Set color using a hex value
-                      //   backgroundColor: '#3D70B214', // Set background color using a hex value
-                      //   borderRadius: '50px',
-                      //   // boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
-                      // },
                     }}
                     
                     margin="normal"
                     // required
                     fullWidth
-                    id="email"
+                    id="user"
                     label="Username"
                     name="email"
                     // autoComplete="email"

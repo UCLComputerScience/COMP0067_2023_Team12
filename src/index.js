@@ -4,12 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import SignIn from './Sign_In';
+import Register from './Register';
+import LoginList from './components/login_list.component';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
-    {/* <SignIn /> */}
+    <Register />
+    <SignIn />
+    <LoginList />
   </React.StrictMode>
 );
 
