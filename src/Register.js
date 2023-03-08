@@ -104,11 +104,6 @@ export default class Register extends Component {
     this.setState({
       labelStateUser: true,
     });
-    if (inputRef.current) {
-      const length = inputRef.current.value.length;
-      inputRef.current.selectionStart = length;
-      inputRef.current.selectionEnd = length;
-    }
   }
 
   handleBlurUser = (event) => {
@@ -139,7 +134,6 @@ export default class Register extends Component {
   render () {
     const { labelStateUser } = this.state;
     const { labelStatePass } = this.state;
-    const
   return (
     <ThemeProvider theme={theme}>
         <Header title="Blog" sections={sections} />
@@ -173,6 +167,8 @@ export default class Register extends Component {
                     sx={{
                       width: '600px',
                       '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#3D70B200',
+                        backgroundColor: '#3D70B225',
                         borderRadius: '50px !important',},
                       "& .MuiInputLabel-root": {
                         transform: labelStateUser ? 'translate(14px, -6px) scale(0.75)' : 'translate(265px, 16px) scale(1)',
@@ -181,9 +177,15 @@ export default class Register extends Component {
                       "& .Mui-focused .MuiInputLabel-root": {
                         transform: 'translate(14px, -6px) scale(0.75)',
                         transformOrigin: 'top left',
-                      }
+                      },
+                      // '&': {
+                      //   color: '#FF0000', // Set color using a hex value
+                      //   backgroundColor: '#3D70B214', // Set background color using a hex value
+                      //   borderRadius: '50px',
+                      //   // boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
+                      // },
                     }}
-                    // this is so jank to centre the text but it seems to work so eyo - might need to finalise so it actually is centrerd
+                    
                     margin="normal"
                     // required
                     fullWidth
@@ -198,7 +200,6 @@ export default class Register extends Component {
                     InputLabelProps={{
                       shrink: labelStateUser,
                     }}
-                    inputRef={inputRef}
                     onFocus={this.handleFocusUser}
                     onBlur={this.handleBlurUser}
                     inputProps={{
@@ -213,6 +214,8 @@ export default class Register extends Component {
                     sx={{
                       width: '600px',
                       '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#3D70B200',
+                        backgroundColor: '#3D70B225',
                         borderRadius: '50px !important',},
                       "& .MuiInputLabel-root": {
                         transform: labelStatePass ? 'translate(14px, -6px) scale(0.75)' : 'translate(265px, 16px) scale(1)',
@@ -260,7 +263,9 @@ export default class Register extends Component {
                   borderRadius: '50px',
                   mt: 2, mb: 2,
                   // display: 'flex', 
-                  justifyContent: 'center' }}
+                  justifyContent: 'center',
+                  backgroundColor: '#0062FF',
+                 }}
                 onClick={this.saveProject}
                 >
                 Register
