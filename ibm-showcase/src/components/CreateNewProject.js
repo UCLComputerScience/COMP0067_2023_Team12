@@ -1,3 +1,4 @@
+import axios from "axios";
 import AdminHeader from './AdminHeader'
 import './CreateNewProject.css';
 import Button from '@mui/material/Button';
@@ -25,12 +26,26 @@ function CreateNewProject() {
 export default CreateNewProject;
 
 function ProjectForm() {
+
+  function handleSubmit(e) {
+    // Prevent the browser from reloading the page
+    e.preventDefault();
+    // Read the form data
+    const form = e.target;
+    const formData = new FormData(form);
+    //Work with it as a plain object:
+    const formJson = Object.fromEntries(formData.entries());
+    console.log(formJson);
+    axios.post('http://localhost:8080/api/books', formJson)
+
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h1>Create a New Project</h1>
       <Forms />
       <div className="SubmitButton">
-        <Button variant="contained">Submit</Button>
+        <Button variant="contained" type="submit">Submit</Button>
       </div>
     </form>
 
@@ -51,13 +66,13 @@ function FormLeft() {
   return (
     <div className="FormLeft">
       <h3>Project Title</h3>
-      <TextField label="Enter Title Here" />
+      <TextField name='title' label="Enter Title Here" />
       <h3>Group Members</h3>
       <TextField label="Enter Group Members Here" />
       <h3>Supervisors</h3>
       <TextField label="Enter Supervisors Here" />
       <h3>Project Description</h3>
-      <TextField label="Enter Description Here" multiline="true" minRows="5" />
+      <TextField name='description' label="Enter Description Here" multiline="true" minRows="5" />
     </div>
 
   )

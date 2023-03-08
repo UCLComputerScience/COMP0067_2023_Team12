@@ -9,10 +9,10 @@ import About from './components/About'
 function App() {
   return (
     <div className="App">
-      {/*<CreateNewProject />*/}
+      <CreateNewProject />
       {/* <HomePage /> */}
-      {/* <IndividualProjectPage /> */}
-      <About />
+      {/*<IndividualProjectPage />*/}
+      {/*<About />*/}
     </div>
   );
 }
