@@ -45,10 +45,10 @@ function Footer() {
       </Box>
       <Box>
         <ul><b>About</b></ul>
-        <ul><Link to="/about" >About Program</Link></ul>
+        <ul>About Program</ul>
         <ul>About IBM</ul>
         <ul>About UCL</ul>
-        <ul><Link to="/about" >Contact Us</Link></ul>
+        <ul>Contact Us</ul>
       </Box>
       <Box>
         <ul><b>Projects</b></ul>
@@ -64,9 +64,9 @@ function Footer() {
           <Facebook sx={styles.icon} alt="Facebook" />
           <LinkedIn sx={styles.icon} alt="LinkedIn" />
         </ul>
-        <ul style={{ marginTop: "3.5rem" }}>
+        <ul style={{ marginTop: "3.5rem" }}><Link to="/signin" style={{textDecoration:'none',color:'inherit'}}>
           Management Access
-          <LockIcon sx={styles.lockIcon} alt="Lock" />
+          <LockIcon sx={styles.lockIcon} alt="Lock" /></Link>
         </ul>
       </Box>
     </footer>
