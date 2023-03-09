@@ -14,6 +14,7 @@ import Chip from '@mui/material/Chip';
 import React, { useState } from 'react';
 
 function CreateNewProject() {
+  document.body.style = 'background: #F4F7FE;';
   return (
     <div className="App">
       <AdminHeader />

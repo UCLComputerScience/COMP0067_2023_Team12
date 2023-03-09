@@ -17,7 +17,9 @@ h3 {
 }
 
 .ProjectForm {
-  background: #F4F7FE;
+  margin:0.5rem 6rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .MuiTextField-root, #simple-select{
@@ -26,12 +28,6 @@ h3 {
 
 #demo-multiple-chip{
   background: white;
-}
-
-form {
-  margin:0.5rem 6rem;
-  display: flex;
-  flex-direction: column;
 }
 
 .Forms {
