@@ -9,6 +9,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { createTheme } from '@mui/material/styles';
 import PagesIcon from '@mui/icons-material/Pages';
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
 
 function HomeBody() {
   return (
@@ -20,20 +21,20 @@ function HomeBody() {
       <p style={{fontSize: '1.4rem', color: 'white', padding: '0 0 6rem 3rem ', width: '30%', textAlign: 'justify', maxHeight: '50%'}}> 
       Motioninput is a pioneering touchless computing technology devleoped by UCL Computer Science students
       </p>
-      <Button 
+      <Link to="/projects/:id"><Button 
         size="large" variant="contained" endIcon={<ChevronRightIcon />}
         sx={{fontSize:'1.15rem', textTransform: "none", paddingRight:'1rem', margin:"0 3rem", position:'absolute', bottom:'1.8rem', borderRadius:'1rem', backgroundColor: "#344DF8"}}
       >
       Read More
-      </Button>
+      </Button></Link>
     </Box>
     <ThreeProjectTiles />
     <div style={{display:'flex', flexDirection:'row-reverse'}}>
-      <Button size="large" variant="text"
+      <Link to="/projects"><Button size="large" variant="text"
         sx={{textTransform: "none", fontSize:'2rem', padding:'0 0 0 0.7rem', margin:'1rem 0'}}
       >
         Explore All Projects<ChevronRightIcon sx={{fontSize:'2.2rem'}}/>
-      </Button>
+      </Button></Link>
     </div>
   </section>
   );
@@ -57,13 +58,13 @@ export function ProjectTile(props){
         Description Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </section>)
       }
-
-      <Button size='large' variant="text" 
+      
+      <Link to="/projects/:id"><Button size='large' variant="text" 
       sx={{fontSize: '2.2rem', color: 'white', textTransform: "none", padding:'0.5rem 0.5rem', textAlign:'left', margin:'0.5rem 1rem', lineHeight:'1.21', 
            position:'absolute', bottom:'0', fontWeight:'bold'}}
       >
         <span>{props.title}<ChevronRightIcon sx={{fontSize:'2.2rem', margin:'0 0 -0.4rem 0.5rem', padding:"0"}}/></span>
-      </Button>
+      </Button></Link>
     </Box>
   );
 }

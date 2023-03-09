@@ -5,15 +5,24 @@ import HomePage from './components/HomePage'
 import IndividualProjectPage from './components/IndividualProjectPage'
 import About from './components/About'
 // Different Page Views End
+import { Routes,Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <CreateNewProject />
-      {/* <HomePage /> */}
-      {/*<IndividualProjectPage />*/}
-      {/*<About />*/}
-    </div>
+  <Routes>
+    <Route path="/" element={<HomePage />} />
+    {/* <Route path="/projects" element={<ProjectList />} /> */}
+    <Route path="/projects/:id" element={<IndividualProjectPage />} />
+    <Route path="/about" element={<About />}/>
+    <Route path="/createproject" element={<CreateNewProject />} />
+    {/* <Route path="/editproject" element={<EditProject />} /> */}
+  </Routes>
+    // <div className="App">
+    //   {/*<CreateNewProject />*/}
+    //   {/* <HomePage /> */}
+    //   {/* <IndividualProjectPage /> */}
+    //   {/* <About /> */}
+    // </div>
   );
 }
 

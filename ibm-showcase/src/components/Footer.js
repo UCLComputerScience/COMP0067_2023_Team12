@@ -3,6 +3,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import { Twitter, YouTube, Facebook, LinkedIn } from '@mui/icons-material';
 import logo from './ibm_logo.svg';
 import ucl_logo from './ucl_logo.svg';
+import {Link} from 'react-router-dom';
 
 function Footer() {
   const styles = {
@@ -44,16 +45,16 @@ function Footer() {
       </Box>
       <Box>
         <ul><b>About</b></ul>
-        <ul>About Program</ul>
+        <ul><Link to="/about" >About Program</Link></ul>
         <ul>About IBM</ul>
         <ul>About UCL</ul>
-        <ul>Contact Us</ul>
+        <ul><Link to="/about" >Contact Us</Link></ul>
       </Box>
       <Box>
         <ul><b>Projects</b></ul>
         <ul>Featured Projects</ul>
-        <ul>View All Projects</ul>
-        <ul>Search for Projects</ul>
+        <ul><Link to="/projects">View All Projectss</Link></ul>
+        <ul><Link to="/projects">Search for Projectss</Link></ul>
       </Box>
       <Box>
         <ul><b>Follow us</b></ul>
