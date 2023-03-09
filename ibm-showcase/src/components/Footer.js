@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom';
 function Footer() {
   const styles = {
     footer: {
-      backgroundColor: '#F4F7FE',
+      backgroundColor: '#F4F4F4',
       display:'flex',
       justifyContent: 'space-around',
       padding: '3rem',
