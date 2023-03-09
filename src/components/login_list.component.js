@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LoginDataService from "../services/login.service";
 import { Link } from "react-router-dom";
+import ListAllProjects from "./infinite_scroll_project_list";
 
 export default class LoginList extends Component {
   constructor(props) {

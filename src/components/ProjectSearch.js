@@ -6,13 +6,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import styled from 'styled-components';
 
 
+
 const StyledGrid = styled(Grid)`
-  background-image: url("/images/ibm_ai.jpg");
+  background-image: url("/images/ibm_ai4.avif");
   background-repeat: no-repeat;
-  height: 70vhvh;
-  background-size:30% auto;
-  background-position:right;
-  background-attachment:fixed;
+  background-size:cover;
+  background-position: right;
+  
+  
 
 
 `;
@@ -21,7 +22,7 @@ const StyledGrid = styled(Grid)`
 
 function ProjectSearch() {
     return (
-        <StyledGrid container sx={{bgcolor:"black",width:"100%"}}>
+        <StyledGrid container sx={{bgcolor:"black", width:"100%"}}>
                     <Box sx={{ width:800,mx:'auto',mt:10,pl:3,pr:3}}>
             <Typography variant='h4' gutterBottom sx = {{color:"white",textAlign:"center"}}>
                 Explore exciting projects
