@@ -9,7 +9,7 @@ import { Twitter, YouTube, Facebook, LinkedIn } from '@mui/icons-material';
 
 function IndividualProjectPage() {
   return (
-    <div>
+    <div className="IndividualProjectPage">
       <Header />
       <ProjectVideoSection />
       <ProjectDetail />
