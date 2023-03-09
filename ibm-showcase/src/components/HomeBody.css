@@ -1,5 +1,5 @@
 /*html {height: 100%}*/
-body {
+.HomeBody {
   height:100%;
   background: linear-gradient(180deg, #131F30 35rem, #FFFFFF 0)
 }
