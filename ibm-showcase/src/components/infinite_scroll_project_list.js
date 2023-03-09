@@ -75,7 +75,6 @@ export default function ListAllProjects() {
 
   return (
     <Container sx={{ py: 8 }} maxWidth="md">
-      <Box m={2}>
         <Grid container spacing={2} sx={{width:"100%"}}>
                 <Grid item xs = {8}>
                 <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:134,borderRadius:"30px",position:"relative",left:"30px",mt:-5,border:'1px solid #6E6D7A'}}>
@@ -111,8 +110,7 @@ export default function ListAllProjects() {
 
                 
         </Grid>
-        </Box>
-      <Box m={4}>
+        <Grid sx={{ py: 3 }} />
       <Grid container spacing={4} >
         {items.map((item) => (
           <Grid item key={item.id} xs={12} sm={6} md={4}>
@@ -149,7 +147,6 @@ export default function ListAllProjects() {
           </Grid>
         )}
       </Grid>
-      </Box>
     </Container>
   );
 }
