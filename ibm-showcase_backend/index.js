@@ -22,6 +22,10 @@ app.get("/", (req, res) => {
 const projectRoutes = require('./routes/projectRoutes');
 app.use('/api/projects', projectRoutes);
 
+// user routes
+const userRoutes = require('./routes/userRoutes');
+app.use('/api/users', userRoutes);
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
