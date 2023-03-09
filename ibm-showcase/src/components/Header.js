@@ -4,14 +4,20 @@ import './AdminHeader.css';
 import {Link} from 'react-router-dom';
 
 function Header() {
+  const styles={
+    link:{
+      textDecoration:'none',
+      color:'inherit'
+    },
+  };
   return (
   <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <section>
-          <a><Link to="/" >Home</Link></a>
-          <a><Link to="/projects" >Projects</Link></a>
-          <a><Link to="/about" >About</Link></a>
-          <a><Link to="/about" >Contact Us</Link></a>
+          <Link to="/" style={styles.link}>Home</Link>
+          <Link to="/projects" style={styles.link} >Projects</Link>
+          <Link to="/about" style={styles.link}>About</Link>
+          <Link to="/about" style={styles.link}>Contact Us</Link>
         </section>
   </header>
   );

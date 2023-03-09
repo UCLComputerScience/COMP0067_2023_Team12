@@ -30,7 +30,7 @@ function HomeBody() {
     </Box>
     <ThreeProjectTiles />
     <div style={{display:'flex', flexDirection:'row-reverse'}}>
-      <Link to="/projects"><Button size="large" variant="text"
+      <Link to="/projects" style={{textDecoration:'none',color:'inherit'}} ><Button size="large" variant="text"
         sx={{textTransform: "none", fontSize:'2rem', padding:'0 0 0 0.7rem', margin:'1rem 0'}}
       >
         Explore All Projects<ChevronRightIcon sx={{fontSize:'2.2rem'}}/>

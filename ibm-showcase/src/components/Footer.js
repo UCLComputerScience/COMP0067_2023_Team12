@@ -34,7 +34,7 @@ function Footer() {
     },
     lockIcon: {
       fontSize: 15
-    }
+    },
   };
 
   return (
@@ -53,8 +53,8 @@ function Footer() {
       <Box>
         <ul><b>Projects</b></ul>
         <ul>Featured Projects</ul>
-        <ul><Link to="/projects">View All Projectss</Link></ul>
-        <ul><Link to="/projects">Search for Projectss</Link></ul>
+        <ul>View All Projectss</ul>
+        <ul>Search for Projectss</ul>
       </Box>
       <Box>
         <ul><b>Follow us</b></ul>
