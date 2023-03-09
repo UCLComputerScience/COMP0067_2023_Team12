@@ -6,6 +6,7 @@ import ListAllProjects from '../components/infinite_scroll_project_list'
 
 
 function ProjectList() {
+  document.body.style = 'background: white;';
     return (
       <div>
         <Header />
