@@ -1,0 +1,48 @@
+hr {
+  margin:0rem;
+  height: 1px;
+  color: #E6E6E6;
+  background-color: #E6E6E6;
+  border: none;
+}
+
+h1, h3 {
+  font-family: "Segoe UI"; 
+  font-weight: normal; 
+  color: #1A2834;
+}
+
+h3 {
+  margin: 1.2rem 0 0.5rem;
+}
+
+.ProjectForm {
+  margin:0.5rem 6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.MuiTextField-root, #simple-select{
+  background: white;
+}
+
+#demo-multiple-chip{
+  background: white;
+}
+
+.Forms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.FormLeft, .FormRight {
+  display: flex;
+  flex-direction: column;
+  width:42%;
+}
+
+.SubmitButton {
+  margin: 2rem 0;
+}
