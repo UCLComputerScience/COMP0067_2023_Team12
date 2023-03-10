@@ -14,6 +14,7 @@ import Chip from '@mui/material/Chip';
 import React, { useState } from 'react';
 
 function CreateNewProject() {
+  document.body.style = 'background: #F4F7FE;';
   return (
     <div className="App">
       <AdminHeader />
@@ -58,7 +59,7 @@ function ProjectForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='ProjectForm' onSubmit={handleSubmit}>
       <h1>Create a New Project</h1>
       <Forms />
       <div className="SubmitButton">

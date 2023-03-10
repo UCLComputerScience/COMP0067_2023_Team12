@@ -8,7 +8,7 @@ import IBM_IMG from './ibm_ai4.avif';
 
 
 const StyledGrid = styled(Grid)`
-  background-image: url({IBM_IMG});
+  background-image: url(${IBM_IMG});
   background-repeat: no-repeat;
   background-size:cover;
   background-position: right;

@@ -13,8 +13,9 @@ import {Link} from 'react-router-dom';
 
 function HomeBody() {
   return (
-  <section className="HomeBody" style={{margin:'auto', padding:'0 7rem', maxWidth:'110rem'}}>
-    <h1 style={{color:'white', fontSize:'4rem', marginBottom:'1rem'}}><PagesIcon sx={{fontSize:'3rem', padding: '0 0.5rem'}}/>Featured Projects</h1>
+  <div className="HomeBody">
+  <section style={{margin:'auto', padding:'0 7rem', maxWidth:'110rem'}}>
+    <h1 style={{color:'white', fontSize:'4rem', marginBottom:'1rem', marginTop:0, paddingTop:'3rem'}}><PagesIcon sx={{fontSize:'3rem', padding: '0 0.5rem'}}/>Featured Projects</h1>
     <hr style={{margin:'0 0 3rem 0',  height:'1px', color: '#E6E6E6', backgroundColor: '#E6E6E6', border: 'none'}}/>
     <Box sx={{minHeight: '30.5rem', borderRadius:'1.5rem',backgroundImage:`linear-gradient(90deg, rgba(0,0,0,0.15) 25%, rgba(255,255,255,0) 40%),url(${ProjectPic1})`, backgroundSize: 'cover',backgroundPosition:'center', margin:'0 0 4rem 0', position:'relative'}}>
       <div style={{fontSize: '3rem', color: 'white', padding: '3rem 3rem 1rem 3rem', lineHeight:'90%'}}>UCL Motion Input 3</div>
@@ -37,6 +38,7 @@ function HomeBody() {
       </Button></Link>
     </div>
   </section>
+  </div>
   );
 }
 
