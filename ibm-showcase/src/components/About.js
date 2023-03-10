@@ -33,11 +33,11 @@ function AboutLeft() {
       padding:'0 0 0 1rem'
     },
     abouttitle:{
-      fontSize: '5rem',
+      fontSize: '4rem',
       padding:'5rem 0'
     },
     abouttext:{
-      fontSize: '2rem', 
+      fontSize: '1.5rem', 
       lineHeight: '150%',
       textAlign: 'justify'
     },
@@ -67,11 +67,11 @@ function AboutRight() {
       padding:'0 1rem 0 0'
     },
     abouttitle:{
-      fontSize: '5rem',
+      fontSize: '4rem',
       padding:'5rem 0'
     },
     aboutsubtitle:{
-      fontSize: '2.5rem',
+      fontSize: '2rem',
       marginBottom:'1rem'
     },
     abouttextfield:{
