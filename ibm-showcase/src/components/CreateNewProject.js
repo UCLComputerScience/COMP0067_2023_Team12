@@ -108,26 +108,43 @@ function FormRight() {
         <input hidden accept="image/*" multiple type="file" />
       </Button>
       <h3>Project Category</h3>
-      <FormControl fullWidth>
-        <InputLabel id="simple-select-label">Select Project Category</InputLabel>
-        <Select
-          id="simple-select"
-          // onChange={handleChange}
-        >
-          <MenuItem value={1}>AI</MenuItem>
-          <MenuItem value={2}>VR</MenuItem>
-          <MenuItem value={3}>Other</MenuItem>
-        </Select>
-      </FormControl>
+      <CategorySelect />
       <h3>Project #HashTags</h3>
-      <MS />
+      <TagSelect />
 
     </div>
 
   )
 }
 
-function MS() {
+function CategorySelect() {
+  const [category, setCategory] = useState('');
+
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
+
+  return (
+    <Box>
+      <FormControl fullWidth>
+        <InputLabel id="simple-select-label">Select Project Category</InputLabel>
+        <Select
+          labelId="simple-select-label"
+          id="simple-select"
+          value={category}
+          label="Select Project Category"
+          onChange={handleChange}
+        >
+          <MenuItem value={1}>AI</MenuItem>
+          <MenuItem value={2}>VR</MenuItem>
+          <MenuItem value={3}>Other</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
+  );
+}
+
+function TagSelect() {
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -139,64 +156,63 @@ function MS() {
     },
   };
 
-  const names = [
-    'Tag A',
-    'Tag B',
-    'Tag C',
-    'Tag D'
+  const tags = [
+  'Tag A',
+  'Tag B',
+  'Tag C',
   ];
 
-  function getStyles(name, personName, theme) {
+  function getStyles(tag, tags_selected, theme) {
     return {
       fontWeight:
-        personName.indexOf(name) === -1
+        tags_selected.indexOf(tag) === -1
           ? theme.typography.fontWeightRegular
           : theme.typography.fontWeightMedium,
     };
   }
 
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [tags_selected, setTag] = React.useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    setTag(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
 
   return (
-    <FormControl>
-      <InputLabel id="demo-multiple-chip-label">Project Tags</InputLabel>
-      <Select
-        labelId="demo-multiple-chip-label"
-        id="demo-multiple-chip"
-        multiple
-        value={personName}
-        onChange={handleChange}
-        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-        renderValue={(selected) => (
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-            {selected.map((value) => (
-              <Chip key={value} label={value} />
-            ))}
-          </Box>
-        )}
-        MenuProps={MenuProps}
-      >
-        {names.map((name) => (
-          <MenuItem
-            key={name}
-            value={name}
-            style={getStyles(name, personName, theme)}
+        <FormControl>
+          <InputLabel id="multiple-chip-label">Project Tags</InputLabel>
+          <Select
+            labelId="multiple-chip-label"
+            id="multiple-chip"
+            multiple
+            value={tags_selected}
+            onChange={handleChange}
+            input={<OutlinedInput id="select-multiple-chip" label="Project Tags" />}
+            renderValue={(selected) => (
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                {selected.map((value) => (
+                  <Chip key={value} label={value} />
+                ))}
+              </Box>
+            )}
+            MenuProps={MenuProps}
           >
-            {name}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-  );
+            {tags.map((tag) => (
+              <MenuItem
+                key={tag}
+                value={tag}
+                style={getStyles(tag, tags_selected, theme)}
+              >
+                {tag}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+    );
 }
