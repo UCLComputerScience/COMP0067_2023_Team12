@@ -36,6 +36,8 @@ function ProjectForm() {
     const formData = new FormData(form);
     //Work with it as a plain object:
     const formJson = Object.fromEntries(formData.entries());
+    // for multi-selects, we need special handling
+    formJson.tags = formJson.tags.split(',');
     console.log(formJson);
     axios.post('http://localhost:8080/api/projects', formJson)  
     //   .catch(function (error) {
@@ -102,7 +104,7 @@ function FormRight() {
       <h3>Project Video Link</h3>
       <TextField name='videoLink' label="Enter Youtube Link Here" />
       <h3>Project Images</h3>
-      <text style={{color:"grey", padding:"0 0 0.5rem 0"}}>Only .jpg files. 5MB Max Each.</text>
+      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Only .jpg files. 5MB Max Each.</div>
       <Button variant="contained" component="label">
         Add Pics
         <input hidden accept="image/*" multiple type="file" />
