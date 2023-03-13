@@ -1,0 +1,1 @@
+module.exports = {secret: 'sdjkfh8923yhjasddksbfma@#*(&@*asdfasdfasdfasdfasf9ujkdhfjk'}

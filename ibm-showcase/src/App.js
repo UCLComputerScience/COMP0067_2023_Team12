@@ -7,6 +7,7 @@ import About from './components/About'
 import ProjectList from './screens/ProjectList'
 import EditProject from './screens/EditProject'
 import Sign_In from './screens/Sign_In'
+// import Sign_In from './screens/Register'
 // Different Page Views End
 import { Routes,Route } from 'react-router-dom';
 

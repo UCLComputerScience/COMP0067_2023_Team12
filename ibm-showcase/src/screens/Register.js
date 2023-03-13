@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -15,8 +16,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../components/Header';
 import { Toolbar } from '@mui/material';
 import axios from "axios";
-import {Link, useHistory, useNavigate, Navigate} from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import {Link} from 'react-router-dom';
+
 
 
 
@@ -48,9 +49,7 @@ export default class Sign_In extends Component {
       labelStateUser: false,
       labelStatePass: false,
 
-      submitted: false,
-      token: "",
-      changePage: false
+      submitted: false
     };
   }
 
@@ -73,7 +72,8 @@ export default class Sign_In extends Component {
       password: this.state.password,
     };
   
-    axios.post('http://localhost:8080/api/users/login', data)
+    //Not correct one. In progress
+    axios.post('http://localhost:8080/api/users/register', data)
       .then(response => {
         this.setState({
           id: response.data.id,
@@ -82,17 +82,12 @@ export default class Sign_In extends Component {
           
           published: response.data.published,
 
-          submitted: true,
-          token: response.data.token
+          submitted: true
         });
-        localStorage.setItem('token', response.data.token)
-        // alert('Success')
-        this.setState({changePage: true})
-        
+        console.log(response.data);
       })
       .catch(e => {
         console.log(e);
-        alert(e.response.data.message)
       });
   }
 
@@ -165,7 +160,7 @@ export default class Sign_In extends Component {
                 <LockOutlinedIcon />
             </Avatar> */}
             <Typography component="h1" variant="h5">
-                Login as Admin
+                Register as Admin
             </Typography>
             <Box component="form" sx={{ mt: 1 }}>
                 <TextField
@@ -255,13 +250,7 @@ export default class Sign_In extends Component {
                   display: 'flex', 
                   justifyContent: 'center'
                 }}>
-                {/* { this.redirect ? (<Link to="/editproject"/>) : null } */}
                 {/* <Link to="/editproject" style={{textDecoration:'none',color:'inherit'}}> */}
-                {this.state.changePage && 
-                  <Navigate to={'/editproject'} 
-                            // state={// you can pass state/props here}
-                  />
-                }
                 <Button
                 // type="submit"
                 // fullWidth

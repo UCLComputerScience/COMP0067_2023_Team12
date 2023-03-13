@@ -1,7 +1,14 @@
+var jwt = require('jsonwebtoken')
+var bcrypt = require('bcryptjs')
+
+const authConfig = require("../config/authConfig.js");
+
 const userModel = require("../models/userModel.js");
 
+
+
 // Create and Save a new User to DB
-module.exports.create = (req, res) => {
+module.exports.Register = (req, res) => {
   // Validate request
   if (!req.body.user) {
     res.status(400).send({ message: "Content can not be empty!" });
@@ -9,7 +16,10 @@ module.exports.create = (req, res) => {
   }
 
   // Create a User
-  const user = new userModel(req.body,"throw");
+  const user = new userModel({
+    user: req.body.user,
+    password: bcrypt.hashSync(req.body.password, 8),
+  });
 
   // Save the User in the database
   user
@@ -25,20 +35,33 @@ module.exports.create = (req, res) => {
     });
 };
 
-// Following code has not been tested.
-// Retrieve all Users from the database.
-module.exports.findAll = (req, res) => {
-  const user = req.query.user;
-  var condition = user ? { user: { $regex: new RegExp(title), $options: "i" } } : {};
+module.exports.Login = (req, res) => {
 
-  userModel.find(condition)
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving User."
-      });
-    });
+  userModel.findOne({ user: req.body.user })
+  .then(data => {
+    if (!data)
+      return res.status(404).send({ message: "Not found user with username " + req.body.user});
+    else
+      var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        data.password
+      );
+      // console.log(passwordIsValid);
+
+      // console.log(data);
+    
+      if (passwordIsValid) {
+        var token = jwt.sign({id: data.user}, authConfig.secret, {expiresIn: 86400}
+        );
+        return res.status(200).send(token);
+      } else {
+        return res.status(401).send({ message: "Wrong Password !!" });
+      }
+  })
+  
+  .catch(err => {
+    return res
+      .status(500)
+      .send({ message: "Error retrieving Project with id = " + req.body.user });
+  });
 };

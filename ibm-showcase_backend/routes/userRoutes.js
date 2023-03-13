@@ -2,11 +2,14 @@ const userController = require("../controllers/userController.js");
 
 var router = require("express").Router();
 
-// Add a new user
-router.post("/", userController.create);
+// // Change Password
+// router.post("/change-password", userController.Password);
 
-// Retrieve all user
-router.get("/", userController.findAll);
+// Login
+router.post("/login", userController.Login);
+
+// Register
+router.post("/register", userController.Register);
 
 //More to add according to design. Search by keyword or tags or categories etc.
 
