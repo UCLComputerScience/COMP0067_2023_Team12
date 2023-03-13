@@ -86,9 +86,9 @@ function FormLeft() {
       <h3>Project Title</h3>
       <TextField name='title' label="Enter Title Here" />
       <h3>Group Members</h3>
-      <TextField label="Enter Group Members Here" />
+      <TextField name='groupMembers' label="Enter Group Members Here" />
       <h3>Supervisors</h3>
-      <TextField label="Enter Supervisors Here" />
+      <TextField name='supervisors' label="Enter Supervisors Here" />
       <h3>Project Description</h3>
       <TextField name='description' label="Enter Description Here" multiline="true" minRows="5" />
     </div>
@@ -100,7 +100,7 @@ function FormRight() {
   return (
     <div className="FormRight">
       <h3>Project Video Link</h3>
-      <TextField label="Enter Youtube Link Here" />
+      <TextField name='videoLink' label="Enter Youtube Link Here" />
       <h3>Project Images</h3>
       <text style={{color:"grey", padding:"0 0 0.5rem 0"}}>Only .jpg files. 5MB Max Each.</text>
       <Button variant="contained" component="label">
@@ -129,15 +129,16 @@ function CategorySelect() {
       <FormControl fullWidth>
         <InputLabel id="simple-select-label">Select Project Category</InputLabel>
         <Select
+          name='category'
           labelId="simple-select-label"
           id="simple-select"
           value={category}
           label="Select Project Category"
           onChange={handleChange}
         >
-          <MenuItem value={1}>AI</MenuItem>
-          <MenuItem value={2}>VR</MenuItem>
-          <MenuItem value={3}>Other</MenuItem>
+          <MenuItem value={'AI'}>AI</MenuItem>
+          <MenuItem value={'VR'}>VR</MenuItem>
+          <MenuItem value={'Other'}>Other</MenuItem>
         </Select>
       </FormControl>
     </Box>
@@ -188,6 +189,7 @@ function TagSelect() {
         <FormControl>
           <InputLabel id="multiple-chip-label">Project Tags</InputLabel>
           <Select
+            name='tags'
             labelId="multiple-chip-label"
             id="multiple-chip"
             multiple
