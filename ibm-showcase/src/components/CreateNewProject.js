@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Chip from '@mui/material/Chip';
 import React, { useState } from 'react';
+import UploadImages from './UploadImages'
 
 function CreateNewProject() {
   document.body.style = 'background: #F4F7FE;';
@@ -105,10 +106,11 @@ function FormRight() {
       <TextField name='videoLink' label="Enter Youtube Link Here" />
       <h3>Project Images</h3>
       <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Only .jpg files. 5MB Max Each.</div>
-      <Button variant="contained" component="label">
+{/*      <Button variant="contained" component="label" onChange={(e)=> {console.log(e.target.files)}}>
         Add Pics
         <input hidden accept="image/*" multiple type="file" />
-      </Button>
+      </Button>*/}
+      <UploadImages />
       <h3>Project Category</h3>
       <CategorySelect />
       <h3>Project #HashTags</h3>
