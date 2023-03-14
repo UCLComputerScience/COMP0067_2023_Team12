@@ -8,6 +8,7 @@ import ProjectList from './screens/ProjectList'
 import EditProject from './screens/EditProject'
 import Sign_In from './screens/Sign_In'
 // import Sign_In from './screens/Register'
+import ChangePassword from './screens/Change_Password';
 // Different Page Views End
 import { Routes,Route } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ function App() {
     <Route path="/createproject" element={<CreateNewProject />} />
     <Route path="/editproject" element={<EditProject />} />
     <Route path="/signin" element={<Sign_In />} />
+    <Route path="/changepassword" element={<ChangePassword />} />
   </Routes>
     // <div className="App">
     //   {/*<CreateNewProject />*/}

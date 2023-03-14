@@ -17,6 +17,7 @@ function AdminHeader() {
           <Link to="/createproject" style={styles.link}>Create Projects</Link>
           <Link to="/editproject" style={styles.link}>Edit Projects</Link>
           <a>Create Work Book</a>
+          <Link to="/changepassword" style={styles.link}>Change Password</Link>
           <Link to="/" style={styles.link}>
             <Button variant="outlined" size="small" sx={{textTransform: "none"}}>Log Out & Back to Home</Button>
           {/*Onclick or Anchor or href=?*/}

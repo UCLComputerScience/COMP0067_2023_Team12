@@ -65,3 +65,51 @@ module.exports.Login = (req, res) => {
       .send({ message: "Error retrieving Project with id = " + req.body.user });
   });
 };
+
+
+// Change password
+module.exports.ChangePassword = (req, res) => {
+  // Validate request
+  if (!req.body.user || !req.body.password) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+  if (req.body.user != req.body.password) {
+    res.status(401).send({ message: "Passwords do not match!" });
+    return;
+  }
+  const user = jwt.verify(req.body.token, authConfig.secret).id
+  const password = bcrypt.hashSync(req.body.password, 8)
+
+  userModel.updateOne({user}, { $set: {password}})
+    .then(data => {
+          res.send(data);
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while changing the password."
+          });
+        });
+
+
+  // // Create a User
+  // const user = new userModel({
+  //   user: req.body.user,
+  //   password: bcrypt.hashSync(req.body.password, 8),
+  // });
+
+  // // Save the User in the database
+  // user
+  //   .save()
+  //   .then(data => {
+  //     res.send(data);
+  //   })
+  //   .catch(err => {
+  //     res.status(500).send({
+  //       message:
+  //         err.message || "Some error occurred while creating the User."
+  //     });
+  //   });
+};
