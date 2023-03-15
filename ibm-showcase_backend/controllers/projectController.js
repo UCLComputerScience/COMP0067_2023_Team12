@@ -1,4 +1,5 @@
 const projectModel = require("../models/projectModel.js");
+var fs = require('fs');
 
 // File Upload Handling
 module.exports.upload = (req, res) => {
@@ -31,14 +32,29 @@ module.exports.create = (req, res) => {
     return;
   }
 
+  function filemove(fileArray, projectID){
+    if (!fs.existsSync(`./public/uploads/${projectID}/`)) {
+      fs.mkdirSync(`./public/uploads/${projectID}/`, { recursive: true });
+    }
+    for (let filename of fileArray) {
+      fs.rename(`./uploads/${filename}`, `./public/uploads/${projectID}/${filename}`, function (err) {
+      if (err) throw err;
+      console.log('File Moved Successfully!');
+      });
+    }
+  }
+
   // Create a Project
   const project = new projectModel(req.body,"throw");
-
   // Save the Project in the database
   project
     .save()
     .then(data => {
+      filemove(data.images,data._id.toString())
+    })
+    .then(data => {
       res.send(data);
+      console.log(data._id.toString());
     })
     .catch(err => {
       res.status(500).send({
