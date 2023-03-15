@@ -105,11 +105,8 @@ function FormRight() {
       <h3>Project Video Link</h3>
       <TextField name='videoLink' label="Enter Youtube Link Here" />
       <h3>Project Images</h3>
-      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Only .jpg files. 5MB Max Each.</div>
-{/*      <Button variant="contained" component="label" onChange={(e)=> {console.log(e.target.files)}}>
-        Add Pics
-        <input hidden accept="image/*" multiple type="file" />
-      </Button>*/}
+      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL images in one go. Change image selections by re-click (overriding).</div>
+      {/*Only .jpg files. 5MB Max Each.*/}
       <UploadImages />
       <h3>Project Category</h3>
       <CategorySelect />
