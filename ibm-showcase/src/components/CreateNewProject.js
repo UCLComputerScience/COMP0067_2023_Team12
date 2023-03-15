@@ -29,6 +29,8 @@ export default CreateNewProject;
 
 function ProjectForm() {
 
+  const [fileArray, setFileArray] = useState("");
+
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
     e.preventDefault();
@@ -39,7 +41,9 @@ function ProjectForm() {
     const formJson = Object.fromEntries(formData.entries());
     // for multi-selects, we need special handling
     formJson.tags = formJson.tags.split(',');
+    formJson.images = fileArray;
     console.log(formJson);
+    console.log(fileArray);
     axios.post('http://localhost:8080/api/projects', formJson)  
     //   .catch(function (error) {
     //     if (error.response) {
@@ -64,7 +68,7 @@ function ProjectForm() {
   return (
     <form className='ProjectForm' onSubmit={handleSubmit}>
       <h1>Create a New Project</h1>
-      <Forms />
+      <Forms passData={setFileArray} />
       <div className="SubmitButton">
         <Button variant="contained" type="submit">Submit</Button>
       </div>
@@ -73,11 +77,11 @@ function ProjectForm() {
   )
 }
 
-function Forms(){
+function Forms(props){
   return (
     <div className="Forms">
       <FormLeft />
-      <FormRight />
+      <FormRight passData={props.passData} />
     </div>
   )
 
@@ -99,7 +103,7 @@ function FormLeft() {
   )
 }
 
-function FormRight() {
+function FormRight(props) {
   return (
     <div className="FormRight">
       <h3>Project Video Link</h3>
@@ -107,7 +111,7 @@ function FormRight() {
       <h3>Project Images</h3>
       <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL images in one go. Change image selections by re-click (overriding).</div>
       {/*Only .jpg files. 5MB Max Each.*/}
-      <UploadImages />
+      <UploadImages passData={props.passData} />
       <h3>Project Category</h3>
       <CategorySelect />
       <h3>Project #HashTags</h3>

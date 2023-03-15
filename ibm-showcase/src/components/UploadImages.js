@@ -23,7 +23,7 @@ function LinearProgressWithLabel(props) {
 
 //Why const instead of func?
 // const UploadImages = () => {
-function UploadImages() {
+function UploadImages(props) {
   const [imagePreviews, setImagePreviews] = useState([]);
   const [progressInfos, setProgressInfos] = useState({ val: [] });
   const [message, setMessage] = useState([]);
@@ -96,7 +96,7 @@ function UploadImages() {
     };
 
     files.map((file, i) => upload(i, file));
-
+    props.passData(files.map((file) => (file.name)));
     // const uploadPromises = files.map((file, i) => upload(i, file));
     // Promise.all(uploadPromises)
     //   .then(() => UploadService.getFiles())
