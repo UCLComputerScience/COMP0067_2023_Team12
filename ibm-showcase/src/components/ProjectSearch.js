@@ -20,7 +20,7 @@ const StyledGrid = styled(Grid)`
 
 
 
-function ProjectSearch() {
+function ProjectSearch(props) {
     return (
         <StyledGrid container sx={{bgcolor:"black", width:"100%"}}>
                     <Box sx={{ width:800,mx:'auto',mt:10,pl:3,pr:3}}>

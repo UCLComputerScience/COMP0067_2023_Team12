@@ -8,11 +8,14 @@ import ListAllProjects from '../components/infinite_scroll_project_list'
 
 function ProjectList() {
   document.body.style = 'background: white;';
+
+  const [searchTerm, setSearchTerm] = useState('');
+
     return (
       <div>
-        <Header />
-        <ProjectSearch />
-        <ListAllProjects/>
+        <Header  />
+        <ProjectSearch castData={setSearchTerm} />
+        <ListAllProjects castData={searchTerm}/>
         {/* <AddProject/> */}
 
       </div>

@@ -19,23 +19,24 @@ import {
 import axios from "axios";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-export default function ListAllProjects() {
+export default function ListAllProjects(props) {
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
 
-        const [selected, setSelected] = React.useState('');
+  const [selected, setSelected] = React.useState('');
 
-        const selectionChangeHandler = (event) => {
-          setSelected(event.target.value);
-        };
+  const selectionChangeHandler = (event) => {
+    setSelected(event.target.value);
+  };
 
   const observer = useRef(null);
 
   useEffect(() => {
     setIsLoading(true);
 
+    // need to add here searching by a keyword and then call it by props.searchTerm or something 
     axios.get('http://localhost:8080/api/projects')
       .then((response) => {
         setItems((prevItems) => {
