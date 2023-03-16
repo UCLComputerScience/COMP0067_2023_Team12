@@ -265,7 +265,7 @@ export default class Sign_In extends Component {
                  }}
                 onClick={this.saveProject}
                 >
-                Login
+                Register
                 </Button>
                 {/* </Link> */}
                 </Box>

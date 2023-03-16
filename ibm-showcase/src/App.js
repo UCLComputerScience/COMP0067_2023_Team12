@@ -6,9 +6,11 @@ import IndividualProjectPage from './components/IndividualProjectPage'
 import About from './components/About'
 import ProjectList from './screens/ProjectList'
 import EditProject from './screens/EditProject'
+import ForgotPassword from './screens/ForgotPassword';
 import Sign_In from './screens/Sign_In'
 // import Sign_In from './screens/Register'
 import ChangePassword from './screens/Change_Password';
+import ResetPassword from './screens/Reset_Password';
 // Different Page Views End
 import { Routes,Route } from 'react-router-dom';
 
@@ -23,6 +25,8 @@ function App() {
     <Route path="/editproject" element={<EditProject />} />
     <Route path="/signin" element={<Sign_In />} />
     <Route path="/changepassword" element={<ChangePassword />} />
+    <Route path="/forgotpassword" element={<ForgotPassword />} />
+    <Route path="/resetpassword/:user/:token" element={<ResetPassword />} />
   </Routes>
     // <div className="App">
     //   {/*<CreateNewProject />*/}

@@ -20,18 +20,18 @@ import { toast, ToastContainer } from 'react-toastify';
 
 
 
-const sections = [
-    { title: 'Sign In', url: './Sign_In.js'},
-    { title: 'Create Projects', url: '#' },
-    { title: 'Edit Projects', url: '#' },
-    { title: 'Create Workbook', url: '#' },
-    { title: 'Log Out & Back To Home', url: '#' },
-  ];
+// const sections = [
+//     { title: 'Sign In', url: './Sign_In.js'},
+//     { title: 'Create Projects', url: '#' },
+//     { title: 'Edit Projects', url: '#' },
+//     { title: 'Create Workbook', url: '#' },
+//     { title: 'Log Out & Back To Home', url: '#' },
+//   ];
 
 
 const theme = createTheme();
 
-export default class Sign_In extends Component {
+export default class ForgotPassword extends Component {
   constructor(props) {
     super(props);
     this.onChangeUser = this.onChangeUser.bind(this);
@@ -73,12 +73,11 @@ export default class Sign_In extends Component {
       password: this.state.password,
     };
   
-    axios.post('http://localhost:8080/api/users/login', data)
+    axios.post('http://localhost:8080/api/users/send_password_link', data)
       .then(response => {
         this.setState({
           id: response.data.id,
           user: response.data.user,
-          password: response.data.password,
           
           published: response.data.published,
 
@@ -86,7 +85,7 @@ export default class Sign_In extends Component {
           token: response.data.token
         });
         localStorage.setItem('token', response.data)
-        // alert('Success')
+        alert('Password reset link sent to your email account')
         this.setState({changePage: true})
         
       })
@@ -143,7 +142,7 @@ export default class Sign_In extends Component {
     const { labelStatePass } = this.state;
   return (
     <ThemeProvider theme={theme}>
-        <Header title="Blog" sections={sections} />
+        <Header title="Blog"  />
         <Container component="main" maxWidth="xs" justify="flex-end" alignItems="center" 
         style={{
           display: 'flex',
@@ -165,7 +164,7 @@ export default class Sign_In extends Component {
                 <LockOutlinedIcon />
             </Avatar> */}
             <Typography component="h1" variant="h5">
-                Login as Admin
+                Forgot Password
             </Typography>
             <Box component="form" sx={{ mt: 1 }}>
                 <TextField
@@ -211,54 +210,12 @@ export default class Sign_In extends Component {
                     }}
 
                 />
-                <TextField
-                    sx={{
-                      width: '600px',
-                      '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#3D70B200',
-                        backgroundColor: '#3D70B225',
-                        borderRadius: '50px !important',},
-                      "& .MuiInputLabel-root": {
-                        transform: labelStatePass ? 'translate(14px, -6px) scale(0.75)' : 'translate(265px, 16px) scale(1)',
-                        transformOrigin: 'top left',
-                      },
-                      "& .Mui-focused .MuiInputLabel-root": {
-                        transform: 'translate(14px, -6px) scale(0.75)',
-                        transformOrigin: 'top left',
-                      }
-                    }}
-                    margin="normal"
-                    // required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    // autoComplete="current-password"
-                    value={this.state.password}
-                    onChange={this.onChangePassword}
-
-                    InputLabelProps={{
-                      shrink: labelStatePass,
-                    }}
-                    onFocus={this.handleFocusPass}
-                    onBlur={this.handleBlurPass}
-                    inputProps={{
-                      style: {
-                        caretColor: labelStatePass ? 'green' : 'blue',
-                      },
-                      ref: this.inputRef,
-                    }}
-                />
-                <Link to='/forgotpassword'>
-                  Forgot password?
-                </Link>
                 <Box 
                 sx={{
                   display: 'flex', 
                   justifyContent: 'center'
                 }}>
-                {this.state.changePage && <Navigate to={'/editproject'} /> }
+                {this.state.changePage && <Navigate to={'/signin'} /> }
                 <Button
                 // type="submit"
                 // fullWidth
@@ -273,7 +230,7 @@ export default class Sign_In extends Component {
                  }}
                 onClick={this.saveProject}
                 >
-                Login
+                Send Email
                 </Button>
                 </Box>
           </Box>

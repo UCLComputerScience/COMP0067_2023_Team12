@@ -1,4 +1,5 @@
-import * as React from 'react';
+// import * as React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { DataGrid,GRID_CHECKBOX_SELECTION_COL_DEF } from '@mui/x-data-grid';
 import Container from '@mui/material/Container';
 import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar,
@@ -45,6 +46,21 @@ const rows = [
 ];
 
 export default function DataTable() {
+
+  // const [rowLength, setCount] = useState(0);
+  // const [myLength, setMyLength] = useState(myConstant.length);
+
+  // // const rowLengthUpdate = (value) => {
+  // //   setCount(rowLength = value);
+  // // };
+
+  // const handleUpdateLength = () => {
+  //   setMyLength(myConstant.length);
+  // };
+
+  // const isButtonDisabled = rowLength > 1;
+
+
   return (
     <Container className='projectTable' style={{ height: "567px", width: "1078px"}}>
             <Grid container spacing={0}>
@@ -54,7 +70,8 @@ export default function DataTable() {
                     size='medium'
                     color="inherit"
                     sx={{bgcolor:'#3D70B2',color:'white',textTransform:"none",borderRadius:0}}
-                    
+                    // disabled={isButtonDisabled} 
+                    // onClick={handleButtonClick}
                 >
                     Edit
                 </Button>
@@ -81,18 +98,30 @@ export default function DataTable() {
             </Grid>         
         </Grid>
       <DataGrid   sx={{
-    bgcolor:'white',
-    '& .MuiDataGrid-columnHeaders': {
-      backgroundColor: '#F4F7FB'
-    },
-    mx:"auto"
-  }}
-        rows={rows}
-        columns={columns}
-        pageSize={9}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
+        bgcolor:'white',
+        '& .MuiDataGrid-columnHeaders': {
+          backgroundColor: '#F4F7FB'
+        },
+        mx:"auto"
+      }}
+            rows={rows}
+            columns={columns}
+            pageSize={9}
+            rowsPerPageOptions={[5]}
+            checkboxSelection
+            // disableSelectionOnClick
+            onRowSelectionModelChange={(ids) => {
+              const selectedIDs = new Set(ids);
+              const selectedRowData = rows.filter((row) =>
+                selectedIDs.has(row.id)
+              );
+              console.log(selectedRowData);
+              console.log(selectedRowData.length)
+              // rowLengthUpdate(selectedRowData.length)
+              // rowLength = selectedRowData.length
+              
+            }}
+          />
 
     </Container>
   );

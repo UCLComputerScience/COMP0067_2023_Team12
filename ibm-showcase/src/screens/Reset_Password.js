@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -15,8 +16,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../components/Header';
 import { Toolbar } from '@mui/material';
 import axios from "axios";
-import {Link, useHistory, useNavigate, Navigate} from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import {Link, Navigate} from 'react-router-dom';
+import withRouter from './withRouter';
 
 
 
@@ -31,7 +32,7 @@ const sections = [
 
 const theme = createTheme();
 
-export default class Sign_In extends Component {
+class ResetPassword extends Component {
   constructor(props) {
     super(props);
     this.onChangeUser = this.onChangeUser.bind(this);
@@ -39,19 +40,48 @@ export default class Sign_In extends Component {
     this.saveProject = this.saveProject.bind(this);
     this.newProject = this.newProject.bind(this);
 
+    this.verifyURL()
+
+	  // this.param = useParams();
+	  // this.url = `http://localhost:8080/api/resetpassword/${param.user}/${param.token}`;
+
     this.state = {
       id: null,
       user: "",
       password: "",
+
+      token: "",
+
       published: false,
 
       labelStateUser: false,
       labelStatePass: false,
 
       submitted: false,
-      token: "",
-      changePage: false
+      changePage: false,
+      changePage2: false
     };
+  }
+
+  verifyURL() {
+    var data = {
+      user: this.props.params.user,
+      token: this.props.params.token,
+    };
+
+    console.log(data)
+
+    axios.post('http://localhost:8080/api/users/verify_link', data)
+      .then(response => {
+        console.log(response.data);
+        alert('Verify Link is correct')
+        // this.setState({changePage: true})
+      })
+      .catch(e => {
+        console.log(e);
+        alert(e.response.data.message)
+        this.setState({changePage2: true})
+      });
   }
 
   onChangeUser(e) {
@@ -71,24 +101,26 @@ export default class Sign_In extends Component {
     var data = {
       user: this.state.user,
       password: this.state.password,
+      token: this.props.params.token
     };
   
-    axios.post('http://localhost:8080/api/users/login', data)
+    //Not correct one. In progress
+    axios.post('http://localhost:8080/api/users/change_password', data)
       .then(response => {
         this.setState({
           id: response.data.id,
           user: response.data.user,
           password: response.data.password,
+
+          token: response.data.token,
           
           published: response.data.published,
 
-          submitted: true,
-          token: response.data.token
+          submitted: true
         });
-        localStorage.setItem('token', response.data)
-        // alert('Success')
+        console.log(response.data);
+        alert('Successfully changed your password')
         this.setState({changePage: true})
-        
       })
       .catch(e => {
         console.log(e);
@@ -101,6 +133,9 @@ export default class Sign_In extends Component {
       id: null,
       user: "",
       password: "",
+
+      token: "",
+
       published: false,
 
       submitted: false
@@ -141,6 +176,10 @@ export default class Sign_In extends Component {
   render () {
     const { labelStateUser } = this.state;
     const { labelStatePass } = this.state;
+    // const { user } = this.props.match.params;
+    // const { location, history } = this.props;
+    // console.log(this.props.params.user)
+    // console.log(user)
   return (
     <ThemeProvider theme={theme}>
         <Header title="Blog" sections={sections} />
@@ -165,7 +204,7 @@ export default class Sign_In extends Component {
                 <LockOutlinedIcon />
             </Avatar> */}
             <Typography component="h1" variant="h5">
-                Login as Admin
+                Reset Password
             </Typography>
             <Box component="form" sx={{ mt: 1 }}>
                 <TextField
@@ -191,9 +230,9 @@ export default class Sign_In extends Component {
                     // required
                     fullWidth
                     id="user"
-                    label="Username"
-                    name="email"
-                    // autoComplete="email"
+                    label="Password"
+                    name="user"
+                    type="password"
                     value={this.state.user}
                     onChange={this.onChangeUser}
                     autoFocus
@@ -219,7 +258,7 @@ export default class Sign_In extends Component {
                         backgroundColor: '#3D70B225',
                         borderRadius: '50px !important',},
                       "& .MuiInputLabel-root": {
-                        transform: labelStatePass ? 'translate(14px, -6px) scale(0.75)' : 'translate(265px, 16px) scale(1)',
+                        transform: labelStatePass ? 'translate(14px, -6px) scale(0.75)' : 'translate(232px, 16px) scale(1)',
                         transformOrigin: 'top left',
                       },
                       "& .Mui-focused .MuiInputLabel-root": {
@@ -230,8 +269,8 @@ export default class Sign_In extends Component {
                     margin="normal"
                     // required
                     fullWidth
-                    name="password"
-                    label="Password"
+                    name="confirmpassword"
+                    label="Confirm Password"
                     type="password"
                     id="password"
                     // autoComplete="current-password"
@@ -250,15 +289,13 @@ export default class Sign_In extends Component {
                       ref: this.inputRef,
                     }}
                 />
-                <Link to='/forgotpassword'>
-                  Forgot password?
-                </Link>
                 <Box 
                 sx={{
                   display: 'flex', 
                   justifyContent: 'center'
                 }}>
-                {this.state.changePage && <Navigate to={'/editproject'} /> }
+                {this.state.changePage && <Navigate to={'/signin'} /> }
+                {this.state.changePage2 && <Navigate to={'/signin'} /> }
                 <Button
                 // type="submit"
                 // fullWidth
@@ -273,8 +310,9 @@ export default class Sign_In extends Component {
                  }}
                 onClick={this.saveProject}
                 >
-                Login
+                Submit
                 </Button>
+                {/* </Link> */}
                 </Box>
           </Box>
         </Box>
@@ -283,3 +321,5 @@ export default class Sign_In extends Component {
   );
 }
 }
+
+export default withRouter(ResetPassword)

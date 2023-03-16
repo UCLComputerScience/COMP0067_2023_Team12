@@ -51,8 +51,7 @@ module.exports.Login = (req, res) => {
       // console.log(data);
     
       if (passwordIsValid) {
-        var token = jwt.sign({id: data.user}, authConfig.secret, {expiresIn: 86400}
-        );
+        var token = jwt.sign({id: data.user}, authConfig.secret, {expiresIn: 86400});
         return res.status(200).send(token);
       } else {
         return res.status(401).send({ message: "Wrong Password !!" });
@@ -92,24 +91,4 @@ module.exports.ChangePassword = (req, res) => {
               err.message || "Some error occurred while changing the password."
           });
         });
-
-
-  // // Create a User
-  // const user = new userModel({
-  //   user: req.body.user,
-  //   password: bcrypt.hashSync(req.body.password, 8),
-  // });
-
-  // // Save the User in the database
-  // user
-  //   .save()
-  //   .then(data => {
-  //     res.send(data);
-  //   })
-  //   .catch(err => {
-  //     res.status(500).send({
-  //       message:
-  //         err.message || "Some error occurred while creating the User."
-  //     });
-  //   });
 };
