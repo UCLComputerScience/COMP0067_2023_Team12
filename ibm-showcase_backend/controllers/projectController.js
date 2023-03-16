@@ -1,4 +1,28 @@
 const projectModel = require("../models/projectModel.js");
+var fs = require('fs');
+
+// File Upload Handling
+module.exports.upload = (req, res) => {
+  //Detect if a file is uploaded
+  if (req.files === null) {
+      return res.status(400).json({msg:'No file！'})
+  }
+
+  const file = req.files.file;
+
+  //Move the file to the specified directory
+  //TO-DO: Rename to ID to ensure unique filename and easier to read
+  file.mv(`./uploads/${file.name}`, err => {
+      if (err) {
+          console.log(err);
+          return res.status(500).send(err);
+      }
+      res.json({
+          fileName: file.name
+          // filePath:`/upload/${file.name}`
+      })
+  })
+};
 
 // Create and Save a new Project to DB
 module.exports.create = (req, res) => {
@@ -8,14 +32,27 @@ module.exports.create = (req, res) => {
     return;
   }
 
+  function filemove(fileArray, projectID){
+    if (!fs.existsSync(`./public/uploads/${projectID}/`)) {
+      fs.mkdirSync(`./public/uploads/${projectID}/`, { recursive: true });
+    }
+    for (let filename of fileArray) {
+      fs.rename(`./uploads/${filename}`, `./public/uploads/${projectID}/${filename}`, function (err) {
+      if (err) throw err;
+      console.log('File Moved Successfully!');
+      });
+    }
+  }
+
   // Create a Project
   const project = new projectModel(req.body,"throw");
-
   // Save the Project in the database
   project
     .save()
     .then(data => {
+      filemove(data.images,data._id.toString())
       res.send(data);
+      console.log(data._id.toString());
     })
     .catch(err => {
       res.status(500).send({

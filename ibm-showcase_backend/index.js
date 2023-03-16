@@ -1,6 +1,7 @@
 const cors = require("cors");
 const express = require("express");
 const app = express();
+const fileUpload = require('express-fileupload');
 
 require("dotenv").config();
 
@@ -14,6 +15,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+// Use the fileUpload Middleware
+app.use(fileUpload());
 
 // simple route
 app.get("/", (req, res) => {
