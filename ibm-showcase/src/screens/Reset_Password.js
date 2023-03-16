@@ -40,6 +40,7 @@ class ResetPassword extends Component {
     this.saveProject = this.saveProject.bind(this);
     this.newProject = this.newProject.bind(this);
 
+    // unsure if this is best place to put this function
     this.verifyURL()
 
 	  // this.param = useParams();
@@ -74,7 +75,7 @@ class ResetPassword extends Component {
     axios.post('http://localhost:8080/api/users/verify_link', data)
       .then(response => {
         console.log(response.data);
-        alert('Verify Link is correct')
+        alert('The verifying link is correct')
         // this.setState({changePage: true})
       })
       .catch(e => {
