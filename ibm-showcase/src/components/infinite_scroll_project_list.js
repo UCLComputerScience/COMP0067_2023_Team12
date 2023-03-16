@@ -19,7 +19,7 @@ import {
 import axios from "axios";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-export default function ListAllProjects(props) {
+export default function ListAllProjects({ searchTerm }) {
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,21 +36,33 @@ export default function ListAllProjects(props) {
   useEffect(() => {
     setIsLoading(true);
 
-    // need to add here searching by a keyword and then call it by props.searchTerm or something 
-    axios.get('http://localhost:8080/api/projects')
+    if (!searchTerm) {
+      var url = `http://localhost:8080/api/projects`
+    } else {
+      var url = `http://localhost:8080/api/projects?title=${searchTerm}`
+    }
+
+    axios.get(url)
+      // .then((response) => {
+      //   console.log(response)
+      //   setItems((prevItems) => {
+      //     const existingIds = new Set(prevItems.map((item) => item.id));
+      //     const newItems = response.data.filter((item) => !existingIds.has(item.id));
+      //     console.log(newItems)
+      //     return [...prevItems, ...newItems];
+      //   });
+      //   setIsLoading(false);
+      // })
       .then((response) => {
-        setItems((prevItems) => {
-          const existingIds = new Set(prevItems.map((item) => item.id));
-          const newItems = response.data.filter((item) => !existingIds.has(item.id));
-          return [...prevItems, ...newItems];
-        });
+        console.log(response)
+        setItems(response.data);
         setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
         setIsLoading(false);
       });
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   useEffect(() => {
     observer.current = new IntersectionObserver(

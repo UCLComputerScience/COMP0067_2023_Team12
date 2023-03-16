@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {React, useState} from 'react';
 import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar, Button,
     IconButton, Typography, Autocomplete, TextField, Paper, InputBase, Divider, Stack,
     Grid } from '@mui/material'
@@ -20,7 +20,19 @@ const StyledGrid = styled(Grid)`
 
 
 
-function ProjectSearch(props) {
+function ProjectSearch({ onSubmit }) {
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault(); 
+        onSubmit(inputValue);
+        setInputValue(''); 
+      }
+
     return (
         <StyledGrid container sx={{bgcolor:"black", width:"100%"}}>
                     <Box sx={{ width:800,mx:'auto',mt:10,pl:3,pr:3}}>
@@ -45,6 +57,7 @@ function ProjectSearch(props) {
             component="form"    
             sx={{ display: 'flex', justifyContent: 'center',height:51,maxWidth:600,mt:4,mx:"auto",
             backgroundColor: '#F3F3F3',borderRadius:"20px" ,flexShrink:1}}
+            onSubmit={handleSubmit}
             >
 
                 
@@ -56,6 +69,8 @@ function ProjectSearch(props) {
                 sx={{display:"flex",mr:45}}
                 placeholder="Search..."
                 inputProps={{ 'aria-label': 'search' }}
+                value={inputValue}
+                onChange={handleInputChange}
             />
             </Box>
             <Box sx={{mt:4,mb:3,mx:"auto",ml:7}}>
