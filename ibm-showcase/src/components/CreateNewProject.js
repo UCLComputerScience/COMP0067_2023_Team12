@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Chip from '@mui/material/Chip';
 import React, { useState } from 'react';
+import UploadImages from './UploadImages'
 
 function CreateNewProject() {
   document.body.style = 'background: #F4F7FE;';
@@ -28,6 +29,8 @@ export default CreateNewProject;
 
 function ProjectForm() {
 
+  const [fileArray, setFileArray] = useState("");
+
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
     e.preventDefault();
@@ -36,7 +39,11 @@ function ProjectForm() {
     const formData = new FormData(form);
     //Work with it as a plain object:
     const formJson = Object.fromEntries(formData.entries());
+    // for multi-selects, we need special handling
+    formJson.tags = formJson.tags.split(',');
+    formJson.images = fileArray;
     console.log(formJson);
+    console.log(fileArray);
     axios.post('http://localhost:8080/api/projects', formJson)  
     //   .catch(function (error) {
     //     if (error.response) {
@@ -61,7 +68,7 @@ function ProjectForm() {
   return (
     <form className='ProjectForm' onSubmit={handleSubmit}>
       <h1>Create a New Project</h1>
-      <Forms />
+      <Forms passData={setFileArray} />
       <div className="SubmitButton">
         <Button variant="contained" type="submit">Submit</Button>
       </div>
@@ -70,11 +77,11 @@ function ProjectForm() {
   )
 }
 
-function Forms(){
+function Forms(props){
   return (
     <div className="Forms">
       <FormLeft />
-      <FormRight />
+      <FormRight passData={props.passData} />
     </div>
   )
 
@@ -86,9 +93,9 @@ function FormLeft() {
       <h3>Project Title</h3>
       <TextField name='title' label="Enter Title Here" />
       <h3>Group Members</h3>
-      <TextField label="Enter Group Members Here" />
+      <TextField name='groupMembers' label="Enter Group Members Here" />
       <h3>Supervisors</h3>
-      <TextField label="Enter Supervisors Here" />
+      <TextField name='supervisors' label="Enter Supervisors Here" />
       <h3>Project Description</h3>
       <TextField name='description' label="Enter Description Here" multiline="true" minRows="5" />
     </div>
@@ -96,38 +103,54 @@ function FormLeft() {
   )
 }
 
-function FormRight() {
+function FormRight(props) {
   return (
     <div className="FormRight">
       <h3>Project Video Link</h3>
-      <TextField label="Enter Youtube Link Here" />
+      <TextField name='videoLink' label="Enter Youtube Link Here" />
       <h3>Project Images</h3>
-      <text style={{color:"grey", padding:"0 0 0.5rem 0"}}>Only .jpg files. 5MB Max Each.</text>
-      <Button variant="contained" component="label">
-        Add Pics
-        <input hidden accept="image/*" multiple type="file" />
-      </Button>
+      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL images in one go. Change image selections by re-click (overriding).</div>
+      {/*Only .jpg files. 5MB Max Each.*/}
+      <UploadImages passData={props.passData} />
       <h3>Project Category</h3>
-      <FormControl fullWidth>
-        <InputLabel id="simple-select-label">Select Project Category</InputLabel>
-        <Select
-          id="simple-select"
-          // onChange={handleChange}
-        >
-          <MenuItem value={1}>AI</MenuItem>
-          <MenuItem value={2}>VR</MenuItem>
-          <MenuItem value={3}>Other</MenuItem>
-        </Select>
-      </FormControl>
+      <CategorySelect />
       <h3>Project #HashTags</h3>
-      <MS />
+      <TagSelect />
 
     </div>
 
   )
 }
 
-function MS() {
+function CategorySelect() {
+  const [category, setCategory] = useState('');
+
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
+
+  return (
+    <Box>
+      <FormControl fullWidth>
+        <InputLabel id="simple-select-label">Select Project Category</InputLabel>
+        <Select
+          name='category'
+          labelId="simple-select-label"
+          id="simple-select"
+          value={category}
+          label="Select Project Category"
+          onChange={handleChange}
+        >
+          <MenuItem value={'AI'}>AI</MenuItem>
+          <MenuItem value={'VR'}>VR</MenuItem>
+          <MenuItem value={'Other'}>Other</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
+  );
+}
+
+function TagSelect() {
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -139,64 +162,64 @@ function MS() {
     },
   };
 
-  const names = [
-    'Tag A',
-    'Tag B',
-    'Tag C',
-    'Tag D'
+  const tags = [
+  'Tag A',
+  'Tag B',
+  'Tag C',
   ];
 
-  function getStyles(name, personName, theme) {
+  function getStyles(tag, tags_selected, theme) {
     return {
       fontWeight:
-        personName.indexOf(name) === -1
+        tags_selected.indexOf(tag) === -1
           ? theme.typography.fontWeightRegular
           : theme.typography.fontWeightMedium,
     };
   }
 
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [tags_selected, setTag] = React.useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    setTag(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
 
   return (
-    <FormControl>
-      <InputLabel id="demo-multiple-chip-label">Project Tags</InputLabel>
-      <Select
-        labelId="demo-multiple-chip-label"
-        id="demo-multiple-chip"
-        multiple
-        value={personName}
-        onChange={handleChange}
-        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-        renderValue={(selected) => (
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-            {selected.map((value) => (
-              <Chip key={value} label={value} />
-            ))}
-          </Box>
-        )}
-        MenuProps={MenuProps}
-      >
-        {names.map((name) => (
-          <MenuItem
-            key={name}
-            value={name}
-            style={getStyles(name, personName, theme)}
+        <FormControl>
+          <InputLabel id="multiple-chip-label">Project Tags</InputLabel>
+          <Select
+            name='tags'
+            labelId="multiple-chip-label"
+            id="multiple-chip"
+            multiple
+            value={tags_selected}
+            onChange={handleChange}
+            input={<OutlinedInput id="select-multiple-chip" label="Project Tags" />}
+            renderValue={(selected) => (
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                {selected.map((value) => (
+                  <Chip key={value} label={value} />
+                ))}
+              </Box>
+            )}
+            MenuProps={MenuProps}
           >
-            {name}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-  );
+            {tags.map((tag) => (
+              <MenuItem
+                key={tag}
+                value={tag}
+                style={getStyles(tag, tags_selected, theme)}
+              >
+                {tag}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+    );
 }

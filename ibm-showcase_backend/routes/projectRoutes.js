@@ -5,6 +5,10 @@ var router = require("express").Router();
 // Add a new project
 router.post("/", projectController.create);
 
+// Project File Upload
+// router.use("/upload", fileUpload);
+router.post("/upload", projectController.upload);
+
 // Retrieve all projects
 router.get("/", projectController.findAll);
 
