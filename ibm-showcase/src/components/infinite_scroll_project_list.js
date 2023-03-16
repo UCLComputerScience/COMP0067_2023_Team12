@@ -55,7 +55,7 @@ export default function ListAllProjects({ searchTerm }) {
       //   setIsLoading(false);
       // })
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         if (selected == 2) {
           response.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
          }
