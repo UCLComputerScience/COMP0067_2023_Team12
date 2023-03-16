@@ -18,6 +18,7 @@ import {
 } from '@mui/material';
 import axios from "axios";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import sortAndFilterData from './sortingandfiltering';
 
 export default function ListAllProjects({ searchTerm }) {
   const [items, setItems] = useState([]);
@@ -54,7 +55,19 @@ export default function ListAllProjects({ searchTerm }) {
       //   setIsLoading(false);
       // })
       .then((response) => {
-        console.log(response)
+        console.log(response.data)
+        if (selected == 2) {
+          response.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+         }
+        if (selected == 3) {
+         response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        }
+        if (selected == 5) {
+          response.data.filter((item) => item.property === 'AI/ML');
+         }
+        // const sortedData = sortAndFilterData(response.data, selected)
+        // console.log(response.data)
+        // console.log(sortedData)
         setItems(response.data);
         setIsLoading(false);
       })
@@ -62,7 +75,7 @@ export default function ListAllProjects({ searchTerm }) {
         console.log(error);
         setIsLoading(false);
       });
-  }, [currentPage, searchTerm]);
+  }, [currentPage, searchTerm, selected]);
 
   useEffect(() => {
     observer.current = new IntersectionObserver(
@@ -95,7 +108,8 @@ export default function ListAllProjects({ searchTerm }) {
                     <InputLabel></InputLabel>
                     <Select value={selected} onChange={selectionChangeHandler} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>}>
                         <MenuItem value={1}>Popular</MenuItem>
-                        <MenuItem value={2}>Date</MenuItem>
+                        <MenuItem value={2}>Date Asc</MenuItem>
+                        <MenuItem value={3}>Date Desc</MenuItem>
                     </Select>
                 </FormControl>
                 </Grid>
@@ -106,17 +120,17 @@ export default function ListAllProjects({ searchTerm }) {
                     
                     <InputLabel>Category</InputLabel>
                     <Select value={selected} onChange={selectionChangeHandler} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
-                        <MenuItem value={3}>Category</MenuItem>
-                        <MenuItem value={4}>AI/ML</MenuItem>
-                        <MenuItem value={5}>Back-End</MenuItem>
-                        <MenuItem value={6}>Cloud</MenuItem>
-                        <MenuItem value={7}>Cyber-Security</MenuItem>
-                        <MenuItem value={8}>Data Science</MenuItem>
-                        <MenuItem value={9}>FinTech</MenuItem>
-                        <MenuItem value={10}>Front-End</MenuItem>
-                        <MenuItem value={11}>Healthcare</MenuItem>
-                        <MenuItem value={12}>Quantum</MenuItem>
-                        <MenuItem value={13}>Sustainability</MenuItem>
+                        <MenuItem value={4}>Category</MenuItem>
+                        <MenuItem value={5}>AI/ML</MenuItem>
+                        <MenuItem value={6}>Back-End</MenuItem>
+                        <MenuItem value={7}>Cloud</MenuItem>
+                        <MenuItem value={8}>Cyber-Security</MenuItem>
+                        <MenuItem value={9}>Data Science</MenuItem>
+                        <MenuItem value={10}>FinTech</MenuItem>
+                        <MenuItem value={12}>Front-End</MenuItem>
+                        <MenuItem value={12}>Healthcare</MenuItem>
+                        <MenuItem value={13}>Quantum</MenuItem>
+                        <MenuItem value={14}>Sustainability</MenuItem>
                     </Select>
                 </FormControl>
                 </Grid>
