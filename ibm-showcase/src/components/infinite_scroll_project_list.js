@@ -26,10 +26,15 @@ export default function ListAllProjects({ searchTerm }) {
   const [isLoading, setIsLoading] = useState(false);
 
 
-  const [selected, setSelected] = React.useState('');
+  const [selectedSort, setSelectedSort] = React.useState('');
+  const [selectedFilter, setSelectedFilter] = React.useState('');
 
-  const selectionChangeHandler = (event) => {
-    setSelected(event.target.value);
+  const selectionChangeHandlerSort = (event) => {
+    setSelectedSort(event.target.value);
+  };
+
+  const selectionChangeHandlerFilter = (event) => {
+    setSelectedFilter(event.target.value);
   };
 
   const observer = useRef(null);
@@ -56,16 +61,17 @@ export default function ListAllProjects({ searchTerm }) {
       // })
       .then((response) => {
         // console.log(response.data)
-        if (selected == 2) {
+
+        if (selectedSort === 2) {
           response.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
          }
-        if (selected == 3) {
+        if (selectedSort === 3) {
          response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         }
-        if (selected == 5) {
-          response.data.filter((item) => item.property === 'AI/ML');
+        if (selectedFilter === 5) {
+          response.data.filter((item) => item.category === 'AI/ML');
          }
-        // const sortedData = sortAndFilterData(response.data, selected)
+
         // console.log(response.data)
         // console.log(sortedData)
         setItems(response.data);
@@ -75,7 +81,7 @@ export default function ListAllProjects({ searchTerm }) {
         console.log(error);
         setIsLoading(false);
       });
-  }, [currentPage, searchTerm, selected]);
+  }, [currentPage, searchTerm, selectedSort, selectedFilter]);
 
   useEffect(() => {
     observer.current = new IntersectionObserver(
@@ -103,10 +109,10 @@ export default function ListAllProjects({ searchTerm }) {
     <Container sx={{ py: 8 }} maxWidth="md">
         <Grid container spacing={2} sx={{width:"100%"}}>
                 <Grid item xs = {8}>
-                <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:134,borderRadius:"30px",position:"relative",left:"30px",mt:-5,border:'1px solid #6E6D7A'}}>
+                <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:142,borderRadius:"30px",position:"relative",left:"30px",mt:-5,border:'1px solid #6E6D7A'}}>
                     
                     <InputLabel></InputLabel>
-                    <Select value={selected} onChange={selectionChangeHandler} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>}>
+                    <Select value={selectedSort} onChange={selectionChangeHandlerSort} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>}>
                         <MenuItem value={1}>Popular</MenuItem>
                         <MenuItem value={2}>Date Asc</MenuItem>
                         <MenuItem value={3}>Date Desc</MenuItem>
@@ -116,18 +122,18 @@ export default function ListAllProjects({ searchTerm }) {
 
 
                 <Grid item xs = {4}>
-                <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:134,borderRadius:"30px",position:"relative",right:"30px",mt:-5,border:'1px solid #6E6D7A'}}>
+                <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:142,borderRadius:"30px",position:"relative",right:"30px",mt:-5,border:'1px solid #6E6D7A'}}>
                     
-                    <InputLabel>Category</InputLabel>
-                    <Select value={selected} onChange={selectionChangeHandler} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
-                        <MenuItem value={4}>Category</MenuItem>
+                    <InputLabel></InputLabel>
+                    <Select value={selectedFilter} onChange={selectionChangeHandlerFilter} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
+                        <MenuItem value={4}>No Category</MenuItem>
                         <MenuItem value={5}>AI/ML</MenuItem>
                         <MenuItem value={6}>Back-End</MenuItem>
                         <MenuItem value={7}>Cloud</MenuItem>
                         <MenuItem value={8}>Cyber-Security</MenuItem>
                         <MenuItem value={9}>Data Science</MenuItem>
                         <MenuItem value={10}>FinTech</MenuItem>
-                        <MenuItem value={12}>Front-End</MenuItem>
+                        <MenuItem value={11}>Front-End</MenuItem>
                         <MenuItem value={12}>Healthcare</MenuItem>
                         <MenuItem value={13}>Quantum</MenuItem>
                         <MenuItem value={14}>Sustainability</MenuItem>
