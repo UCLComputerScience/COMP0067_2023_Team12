@@ -26,8 +26,9 @@ export default function ListAllProjects({ searchTerm }) {
   const [isLoading, setIsLoading] = useState(false);
 
 
-  const [selectedSort, setSelectedSort] = React.useState('');
-  const [selectedFilter, setSelectedFilter] = React.useState('');
+  const [selectedSort, setSelectedSort] = React.useState(1);
+  const [selectedFilter, setSelectedFilter] = React.useState(1);
+
 
   const selectionChangeHandlerSort = (event) => {
     setSelectedSort(event.target.value);
@@ -62,12 +63,12 @@ export default function ListAllProjects({ searchTerm }) {
       .then((response) => {
         // console.log(response.data)
 
+        if (selectedSort === 1) {
+          response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+         }
         if (selectedSort === 2) {
           response.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
          }
-        if (selectedSort === 3) {
-         response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-        }
         if (selectedFilter === 5) {
           response.data.filter((item) => item.category === 'AI/ML');
          }
@@ -113,9 +114,10 @@ export default function ListAllProjects({ searchTerm }) {
                     
                     <InputLabel></InputLabel>
                     <Select value={selectedSort} onChange={selectionChangeHandlerSort} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>}>
-                        <MenuItem value={1}>Popular</MenuItem>
-                        <MenuItem value={2}>Date Asc</MenuItem>
-                        <MenuItem value={3}>Date Desc</MenuItem>
+                        <MenuItem value={1}>Newest</MenuItem>
+                        <MenuItem value={2}>Oldest</MenuItem>
+                        <MenuItem value={3}>Most Popular</MenuItem>
+                        {/* <MenuItem value={1}>Popular</MenuItem> */}
                     </Select>
                 </FormControl>
                 </Grid>
@@ -126,17 +128,17 @@ export default function ListAllProjects({ searchTerm }) {
                     
                     <InputLabel></InputLabel>
                     <Select value={selectedFilter} onChange={selectionChangeHandlerFilter} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
-                        <MenuItem value={4}>No Category</MenuItem>
-                        <MenuItem value={5}>AI/ML</MenuItem>
-                        <MenuItem value={6}>Back-End</MenuItem>
-                        <MenuItem value={7}>Cloud</MenuItem>
-                        <MenuItem value={8}>Cyber-Security</MenuItem>
-                        <MenuItem value={9}>Data Science</MenuItem>
-                        <MenuItem value={10}>FinTech</MenuItem>
-                        <MenuItem value={11}>Front-End</MenuItem>
-                        <MenuItem value={12}>Healthcare</MenuItem>
-                        <MenuItem value={13}>Quantum</MenuItem>
-                        <MenuItem value={14}>Sustainability</MenuItem>
+                        <MenuItem value={1}>No Category</MenuItem>
+                        <MenuItem value={2}>AI/ML</MenuItem>
+                        <MenuItem value={3}>Back-End</MenuItem>
+                        <MenuItem value={4}>Cloud</MenuItem>
+                        <MenuItem value={5}>Cyber-Security</MenuItem>
+                        <MenuItem value={6}>Data Science</MenuItem>
+                        <MenuItem value={7}>FinTech</MenuItem>
+                        <MenuItem value={8}>Front-End</MenuItem>
+                        <MenuItem value={9}>Healthcare</MenuItem>
+                        <MenuItem value={10}>Quantum</MenuItem>
+                        <MenuItem value={11}>Sustainability</MenuItem>
                     </Select>
                 </FormControl>
                 </Grid>
