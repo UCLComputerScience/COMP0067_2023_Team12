@@ -62,7 +62,6 @@ module.exports.create = (req, res) => {
     });
 };
 
-// Following code has not been tested.
 // Retrieve all Projects from the database.
 module.exports.findAll = (req, res) => {
   const title = req.query.title;
@@ -80,6 +79,7 @@ module.exports.findAll = (req, res) => {
     });
 };
 
+// Following code has not been tested.
 // Find all published Projects
 module.exports.findAllPublished = (req, res) => {
   projectModel.find({ published: true })
