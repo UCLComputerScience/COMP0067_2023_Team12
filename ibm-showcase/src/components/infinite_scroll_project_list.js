@@ -155,12 +155,13 @@ export default function ListAllProjects({ searchTerm }) {
                 sx={{
                   // 16:9
                   borderRadius: '8%',
+                  height: '200px',
                   objectFit: 'cover',
                 }}
-                image={item.images}
-                alt={item.title}
+                image={`http://localhost:8080/api/images/${item._id}/${item.images[0]}`}
+                alt="image"
+                // alt={item.title}
               />
-              <Button> {item.images}</Button>
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom variant="body1" component="h2" fontWeight="bold" style={{ color: 'blue' }}>
                   {item.title}
