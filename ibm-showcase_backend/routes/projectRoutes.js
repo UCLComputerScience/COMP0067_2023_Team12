@@ -18,6 +18,9 @@ router.get("/published", projectController.findAllPublished);
 // Retrieve a single project with id
 router.get("/:id", projectController.findOne);
 
+// Retrieve projects that are similar to the ID project
+router.get("/:id/similar", projectController.findSimilar);
+
 // Update a project with id
 router.put("/:id", projectController.update);
 

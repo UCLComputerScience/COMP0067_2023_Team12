@@ -129,7 +129,65 @@ module.exports.findOne = (req, res) => {
     });
 };
 
+// Find similar projects to one with the ID
+module.exports.findSimilar = (req, res) => {
+  const id = req.params.id;
 
+  projectModel.findById(id)
+    .then(data => {
+      if (!data) {
+        res.status(404).send({ message: "Not found Project with id " + id });
+      } else {
+        const {category, tags, title} = data;
+
+        const selectedEntryTitleWords = title.toLowerCase().split(' ');
+
+        projectModel.find({
+          $or: [
+            { category },
+            { tags: { $in: tags } },
+            { title: { $regex: title.split(' ').join('|') } } 
+          ],
+          _id: { $ne: id } 
+        })
+          .then(similarEntries => {
+            
+            const similarityScores = similarEntries.map(entry => {
+              let score = 0;
+              if (entry.category === category) {
+                score += 5;
+              }
+              if (entry.tags.some(tag => tags.includes(tag))) {
+                score += 1;
+              }
+
+              const entryTitleWords = entry.title.toLowerCase().split(' ');
+
+              selectedEntryTitleWords.forEach(word => {
+                if (entryTitleWords.includes(word)) {
+                  score += 10;
+                  // may need to adjust these scores to work best for similar projects
+                }
+              });
+              
+              return { entry, score };
+            });
+            
+            const sortedEntries = similarityScores.sort((a, b) => b.score - a.score).map(a => a.entry);
+
+            res.send(sortedEntries);
+          })
+          .catch(err => {
+            res.status(505).send({ message: "Error retrieving similar entries" });
+          }); 
+      }
+    })
+    .catch(err => { 
+      return res
+        .status(500)
+        .send({ message: "Error retrieving Project with id=" + id });
+    });
+};
 
 // Update a Project by the id in the request
 module.exports.update = (req, res) => {
