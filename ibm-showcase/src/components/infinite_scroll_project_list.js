@@ -32,6 +32,7 @@ export default function ListAllProjects({ searchTerm }) {
   const [noResults, setNoResults] = useState(false);
 
 
+
   const selectionChangeHandlerSort = (event) => {
     setSelectedSort(event.target.value);
   };
