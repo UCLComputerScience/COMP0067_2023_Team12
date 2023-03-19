@@ -100,6 +100,23 @@ module.exports.findAllPublished = (req, res) => {
     });
 };
 
+// Find a single Tutorial with an id
+exports.findOneWithoutPopularity = (req, res) => {
+  const id = req.params.id;
+
+  projectModel.findById(id)
+    .then(data => {
+      if (!data)
+        res.status(404).send({ message: "Not found Project with id " + id });
+      else res.send(data);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving Project with id=" + id });
+    });
+};
+
 // Find a single Project with an id
 module.exports.findOne = (req, res) => {
   const id = req.params.id;

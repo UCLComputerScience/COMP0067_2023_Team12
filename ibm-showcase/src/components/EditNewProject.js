@@ -13,9 +13,9 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Chip from '@mui/material/Chip';
 import React, { useState } from 'react';
 import UploadImages from './UploadImages'
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, Navigate } from 'react-router-dom';
 
-function CreateNewProject() {
+function EditNewProject() {
   document.body.style = 'background: #F4F7FE;';
   return (
     <div className="App">
@@ -26,11 +26,55 @@ function CreateNewProject() {
   );
 }
 
-export default CreateNewProject;
+export default EditNewProject;
 
 function ProjectForm() {
 
+  // search the below in browser to test
+  // http://localhost:3000/editproject/6411db841af015b18510a9d8
+
   const [fileArray, setFileArray] = useState("");
+
+  const { id } = useParams();
+
+  const [title, setTitle] = useState('');
+  const [groupMembers, setGroupMembers] = useState('');
+  const [supervisors, setSupervisors] = useState('');
+  const [description, setDescription] = useState('');
+  const [videoLink, setVideoLink] = useState('');
+  // const [images, setImages] = useState('');
+  // const [category, setCategory] = useState('');
+  // const [tags, setTags] = useState('');
+
+  const [changePage, setChangePage] = useState(false);
+
+  extractData(id)
+
+  const inFillData = {title: title,
+                      groupMembers: groupMembers,
+                      supervisors: supervisors,
+                      description: description,
+                      videoLink: videoLink
+                    }
+  
+
+   // this extracts data altough will also increase popularity count, should we change this?
+  function extractData(id) {
+    axios.get(`http://localhost:8080/api/projects/${id}/popularity/`)
+      .then((response) => {
+        // console.log(response)
+        setTitle(response.data.title)
+        setGroupMembers(response.data.groupMembers)
+        setSupervisors(response.data.supervisors)
+        setDescription(response.data.description)
+        setVideoLink(response.data.videoLink)
+      })
+      .catch((error) => {
+        console.log(error);
+        // setIsLoading(false);
+      });
+
+  }
 
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
@@ -45,33 +89,25 @@ function ProjectForm() {
     formJson.images = fileArray;
     console.log(formJson);
     console.log(fileArray);
-    axios.post('http://localhost:8080/api/projects', formJson)  
-    //   .catch(function (error) {
-    //     if (error.response) {
-    //       // The request was made and the server responded with a status code
-    //       // that falls out of the range of 2xx
-    //       console.log(error.response.data);
-    //       console.log(error.response.status);
-    //       console.log(error.response.headers);
-    //     } else if (error.request) {
-    //       // The request was made but no response was received
-    //       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-    //       // http.ClientRequest in node.js
-    //       console.log(error.request);
-    //     } else {
-    //       // Something happened in setting up the request that triggered an Error
-    //       console.log('Error', error.message);
-    //     }
-    //     console.log(error.config);
-    // });
+    axios.put(`http://localhost:8080/api/projects/${id}`, formJson)
+    .then(response => {
+      console.log(response.data);
+      alert('Successfully edited this project')
+      setChangePage(true)
+    })
+    .catch(e => {
+      console.log(e);
+      alert(e.response.data.message)
+    });
   }
 
   // console.log(inFillData)
 
   return (
     <form className='ProjectForm' onSubmit={handleSubmit}>
-      <h1>Create a New Project</h1>
-      <Forms passData={setFileArray}/>
+      <h1>Edit Project</h1>
+      <Forms passData={setFileArray} fillData={inFillData}/>
+      {changePage && <Navigate to={'/editproject'} /> }
       <div className="SubmitButton">
         <Button variant="contained" type="submit">Submit</Button>
       </div>
@@ -83,8 +119,8 @@ function ProjectForm() {
 function Forms(props){
   return (
     <div className="Forms">
-      <FormLeft />
-      <FormRight passData={props.passData} />
+      <FormLeft fillData={props.fillData}/>
+      <FormRight passData={props.passData} fillData={props.fillData} />
     </div>
   )
 
@@ -95,13 +131,13 @@ function FormLeft(props) {
   return (
     <div className="FormLeft">
       <h3>Project Title</h3>
-      <TextField name='title' label="Enter Title Here" />
+      <TextField name='title' label="Enter Title Here" defaultValue={props.fillData.title}/>
       <h3>Group Members</h3>
-      <TextField name='groupMembers' label="Enter Group Members Here" />
+      <TextField name='groupMembers' label="Enter Group Members Here" defaultValue={props.fillData.groupMembers}/>
       <h3>Supervisors</h3>
-      <TextField name='supervisors' label="Enter Supervisors Here" />
+      <TextField name='supervisors' label="Enter Supervisors Here" defaultValue={props.fillData.supervisors}/>
       <h3>Project Description</h3>
-      <TextField name='description' label="Enter Description Here" multiline="true" minRows="5" />
+      <TextField name='description' label="Enter Description Here" multiline="true" minRows="5" defaultValue={props.fillData.description}/>
     </div>
 
   )
@@ -111,7 +147,7 @@ function FormRight(props) {
   return (
     <div className="FormRight">
       <h3>Project Video Link</h3>
-      <TextField name='videoLink' label="Enter Youtube Link Here" />
+      <TextField name='videoLink' label="Enter Youtube Link Here" defaultValue={props.fillData.videoLink}/>
       <h3>Project Images</h3>
       <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL images in one go. Change image selections by re-click (overriding).</div>
       {/*Only .jpg files. 5MB Max Each.*/}

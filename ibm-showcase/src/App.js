@@ -1,6 +1,7 @@
 import './App.css';
 // Different Page Views
 import CreateNewProject from './components/CreateNewProject'
+import EditNewProject from './components/EditNewProject'
 import HomePage from './components/HomePage'
 import IndividualProjectPage from './components/IndividualProjectPage'
 import About from './components/About'
@@ -22,6 +23,7 @@ function App() {
     <Route path="/projects/:id" element={<IndividualProjectPage />} />
     <Route path="/about" element={<About />}/>
     <Route path="/createproject" element={<CreateNewProject />} />
+    <Route path="/editproject/:id" element={<EditNewProject />} />
     <Route path="/editproject" element={<EditProject />} />
     <Route path="/signin" element={<Sign_In />} />
     <Route path="/changepassword" element={<ChangePassword />} />
