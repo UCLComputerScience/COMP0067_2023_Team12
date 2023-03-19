@@ -64,8 +64,14 @@ module.exports.create = (req, res) => {
 
 // Retrieve all Projects from the database.
 module.exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
+  const term = req.query.title;
+  // var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
+  var condition = term ? {
+    $or: [
+      { title: { $regex: new RegExp(term, "i") } },
+      { tags: { $regex: new RegExp(term, "i") } }
+    ]
+  } : {};
 
   projectModel.find(condition)
     .then(data => {

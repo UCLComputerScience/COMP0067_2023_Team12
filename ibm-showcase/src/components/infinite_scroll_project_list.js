@@ -29,6 +29,8 @@ export default function ListAllProjects({ searchTerm }) {
   const [selectedSort, setSelectedSort] = React.useState(1);
   const [selectedFilter, setSelectedFilter] = React.useState(1);
 
+  const [noResults, setNoResults] = useState(false);
+
 
   const selectionChangeHandlerSort = (event) => {
     setSelectedSort(event.target.value);
@@ -79,6 +81,12 @@ export default function ListAllProjects({ searchTerm }) {
         // console.log(sortedData)
         setItems(response.data);
         setIsLoading(false);
+        
+        if (response.data.length === 0) {
+          setNoResults(true);
+        } else {
+          setNoResults(false);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -149,6 +157,11 @@ export default function ListAllProjects({ searchTerm }) {
         </Grid>
         <Grid sx={{ py: 3 }} />
       <Grid container spacing={4} >
+        {noResults && (
+          <Grid item xs={18} sx={{ textAlign: "center", pb: 4 }}>
+              <Typography fontWeight="bold" variant="h3">There are no results.</Typography>
+          </Grid>
+        )}
         {items.map((item) => (
           <Grid item key={item.id} xs={12} sm={6} md={4}>
             <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '4%' }}>
@@ -165,7 +178,7 @@ export default function ListAllProjects({ searchTerm }) {
                 // alt={item.title}
               />
               <CardContent sx={{ flexGrow: 1 }}>
-                <Typography gutterBottom variant="body1" component="h2" fontWeight="bold" style={{ color: 'blue' }}>
+                <Typography gutterBottom variant="body1" component="h2" fontWeight="bold" sx={{ color: 'blue' }}>
                   {item.title}
                 </Typography>
                 <Typography variant="body2" style={{ color: 'grey' }}>
