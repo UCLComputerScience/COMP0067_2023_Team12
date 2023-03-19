@@ -11,6 +11,7 @@ const projectSchema = new mongoose.Schema(
     images: [String], //Or [Buffer]
     category: String,
     tags: [String],
+    popularity: { type: Number, default: 0 },
 	published: Boolean
 	},
 	{ timestamps: true }

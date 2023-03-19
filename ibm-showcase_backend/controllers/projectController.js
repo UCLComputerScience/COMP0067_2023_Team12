@@ -100,16 +100,36 @@ module.exports.findOne = (req, res) => {
 
   projectModel.findById(id)
     .then(data => {
-      if (!data)
+      if (!data) {
         res.status(404).send({ message: "Not found Project with id " + id });
-      else res.send(data);
+      } else {
+        data.popularity += 1;
+        // update the popularity count by one
+        projectModel.findByIdAndUpdate(id, data, { useFindAndModify: false, new: true })
+          .then(updatedData => {
+            if (!updatedData) {
+              res.status(408).send({
+                message: `Cannot update Project with id=${id}. Maybe Project was not found!`
+              });
+            } else {
+              res.send(updatedData);
+            }
+          })
+          .catch(err => {
+            return res.status(505).send({
+              message: "Error updating Project with id=" + id
+            });
+          });
+      }
     })
-    .catch(err => {
-      res
+    .catch(err => { 
+      return res
         .status(500)
         .send({ message: "Error retrieving Project with id=" + id });
     });
 };
+
+
 
 // Update a Project by the id in the request
 module.exports.update = (req, res) => {

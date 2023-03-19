@@ -62,15 +62,17 @@ export default function ListAllProjects({ searchTerm }) {
       // })
       .then((response) => {
         // console.log(response.data)
-
         if (selectedSort === 1) {
           response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
          }
         if (selectedSort === 2) {
           response.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
          }
-        if (selectedFilter === 5) {
-          response.data.filter((item) => item.category === 'AI/ML');
+         if (selectedSort === 3) {
+          response.data.sort((a, b) => b.popularity - a.popularity);
+         }
+        if (selectedFilter === 2) {
+          response.data = response.data.filter((item) => item.category === 'AI/ML');
          }
 
         // console.log(response.data)
