@@ -43,6 +43,18 @@ export default function ListAllProjects({ searchTerm }) {
 
   const observer = useRef(null);
 
+  function normalizeDescription(description) {
+    const maxLength = 100; 
+    if (description.length <= maxLength) {
+      return description;
+    } else {
+      const truncated = description.slice(0, maxLength); 
+      const lastSpaceIndex = truncated.lastIndexOf(' '); 
+      const normalized = truncated.slice(0, lastSpaceIndex) + '...'; 
+      return normalized;
+    }
+  }
+
   useEffect(() => {
     setIsLoading(true);
 
@@ -78,9 +90,14 @@ export default function ListAllProjects({ searchTerm }) {
           response.data = response.data.filter((item) => item.category === 'AI/ML');
          }
 
-        // console.log(response.data)
-        // console.log(sortedData)
-        setItems(response.data);
+         const normalisedData = response.data.map((item) => {
+          return {
+            ...item,
+            description: normalizeDescription(item.description)
+          }
+        });
+        
+        setItems(normalisedData);
         setIsLoading(false);
         
         if (response.data.length === 0) {
