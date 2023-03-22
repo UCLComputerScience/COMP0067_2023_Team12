@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import './IndividualProjectPage.css';
 import Header from './Header'
@@ -14,13 +14,25 @@ import IconButton from '@mui/material/IconButton';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import {useParams} from 'react-router-dom'
+import axios from "axios";
 
 function IndividualProjectPage() {
+  const {id} = useParams();
+  const [project, setProject] = useState("");
+  useEffect(() => {
+    axios
+    .get(`http://localhost:8080/api/projects/${id}`)
+    .then(response => {
+        console.log(response.data);
+        setProject(response.data);
+    });
+  },[]);
   return (
     <div className="IndividualProjectPage">
       <Header />
-      <ProjectVideoSection />
-      <ProjectDetail />
+      <ProjectVideoSection project={project}/>
+      <ProjectDetail project={project}/>
       <SimilarProjects />
     </div>
   );
@@ -28,7 +40,7 @@ function IndividualProjectPage() {
 
 export default IndividualProjectPage;
 
-function ProjectVideoSection() {
+function ProjectVideoSection(props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const handlePlayClick = () => {
     setIsPlaying(true);
@@ -41,7 +53,7 @@ function ProjectVideoSection() {
       {isPlaying ? (
         <div style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}}>
           <ReactPlayer
-            url='https://www.youtube.com/watch?v=JWE4ba_0was&t=1s'
+            url={props.project.videoLink}
             playing={true}
             controls={true}
             width='100%'
@@ -63,23 +75,23 @@ function ProjectVideoSection() {
   );
 }
 
-function ProjectDetail() {
+function ProjectDetail(props) {
   return (
     <section style={{margin:'auto', padding:'0 7rem', maxWidth:'130rem',fontSize:'2rem', lineHeight:'90%', position:'relative'}}>
-      <p style={{fontSize:'3rem'}}>UCL Motion Input 3</p>
+      <p style={{fontSize:'3rem'}}>{props.project.title}</p>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
       <p><b>Group Members</b></p>
-      <p>Minhaz Hassan, James Rudd Jones, Ziyu Xu, Nozomu Kitamura</p>
+      <p>{props.project.groupMembers}</p>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
       <p><b>Supervisors</b></p>
-      <p>Dr John McNamara</p>
+      <p>{props.project.supervisors}</p>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
-      <ProjectDescription />
+      <ProjectDescription project={props.project}/>
     </section>
   );
 }
 
-function ProjectDescription() {
+function ProjectDescription(props) {
   const shareUrl = 'https://www.ibm.com/blogs/think/uk-en/this-is-john-creating-collaborative-projects-with-universities/';
   const tweetText = 'Check out this innovative project!';
   const tweethashtags = ['hashtag1', 'hashtag2', 'hashtag3'];
@@ -92,18 +104,17 @@ function ProjectDescription() {
     window.print();
   };
 
+  // const onlineimg = `http://localhost:8080/api/images/${props.project._id}/${props.project.images[0]}`;
   return (
     <div style={{display:'flex', flex:'1'}}>
       <section style={{width:'60%'}}>
         <p><b>Description</b></p>
-        <text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
-        <br/><br/>
-        <text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
-        <br/><br/>
-        <text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
+        <div>{props.project.description}</div>
+       {/* <text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
+        <br/><br/>*/}
       </section>
       <section style={{width:'40%',margin:'2rem 0 1rem 1rem'}}>
-        <SimpleSlider/>
+        <SimpleSlider project={props.project}/>
         <div style={{fontSize:'1.5rem', padding:'2rem'}}>Share on social media or print: 
           <IconButton href={twitterUrl} ><Twitter style={{fontSize: '3rem'}}/></IconButton>
           <IconButton href={facebookUrl}><Facebook style={{fontSize: '3rem'}} /></IconButton>
@@ -116,7 +127,7 @@ function ProjectDescription() {
   );
 }
 
-function SimpleSlider() {
+function SimpleSlider(props) {
   const settings = {
     dots: true,
     infinite: true,
@@ -128,18 +139,14 @@ function SimpleSlider() {
   return (
     <section style={{margin:'auto', maxWidth:'30rem'}}>
       <Slider {...settings}>
+      {props.project.images && props.project.images.map((image)=>(
         <div>
+          <Box sx={{aspectRatio:'16/10', borderRadius:'1rem',backgroundImage:`url(http://localhost:8080/api/images/${props.project._id}/${image})`, backgroundSize: 'cover', backgroundPosition:'center', position:'relative'}} />
+        </div>
+      ))}
+{/*        <div>
           <Box sx={{aspectRatio:'16/10', borderRadius:'1rem',backgroundImage:`url(${ProjectPic1})`, backgroundSize: 'cover', backgroundPosition:'center', position:'relative'}} />
-        </div>
-        <div>
-          <Box sx={{aspectRatio:'16/10', borderRadius:'1rem',backgroundImage:`url(${ProjectPic2})`, backgroundSize: 'cover', backgroundPosition:'center', position:'relative'}} />
-        </div>
-        <div>
-          <Box sx={{aspectRatio:'16/10', borderRadius:'1rem',backgroundImage:`url(${ProjectPic3})`, backgroundSize: 'cover', backgroundPosition:'center', position:'relative'}} />
-        </div>
-        <div>
-          <Box sx={{aspectRatio:'16/10', borderRadius:'1rem',backgroundImage:`url(${ProjectPic4})`, backgroundSize: 'cover', backgroundPosition:'center', position:'relative'}} />
-        </div>
+        </div>*/}
       </Slider>
       <p></p>
     </section>
