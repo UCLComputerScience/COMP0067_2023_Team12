@@ -11,7 +11,7 @@ import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Chip from '@mui/material/Chip';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import UploadImages from './UploadImages'
 import { useLocation, useParams, Navigate } from 'react-router-dom';
 
@@ -30,51 +30,55 @@ export default EditNewProject;
 
 function ProjectForm() {
 
-  // search the below in browser to test
+  // search the below in browser to test, 2nd one has images
   // http://localhost:3000/editproject/6411db841af015b18510a9d8
+  // http://localhost:3000/editproject/6416dc43cad8fb40da3f85a5
 
   const [fileArray, setFileArray] = useState("");
 
   const { id } = useParams();
 
-  const [title, setTitle] = useState('');
-  const [groupMembers, setGroupMembers] = useState('');
-  const [supervisors, setSupervisors] = useState('');
-  const [description, setDescription] = useState('');
-  const [videoLink, setVideoLink] = useState('');
   // const [images, setImages] = useState('');
   // const [category, setCategory] = useState('');
   // const [tags, setTags] = useState('');
 
+  const [loading, setLoading] = useState(true);
+  const [inFillData, setInFillData] = useState({
+    title: "",
+    groupMembers: "",
+    supervisors: "",
+    description: "",
+    videoLink: "",
+    images: [],
+    category: "",
+    tags: [],
+  });
+
   const [changePage, setChangePage] = useState(false);
 
-  extractData(id)
-
-  const inFillData = {title: title,
-                      groupMembers: groupMembers,
-                      supervisors: supervisors,
-                      description: description,
-                      videoLink: videoLink
-                    }
-  
-
-   // this extracts data altough will also increase popularity count, should we change this?
-  function extractData(id) {
+  useEffect(() => {
+    // this extracts data altough will also increase popularity count, should we change this?
     axios.get(`http://localhost:8080/api/projects/${id}/popularity/`)
       .then((response) => {
-        // console.log(response)
-        setTitle(response.data.title)
-        setGroupMembers(response.data.groupMembers)
-        setSupervisors(response.data.supervisors)
-        setDescription(response.data.description)
-        setVideoLink(response.data.videoLink)
+        // console.log(response.data)
+        setInFillData({
+          title: response.data.title,
+          groupMembers: response.data.groupMembers,
+          supervisors: response.data.supervisors,
+          description: response.data.description,
+          videoLink: response.data.videoLink,
+          images: response.data.images,
+          category: response.data.category,
+          tags: response.data.tags,
+        });
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
-        // setIsLoading(false);
+        setLoading(false);
       });
-
-  }
+  }, [id]);
+  
 
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
@@ -103,6 +107,10 @@ function ProjectForm() {
 
   // console.log(inFillData)
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <form className='ProjectForm' onSubmit={handleSubmit}>
       <h1>Edit Project</h1>
@@ -111,6 +119,7 @@ function ProjectForm() {
       <div className="SubmitButton">
         <Button variant="contained" type="submit">Submit</Button>
       </div>
+    
     </form>
 
   )
@@ -153,17 +162,25 @@ function FormRight(props) {
       {/*Only .jpg files. 5MB Max Each.*/}
       <UploadImages passData={props.passData} />
       <h3>Project Category</h3>
-      <CategorySelect />
+      <CategorySelect fillData={props.fillData} />
       <h3>Project #HashTags</h3>
-      <TagSelect />
+      <TagSelect fillData={props.fillData} />
 
     </div>
 
   )
 }
 
-function CategorySelect() {
+function CategorySelect(props) {
   const [category, setCategory] = useState('');
+  const [hasCategoryBeenSet, setHasCategoryBeenSet] = useState(false);
+
+  useEffect(() => {
+    if (!hasCategoryBeenSet) {
+      setCategory(props.fillData.category);
+      setHasCategoryBeenSet(true);
+    }
+  }, [props.fillData.category, hasCategoryBeenSet]);
 
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -190,7 +207,7 @@ function CategorySelect() {
   );
 }
 
-function TagSelect() {
+function TagSelect(props) {
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -219,6 +236,16 @@ function TagSelect() {
 
   const theme = useTheme();
   const [tags_selected, setTag] = React.useState([]);
+
+  const [haveTagsBeenSet, setHaveTagsBeenSet] = useState(false);
+  useEffect(() => {
+    if (!haveTagsBeenSet) {
+      setTag(props.fillData.tags);
+      setHaveTagsBeenSet(true);
+    }
+  }, [props.fillData.tags, haveTagsBeenSet]);
+
+  // useEffect(() => { setTag(props.fillData.tags) })
 
   const handleChange = (event) => {
     const {
