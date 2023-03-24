@@ -16,6 +16,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {useParams} from 'react-router-dom'
 import axios from "axios";
+import Footer from './Footer'
 
 function IndividualProjectPage() {
   const {id} = useParams();
@@ -34,6 +35,7 @@ function IndividualProjectPage() {
       <ProjectVideoSection project={project}/>
       <ProjectDetail project={project}/>
       <SimilarProjects />
+      <Footer />
     </div>
   );
 }
@@ -97,8 +99,8 @@ function ProjectDescription(props) {
   const tweethashtags = ['hashtag1', 'hashtag2', 'hashtag3'];
   const twitterUrl = `https://twitter.com/share?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareUrl)}&hashtags=${encodeURIComponent(tweethashtags.join(' #'))}`;
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
-  const LinkedInUrl = `https://www.linkedin.com/shareArticle?url=` + encodeURIComponent(shareUrl);
-  const redditUrl = `https://www.reddit.com/submit?url=${encodeURIComponent(shareUrl)}`;
+  const LinkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+  
 
   const handlePrint = () => {
     window.print();
@@ -119,7 +121,6 @@ function ProjectDescription(props) {
           <IconButton href={twitterUrl} ><Twitter style={{fontSize: '3rem'}}/></IconButton>
           <IconButton href={facebookUrl}><Facebook style={{fontSize: '3rem'}} /></IconButton>
           <IconButton href={LinkedInUrl}><LinkedIn style={{fontSize: '3rem'}} /></IconButton>
-          <IconButton href={redditUrl}><Reddit style={{fontSize: '3rem'}} /></IconButton>
           <IconButton onClick={handlePrint}><Print style={{fontSize: '3rem'}} /></IconButton>
         </div>
       </section>

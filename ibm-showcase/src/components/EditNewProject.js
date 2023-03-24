@@ -14,14 +14,16 @@ import Chip from '@mui/material/Chip';
 import React, { useState, useEffect } from 'react';
 import UploadImages from './UploadImages'
 import { useLocation, useParams, Navigate } from 'react-router-dom';
+import Footer from './Footer'
 
 function EditNewProject() {
   document.body.style = 'background: #F4F7FE;';
   return (
     <div className="App">
-      <AdminHeader />
+      {/* <AdminHeader /> */}
       <hr />
       <ProjectForm />
+      <Footer />
     </div>
   );
 }

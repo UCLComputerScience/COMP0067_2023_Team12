@@ -17,7 +17,7 @@ h3 {
 }
 
 .ProjectForm {
-  margin:0.5rem 6rem;
+  margin:0.5rem 10rem;
   display: flex;
   flex-direction: column;
 }
@@ -40,9 +40,6 @@ h3 {
 .FormLeft, .FormRight {
   display: flex;
   flex-direction: column;
-  width:42%;
+  width:47%;
 }
 
-.SubmitButton {
-  margin: 2rem 0;
-}

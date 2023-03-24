@@ -3,7 +3,7 @@ import ProjectSearch from '../components/ProjectSearch'
 import Header from '../components/Header'
 import ListAllProjects from '../components/infinite_scroll_project_list'
 // import AddProject from '../components/add_projects'
-
+import Footer from '../components/Footer'
 
 
 function ProjectList() {
@@ -17,6 +17,7 @@ function ProjectList() {
         <Header  />
         <ProjectSearch onSubmit={setSearchTerm} />
         <ListAllProjects searchTerm={searchTerm}/>
+        <Footer />
         {/* <AddProject/> */}
 
       </div>

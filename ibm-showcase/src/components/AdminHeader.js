@@ -1,24 +1,45 @@
 import logo from './ibm_logo.svg';
 import Button from '@mui/material/Button';
 import './AdminHeader.css';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 
 function AdminHeader() {
-  const styles={
-    link:{
-      textDecoration:'none',
-      color:'inherit'
-    },
-  };
   return (
-  <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <section>
-          <Link to="/createproject" style={styles.link}>Create Projects</Link>
-          <Link to="/editproject" style={styles.link}>Edit Projects</Link>
+  <header style={{margin:'auto'}}>
+        <img src={logo} alt="logo" style={{padding:'0 0 0 4rem'}} />
+        <section style={{padding:'0 4rem 0 0'}} >
+          {/* <Link to="/createproject" style={styles.link}>Create Projects</Link> */}
+          <NavLink to="/createproject" style={({ isActive}) => ({ 
+                          textDecoration: isActive ? "underline":"none",
+                          textDecorationColor: isActive ? "#191970" :"none",
+                          textUnderlineOffset: "0.5em",
+                          textDecorationThickness: "3px",
+                          fontWeight: isActive ? "bold" : "",
+                          color: isActive ? "#191970" : "black",})}>
+                          Create Projects
+          </NavLink>
+          {/* <Link to="/editproject" style={styles.link}>Edit Projects</Link> */}
+          <NavLink to="/editproject" style={({ isActive}) => ({ 
+                          textDecoration: isActive ? "underline":"none",
+                          textDecorationColor: isActive ? "#191970" :"none",
+                          textUnderlineOffset: "0.5em",
+                          textDecorationThickness: "3px",
+                          fontWeight: isActive ? "bold" : "",
+                          color: isActive ? "#191970" : "black",})}>
+                          Edit Projects
+          </NavLink>
           <a>Create Work Book</a>
-          <Link to="/changepassword" style={styles.link}>Change Password</Link>
-          <Link to="/" style={styles.link}>
+          {/* <Link to="/changepassword" style={styles.link}>Change Password</Link> */}
+          <NavLink to="/changepassword" style={({ isActive}) => ({ 
+                          textDecoration: isActive ? "underline":"none",
+                          textDecorationColor: isActive ? "#191970" :"none",
+                          textUnderlineOffset: "0.5em",
+                          textDecorationThickness: "3px",
+                          fontWeight: isActive ? "bold" : "",
+                          color: isActive ? "#191970" : "black",})}>
+                          Change Password
+          </NavLink>
+          <Link to="/" style={{textDecoration: "none",color:'inherit'}}>
             <Button variant="outlined" size="small" sx={{textTransform: "none"}}>Log Out & Back to Home</Button>
           {/*Onclick or Anchor or href=?*/}
           </Link>

@@ -14,14 +14,18 @@ import Chip from '@mui/material/Chip';
 import React, { useState } from 'react';
 import UploadImages from './UploadImages'
 import { useLocation, useParams } from 'react-router-dom';
+import Footer from './Footer'
+import {Link} from 'react-router-dom';
 
 function CreateNewProject() {
   document.body.style = 'background: #F4F7FE;';
+  
   return (
     <div className="App">
       <AdminHeader />
       <hr />
       <ProjectForm />
+      <Footer />
     </div>
   );
 }
@@ -69,12 +73,9 @@ function ProjectForm() {
   // console.log(inFillData)
 
   return (
-    <form className='ProjectForm' onSubmit={handleSubmit}>
-      <h1>Create a New Project</h1>
+    <form className='ProjectForm' style={{marginTop:'2rem'}} onSubmit={handleSubmit}>
+      <h1 >Create a New Project</h1>
       <Forms passData={setFileArray}/>
-      <div className="SubmitButton">
-        <Button variant="contained" type="submit">Submit</Button>
-      </div>
     </form>
 
   )
@@ -93,7 +94,7 @@ function Forms(props){
 function FormLeft(props) {
   // console.log(props.fillData.title)
   return (
-    <div className="FormLeft">
+    <div className="FormLeft" style={{margin:'2rem 0 15rem 0'}}>
       <h3>Project Title</h3>
       <TextField name='title' label="Enter Title Here" />
       <h3>Group Members</h3>
@@ -109,7 +110,7 @@ function FormLeft(props) {
 
 function FormRight(props) {
   return (
-    <div className="FormRight">
+    <div className="FormRight"  style={{margin:'2rem 0 15rem 0'}}>
       <h3>Project Video Link</h3>
       <TextField name='videoLink' label="Enter Youtube Link Here" />
       <h3>Project Images</h3>
@@ -120,6 +121,10 @@ function FormRight(props) {
       <CategorySelect />
       <h3>Project #HashTags</h3>
       <TagSelect />
+      <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "3rem" }}>
+        <Button variant="contained" type="submit">Submit</Button>
+        <Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined">Cancel</Button></Link>
+      </div>
 
     </div>
 

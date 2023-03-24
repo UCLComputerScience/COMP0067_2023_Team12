@@ -1,23 +1,41 @@
 import logo from './ibm_logo.svg';
 import Button from '@mui/material/Button';
 import './AdminHeader.css';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 function Header() {
-  const styles={
-    link:{
-      textDecoration:'none',
-      color:'inherit'
-    },
-  };
+
   return (
-  <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <section>
-          <Link to="/" style={styles.link}>Home</Link>
-          <Link to="/projects" style={styles.link} >Projects</Link>
-          <Link to="/about" style={styles.link}>About</Link>
-          <Link to="/about" style={styles.link}>Contact Us</Link>
+  <header className='Header' style={{maxWidth:'124rem',margin:'auto'}}>
+        <img src={logo}  alt="logo" style={{padding:"0 0 0 5rem"}} />
+        <section style={{padding:"0 5rem 0 0"}}>
+          <NavLink to="/" style={({ isActive}) => ({ 
+                          textDecoration: isActive ? "underline":"none",
+                          textDecorationColor: isActive ? "#191970" :"none",
+                          textUnderlineOffset: "0.5em",
+                          textDecorationThickness: "3px",
+                          fontWeight: isActive ? "bold" : "",
+                          color: isActive ? "#191970" : "black",})}>
+                          Home
+          </NavLink>
+          <NavLink to="/projects" style={({ isActive}) => ({ 
+                          textDecoration: isActive ? "underline":"none",
+                          textDecorationColor: isActive ? "#191970" :"none",
+                          textUnderlineOffset: "0.5em",
+                          textDecorationThickness: "3px",
+                          fontWeight: isActive ? "bold" : "",
+                          color: isActive ? "#191970" : "black",})}>
+                          Projects
+          </NavLink>
+          <NavLink to="/about" style={({ isActive}) => ({ 
+                          textDecoration: isActive ? "underline":"none",
+                          textDecorationColor: isActive ? "#191970" :"none",
+                          textUnderlineOffset: "0.5em",
+                          textDecorationThickness: "3px",
+                          fontWeight: isActive ? "bold" : "",
+                          color: isActive ? "#191970" : "black",})}>
+                          About/Contact Us
+          </NavLink>
         </section>
   </header>
   );

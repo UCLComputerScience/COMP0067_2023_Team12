@@ -1,12 +1,14 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import Header from './Header';
 import './About.css';
+import Footer from './Footer'
 
 function About() {
   return (
     <main className='About'>
       <Header />
       <AboutContent />
+      <Footer />
     </main>
   );
 }
