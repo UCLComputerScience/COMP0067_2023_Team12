@@ -100,7 +100,7 @@ module.exports.findAllPublished = (req, res) => {
     });
 };
 
-// Find a single Tutorial with an id
+// Find a single Tutorial with an id without adding popularity
 exports.findOneWithoutPopularity = (req, res) => {
   const id = req.params.id;
 

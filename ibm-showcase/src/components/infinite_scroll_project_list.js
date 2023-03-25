@@ -19,6 +19,7 @@ import {
 import axios from "axios";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import sortAndFilterData from './sortingandfiltering';
+import {Link, useHistory, useNavigate, Navigate} from 'react-router-dom';
 
 export default function ListAllProjects({ searchTerm }) {
   const [items, setItems] = useState([]);
@@ -30,6 +31,8 @@ export default function ListAllProjects({ searchTerm }) {
   const [selectedFilter, setSelectedFilter] = React.useState(1);
 
   const [noResults, setNoResults] = useState(false);
+
+  const categories = ["AI/ML", "Back-End", "Cloud", "Cyber-Security", "Data Science", "FinTech", "Front-End", "Healthcare", "Quantum", "Sustaianability"]
 
 
 
@@ -65,18 +68,7 @@ export default function ListAllProjects({ searchTerm }) {
     }
 
     axios.get(url)
-      // .then((response) => {
-      //   console.log(response)
-      //   setItems((prevItems) => {
-      //     const existingIds = new Set(prevItems.map((item) => item.id));
-      //     const newItems = response.data.filter((item) => !existingIds.has(item.id));
-      //     console.log(newItems)
-      //     return [...prevItems, ...newItems];
-      //   });
-      //   setIsLoading(false);
-      // })
       .then((response) => {
-        // console.log(response.data)
         if (selectedSort === 1) {
           response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
          }
@@ -86,9 +78,10 @@ export default function ListAllProjects({ searchTerm }) {
          if (selectedSort === 3) {
           response.data.sort((a, b) => b.popularity - a.popularity);
          }
-        if (selectedFilter === 2) {
-          response.data = response.data.filter((item) => item.category === 'AI/ML');
-         }
+        var filter_val = Math.max(selectedFilter - 1, 0)
+        if (filter_val > 0) {
+          response.data = response.data.filter((item) => item.category === categories[filter_val-1]);
+        }
 
          const normalisedData = response.data.map((item) => {
           return {
@@ -195,13 +188,17 @@ export default function ListAllProjects({ searchTerm }) {
                 // alt={item.title}
               />
               <CardContent sx={{ flexGrow: 1 }}>
-                <Typography gutterBottom variant="body1" component="h2" fontWeight="bold" sx={{ color: 'blue' }}>
-                  {item.title}
+                <Button component={Link} to={`/projects/${item._id}`} sx={{ textDecoration: 'none' }}>
+                <Typography gutterBottom variant="body1" component="h2" fontWeight="bold" sx={{ color: 'blue', textDecoration: 'none' }}>
+                {item.title}
                 </Typography>
+                  </Button>
                 <Typography variant="body2" style={{ color: 'grey' }}>
                   {item.description}
                   <IconButton fontSize="inherit">
+                    <Link to={`/projects/${item._id}`}>
                     <ArrowForwardIcon fontSize="small" />
+                    </Link>
                   </IconButton>
                 </Typography>
               </CardContent>
