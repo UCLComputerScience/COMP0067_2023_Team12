@@ -101,7 +101,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
     },
     {
       field: "status",
-      headerName: "Status",
+      headerName: "Placement",
       width: 120,
       renderCell: (params) => {
         return <HeaderCell row={params.row} />
