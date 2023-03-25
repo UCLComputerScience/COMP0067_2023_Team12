@@ -46,13 +46,17 @@ function AboutLeft() {
     <Box style={styles.styleleft}>
       <Typography variant="h1" style={styles.abouttitle}>About</Typography>
       <Typography variant="h3" style={styles.abouttext}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      IBM and UCL (University College London) have collaborated on various technology projects over the years. The IBM-UCL partnership has produced several cutting-edge technology projects and research initiatives, which have the potential to drive innovation and impact in various fields.      </Typography>
+      <Typography variant="h3" style={styles.abouttext} sx={{fontStyle:'italic',mt:1}}>
+          "Collaborating with UCL has allowed us to tap into a diverse pool of talent and expertise, enabling us to push the boundaries of what's possible in the world of technology."  - Professor John McNamara (IBM,UCL)     </Typography>
+      <Typography variant="h3" style={styles.abouttext} sx= {{fontStyle:'italic',mt:1}}>
+      "Being part of a collaborative project with IBM has allowed me to work on cutting-edge technologies and gain real-world experience" - John Smith, MSc student at UCL
       </Typography>
-      <Typography variant="h3" style={styles.abouttext}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      <Typography variant="h3" style={styles.abouttext} sx={{mt:1}}>
+      See some of the work we've done below:
       </Typography>
-      <Typography variant="h3" style={styles.abouttext}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      <Typography variant="h3" style={styles.abouttext} sx={{mt:1}}>
+      If you would like to see more, click on the link below. If you would like to get involved in any project or have ideas of your own, please fill in the form on the right
       </Typography>
     </Box>
   )
