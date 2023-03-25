@@ -25,7 +25,7 @@ export default function ListAllProjects() {
   const [isLoading, setIsLoading] = useState(false);
 
 
-        const [selected, setSelected] = React.useState('');
+        const [selected, setSelected] = React.useState(1);
 
         const selectionChangeHandler = (event) => {
           setSelected(event.target.value);
@@ -74,12 +74,11 @@ export default function ListAllProjects() {
   }, [isLoading, currentPage]);
 
   return (
-    <Container sx={{ py: 8 }} maxWidth="md">
+    <Container sx={{ py: 8,bgcolor:"white" }} maxWidth="100%">
         <Grid container spacing={2} sx={{width:"100%"}}>
-                <Grid item xs = {8}>
-                <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:134,borderRadius:"30px",position:"relative",left:"30px",mt:-5,border:'1px solid #6E6D7A'}}>
-                    
-                    <InputLabel></InputLabel>
+                <Grid item xs = {8} sx ={{display:'flex',justifyContent:'flex-start'}}>
+                <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:134,borderRadius:"30px",mt:-5,border:'1px solid #6E6D7A',textAlign:'center'}}>
+                    <InputLabel sx ={{textAlign:'center'}}>Filter</InputLabel>
                     <Select value={selected} onChange={selectionChangeHandler} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>}>
                         <MenuItem value={1}>Popular</MenuItem>
                         <MenuItem value={2}>Date</MenuItem>
@@ -88,8 +87,8 @@ export default function ListAllProjects() {
                 </Grid>
 
 
-                <Grid item xs = {4}>
-                <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:134,borderRadius:"30px",position:"relative",right:"30px",mt:-5,border:'1px solid #6E6D7A'}}>
+                <Grid item xs = {4} sx ={{display:'flex',justifyContent:'flex-end'}}>
+                <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:134,borderRadius:"30px",mt:-5,border:'1px solid #6E6D7A',textAlign:"center"}}>
                     
                     <InputLabel>Category</InputLabel>
                     <Select value={selected} onChange={selectionChangeHandler} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
@@ -110,8 +109,8 @@ export default function ListAllProjects() {
 
                 
         </Grid>
-        <Grid sx={{ py: 3 }} />
-      <Grid container spacing={4} >
+        <Grid sx={{ py: 3}} />
+      <Grid container spacing={4} sx={{px:10}} >
         {items.map((item) => (
           <Grid item key={item.id} xs={12} sm={6} md={4}>
             <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '4%' }}>
