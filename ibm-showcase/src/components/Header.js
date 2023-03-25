@@ -1,4 +1,4 @@
-import logo from './ibm_logo.svg';
+import logo from './Skunk_works_Logo.svg.png';
 import Button from '@mui/material/Button';
 import './AdminHeader.css';
 import {Link} from 'react-router-dom';
@@ -12,7 +12,7 @@ function Header() {
   };
   return (
   <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" style={{width:'40px',height:'30px'}} />
         <section>
           <Link to="/" style={styles.link}>Home</Link>
           <Link to="/projects" style={styles.link} >Projects</Link>
