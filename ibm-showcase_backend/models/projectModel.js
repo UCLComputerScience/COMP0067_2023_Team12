@@ -12,6 +12,7 @@ const projectSchema = new mongoose.Schema(
     category: String,
     tags: [String],
     popularity: { type: Number, default: 0 },
+    placement: { type: String, default: 'None' },
 	published: Boolean
 	},
 	{ timestamps: true }
