@@ -73,8 +73,8 @@ function ProjectSearch({ onSubmit }) {
                 onChange={handleInputChange}
             />
             </Box>
-            <Box sx={{mt:4,mb:3,mx:"auto",ml:7}}>
-                <Typography variant='caption' gutterBottom sx={{color:"white"}}>
+            <Box sx={{mt:4,mb:3,mx:"auto",ml:7}}> 
+                {/* <Typography variant='caption' gutterBottom sx={{color:"white"}}>
                     Trending searches
                 </Typography>
                 <Button sx ={{bgcolor:"#F3F3F3",ml:2,width:95,textTransform:"none",borderRadius:"25px"}}
@@ -111,8 +111,8 @@ function ProjectSearch({ onSubmit }) {
                     color="inherit"
                 >
                     Cloud
-                </Button>
-            </Box>
+                </Button> */}
+            </Box> 
       </Box>
         </StyledGrid>
    
