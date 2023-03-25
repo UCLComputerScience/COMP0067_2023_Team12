@@ -22,7 +22,7 @@ import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar
                     
                     <InputLabel></InputLabel>
                     <Select value={selected} onChange={selectionChangeHandler} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>}>
-                        <MenuItem value={1}>Popular</MenuItem>
+                        <MenuItem value={1}>Test</MenuItem>
                         <MenuItem value={2}>Date</MenuItem>
                     </Select>
                 </FormControl>

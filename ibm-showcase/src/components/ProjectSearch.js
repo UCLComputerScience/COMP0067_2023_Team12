@@ -47,7 +47,7 @@ function ProjectSearch({ onSubmit }) {
 
             <Box sx={{maxWidth:600,mx:"auto"}}>
             <Typography variant='subtitle' gutterBottom sx = {{color:"white",textAlign:"center"}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Explore all the exciting projects IBM and UCL have worked. From Artificial Intelligence to Quantum Computing
             </Typography>
             </Box>
 

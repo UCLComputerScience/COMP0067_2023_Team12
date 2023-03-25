@@ -9,7 +9,7 @@ function HomeAbout() {
   <Box sx={{position:'relative',minHeight: '20rem',backgroundImage:`url(${AboutBG})`, backgroundSize: 'cover'}}>
     <section style={{margin:'auto', padding:'0 7rem', maxWidth:'110rem'}}>
       <div style={{fontSize: '2rem', padding: '3rem 0 0rem 0.25rem', lineHeight:'90%'}}>About</div>
-      <p style={{fontSize: '1.4rem', padding: '0 0 6rem 0.25rem ', width: '50%', textAlign: 'justify', maxHeight: '50%'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p style={{fontSize: '1.4rem', padding: '0 0 6rem 0.25rem ', width: '50%', textAlign: 'justify', maxHeight: '50%'}}>IBM and UCL have collaborated on various projects over the years. From Artificial Intelligence to Quantum Computing - pushing the boundaries of innovation. Learn more about our story.</p>
       <Link to="/about" ><Button 
         size="large" variant="outlined"
         sx={{textTransform: "none",paddingRight:'0.7rem', margin:"0 0.25rem", position:'absolute ', bottom:'1.8rem', borderRadius:'1rem'}}

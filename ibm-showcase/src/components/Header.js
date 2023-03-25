@@ -1,4 +1,4 @@
-import logo from './ibm_logo.svg';
+import logo from './Skunk_works_Logo.svg.png';
 import Button from '@mui/material/Button';
 import './AdminHeader.css';
 import {NavLink} from 'react-router-dom';
