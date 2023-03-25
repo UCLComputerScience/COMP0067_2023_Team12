@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { DataGrid,GRID_CHECKBOX_SELECTION_COL_DEF } from '@mui/x-data-grid';
 import Container from '@mui/material/Container';
 import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar,
@@ -6,45 +6,53 @@ import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar
   Grid } from '@mui/material'
 
 import { Button } from '@mui/material';
+import axios from "axios";
+
+function generateRandom() {
+  var length = 8,
+      charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+      retVal = "";
+  for (var i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+  }
+  return retVal;
+}
 
 
+export default function DataTable () {
 
 
-const columns = [
-  { field: 'projectTitle', headerclassName: 'super-app-theme--header', headerName: 'Project Title', width: 130 },
-  { field: 'description',headerName: 'Description', width: 130 },
-  { field: 'dateCreated',headerName: 'Date Created', type:'date',width: 130 },
-  {
-    field: 'lastEdited',
-    headerName: 'Lasted Edited',
-    type: 'date',
-    width: 130,
-  },
-  {
-    field: 'student',
-    headerName: 'Students',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
-  GRID_CHECKBOX_SELECTION_COL_DEF, // move checkbox column to the end
-];
+    const [tableData,setTableData] = useState([])
 
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
+    React.useEffect(() => {
+      axios.get('http://localhost:8080/api/projects')
+      .then(res => {
+        setTableData(res.data)
+        console.log(res.data)
+      }).catch(err => {
+        console.log(err)
+      })
+     
+    },[]);
+  
+    
 
-export default function DataTable() {
+  
+  const columns = [
+    { field: '_id',headerName: 'ID', width: 130 },
+    { field: 'title', headerclassName: 'super-app-theme--header', headerName: 'Project Title', width: 130 },
+    { field: 'description',headerName: 'Description', width: 130 },
+    { field: 'groupMembers', headerclassName: 'super-app-theme--header', headerName: 'Group Members', width: 130 },
+    { field: 'createdAt',headerName: 'Date Created',width:130 },
+    {
+      field: 'updatedAt',
+      headerName: 'Last Edited',
+      width: 130,
+    },
+  
+  ];
+  
+
   return (
     <Container className='projectTable' style={{ height: "567px", width: "1078px"}}>
             <Grid container spacing={0}>
@@ -70,7 +78,7 @@ export default function DataTable() {
                 </Button>
             </Grid>
             <Grid xs={10}>
-                <Button
+                <Button 
                     variant='contained'
                     size='medium'
                     color="inherit"
@@ -86,8 +94,19 @@ export default function DataTable() {
       backgroundColor: '#F4F7FB'
     },
     mx:"auto"
-  }}
-        rows={rows}
+  }}    
+        getRowId={(row) => row._id}
+        rows = {tableData}
+        onRowSelectionModelChange = {(ids) => {
+          const selectedIDs = new Set(ids);
+          const selectedRowData = tableData.filter((row) => 
+          selectedIDs.has(row._id)
+          
+          );
+        
+
+          console.log(selectedRowData);
+        }}
         columns={columns}
         pageSize={9}
         rowsPerPageOptions={[5]}
