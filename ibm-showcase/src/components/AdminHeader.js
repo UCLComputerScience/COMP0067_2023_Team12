@@ -6,7 +6,7 @@ import {Link, NavLink} from 'react-router-dom';
 function AdminHeader() {
   return (
   <header style={{margin:'auto'}}>
-        <img src={logo} alt="logo" style={{padding:'0 0 0 4rem'}} />
+        <img src={logo} alt="logo" style={{height:'3rem',width:'5rem',padding:'0 0 0 4rem'}} />
         <section style={{padding:'0 4rem 0 0'}} >
           {/* <Link to="/createproject" style={styles.link}>Create Projects</Link> */}
           <NavLink to="/createproject" style={({ isActive}) => ({ 
