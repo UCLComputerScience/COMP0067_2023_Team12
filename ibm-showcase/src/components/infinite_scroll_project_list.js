@@ -149,16 +149,9 @@ export default function ListAllProjects({ searchTerm }) {
                     <InputLabel></InputLabel>
                     <Select value={selectedFilter} onChange={selectionChangeHandlerFilter} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
                         <MenuItem value={1}>No Category</MenuItem>
-                        <MenuItem value={2}>AI/ML</MenuItem>
-                        <MenuItem value={3}>Back-End</MenuItem>
-                        <MenuItem value={4}>Cloud</MenuItem>
-                        <MenuItem value={5}>Cyber-Security</MenuItem>
-                        <MenuItem value={6}>Data Science</MenuItem>
-                        <MenuItem value={7}>FinTech</MenuItem>
-                        <MenuItem value={8}>Front-End</MenuItem>
-                        <MenuItem value={9}>Healthcare</MenuItem>
-                        <MenuItem value={10}>Quantum</MenuItem>
-                        <MenuItem value={11}>Sustainability</MenuItem>
+                        {categories.map((category, index) => (
+                          <MenuItem key={index+2} value={index+2}>{category}</MenuItem>
+                        ))}
                     </Select>
                 </FormControl>
                 </Grid>

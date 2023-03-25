@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {React, useState} from 'react';
 import PropTypes from 'prop-types';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -11,14 +11,32 @@ Grid } from '@mui/material'
 import { Container } from '@mui/system';
 
 
-function Search() {
+function Search({ onSubmit, onSubmit2 }) {
 //   const { sections, title } = props;
 
-  const [selected, setSelected] = React.useState('');
+    // const [selected, setSelected] = useState('');
 
-  const selectionChangeHandler = (event) => {
-    setSelected(event.target.value);
-  };
+    const categories = ["AI/ML", "Back-End", "Cloud", "Cyber-Security", "Data Science", "FinTech", "Front-End", "Healthcare", "Quantum", "Sustaianability"]
+
+    const [selectedFilter, setSelectedFilter] = useState(1);
+
+    const [inputValue, setInputValue] = useState('');
+
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault(); 
+        onSubmit(inputValue);
+        }
+
+    const selectionChangeHandlerFilter = (event) => {
+        setSelectedFilter(event.target.value);
+        console.log(event.target.value)
+        onSubmit2(event.target.value);
+    };
 
   return (
     
@@ -30,6 +48,7 @@ function Search() {
             component="form"    
             sx={{display: 'flex', alignItems: 'center', maxWidth:900,height:51,mt:10,
             backgroundColor: 'white',flexShrink:1,mx:"auto"}}
+            onSubmit={handleSubmit}
             >
             <IconButton type="button" sx={{ display:"flex"}} aria-label="search">
                 <SearchIcon />
@@ -38,6 +57,8 @@ function Search() {
                 sx={{ ml: 1, display:"flex"}}
                 placeholder="Search..."
                 inputProps={{ 'aria-label': 'search' }}
+                value={inputValue}
+                onChange={handleInputChange}
             />
             </Box>
             </Grid>
@@ -47,35 +68,16 @@ function Search() {
             <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",maxWidth:134,mt:10}}>
                         
             <InputLabel>Category</InputLabel>
-            <Select value={selected} onChange={selectionChangeHandler}>
-                <MenuItem value={1}>AI/ML</MenuItem>
-                <MenuItem value={2}>Back-End</MenuItem>
-                <MenuItem value={3}>Cloud</MenuItem>
-                <MenuItem value={4}>Cyber-Security</MenuItem>
-                <MenuItem value={5}>Data Science</MenuItem>
-                <MenuItem value={6}>FinTech</MenuItem>
-                <MenuItem value={7}>Front-End</MenuItem>
-                <MenuItem value={8}>Healthcare</MenuItem>
-                <MenuItem value={9}>Quantum</MenuItem>
-                <MenuItem value={10}>Sustainability</MenuItem>
-            </Select>
+            <Select value={selectedFilter} onChange={selectionChangeHandlerFilter} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
+                        <MenuItem value={1}>No Category</MenuItem>
+                        {categories.map((category, index) => (
+                          <MenuItem key={index+2} value={index+2}>{category}</MenuItem>
+                        ))}
+                    </Select>
         </FormControl>
         </Grid>
-        </Grid>
-
-
-        
-
-      
-
-      
-
-
-
-    
+        </Grid>       
   );
 }
-
-
 
 export default Search;

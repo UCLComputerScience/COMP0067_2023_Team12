@@ -13,7 +13,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Chip from '@mui/material/Chip';
 import React, { useState, useEffect } from 'react';
 import UploadImages from './UploadImages'
-import { useLocation, useParams, Navigate } from 'react-router-dom';
+import { useLocation, useParams, Navigate, Link } from 'react-router-dom';
 import Footer from './Footer'
 
 function EditNewProject() {
@@ -118,9 +118,9 @@ function ProjectForm() {
       <h1>Edit Project</h1>
       <Forms passData={setFileArray} fillData={inFillData}/>
       {changePage && <Navigate to={'/editproject'} /> }
-      <div className="SubmitButton">
+      {/* <div className="SubmitButton">
         <Button variant="contained" type="submit">Submit</Button>
-      </div>
+      </div> */}
     
     </form>
 
@@ -167,6 +167,10 @@ function FormRight(props) {
       <CategorySelect fillData={props.fillData} />
       <h3>Project #HashTags</h3>
       <TagSelect fillData={props.fillData} />
+      <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "3rem" }}>
+        <Button variant="contained" type="submit">Submit</Button>
+        <Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined">Cancel</Button></Link>
+      </div>
 
     </div>
 

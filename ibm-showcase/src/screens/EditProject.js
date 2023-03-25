@@ -1,4 +1,4 @@
-import React from 'react'
+import {React, useState} from 'react'
 import './Admin.css';
 import DataTable from '../components/ProjectTable';
 import Search from '../components/Search';
@@ -8,11 +8,15 @@ import Footer from '../components/Footer'
 
 
 function EditProject() {
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterTerm, setFilterTerm] = useState('');
+
   return (
     <div className="EditProject">
       <AdminHeader />
-      <Search/>
-      <DataTable />
+      <Search onSubmit={setSearchTerm} onSubmit2={setFilterTerm}/>
+      <DataTable searchTerm={searchTerm} filterTerm={filterTerm}/>
       <Footer/>
     </div>
  

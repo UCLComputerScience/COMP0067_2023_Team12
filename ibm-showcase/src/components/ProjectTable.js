@@ -12,23 +12,15 @@ import { useNavigate, navigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import axios from "axios";
 
-function generateRandom() {
-  var length = 8,
-      charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-      retVal = "";
-  for (var i = 0, n = charset.length; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-  }
-  return retVal;
-}
 
-
-export default function DataTable () {
+export default function DataTable({ searchTerm, filterTerm }) {
 
 
     const [tableData,setTableData] = useState([])
 
-    React.useEffect(() => {
+    const categories = ["AI/ML", "Back-End", "Cloud", "Cyber-Security", "Data Science", "FinTech", "Front-End", "Healthcare", "Quantum", "Sustaianability"]
+
+    useEffect(() => {
       axios.get('http://localhost:8080/api/projects')
       .then(res => {
         setTableData(res.data)
@@ -39,19 +31,11 @@ export default function DataTable () {
      
     },[]);
 
+    useEffect(() => {  
+      Reload();
+    }, [searchTerm, filterTerm]);
 
     function Reload() {
-      console.log("I have reloaded")
-      axios.get('http://localhost:8080/api/projects')
-      .then(res => {
-        setTableData(res.data)
-        // console.log(res.data)
-      }).catch(err => {
-        console.log(err)
-      })
-    };
-
-    useEffect(() => {
       if (!searchTerm) {
         var url = `http://localhost:8080/api/projects`
       } else {
@@ -60,45 +44,10 @@ export default function DataTable () {
   
       axios.get(url)
         .then((response) => {
-          if (selectedSort === 1) {
-            response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-           }
-          if (selectedSort === 2) {
-            response.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-           }
-           if (selectedSort === 3) {
-            response.data.sort((a, b) => b.popularity - a.popularity);
-           }
-          if (selectedFilter === 2) {
-            response.data = response.data.filter((item) => item.category === 'AI/ML');
-           }
-           if (selectedFilter === 3) {
-            response.data = response.data.filter((item) => item.category === 'Back-End');
-           }
-           if (selectedFilter === 4) {
-            response.data = response.data.filter((item) => item.category === 'Cloud');
-           }
-           if (selectedFilter === 5) {
-            response.data = response.data.filter((item) => item.category === 'Cyber-Security');
-           }
-           if (selectedFilter === 6) {
-            response.data = response.data.filter((item) => item.category === 'Data Science');
-           }
-           if (selectedFilter === 7) {
-            response.data = response.data.filter((item) => item.category === 'FinTech');
-           }
-           if (selectedFilter === 8) {
-            response.data = response.data.filter((item) => item.category === 'Front-End');
-           }
-           if (selectedFilter === 9) {
-            response.data = response.data.filter((item) => item.category === 'Healthcare');
-           }
-           if (selectedFilter === 10) {
-            response.data = response.data.filter((item) => item.category === 'Quantum');
-           }
-           if (selectedFilter === 11) {
-            response.data = response.data.filter((item) => item.category === 'Sustainability');
-           }
+          var filter_val = Math.max(filterTerm - 1, 0)
+          if (filter_val > 0) {
+            response.data = response.data.filter((item) => item.category === categories[filter_val-1]);
+          }
   
            const normalisedData = response.data.map((item) => {
             return {
@@ -107,20 +56,26 @@ export default function DataTable () {
             }
           });
           
-          setItems(normalisedData);
-          setIsLoading(false);
-          
-          if (response.data.length === 0) {
-            setNoResults(true);
-          } else {
-            setNoResults(false);
-          }
+          setTableData(normalisedData);
         })
         .catch((error) => {
           console.log(error);
-          setIsLoading(false);
         });
-    }, [currentPage, searchTerm, selectedSort, selectedFilter]);
+    }
+
+    function normalizeDescription(description) {
+      const maxLength = 100; 
+      if (description.length <= maxLength) {
+        return description;
+      } else {
+        const truncated = description.slice(0, maxLength); 
+        const lastSpaceIndex = truncated.lastIndexOf(' '); 
+        const normalized = truncated.slice(0, lastSpaceIndex) + '...'; 
+        return normalized;
+      }
+    }
+
+    
   
     
   const statusOptions = ["None", "Main", "1", "2", "3"];
