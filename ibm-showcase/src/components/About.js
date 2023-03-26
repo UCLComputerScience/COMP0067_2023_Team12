@@ -2,6 +2,8 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 import Header from './Header';
 import './About.css';
 import Footer from './Footer'
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 function About() {
   return (
@@ -64,7 +66,21 @@ function AboutLeft() {
   )
 }
 
-function AboutRight() {
+const AboutRight = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_ol9tk59', 'template_1yi3sht', form.current, '-hNSwpJVlH9i86VIs')
+      .then((result) => {
+          console.log(result.text);
+          console.log("message sent")
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+
   const styles = {
     styleright:{
       display:'flex',
@@ -88,20 +104,20 @@ function AboutRight() {
     },
   };
   return (
-      <Box style={styles.styleright}>
+      <form ref = {form} onSubmit = {sendEmail} style={styles.styleright}>
         <Typography variant="h1" style={styles.abouttitle}>Get Involved</Typography>
         <Typography variant="h3" style={styles.aboutsubtitle}>Name</Typography>
-        <TextField label="Enter Your Name Here" required style={styles.abouttextfield}/>
+        <TextField label="Enter Your Name Here" name="from_name" required style={styles.abouttextfield}/>
         <Typography variant="h3" style={styles.aboutsubtitle}>Email</Typography>
-        <TextField label="Enter Your Email Here" required style={styles.abouttextfield}/>
+        <TextField label="Enter Your Email Here"  name = "user_email" required style={styles.abouttextfield}/>
         <Typography variant="h3" style={styles.aboutsubtitle}>Company/Institution</Typography>
-        <TextField label="Enter Your Company/Institution Name Here" required style={styles.abouttextfield}/>
+        <TextField label="Enter Your Company/Institution Name Here" name = "company" required style={styles.abouttextfield}/>
         <Typography variant="h3" style={styles.aboutsubtitle}>Message(Optional)</Typography>
-        <TextField label="Input Message Here" multiline="true" minRows="5" style={styles.abouttextfield} />
+        <TextField label="Input Message Here" multiline="true" name="message" minRows="5" style={styles.abouttextfield} />
         <div>
-          <Button variant="contained" size="large" style={styles.aboutbutton} >Submit</Button >
+          <Button type = "submit" value = "Send" variant="contained" size="large" style={styles.aboutbutton} >Submit</Button >
         </div>
-      </Box>
+      </form>
   )
 }
 
