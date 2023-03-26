@@ -1,7 +1,11 @@
+import * as React from 'react';
 import logo from './Skunk_works_Logo.svg.png';
-import Button from '@mui/material/Button';
 import './AdminHeader.css';
 import {Link, NavLink} from 'react-router-dom';
+import { Select, MenuItem,  Button,InputBase, } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+
 
 function AdminHeader() {
   return (
@@ -39,13 +43,16 @@ function AdminHeader() {
                           color: isActive ? "#191970" : "black",})}>
                           Change Password
           </NavLink>
-          <Link to="/" style={{textDecoration: "none",color:'inherit'}}>
-            <Button variant="outlined" size="small" sx={{textTransform: "none"}}>Log Out & Back to Home</Button>
-          {/*Onclick or Anchor or href=?*/}
-          </Link>
+          
+          <Button variant="text"size="small"><SupervisorAccountIcon></SupervisorAccountIcon>
+            <Select input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
+            <Link to="/" style={{textDecoration: "none",color:'inherit'}}><MenuItem value={1}><LogoutIcon></LogoutIcon>Log out</MenuItem></Link>
+            </Select>
+          </Button>
         </section>
   </header>
   );
 }
 
 export default AdminHeader;
+

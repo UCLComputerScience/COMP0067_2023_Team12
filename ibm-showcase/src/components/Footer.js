@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'; 
 import LockIcon from '@mui/icons-material/Lock';
 import { Twitter, YouTube, Facebook, LinkedIn } from '@mui/icons-material';
-import logo from './ibm_logo.svg';
+import logo from './Skunk_works_Logo.svg.png';
 import ucl_logo from './ucl_logo.svg';
 import {Link} from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
@@ -62,8 +62,8 @@ function Footer() {
       <Box>
         <ul><b>Projects</b></ul>
         <ul><Link to="/projects/:id" style={styles.link}>Featured Projects</Link></ul>
-        <ul><Link to="/about" style={styles.link}>View All Projects</Link></ul>
-        <ul><Link to="/about" style={styles.link}>Search for Projects</Link></ul>
+        <ul><Link to="/projects" style={styles.link}>View All Projects</Link></ul>
+        <ul><Link to="/projects" style={styles.link}>Search for Projects</Link></ul>
       </Box>
       <Box>
         <ul><b>Follow us</b></ul>
