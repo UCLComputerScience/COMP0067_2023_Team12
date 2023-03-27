@@ -12,7 +12,7 @@ function AdminHeader() {
   <header style={{margin:'auto'}}>
         <img src={logo} alt="logo" style={{height:'3rem',width:'5rem',padding:'0 0 0 4rem'}} />
         <section style={{padding:'0 4rem 0 0'}} >
-          {/* <Link to="/createproject" style={styles.link}>Create Projects</Link> */}
+          
           <NavLink to="/createproject" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
@@ -22,7 +22,7 @@ function AdminHeader() {
                           color: isActive ? "#191970" : "black",})}>
                           Create Projects
           </NavLink>
-          {/* <Link to="/editproject" style={styles.link}>Edit Projects</Link> */}
+         
           <NavLink to="/editproject" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
@@ -32,8 +32,8 @@ function AdminHeader() {
                           color: isActive ? "#191970" : "black",})}>
                           Edit Projects
           </NavLink>
-          <a>Create Work Book</a>
-          {/* <Link to="/changepassword" style={styles.link}>Change Password</Link> */}
+          {/* <a>Create Work Book</a> */}
+  
           <NavLink to="/changepassword" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",

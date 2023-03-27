@@ -109,15 +109,15 @@ function ProjectDescription(props) {
   // const onlineimg = `http://localhost:8080/api/images/${props.project._id}/${props.project.images[0]}`;
   return (
     <div style={{display:'flex', flex:'1'}}>
-      <section style={{width:'60%'}}>
+      <section style={{width:'50%'}}>
         <p><b>Description</b></p>
         <div>{props.project.description}</div>
        {/* <text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
         <br/><br/>*/}
       </section>
-      <section style={{width:'40%',margin:'2rem 0 1rem 1rem'}}>
+      <section style={{width:'50%',margin:'6rem 0 1rem 1rem'}}>
         <SimpleSlider project={props.project}/>
-        <div style={{fontSize:'1.5rem', padding:'2rem'}}>Share on social media or print: 
+        <div style={{fontSize:'1.5rem', padding:'2rem'}}>Share on social media or print:
           <IconButton href={twitterUrl} ><Twitter style={{fontSize: '3rem'}}/></IconButton>
           <IconButton href={facebookUrl}><Facebook style={{fontSize: '3rem'}} /></IconButton>
           <IconButton href={LinkedInUrl}><LinkedIn style={{fontSize: '3rem'}} /></IconButton>
