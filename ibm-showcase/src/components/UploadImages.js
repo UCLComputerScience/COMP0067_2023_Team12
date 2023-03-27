@@ -109,7 +109,7 @@ function UploadImages(props) {
 
   return (
     <div>
-      <Button variant="contained" component="label" sx={{width:'100%', marginBottom:'1rem'}} onChange={uploadImages}>
+      <Button variant="contained" component="label" sx={{width:'100%', marginBottom:'1rem',textTransform: "none"}} onChange={uploadImages} >
         Add Pics
         <input hidden accept="image/*" multiple type="file" />
       </Button>

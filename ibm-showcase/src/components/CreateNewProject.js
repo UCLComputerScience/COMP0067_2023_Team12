@@ -94,7 +94,7 @@ function Forms(props){
 function FormLeft(props) {
   // console.log(props.fillData.title)
   return (
-    <div className="FormLeft" style={{margin:'2rem 0 15rem 0'}}>
+    <div className="FormLeft" style={{margin:'2rem 0 5rem 0'}}>
       <h3>Project Title</h3>
       <TextField name='title' label="Enter Title Here" />
       <h3>Group Members</h3>
@@ -110,13 +110,16 @@ function FormLeft(props) {
 
 function FormRight(props) {
   return (
-    <div className="FormRight"  style={{margin:'2rem 0 15rem 0'}}>
+    <div className="FormRight"  style={{margin:'2rem 0 5rem 0'}}>
       <h3>Project Video Link</h3>
       <TextField name='videoLink' label="Enter Youtube Link Here" />
       <h3>Project Images</h3>
       <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL images in one go. Change image selections by re-click (overriding).</div>
       {/*Only .jpg files. 5MB Max Each.*/}
-      <UploadImages passData={props.passData} />
+      <UploadImages passData={props.passData}/>
+      <h3>Video Banner Image</h3>
+      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select one image for video banner.</div> 
+      <UploadImages /*passData={props.passData}.*//>
       <h3>Project Category</h3>
       <CategorySelect />
       <h3>Project #HashTags</h3>
