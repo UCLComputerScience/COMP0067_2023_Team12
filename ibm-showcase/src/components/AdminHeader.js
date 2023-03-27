@@ -10,7 +10,7 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 function AdminHeader() {
   return (
   <header style={{margin:'auto'}}>
-        <img src={logo} alt="logo" style={{height:'3rem',width:'5rem',padding:'0 0 0 4rem'}} />
+        <img src={logo} alt="logo" style={{height:'3.5rem',width:'3.5rem',padding:'0 0 0 4rem'}} />
         <section style={{padding:'0 4rem 0 0'}} >
           
           <NavLink to="/createproject" style={({ isActive}) => ({ 

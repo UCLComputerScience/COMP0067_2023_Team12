@@ -7,7 +7,7 @@ function Header() {
 
   return (
   <header className='Header' style={{maxWidth:'124rem',margin:'auto'}}>
-        <img src={logo}  alt="logo" style={{height:'3rem',width:'5rem',padding:"0 0 0 5rem"}} />
+        <img src={logo}  alt="logo" style={{height:'3.5rem',width:'3.5rem',padding:"0 0 0 5rem"}} />
         <section style={{padding:"0 5rem 0 0"}}>
           <NavLink to="/" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
