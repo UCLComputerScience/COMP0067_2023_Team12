@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 
 function HomeAbout() {
   return (
-  <Box sx={{position:'relative',minHeight: '20rem',backgroundImage:`url(${AboutBG})`, backgroundSize: 'cover'}}>
+  <Box sx={{position:'relative',minHeight: '20rem',backgroundImage:`url(${AboutBG})`, backgroundSize: 'cover',margin: '0 0 -2rem 0'}}>
     <section style={{margin:'auto', padding:'0 7rem', maxWidth:'110rem'}}>
       <div style={{fontSize: '2rem', padding: '3rem 0 0rem 0.25rem', lineHeight:'90%'}}>About</div>
       <p style={{fontSize: '1.4rem', padding: '0 0 6rem 0.25rem ', width: '50%', textAlign: 'justify', maxHeight: '50%'}}>IBM and UCL have collaborated on various projects over the years. From Artificial Intelligence to Quantum Computing - pushing the boundaries of innovation. Learn more about our story.</p>

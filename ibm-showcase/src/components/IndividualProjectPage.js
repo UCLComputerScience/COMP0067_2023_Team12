@@ -6,9 +6,6 @@ import {ThreeProjectTiles} from './HomeBody'
 import Box from '@mui/material/Box';
 import ProjectPic1 from './Project1.png';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import ProjectPic2 from './Project2.jpeg';
-import ProjectPic3 from './Project3.png';
-import ProjectPic4 from './Project4.jpg';
 import { Twitter, Reddit, Facebook, LinkedIn, Print } from '@mui/icons-material';
 import IconButton from '@mui/material/IconButton';
 import Slider from "react-slick";
@@ -51,6 +48,7 @@ function ProjectVideoSection(props) {
     setIsPlaying(false);
   };
   return (
+    
     <Box sx={{position:'relative',minHeight: '40rem',backgroundImage:`url(${ProjectPic1})`, backgroundSize: 'cover'}}>
       {isPlaying ? (
         <div style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}}>
@@ -66,8 +64,8 @@ function ProjectVideoSection(props) {
       ) : (
         <div>
           <PlayCircleIcon sx={{fontSize: '5rem', color: 'white', position:'absolute', left: '50%', top: '50%', transform:`translate(-50%, -50%)`,cursor: 'pointer'}} onClick={handlePlayClick}/>
-          <div style={{position:'absolute',fontSize: '1.5rem', color: 'white', bottom:'7rem', left: '50%', transform: `translateX(-50%)`}}>Minhaz Hassan / James Rudd Jones / Ziyu Xu / Nozomu Kitamura</div>
-          <div style={{position:'absolute',fontSize: '3rem', color: 'white', bottom:'3rem', left: '50%', transform: `translateX(-50%)`}}>UCL Motion Input 3</div>
+          <div style={{position:'absolute',fontSize: '1.5rem', color: 'white', bottom:'7rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.groupMembers}</div>
+          <div style={{position:'absolute',fontSize: '3rem', color: 'white', bottom:'3rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.title}</div>
         </div>
       )}
       
@@ -138,7 +136,7 @@ function SimpleSlider(props) {
   };
 
   return (
-    <section style={{margin:'auto', maxWidth:'30rem'}}>
+    <section style={{margin:'auto', maxWidth:'70rem'}}>
       <Slider {...settings}>
       {props.project.images && props.project.images.map((image)=>(
         <div>
