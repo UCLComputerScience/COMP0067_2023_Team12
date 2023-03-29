@@ -125,8 +125,8 @@ function FormRight(props) {
       <h3>Project #HashTags</h3>
       <TagSelect />
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "3rem" }}>
-        <Button variant="contained" type="submit">Submit</Button>
-        <Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined">Cancel</Button></Link>
+        <Button variant="contained" type="submit" sx={{textTransform: "none"}}>Submit</Button>
+        <Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined" sx={{textTransform: "none"}} >Cancel</Button></Link>
       </div>
 
     </div>

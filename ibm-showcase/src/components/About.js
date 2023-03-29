@@ -100,7 +100,9 @@ const AboutRight = () => {
       marginBottom:'1.5rem'
     },
     aboutbutton:{
-      fontSize:'1.5em'
+      fontSize:'1.5em',
+      textTransform: "none",
+      marginBottom:'1.5rem'
     },
   };
   return (
@@ -115,7 +117,7 @@ const AboutRight = () => {
         <Typography variant="h3" style={styles.aboutsubtitle}>Message(Optional)</Typography>
         <TextField label="Input Message Here" multiline="true" name="message" minRows="5" style={styles.abouttextfield} />
         <div>
-          <Button type = "submit" value = "Send" variant="contained" size="large" style={styles.aboutbutton} >Submit</Button >
+          <Button type = "submit" value = "Send" variant="contained" size="medium" style={styles.aboutbutton} >Submit</Button >
         </div>
       </form>
   )
