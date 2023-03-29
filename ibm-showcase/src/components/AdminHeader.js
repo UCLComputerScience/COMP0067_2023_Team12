@@ -5,6 +5,7 @@ import {Link, NavLink} from 'react-router-dom';
 import { Select, MenuItem,  Button,InputBase, } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 
 function AdminHeader() {
@@ -32,21 +33,10 @@ function AdminHeader() {
                           color: isActive ? "#191970" : "black",})}>
                           Edit Projects
           </NavLink>
-          {/* <a>Create Work Book</a> */}
-  
-          <NavLink to="/changepassword" style={({ isActive}) => ({ 
-                          textDecoration: isActive ? "underline":"none",
-                          textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: "0.5em",
-                          textDecorationThickness: "3px",
-                          fontWeight: isActive ? "bold" : "",
-                          color: isActive ? "#191970" : "black",})}>
-                          Change Password
-          </NavLink>
-          
           <Button variant="text"size="small"><SupervisorAccountIcon></SupervisorAccountIcon>
             <Select input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
-            <Link to="/" style={{textDecoration: "none",color:'inherit'}}><MenuItem value={1}><LogoutIcon></LogoutIcon>Log out</MenuItem></Link>
+            <Link to="/changepassword" style={{textDecoration: "none",color:'inherit'}}><MenuItem value={1}><SettingsIcon></SettingsIcon>Change Password</MenuItem></Link>
+            <Link to="/" style={{textDecoration: "none",color:'inherit'}}><MenuItem value={2}><LogoutIcon></LogoutIcon>Log out</MenuItem></Link>
             </Select>
           </Button>
         </section>
