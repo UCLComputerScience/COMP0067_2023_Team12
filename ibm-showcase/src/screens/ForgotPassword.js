@@ -227,6 +227,7 @@ export default class ForgotPassword extends Component {
                   // display: 'flex', 
                   justifyContent: 'center',
                   backgroundColor: '#0062FF',
+                  textTransform: "none",
                  }}
                 onClick={this.saveProject}
                 >

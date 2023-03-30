@@ -88,7 +88,7 @@ export default class Sign_In extends Component {
         localStorage.setItem('token', response.data)
         // alert('Success')
         this.setState({changePage: true})
-        
+        localStorage.setItem('isLoggedIn', 'true');
       })
       .catch(e => {
         console.log(e);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import logo from './Skunk_works_Logo.svg.png';
 import './AdminHeader.css';
-import {Link, NavLink} from 'react-router-dom';
+import {Link, NavLink,useNavigate} from 'react-router-dom';
 import { Select, MenuItem,  Button,InputBase, } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
@@ -9,6 +9,13 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 
 function AdminHeader() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    navigate('/');
+  };
+
   return (
   <header style={{margin:'auto'}}>
         <img src={logo} alt="logo" style={{height:'3.5rem',width:'3.5rem',padding:'0 0 0 7.5rem'}} />
@@ -33,10 +40,10 @@ function AdminHeader() {
                           color: isActive ? "#191970" : "black",})}>
                           Edit Projects
           </NavLink>
-          <Button variant="text"size="small"><SupervisorAccountIcon></SupervisorAccountIcon>
+          <Button variant="text"size="small"><SupervisorAccountIcon/>
             <Select input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
-            <Link to="/changepassword" style={{textDecoration: "none",color:'inherit'}}><MenuItem value={1}><SettingsIcon></SettingsIcon>Change Password</MenuItem></Link>
-            <Link to="/" style={{textDecoration: "none",color:'inherit'}}><MenuItem value={2}><LogoutIcon></LogoutIcon>Log out</MenuItem></Link>
+            <Link to="/changepassword" style={{textDecoration: "none",color:'inherit'}}><MenuItem value={1}><SettingsIcon/>Change Password</MenuItem></Link>
+            <MenuItem value={2} onClick={handleLogout}><LogoutIcon/>Log out</MenuItem>
             </Select>
           </Button>
         </section>

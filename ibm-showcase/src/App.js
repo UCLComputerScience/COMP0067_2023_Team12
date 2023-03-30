@@ -10,6 +10,7 @@ import EditProject from './screens/EditProject'
 import ForgotPassword from './screens/ForgotPassword';
 import Sign_In from './screens/Sign_In'
 // import Sign_In from './screens/Register'
+import PrivateRoute from './PrivateRoute';
 import ChangePassword from './screens/Change_Password';
 import ResetPassword from './screens/Reset_Password';
 // Different Page Views End
@@ -22,11 +23,19 @@ function App() {
     <Route path="/projects" element={<ProjectList />} />
     <Route path="/projects/:id" element={<IndividualProjectPage />} />
     <Route path="/about" element={<About />}/>
-    <Route path="/createproject" element={<CreateNewProject />} />
-    <Route path="/editproject/:id" element={<EditNewProject />} />
-    <Route path="/editproject" element={<EditProject />} />
+    <Route element={<PrivateRoute/>}>
+      <Route path="/createproject" element={<CreateNewProject />} />
+    </Route>
+    <Route element={<PrivateRoute/>}>
+      <Route path="/editproject/:id" element={<EditNewProject />} />
+    </Route>
+    <Route element={<PrivateRoute/>}>
+      <Route path="/editproject" element={<EditProject />} />
+    </Route>
     <Route path="/signin" element={<Sign_In />} />
-    <Route path="/changepassword" element={<ChangePassword />} />
+    <Route element={<PrivateRoute/>}>
+      <Route path="/changepassword"element={<ChangePassword />} />
+    </Route>
     <Route path="/forgotpassword" element={<ForgotPassword />} />
     <Route path="/resetpassword/:user/:token" element={<ResetPassword />} />
   </Routes>
