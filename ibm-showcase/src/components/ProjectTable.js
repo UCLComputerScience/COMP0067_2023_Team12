@@ -118,10 +118,10 @@ export default function DataTable({ searchTerm, filterTerm }) {
 
       axios.get(`http://localhost:8080/api/projects`)
       .then(response => {
-        response.data = response.data.filter((item) => item.placement === event.target.value);
+        response.data = response.data.filter((item) => item.placement === event.target.value && item.placement !== "None");
         if (response.data.length !== 0) {
           var old_data = response.data[0];
-          console.log(old_data)
+          // console.log(old_data)
           old_data.placement = 'None'
           axios.put(`http://localhost:8080/api/projects/${old_data._id}`, old_data)
             .then(response => {
@@ -139,18 +139,28 @@ export default function DataTable({ searchTerm, filterTerm }) {
       });
 
       // save the updated status to the backend
-      var data = row
-      data.placement = event.target.value
-      axios.put(`http://localhost:8080/api/projects/${row._id}`, data)
-      .then(response => {
-        // console.log(response.data);
-        alert('Successfully edited the placement of this project')
-        Reload();
-      })
-      .catch(e => {
-        console.log(e);
-        alert(e.response.data.message)
-      });
+      // console.log(row)
+      // var data = row
+      // data.placement = event.target.value
+      // console.log(data.description)
+
+      axios.get(`http://localhost:8080/api/projects/${row._id}`)
+        .then(response => {
+            response.data.placement = event.target.value;
+             axios.put(`http://localhost:8080/api/projects/${row._id}`, response.data)
+              .then(response => {
+                // console.log(response.data);
+                alert('Successfully edited the placement of this project')
+                Reload();
+              })
+              .catch(e => {
+                console.log(e);
+                alert(e.response.data.message)
+              });
+        });
+
+
+     
 
       
     };

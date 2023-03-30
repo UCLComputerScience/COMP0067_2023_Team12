@@ -23,7 +23,7 @@ function IndividualProjectPage() {
     axios
     .get(`http://localhost:8080/api/projects/${id}`)
     .then(response => {
-        // console.log(response.data);
+        console.log(response.data);
         setProject(response.data);
         setShouldRenderSimilarProjects(true);
     });
@@ -168,20 +168,37 @@ export function ThreeProjectTiles(props){
   const [projects, setProjects] = useState("");
   // console.log(props)
   useEffect(() => {
-    axios
-    .get(`http://localhost:8080/api/projects/${props.project._id}/similar`)
-    .then(response => {
-        // console.log(response.data);
-        setProjects(response.data.slice(0,3));
-        // console.log(projects)
-
-        // add if length less tahn 3 then just randomly extract all projects and add the remaning needed
-    });
+      axios
+      .get(`http://localhost:8080/api/projects/${props.project._id}/similar`)
+      .then(response => {
+          // console.log(response.data);
+          // setProjects(response.data.slice(0,3));
+          setProjects(response.data.slice(0,2));
+          console.log(projects.length)
+          if (projects.length < 3) {
+            axios.get(`http://localhost:8080/api/projects`)
+              .then((response) => {                
+                // setItems(normalisedData);
+                // setIsLoading(false);
+              
+                // if (response.data.length === 0) {
+                //   // setNoResults(true);
+                // } else {
+                //   setNoResults(false);
+                // }
+              })
+              .catch((error) => {
+                console.log(error);
+                // setIsLoading(false);
+              });
+            }
+          // add if length less tahn 3 then just randomly extract all projects and add the remaning needed
+      });
   },[props.project._id]);
   
-  // useEffect(() => {
-  //   console.log(projects);
-  // }, [projects]);
+  useEffect(() => {
+    console.log(projects);
+  }, [projects]);
 
   if (projects === "") {
     return <div>Loading...</div>;
@@ -189,9 +206,9 @@ export function ThreeProjectTiles(props){
 
   return(
     <section style={{display: 'flex', flexDirection: 'row', columnGap: '2%'}}>
-      <ProjectTile img={`http://localhost:8080/api/images/${projects[0]._id}/${projects[0].images[0]}`} title={projects[0].title} description={projects[0].description}/>
-      <ProjectTile img={`http://localhost:8080/api/images/${projects[1]._id}/${projects[1].images[0]}`} title={projects[1].title} description={projects[1].description}/>
-      <ProjectTile img={`http://localhost:8080/api/images/${projects[2]._id}/${projects[2].images[0]}`} title={projects[2].title} description={projects[2].description}/>
+      {/* <ProjectTile img={`http://localhost:8080/api/images/${projects[0]._id}/${projects[0].images[0]}`} title={projects[0].title} description={projects[0].description}/> */}
+      {/* <ProjectTile img={`http://localhost:8080/api/images/${projects[1]._id}/${projects[1].images[0]}`} title={projects[1].title} description={projects[1].description}/> */}
+      {/* <ProjectTile img={`http://localhost:8080/api/images/${projects[2]._id}/${projects[2].images[0]}`} title={projects[2].title} description={projects[2].description}/> */}
     </section>
   );
 }
