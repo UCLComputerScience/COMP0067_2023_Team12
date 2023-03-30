@@ -32,7 +32,7 @@ export default function ListAllProjects({ searchTerm }) {
 
   const [noResults, setNoResults] = useState(false);
 
-  const categories = ["AI/ML", "Back-End", "Cloud", "Cyber-Security", "Data Science", "FinTech", "Front-End", "Healthcare", "Quantum", "Sustaianability"]
+  const categories = ["AI/ML", "Back-End", "Cloud", "Cyber-Security", "Data Science", "FinTech", "Front-End", "Healthcare", "Quantum", "Sustainability"]
 
 
 

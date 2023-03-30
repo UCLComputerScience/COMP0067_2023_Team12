@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import './IndividualProjectPage.css';
 import Header from './Header'
-import {ThreeProjectTiles} from './HomeBody'
+import {ProjectTile} from './HomeBody'
 import Box from '@mui/material/Box';
 import ProjectPic1 from './Project1.png';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
@@ -18,12 +18,14 @@ import Footer from './Footer'
 function IndividualProjectPage() {
   const {id} = useParams();
   const [project, setProject] = useState("");
+  const [shouldRenderSimilarProjects, setShouldRenderSimilarProjects] = useState(false);
   useEffect(() => {
     axios
     .get(`http://localhost:8080/api/projects/${id}`)
     .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         setProject(response.data);
+        setShouldRenderSimilarProjects(true);
     });
   },[]);
   return (
@@ -31,7 +33,7 @@ function IndividualProjectPage() {
       <Header />
       <ProjectVideoSection project={project}/>
       <ProjectDetail project={project}/>
-      <SimilarProjects />
+      {shouldRenderSimilarProjects && <SimilarProjects project={project}/>}
       <Footer />
     </div>
   );
@@ -152,12 +154,44 @@ function SimpleSlider(props) {
   );
 }
 
-function SimilarProjects() {
+function SimilarProjects(props) {
   return (
     <section style={{margin:'auto', padding:'4rem 7rem 8rem 7rem', maxWidth:'130rem',fontSize:'2rem', lineHeight:'90%', position:'relative'}}>
       <p style={{fontSize:'3rem', marginBottom:'2rem', textAlign: 'center'}}>Similar Projects</p>
       <hr style={{margin:'0 0 4rem 0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
-      <ThreeProjectTiles/>
+      <ThreeProjectTiles project={props.project}/>
+    </section>
+  );
+}
+
+export function ThreeProjectTiles(props){
+  const [projects, setProjects] = useState("");
+  // console.log(props)
+  useEffect(() => {
+    axios
+    .get(`http://localhost:8080/api/projects/${props.project._id}/similar`)
+    .then(response => {
+        // console.log(response.data);
+        setProjects(response.data.slice(0,3));
+        // console.log(projects)
+
+        // add if length less tahn 3 then just randomly extract all projects and add the remaning needed
+    });
+  },[props.project._id]);
+  
+  // useEffect(() => {
+  //   console.log(projects);
+  // }, [projects]);
+
+  if (projects === "") {
+    return <div>Loading...</div>;
+  }
+
+  return(
+    <section style={{display: 'flex', flexDirection: 'row', columnGap: '2%'}}>
+      <ProjectTile img={`http://localhost:8080/api/images/${projects[0]._id}/${projects[0].images[0]}`} title={projects[0].title} description={projects[0].description}/>
+      <ProjectTile img={`http://localhost:8080/api/images/${projects[1]._id}/${projects[1].images[0]}`} title={projects[1].title} description={projects[1].description}/>
+      <ProjectTile img={`http://localhost:8080/api/images/${projects[2]._id}/${projects[2].images[0]}`} title={projects[2].title} description={projects[2].description}/>
     </section>
   );
 }

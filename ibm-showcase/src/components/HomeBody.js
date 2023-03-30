@@ -57,7 +57,8 @@ export function ProjectTile(props){
     >
       {isShown && (
         <section style={{color:'white', padding: '1.5rem 1.5rem 5rem 1.5rem', textAlign: 'justify', fontSize:'1.5rem'}}> 
-        Description Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        {props.description}
+        {/* Description Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. */}
         </section>)
       }
       
