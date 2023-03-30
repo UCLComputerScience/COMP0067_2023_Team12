@@ -10,7 +10,7 @@ import EditProject from './screens/EditProject'
 import ForgotPassword from './screens/ForgotPassword';
 import Sign_In from './screens/Sign_In'
 // import Sign_In from './screens/Register'
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './screens/PrivateRoute';
 import ChangePassword from './screens/Change_Password';
 import ResetPassword from './screens/Reset_Password';
 // Different Page Views End
