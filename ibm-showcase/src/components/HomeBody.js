@@ -8,8 +8,9 @@ import Button from '@mui/material/Button';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { createTheme } from '@mui/material/styles';
 import PagesIcon from '@mui/icons-material/Pages';
-import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {Link, Navigate} from 'react-router-dom';
+import axios from "axios";
 
 function HomeBody() {
   return (
@@ -44,8 +45,22 @@ function HomeBody() {
 
 export default HomeBody;
 
+function normalizeDescription(description) {
+  const maxLength = 100; 
+  if (description.length <= maxLength) {
+    return description;
+  } else {
+    const truncated = description.slice(0, maxLength); 
+    const lastSpaceIndex = truncated.lastIndexOf(' '); 
+    const normalized = truncated.slice(0, lastSpaceIndex) + '...'; 
+    return normalized;
+  }
+}
+
 export function ProjectTile(props){
   const [isShown, setIsShown] = useState(false);
+
+  const normalisedDescription = normalizeDescription(props.description)
 
   return(
     <Box 
@@ -57,12 +72,12 @@ export function ProjectTile(props){
     >
       {isShown && (
         <section style={{color:'white', padding: '1.5rem 1.5rem 5rem 1.5rem', textAlign: 'justify', fontSize:'1.5rem'}}> 
-        {props.description}
+        {normalisedDescription}
         {/* Description Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. */}
         </section>)
       }
       
-      <Link to="/projects/:id"><Button size='large' variant="text" 
+      <Link to={`/projects/${props.id}`}><Button size='large' variant="text" 
       sx={{fontSize: '2.2rem', color: 'white', textTransform: "none", padding:'0.5rem 0.5rem', textAlign:'left', margin:'0.5rem 1rem', lineHeight:'1.21', 
            position:'absolute', bottom:'0', fontWeight:'bold'}}
       >
@@ -73,11 +88,44 @@ export function ProjectTile(props){
 }
 
 export function ThreeProjectTiles(){
+
+  const [first, setFirst] = useState("");
+  const [second, setSecond] = useState("");
+  const [third, setThird] = useState("");
+
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/projects`)
+                .then((response) => {                
+                  const firsts = response.data.filter(entry => entry.placement === "1")
+                  const seconds = response.data.filter(entry => entry.placement === "2")
+                  const thirds = response.data.filter(entry => entry.placement === "3")
+
+                  setFirst(firsts[0])
+                  setSecond(seconds[0])
+                  setThird(thirds[0])
+
+                  setHasLoaded(true)
+                  
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+              })
+
   return(
     <section style={{display: 'flex', flexDirection: 'row', columnGap: '2%'}}>
-      <ProjectTile img={ProjectPic2} title='Franklin Immersive Social Engagement (FISE)'/>
+      {/* <ProjectTile img={ProjectPic2} title='Franklin Immersive Social Engagement (FISE)'/>
       <ProjectTile img={ProjectPic3} title='IBM Watson Project'/>
-      <ProjectTile img={ProjectPic4} title='HMI: Haptic Icons Design'/>
+      <ProjectTile img={ProjectPic4} title='HMI: Haptic Icons Design'/> */}
+      {hasLoaded && (
+        <>
+      <ProjectTile img={`http://localhost:8080/api/images/${first._id}/${first.images[0]}`} title={first.title} description={first.description} id={first._id}/>
+      <ProjectTile img={`http://localhost:8080/api/images/${second._id}/${second.images[0]}`} title={second.title} description={second.description} id={second._id}/>
+      <ProjectTile img={`http://localhost:8080/api/images/${third._id}/${third.images[0]}`} title={third.title} description={third.description} id={third._id}/>
+      </>
+      )}
     </section>
   );
 }
