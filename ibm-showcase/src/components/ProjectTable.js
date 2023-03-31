@@ -113,9 +113,8 @@ export default function DataTable({ searchTerm, filterTerm }) {
     const [placement, setPlacement] = useState(row.placement || "None");
     const handleChange = (event) => {
       setPlacement(event.target.value);
-      // console.log(event.target.value)
-      // console.log(row)      
-
+      
+      // check if any other projects have the value you want to change to
       axios.get(`http://localhost:8080/api/projects`)
       .then(response => {
         response.data = response.data.filter((item) => item.placement === event.target.value && item.placement !== "None");
@@ -131,6 +130,25 @@ export default function DataTable({ searchTerm, filterTerm }) {
               console.log(e);
               alert(e.response.data.message)
             });
+
+          // save the updated status to the backend
+          axios.get(`http://localhost:8080/api/projects/${row._id}`)
+          .then(response => {
+              response.data.placement = event.target.value;
+              axios.put(`http://localhost:8080/api/projects/${row._id}`, response.data)
+                .then(response => {
+                  // console.log(response.data);
+                  alert('Successfully edited the placement of this project.')
+                  Reload();
+                })
+                .catch(e => {
+                  console.log(e);
+                  alert(e.response.data.message)
+                });
+          });
+        } else {
+          alert("You can't change this value as there needs to be at least one of each kind of placement!!")
+          setPlacement(row.placement);
         }
       })
       .catch(e => {
@@ -138,26 +156,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
         alert(e.response.data.message)
       });
 
-      // save the updated status to the backend
-      // console.log(row)
-      // var data = row
-      // data.placement = event.target.value
-      // console.log(data.description)
-
-      axios.get(`http://localhost:8080/api/projects/${row._id}`)
-        .then(response => {
-            response.data.placement = event.target.value;
-             axios.put(`http://localhost:8080/api/projects/${row._id}`, response.data)
-              .then(response => {
-                // console.log(response.data);
-                alert('Successfully edited the placement of this project')
-                Reload();
-              })
-              .catch(e => {
-                console.log(e);
-                alert(e.response.data.message)
-              });
-        });
+      
 
 
      
