@@ -40,6 +40,15 @@ function AdminHeader() {
                           color: isActive ? "#191970" : "black",})}>
                           Edit Projects
           </NavLink>
+          <NavLink to="/editabout" style={({ isActive}) => ({ 
+                          textDecoration: isActive ? "underline":"none",
+                          textDecorationColor: isActive ? "#191970" :"none",
+                          textUnderlineOffset: "0.5em",
+                          textDecorationThickness: "3px",
+                          fontWeight: isActive ? "bold" : "",
+                          color: isActive ? "#191970" : "black",})}>
+                          Edit About
+          </NavLink>
           <Button variant="text"size="small"><SupervisorAccountIcon/>
             <Select input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
             <Link to="/changepassword" style={{textDecoration: "none",color:'inherit'}}><MenuItem value={1}><SettingsIcon/>Change Password</MenuItem></Link>

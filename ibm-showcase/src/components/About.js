@@ -1,8 +1,9 @@
+import axios from "axios";
 import { Box, Button, TextField, Typography } from '@mui/material';
 import Header from './Header';
 import './About.css';
 import Footer from './Footer'
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 
 function About() {
@@ -18,9 +19,19 @@ function About() {
 export default About;
 
 function AboutContent() {
+  const [description, setDescription] = useState(''); 
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/about/`)
+    .then((response) => {setDescription(response.data);})
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
+
   return (
     <section style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>
-      <AboutLeft />
+      <AboutLeft description={description}/>
       <AboutRight />
     </section>
   );
@@ -28,7 +39,7 @@ function AboutContent() {
 
 
 
-function AboutLeft() {
+function AboutLeft(props) {
   const styles = {
     styleleft:{
       display:'flex',
@@ -62,6 +73,9 @@ function AboutLeft() {
       <Typography variant="h3" style={styles.abouttext} sx={{mt:1}}>
       If you would like to see more, click on the link below. If you would like to get involved in any project or have ideas of your own, please fill in the form on the right
       </Typography>
+      {/* <Typography variant="h3" style={styles.abouttext}>
+      {props.description}
+      </Typography> */}
     </Box>
   )
 }

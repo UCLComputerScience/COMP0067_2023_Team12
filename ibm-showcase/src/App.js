@@ -13,6 +13,7 @@ import Sign_In from './screens/Sign_In'
 import PrivateRoute from './screens/PrivateRoute';
 import ChangePassword from './screens/Change_Password';
 import ResetPassword from './screens/Reset_Password';
+import EditAbout from './components/EditAbout'
 // Different Page Views End
 import { Routes,Route } from 'react-router-dom';
 
@@ -38,6 +39,9 @@ function App() {
     </Route>
     <Route path="/forgotpassword" element={<ForgotPassword />} />
     <Route path="/resetpassword/:user/:token" element={<ResetPassword />} />
+    <Route element={<PrivateRoute/>}>
+      <Route path="/editabout"element={<EditAbout />} />
+    </Route>
   </Routes>
     // <div className="App">
     //   {/*<CreateNewProject />*/}
