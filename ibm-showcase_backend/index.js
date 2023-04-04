@@ -33,6 +33,10 @@ app.use('/api/users', userRoutes);
 
 app.use('/api/images', express.static('./public/uploads'));
 
+// 'about' content routes
+const aboutRoutes = require('./routes/aboutRoutes');
+app.use('/api/about', aboutRoutes);
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

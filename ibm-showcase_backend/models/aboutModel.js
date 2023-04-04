@@ -2,10 +2,10 @@ const mongoose = require("./db.js");
 
 const aboutSchema = new mongoose.Schema(
   {
-  description: String,
+  content: String,
   },
-  { timestamps: true }
+  { collection: 'about' , timestamps: true }
 );
 
-const aboutModel = mongoose.model('AboutDescription', aboutSchema);
+const aboutModel = mongoose.model('about', aboutSchema);
 module.exports = aboutModel;

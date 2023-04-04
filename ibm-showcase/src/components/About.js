@@ -3,7 +3,7 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 import Header from './Header';
 import './About.css';
 import Footer from './Footer'
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 function About() {
@@ -21,13 +21,10 @@ export default About;
 function AboutContent() {
   const [description, setDescription] = useState(''); 
 
-  useEffect(() => {
-    axios.get(`http://localhost:8080/api/about/`)
-    .then((response) => {setDescription(response.data[0].data);})
-    .catch((error) => {
-      console.log(error);
-    });
-  }, []);
+  axios.get(`http://localhost:8080/api/about/`)
+    .then((response) => {setDescription(response.data.content)})
+    .catch((error) => {console.log(error)});
+  
 
   return (
     <section style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>
@@ -130,7 +127,7 @@ const AboutRight = () => {
         <Typography variant="h3" style={styles.aboutsubtitle}>Company/Institution</Typography>
         <TextField label="Enter Your Company/Institution Name Here" name = "company" required style={styles.abouttextfield}/>
         <Typography variant="h3" style={styles.aboutsubtitle}>Message(Optional)</Typography>
-        <TextField label="Input Message Here" multiline="true" name="message" minRows="5" style={styles.abouttextfield} />
+        <TextField label="Input Message Here" multiline={true} name="message" minRows="5" style={styles.abouttextfield} />
         <div>
           <Button type = "submit" value = "Send" variant="contained" size="medium" style={styles.aboutbutton} >Submit</Button >
         </div>

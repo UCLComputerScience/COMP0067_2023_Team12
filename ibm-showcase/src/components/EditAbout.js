@@ -21,24 +21,16 @@ function EditAbout() {
 export default EditAbout;
 
 function AboutEditContent() {
-  const [description, setDescription] = useState(''); 
+  const [content, setContent] = useState(''); 
 
-  useEffect(() => {
-    axios.get(`http://localhost:8080/api/about/`)
-    .then((response) => {setDescription(response.data[0].data);})
-    .catch((error) => {
-      console.log(error);
-    });
-  }, []);
-
-  const updateDescription = (newDescription) => {
-    setDescription(newDescription);
-  }
+  axios.get(`http://localhost:8080/api/about/`)
+    .then((response) => {setContent(response.data.content)})
+    .catch((error) => {console.log(error)});
 
   return (
     <section style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>
-      <AboutLeft description={description}/>
-      <AboutRight description={description} updateDescription={updateDescription}/>
+      <AboutLeft content={content}/>
+      <AboutRight content={content}/>
     </section>
   );
 }
@@ -67,7 +59,7 @@ function AboutLeft(props) {
     <Box style={styles.styleleft}>
       <Typography variant="h1" style={styles.abouttitle}>Current About Description</Typography>
       <Typography variant="h3" style={styles.abouttext}>
-      {props.description}
+      {props.content}
       </Typography>
     </Box>
   )
@@ -94,38 +86,38 @@ function AboutRight(props){
       display: "flex", 
       justifyContent: "flex-end", 
       margin: "3rem 0 1rem 0",
-      
     }
   };
-    const inputProps = {
-      style: { 
-        fontSize: '1.5rem', 
-        lineHeight: '150%',
-        textAlign: 'justify',
-        whiteSpace: 'pre-wrap',
+  const inputProps = {
+    style: { 
+      fontSize: '1.5rem', 
+      lineHeight: '150%',
+      textAlign: 'justify',
+      whiteSpace: 'pre-wrap',
     }
   };
-  const [newDescription, setNewDescription] = useState(props.description);
-
+  
+  const [newContent, setNewContent] = useState("");
+  useEffect(() => {setNewContent(props.content)},[props.content]);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.updateDescription(newDescription);
     axios
-      .put(`http://localhost:8080/api/about`, { description: newDescription })
+      .put(`http://localhost:8080/api/about`, { "content": newContent })
       .catch((e) => {
         console.error(e);
       });
   };
 
   const handleInputChange = (e) => {
-    setNewDescription(e.target.value);
+    setNewContent(e.target.value);
   };
 
   return (
     <Box style={styles.about} >
       <Typography variant="h1" style={styles.abouttitle}>Edit About Description</Typography>
       <Box sx={styles.textFieldWrapper} >
-        <TextField label="Edit About Description Here" multiline="true" minRows="15" required fullWidth inputProps={inputProps} value={newDescription}
+        <TextField label="Edit About Description Here" multiline={true} minRows="15" required fullWidth inputProps={inputProps} value={newContent}
           onChange={handleInputChange}/>
       </Box>
       <div style={styles.aboutbutton}>
