@@ -23,7 +23,7 @@ function AboutContent() {
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/about/`)
-    .then((response) => {setDescription(response.data);})
+    .then((response) => {setDescription(response.data[0].data);})
     .catch((error) => {
       console.log(error);
     });
@@ -54,13 +54,14 @@ function AboutLeft(props) {
     abouttext:{
       fontSize: '1.5rem', 
       lineHeight: '150%',
-      textAlign: 'justify'
+      textAlign: 'justify',
+      whiteSpace: 'pre-wrap',
     },
   };
   return (
     <Box style={styles.styleleft}>
       <Typography variant="h1" style={styles.abouttitle}>About</Typography>
-      <Typography variant="h3" style={styles.abouttext}>
+      {/* <Typography variant="h3" style={styles.abouttext}>
       IBM and UCL (University College London) have collaborated on various technology projects over the years. The IBM-UCL partnership has produced several cutting-edge technology projects and research initiatives, which have the potential to drive innovation and impact in various fields.      </Typography>
       <Typography variant="h3" style={styles.abouttext} sx={{fontStyle:'italic',mt:1}}>
           "Collaborating with UCL has allowed us to tap into a diverse pool of talent and expertise, enabling us to push the boundaries of what's possible in the world of technology."  - Professor John McNamara (IBM,UCL)     </Typography>
@@ -72,10 +73,10 @@ function AboutLeft(props) {
       </Typography>
       <Typography variant="h3" style={styles.abouttext} sx={{mt:1}}>
       If you would like to see more, click on the link below. If you would like to get involved in any project or have ideas of your own, please fill in the form on the right
-      </Typography>
-      {/* <Typography variant="h3" style={styles.abouttext}>
-      {props.description}
       </Typography> */}
+      <Typography variant="h3" style={styles.abouttext}>
+        {props.description}
+      </Typography>
     </Box>
   )
 }
