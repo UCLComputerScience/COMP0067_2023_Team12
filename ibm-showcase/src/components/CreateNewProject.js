@@ -21,14 +21,17 @@ function CreateNewProject() {
   document.body.style = 'background: #F4F7FE;';
   
   return (
-    <div className="App">
-      <AdminHeader />
-      <hr />
-      <ProjectForm />
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div style={{ flex: 1 }}>
+        <AdminHeader />
+      </div>
+      <div style={{ flex: 1 }}>
+        <ProjectForm />
+      </div>
       <Footer />
     </div>
-  );
-}
+    );
+  }
 
 export default CreateNewProject;
 
