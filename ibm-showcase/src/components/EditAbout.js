@@ -10,9 +10,13 @@ function EditAbout() {
   document.body.style = 'background: #F4F7FE;';
   
   return (
-    <div>
-      <AdminHeader />
-      <AboutEditContent />
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div style={{ flex: 1 }}>
+        <AdminHeader />
+      </div>
+      <div style={{ flex: 1 }}>
+        <AboutEditContent />
+      </div>
       <Footer />
     </div>
   );
@@ -45,7 +49,7 @@ function AboutLeft(props) {
       marginBottom:'5rem'
     },
     abouttitle:{
-      fontSize: '4rem',
+      fontSize: '3rem',
       padding:'5rem 0'
     },
     abouttext:{
@@ -74,7 +78,7 @@ function AboutRight(props){
       padding:'0 0 0 1rem'
     },
     abouttitle:{
-      fontSize: '4rem',
+      fontSize: '3rem',
       padding:'5rem 0 5rem 0'
     },
     textFieldWrapper: {

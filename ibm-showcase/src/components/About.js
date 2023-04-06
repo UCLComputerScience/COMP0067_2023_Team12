@@ -7,12 +7,17 @@ import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 function About() {
+  document.body.style = 'background: #FFFFFF;';
   return (
-    <main className='About'>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <div style={{ flex: 1 }}>
       <Header />
+    </div> 
+    <div style={{ flex: 1 }}>
       <AboutContent />
+      </div> 
       <Footer />
-    </main>
+    </div>
   );
 }
 
