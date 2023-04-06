@@ -66,7 +66,9 @@ export default class Sign_In extends Component {
     });
   }
 
-  saveProject() {
+  saveProject(e) {
+    console.log("123456")
+    e.preventDefault();
     // alert("Submitted")
     var data = {
       user: this.state.user,
@@ -167,7 +169,7 @@ export default class Sign_In extends Component {
             <Typography component="h1" variant="h5">
                 Login as Admin
             </Typography>
-            <Box component="form" sx={{ mt: 1 }}>
+            <Box component="form" sx={{ mt: 1 }} onSubmit={this.saveProject}>
                 <TextField
                     // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}
                     variant='outlined'
@@ -260,7 +262,7 @@ export default class Sign_In extends Component {
                 }}>
                 {this.state.changePage && <Navigate to={'/editproject'} /> }
                 <Button
-                // type="submit"
+                type="submit"
                 // fullWidth
                 variant="contained"
                 sx={{ 
@@ -272,7 +274,7 @@ export default class Sign_In extends Component {
                   backgroundColor: '#0062FF',
                   textTransform: "none"
                  }}
-                onClick={this.saveProject}
+                // onClick={this.saveProject}
                 >
                 Login
                 </Button>
