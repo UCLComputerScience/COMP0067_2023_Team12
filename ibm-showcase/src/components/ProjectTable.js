@@ -24,7 +24,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
       axios.get('http://localhost:8080/api/projects')
       .then(res => {
         setTableData(res.data)
-        console.log(res.data)
+        // console.log(res.data)
       }).catch(err => {
         console.log(err)
       })
@@ -49,14 +49,15 @@ export default function DataTable({ searchTerm, filterTerm }) {
             response.data = response.data.filter((item) => item.category === categories[filter_val-1]);
           }
   
-           const normalisedData = response.data.map((item) => {
-            return {
-              ...item,
-              description: normalizeDescription(item.description)
-            }
-          });
+          //  const normalisedData = response.data.map((item) => {
+          //   return {
+          //     ...item,
+          //     description: normalizeDescription(item.description)
+          //   }
+          // });
           
-          setTableData(normalisedData);
+          // setTableData(normalisedData);
+          setTableData(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -121,7 +122,8 @@ export default function DataTable({ searchTerm, filterTerm }) {
         if (response.data.length !== 0) {
           var old_data = response.data[0];
           // console.log(old_data)
-          old_data.placement = 'None'
+          // console.log(placement)
+          old_data.placement = placement
           axios.put(`http://localhost:8080/api/projects/${old_data._id}`, old_data)
             .then(response => {
               // console.log(response.data);
@@ -285,7 +287,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
           );
         
 
-          console.log(selectedRowData);
+          // console.log(selectedRowData);
         }}
         columns={columns}
         pageSize={9}

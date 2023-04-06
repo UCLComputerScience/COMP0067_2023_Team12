@@ -34,7 +34,7 @@ function Search({ onSubmit, onSubmit2 }) {
 
     const selectionChangeHandlerFilter = (event) => {
         setSelectedFilter(event.target.value);
-        console.log(event.target.value)
+        // console.log(event.target.value)
         onSubmit2(event.target.value);
     };
 

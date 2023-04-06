@@ -74,6 +74,8 @@ function ProjectSearch({ onSubmit }) {
             />
             </Box>
             <Box sx={{mt:4,mb:3,mx:"auto",ml:7}}> 
+
+            
                 {/* <Typography variant='caption' gutterBottom sx={{color:"white"}}>
                     Trending searches
                 </Typography>
