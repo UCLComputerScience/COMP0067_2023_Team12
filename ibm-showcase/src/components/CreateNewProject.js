@@ -122,7 +122,7 @@ function FormRight(props) {
       <h3>Project Images</h3>
       <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL images in one go. Change image selections by re-click (overriding).</div>
       {/*Only .jpg files. 5MB Max Each.*/}
-      <UploadImages passData={props.passData[0]}/>
+      <UploadImages passData={props.passData[0]} multi={true} />
       <h3>Wide Banner Image</h3>
       <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select one image suitable for wide banner. Image would be cropped to ultra wide.</div> 
       <UploadImages passData={props.passData[1]}/>
