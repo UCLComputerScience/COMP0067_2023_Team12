@@ -118,6 +118,22 @@ exports.findOneWithoutPopularity = (req, res) => {
     });
 };
 
+// Find a single project with placement level
+module.exports.findOneByLevel = (req, res) => {
+  const level = req.params.level;
+  projectModel.findOne({placement:level})
+    .then(data => {
+        if (!data)
+          res.status(404).send({ message: "Not found Project with level " + level });
+        else res.send(data);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .send({ message: "Error retrieving Project with level=" + level });
+      });
+};
+
 // Find a single Project with an id
 module.exports.findOne = (req, res) => {
   const id = req.params.id;
