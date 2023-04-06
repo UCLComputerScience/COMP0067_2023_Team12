@@ -13,17 +13,24 @@ import {Link, Navigate} from 'react-router-dom';
 import axios from "axios";
 
 function HomeBody() {
+  const [mainProject, setMainProject] = useState("");
+  useEffect(()=>{
+    axios.get(`http://localhost:8080/api/projects/level/Main`)
+    .then((response) => {setMainProject(response.data)})
+    .catch((error) => {console.log(error)});
+  })
+
   return (
   <div className="HomeBody">
   <section style={{margin:'auto', padding:'0 7rem', maxWidth:'110rem'}}>
     <h1 style={{color:'white', fontSize:'4rem', marginBottom:'1rem', marginTop:0, paddingTop:'3rem'}}><PagesIcon sx={{fontSize:'3rem', padding: '0 0.5rem'}}/>Featured Projects</h1>
     <hr style={{margin:'0 0 3rem 0',  height:'1px', color: '#E6E6E6', backgroundColor: '#E6E6E6', border: 'none'}}/>
-    <Box sx={{minHeight: '30.5rem', borderRadius:'1.5rem',backgroundImage:`linear-gradient(90deg, rgba(0,0,0,0.15) 25%, rgba(255,255,255,0) 40%),url(${ProjectPic1})`, backgroundSize: 'cover',backgroundPosition:'center', margin:'0 0 4rem 0', position:'relative'}}>
-      <div style={{fontSize: '3rem', color: 'white', padding: '3rem 3rem 1rem 3rem', lineHeight:'90%'}}>UCL Motion Input 3</div>
+    <Box sx={{minHeight: '30.5rem', borderRadius:'1.5rem',backgroundImage:`linear-gradient(90deg, rgba(0,0,0,0.15) 25%, rgba(255,255,255,0) 40%),url(http://localhost:8080/api/images/${mainProject._id}/${mainProject?mainProject.bannerImage[0]:null})`, backgroundSize: 'cover',backgroundPosition:'center', margin:'0 0 4rem 0', position:'relative'}}>
+      <div style={{fontSize: '3rem', color: 'white', padding: '3rem 3rem 1rem 3rem', lineHeight:'90%'}}>{mainProject.title}</div>
       <p style={{fontSize: '1.4rem', color: 'white', padding: '0 0 6rem 3rem ', width: '30%', textAlign: 'justify', maxHeight: '50%'}}> 
-      Motioninput is a pioneering touchless computing technology devleoped by UCL Computer Science students
+      {mainProject ? mainProject.description.slice(0,300)+'...':null}
       </p>
-      <Link to="/projects/:id"><Button 
+      <Link to={`/projects/${mainProject._id}`}><Button 
         size="large" variant="contained" endIcon={<ChevronRightIcon />}
         sx={{fontSize:'1.15rem', textTransform: "none", paddingRight:'1rem', margin:"0 3rem", position:'absolute', bottom:'1.8rem', borderRadius:'1rem', backgroundColor: "#344DF8"}}
       >
