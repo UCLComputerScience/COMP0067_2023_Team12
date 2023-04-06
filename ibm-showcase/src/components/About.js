@@ -1,21 +1,19 @@
 import axios from "axios";
 import { Box, Button, TextField, Typography } from '@mui/material';
-import Header from './Header';
 import './About.css';
+import Header from './Header';
 import Footer from './Footer'
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 function About() {
-  document.body.style = 'background: #FFFFFF;';
+  
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-    <div style={{ flex: 1 }}>
+    <div className="About" >
+    <div className="AboutBody ">
       <Header />
-    </div> 
-    <div style={{ flex: 1 }}>
       <AboutContent />
-      </div> 
+    </div> 
       <Footer />
     </div>
   );

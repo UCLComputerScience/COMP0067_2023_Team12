@@ -7,13 +7,15 @@ import Footer from './Footer'
 
 function HomePage() {
   return (
-    <div className="HomePage">
-      <Header />
-      <HomeBody />
+    <div className="HomePage" >
+      <div className="HomeBody">
+        <Header />
+        <HomeBody />
+      </div> 
       <HomeAbout />
       <Footer />
     </div>
   );
-}
+}  
 
 export default HomePage;
