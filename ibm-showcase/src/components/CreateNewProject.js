@@ -35,6 +35,7 @@ export default CreateNewProject;
 function ProjectForm() {
 
   const [fileArray, setFileArray] = useState("");
+  const [singleBannerArray, setSingleBannerArray] = useState("");
 
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
@@ -47,8 +48,10 @@ function ProjectForm() {
     // for multi-selects, we need special handling
     formJson.tags = formJson.tags.split(',');
     formJson.images = fileArray;
+    formJson.bannerImage = singleBannerArray;
     console.log(formJson);
     console.log(fileArray);
+    console.log(singleBannerArray);
     axios.post('http://localhost:8080/api/projects', formJson)  
     //   .catch(function (error) {
     //     if (error.response) {
@@ -75,7 +78,7 @@ function ProjectForm() {
   return (
     <form className='ProjectForm' style={{marginTop:'2rem'}} onSubmit={handleSubmit}>
       <h1 >Create a New Project</h1>
-      <Forms passData={setFileArray}/>
+      <Forms passData={[setFileArray,setSingleBannerArray]}/>
     </form>
 
   )
@@ -116,10 +119,10 @@ function FormRight(props) {
       <h3>Project Images</h3>
       <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL images in one go. Change image selections by re-click (overriding).</div>
       {/*Only .jpg files. 5MB Max Each.*/}
-      <UploadImages passData={props.passData}/>
+      <UploadImages passData={props.passData[0]}/>
       <h3>Video Banner Image</h3>
       <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select one image for video banner.</div> 
-      <UploadImages /*passData={props.passData}.*//>
+      <UploadImages passData={props.passData[1]}/>
       <h3>Project Category</h3>
       <CategorySelect />
       <h3>Project #HashTags</h3>

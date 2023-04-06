@@ -51,6 +51,7 @@ module.exports.create = (req, res) => {
     .save()
     .then(data => {
       filemove(data.images,data._id.toString())
+      filemove(data.bannerImage,data._id.toString())
       res.send(data);
       console.log(data._id.toString());
     })

@@ -9,6 +9,7 @@ const projectSchema = new mongoose.Schema(
     description: String,
     videoLink: String,
     images: [String], //Or [Buffer]
+    bannerImage:[String],
     category: String,
     tags: [String],
     popularity: { type: Number, default: 0 },
