@@ -52,7 +52,7 @@ function ProjectVideoSection(props) {
   };
   return (
     
-    <Box sx={{position:'relative',minHeight: '40rem',backgroundImage:`url(${ProjectPic1})`, backgroundSize: 'cover'}}>
+    <Box sx={{position:'relative',minHeight: '40rem',backgroundImage:`url(http://localhost:8080/api/images/${props.project._id}/${props.project?props.project.bannerImage[0]:null})`, backgroundSize: 'cover'}}>
       {isPlaying ? (
         <div style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}}>
           <ReactPlayer
