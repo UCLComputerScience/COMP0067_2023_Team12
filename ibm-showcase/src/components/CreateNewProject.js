@@ -102,7 +102,7 @@ function FormLeft(props) {
       <h3>Supervisors</h3>
       <TextField name='supervisors' label="Enter Supervisors Here" />
       <h3>Project Description</h3>
-      <TextField name='description' label="Enter Description Here" multiline="true" minRows="5" />
+      <TextField name='description' label="Enter Description Here" multiline={true} minRows="5" />
     </div>
 
   )
