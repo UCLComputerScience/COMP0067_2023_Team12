@@ -111,7 +111,7 @@ function UploadImages(props) {
     <div>
       <Button variant="contained" component="label" sx={{width:'100%', marginBottom:'1rem',textTransform: "none"}} onChange={uploadImages} >
         {props.multi ? 'Add Pics' : 'Add Single Pic'}
-        <input hidden accept="image/*" multi={props.multi} type="file" />
+        <input hidden accept="image/*" multiple={props.multi} type="file" />
         {/*<input hidden accept="image/*" {...(props.multi ? { multi: true } : {})} type="file" />*/}
       </Button>
 
