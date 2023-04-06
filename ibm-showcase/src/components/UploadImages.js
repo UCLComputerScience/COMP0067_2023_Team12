@@ -134,8 +134,8 @@ function UploadImages(props) {
       )}
 
       {message.length > 0 && (
-        <Alert severity="info">
-          <ul>
+        <Alert severity="info" style={{padding:'1rem'}}>
+          <ul style={{margin:0}}>
             {message.map((item, i) => {
               return <li key={i}>{item}</li>;
             })}
