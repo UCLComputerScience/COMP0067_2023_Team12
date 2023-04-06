@@ -42,8 +42,7 @@ function Search({ onSubmit, onSubmit2 }) {
   return (
     
         
-            <Grid container spacing={2} sx ={{width:"100%"}}
-            >
+        <Grid container spacing={2} sx ={{width:"100%"}}>
         <Grid item xs ={10}>
             <Box 
             component="form"    
@@ -67,11 +66,12 @@ function Search({ onSubmit, onSubmit2 }) {
             </Grid>
 
 
-            <Grid item xs = {2}>
-            <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",maxWidth:134,mt:10}}>
+            {/* <Grid item xs = {2}> */}
+            <Grid item xs={2} sx={{ width: "100%" }}>
+            <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",maxWidth:140,mt:10, height: 51}}>
                         
             <InputLabel>Category</InputLabel>
-            <Select value={selectedFilter} onChange={selectionChangeHandlerFilter} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
+            <Select value={selectedFilter} onChange={selectionChangeHandlerFilter} input={<InputBase sx={{borderRadius: '30px',height:51,fontSize:15,textAlign:"center"}}/>} >
                         <MenuItem value={1}>No Category</MenuItem>
                         {categories.map((category, index) => (
                           <MenuItem key={index+2} value={index+2}>{category}</MenuItem>
