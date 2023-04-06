@@ -13,14 +13,16 @@ function ProjectList() {
   // console.log(searchTerm)
 
     return (
-      <div>
-        <Header  />
-        <ProjectSearch onSubmit={setSearchTerm} />
-        <ListAllProjects searchTerm={searchTerm}/>
+      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <div style={{ flex: 1 }}>
+          <Header  />
+          <ProjectSearch onSubmit={setSearchTerm} />
+          <ListAllProjects searchTerm={searchTerm}/>
+        </div>
         <Footer />
         {/* <AddProject/> */}
-
       </div>
     )
   }
   export default ProjectList
+

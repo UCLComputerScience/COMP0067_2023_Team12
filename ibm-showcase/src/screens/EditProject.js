@@ -14,9 +14,11 @@ function EditProject() {
 
   return (
     <div className="EditProject">
-      <AdminHeader />
-      <Search onSubmit={setSearchTerm} onSubmit2={setFilterTerm}/>
-      <DataTable searchTerm={searchTerm} filterTerm={filterTerm}/>
+      <div className="EditBody" >
+        <AdminHeader />
+        <Search onSubmit={setSearchTerm} onSubmit2={setFilterTerm}/>
+        <DataTable searchTerm={searchTerm} filterTerm={filterTerm}/>
+      </div>
       <Footer/>
     </div>
  
