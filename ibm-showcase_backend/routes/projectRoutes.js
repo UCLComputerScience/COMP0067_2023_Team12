@@ -15,6 +15,9 @@ router.get("/", projectController.findAll);
 // Retrieve all published projects
 router.get("/published", projectController.findAllPublished);
 
+// Retrieve a single project with placement level
+router.get("/level/:level", projectController.findOneByLevel);
+
 // Retrieve a single project with id
 router.get("/:id", projectController.findOne);
 
