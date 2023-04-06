@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import {React, useState, useRef} from 'react';
 import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar, Button,
     IconButton, Typography, Autocomplete, TextField, Paper, InputBase, Divider, Stack,
     Grid } from '@mui/material'
@@ -30,8 +30,9 @@ function ProjectSearch({ onSubmit }) {
     const handleSubmit = (event) => {
         event.preventDefault(); 
         onSubmit(inputValue);
-        setInputValue(''); 
+        // setInputValue(''); 
       }
+  
 
     return (
         <StyledGrid container sx={{bgcolor:"black", width:"100%"}}>
@@ -56,17 +57,18 @@ function ProjectSearch({ onSubmit }) {
             <Box
             component="form"    
             sx={{ display: 'flex', justifyContent: 'center',height:51,maxWidth:600,mt:4,mx:"auto",
-            backgroundColor: '#F3F3F3',borderRadius:"20px" ,flexShrink:1}}
+            backgroundColor: '#F3F3F3',borderRadius:"20px" ,flexShrink:1,
+            position: 'relative',}}
             onSubmit={handleSubmit}
             >
 
                 
 
-            <IconButton type="button" sx={{ display:"flex"}} aria-label="search">
+            <IconButton type="submit" sx={{ display:"flex"}} aria-label="search">
                 <SearchIcon />
             </IconButton>
             <InputBase 
-                sx={{display:"flex",mr:45}}
+                sx={{ ml: 1, display: 'flex', flexGrow: 1 }}
                 placeholder="Search..."
                 inputProps={{ 'aria-label': 'search' }}
                 value={inputValue}

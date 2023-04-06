@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import {React, useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -22,7 +22,6 @@ function Search({ onSubmit, onSubmit2 }) {
 
     const [inputValue, setInputValue] = useState('');
 
-
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     }
@@ -36,7 +35,9 @@ function Search({ onSubmit, onSubmit2 }) {
         setSelectedFilter(event.target.value);
         // console.log(event.target.value)
         onSubmit2(event.target.value);
-    };
+    }; 
+    
+    
 
   return (
     
@@ -44,22 +45,24 @@ function Search({ onSubmit, onSubmit2 }) {
             <Grid container spacing={2} sx ={{width:"100%"}}
             >
         <Grid item xs ={10}>
-        <Box 
+            <Box 
             component="form"    
             sx={{display: 'flex', alignItems: 'center', maxWidth:900,height:51,mt:10,
-            backgroundColor: 'white',flexShrink:1,mx:"auto"}}
+            backgroundColor: 'white',flexShrink:1,mx:"auto",
+            position: 'relative',}}
             onSubmit={handleSubmit}
             >
-            <IconButton type="button" sx={{ display:"flex"}} aria-label="search">
+            <IconButton type="submit" sx={{ display:"flex"}} aria-label="search">
                 <SearchIcon />
             </IconButton>
-            <InputBase 
-                sx={{ ml: 1, display:"flex"}}
+            <InputBase
+                sx={{ ml: 1, display: 'flex', flexGrow: 1 }}
                 placeholder="Search..."
                 inputProps={{ 'aria-label': 'search' }}
                 value={inputValue}
                 onChange={handleInputChange}
-            />
+                />
+         
             </Box>
             </Grid>
 
