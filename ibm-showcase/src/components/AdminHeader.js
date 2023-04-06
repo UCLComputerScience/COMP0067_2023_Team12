@@ -24,7 +24,7 @@ function AdminHeader() {
           <NavLink to="/createproject" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: "0.5em",
+                          textUnderlineOffset: isActive ? "0.20em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
                           color: isActive ? "#191970" : "black",})}>
@@ -34,7 +34,7 @@ function AdminHeader() {
           <NavLink to="/editproject" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: "0.5em",
+                          textUnderlineOffset: isActive ? "0.20em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
                           color: isActive ? "#191970" : "black",})}>
@@ -43,7 +43,7 @@ function AdminHeader() {
           <NavLink to="/editabout" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: "0.5em",
+                          textUnderlineOffset: isActive ? "0.20em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
                           color: isActive ? "#191970" : "black",})}>

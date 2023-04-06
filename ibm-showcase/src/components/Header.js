@@ -12,7 +12,7 @@ function Header() {
           <NavLink to="/" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: "0.5em",
+                          textUnderlineOffset: isActive ? "0.20em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
                           color: isActive ? "#191970" : "black",})}>
@@ -21,7 +21,7 @@ function Header() {
           <NavLink to="/projects" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: "0.5em",
+                          textUnderlineOffset: isActive ? "0.20em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
                           color: isActive ? "#191970" : "black",})}>
@@ -30,7 +30,7 @@ function Header() {
           <NavLink to="/about" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: "0.5em",
+                          textUnderlineOffset: isActive ? "0.20em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
                           color: isActive ? "#191970" : "black",})}>
