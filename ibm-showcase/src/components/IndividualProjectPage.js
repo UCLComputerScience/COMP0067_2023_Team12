@@ -112,7 +112,7 @@ function ProjectDescription(props) {
     <div style={{display:'flex', flex:'1'}}>
       <section style={{width:'50%'}}>
         <p><b>Description</b></p>
-        <div>{props.project.description}</div>
+        <div style={{whiteSpace: 'pre-wrap'}}>{props.project.description}</div>
        {/* <text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
         <br/><br/>*/}
       </section>
