@@ -134,7 +134,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
               // console.log(response.data);
             })
             .catch(e => {
-              console.log(e);
+              // console.log(e);
               setError(e.response.data.message)
             });
 
@@ -149,7 +149,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
                   Reload();
                 })
                 .catch(e => {
-                  console.log(e);
+                  // console.log(e);
                   setError(e.response.data.message)
                 });
           });
@@ -159,7 +159,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
         }
       })
       .catch(e => {
-        console.log(e);
+        // console.log(e);
         setError(e.response.data.message)
       });
 

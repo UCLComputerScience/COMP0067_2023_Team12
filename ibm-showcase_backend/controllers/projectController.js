@@ -53,7 +53,7 @@ module.exports.create = (req, res) => {
       filemove(data.images,data._id.toString())
       filemove(data.bannerImage,data._id.toString())
       res.send(data);
-      console.log(data._id.toString());
+      // console.log(data._id.toString());
     })
     .catch(err => {
       res.status(500).send({
@@ -144,7 +144,7 @@ module.exports.findOne = (req, res) => {
         res.status(404).send({ message: "Not found Project with id " + id });
       } else {
         data.popularity += 1;
-        console.log(data)
+        // console.log(data)
         // update the popularity count by one
         projectModel.findByIdAndUpdate(id, data, { useFindAndModify: false, new: true })
           .then(updatedData => {

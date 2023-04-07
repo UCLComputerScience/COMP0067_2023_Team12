@@ -64,7 +64,7 @@ module.exports.SendPasswordLink = (req, res) => {
                         token: jwt.sign({id: req.body.user}, authConfig.secret, {expiresIn: 86400})
                     });
                     
-                    console.log(newToken)
+                    // console.log(newToken)
                     // Save the User in the database
                     newToken
                         .save()
