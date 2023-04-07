@@ -54,7 +54,7 @@ module.exports.Login = (req, res) => {
         var token = jwt.sign({id: data.user}, authConfig.secret, {expiresIn: 86400});
         return res.status(200).send(token);
       } else {
-        return res.status(401).send({ message: "Wrong Password !!" });
+        return res.status(401).send({ message: "Incorrect User/Password Combination" });
       }
   })
   

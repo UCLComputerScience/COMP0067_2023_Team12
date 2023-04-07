@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../components/Header';
-import { Toolbar } from '@mui/material';
+import { Toolbar, Alert } from '@mui/material';
 import axios from "axios";
 import {Link, Navigate} from 'react-router-dom';
 import withRouter from './withRouter';
@@ -60,7 +60,10 @@ class ResetPassword extends Component {
 
       submitted: false,
       changePage: false,
-      changePage2: false
+      changePage2: false,
+      error: null,
+      success: null,
+      success2: null
     };
   }
 
@@ -75,12 +78,13 @@ class ResetPassword extends Component {
     axios.post('http://localhost:8080/api/users/verify_link', data)
       .then(response => {
         console.log(response.data);
-        alert('The verifying link is correct')
+        // alert('The verifying link is correct')
+        this.setState({ success: 'The verifying link is correct' });
         // this.setState({changePage: true})
       })
       .catch(e => {
         console.log(e);
-        alert(e.response.data.message)
+        this.setState({ error: e.response.data.message });
         this.setState({changePage2: true})
       });
   }
@@ -120,12 +124,13 @@ class ResetPassword extends Component {
           submitted: true
         });
         console.log(response.data);
-        alert('Successfully changed your password')
-        this.setState({changePage: true})
+        // alert('Successfully changed your password')
+        this.setState({ success2: 'Successfully changed your password' });
       })
       .catch(e => {
         console.log(e);
-        alert(e.response.data.message)
+        // alert({ error: e.response.data.message });
+        this.setState(e.response.data.message);
       });
   }
 
@@ -207,6 +212,34 @@ class ResetPassword extends Component {
             <Typography component="h1" variant="h5">
                 Reset Password
             </Typography>
+            {this.state.error && (
+              <Alert severity="error" onClose={() => this.setState({ error: null })}>
+                {this.state.error}
+              </Alert>
+            )}
+            {this.state.success && (
+              <Alert severity="success" onClose={() => this.setState({
+                success: null,
+              })}
+              >
+                {this.state.success}
+              </Alert>
+            )}
+            {this.state.success2 && (
+              <Alert severity="success" onClose={() => this.setState({
+                success2: null,
+              })}
+              action={
+                <Button color="inherit" size="small" onClick={() => {
+                  this.setState({ success2: null });
+                  this.setState({ changePage: true });
+                }}>
+                  Continue
+                </Button>
+              }>
+                {this.state.success2}
+              </Alert>
+            )}
             <Box component="form" sx={{ mt: 1 }}>
                 <TextField
                     // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}

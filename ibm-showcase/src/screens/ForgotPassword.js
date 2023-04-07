@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../components/Header';
-import { Toolbar } from '@mui/material';
+import { Toolbar, Alert } from '@mui/material';
 import axios from "axios";
 import {Link, useHistory, useNavigate, Navigate} from 'react-router-dom';
 // import { toast, ToastContainer } from 'react-toastify';
@@ -50,7 +50,9 @@ export default class ForgotPassword extends Component {
 
       submitted: false,
       token: "",
-      changePage: false
+      changePage: false,
+      error: null,
+      success: null
     };
   }
 
@@ -85,13 +87,14 @@ export default class ForgotPassword extends Component {
           token: response.data.token
         });
         localStorage.setItem('token', response.data)
-        alert('Password reset link sent to your email account')
-        this.setState({changePage: true})
+        // alert('Password reset link sent to your email account')
+        this.setState({ success: 'Password reset link sent to your email account' });
         
       })
       .catch(e => {
         console.log(e);
-        alert(e.response.data.message)
+        // alert(e.response.data.message)
+        this.setState({ error: e.response.data.message });
       });
   }
 
@@ -166,6 +169,27 @@ export default class ForgotPassword extends Component {
             <Typography component="h1" variant="h5">
                 Forgot Password
             </Typography>
+            {this.state.error && (
+              <Alert severity="error" onClose={() => this.setState({ error: null })}>
+                {this.state.error}
+              </Alert>
+            )}
+            {this.state.success && (
+              <Alert severity="success" onClose={() => this.setState({
+                success: null,
+                changePage: true
+              })}
+              action={
+                <Button color="inherit" size="small" onClick={() => {
+                  this.setState({ success: null });
+                  this.setState({ changePage: true });
+                }}>
+                  Continue
+                </Button>
+              }>
+                {this.state.success}
+              </Alert>
+            )}
             <Box component="form" sx={{ mt: 1 }}>
                 <TextField
                     // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}

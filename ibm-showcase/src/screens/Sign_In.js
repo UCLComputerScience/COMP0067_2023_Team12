@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../components/Header';
-import { Toolbar } from '@mui/material';
+import { Toolbar, Alert } from '@mui/material';
 import axios from "axios";
 import {Link, useHistory, useNavigate, Navigate} from 'react-router-dom';
 // import { toast, ToastContainer } from 'react-toastify';
@@ -50,7 +50,8 @@ export default class Sign_In extends Component {
 
       submitted: false,
       token: "",
-      changePage: false
+      changePage: false,
+      error: null
     };
   }
 
@@ -94,7 +95,8 @@ export default class Sign_In extends Component {
       })
       .catch(e => {
         console.log(e);
-        alert(e.response.data.message)
+        this.setState({ error: e.response.data.message });
+        // alert(e.response.data.message)
       });
   }
 
@@ -169,6 +171,11 @@ export default class Sign_In extends Component {
             <Typography component="h1" variant="h5">
                 Login as Admin
             </Typography>
+            {this.state.error && (
+              <Alert severity="error" onClose={() => this.setState({ error: null })}>
+                {this.state.error}
+              </Alert>
+            )}
             <Box component="form" sx={{ mt: 1 }} onSubmit={this.saveProject}>
                 <TextField
                     // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}

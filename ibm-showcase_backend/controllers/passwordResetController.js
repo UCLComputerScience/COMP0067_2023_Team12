@@ -32,6 +32,15 @@ module.exports.SendPasswordLink = (req, res) => {
                 .save()
                 .then(data => {
                 res.send(data);
+
+                var TOKEN = token.token;
+
+                const url = `http://localhost:3000/resetpassword/${req.body.user}/${TOKEN}/`;
+                // const url = `${process.env.BASE_URL}password-reset/${req.body.user}/${TOKEN}/`;
+
+                sendEmail(req.body.user, "Password Reset", url); 
+                res.status(200).send({ message: "Password reset link sent to your email account"});
+
                 })
                 .catch(err => {
                 res.status(500).send({
@@ -40,18 +49,49 @@ module.exports.SendPasswordLink = (req, res) => {
                 });
                 });
             // var token = jwt.sign({id: req.body.user}, authConfig.secret, {expiresIn: 86400}).save();
-            var TOKEN = token.token;
-        } else {    
-            var TOKEN = data.token;
-        }
-        
+            
+        } else {  
+            tokenModel.findByIdAndRemove(data._id, { useFindAndModify: false })
+                .then(data => {
+                if (!data) {
+                    res.status(404).send({
+                    message: `Cannot delete Token with id=${id}.`
+                    });
+                    return;
+                } else {
+                    const newToken = new tokenModel({
+                        user: req.body.user,
+                        token: jwt.sign({id: req.body.user}, authConfig.secret, {expiresIn: 86400})
+                    });
+                    
+                    console.log(newToken)
+                    // Save the User in the database
+                    newToken
+                        .save()
+                        .then(data => {
+                            var TOKEN = newToken.token;
 
-        const url = `http://localhost:3000/resetpassword/${req.body.user}/${TOKEN}/`;
-        // const url = `${process.env.BASE_URL}password-reset/${req.body.user}/${TOKEN}/`;
-
-        sendEmail(req.body.user, "Password Reset", url); 
-        res.status(200).send({ message: "Password reset link sent to your email account"});
-        
+                            const url = `http://localhost:3000/resetpassword/${req.body.user}/${TOKEN}/`;
+                            // const url = `${process.env.BASE_URL}password-reset/${req.body.user}/${TOKEN}/`;
+            
+                            sendEmail(req.body.user, "Password Reset", url); 
+                            res.status(200).send({ message: "Password reset link sent to your email account"});
+                        })
+                        .catch(err => {
+                        res.status(500).send({
+                            message:
+                            err.message || "Some error occurred while creating the Token."
+                        });
+                        });
+                }
+                })
+                .catch(err => {
+                res.status(500).send({
+                    message: "Could not delete Token with id=" + id
+                });
+                return;
+                });
+        }        
     })
 })
 };
