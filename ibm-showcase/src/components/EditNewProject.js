@@ -15,6 +15,8 @@ import React, { useState, useEffect } from 'react';
 import UploadImages from './UploadImages'
 import { useLocation, useParams, Navigate, Link } from 'react-router-dom';
 import Footer from './Footer'
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 function EditNewProject() {
   document.body.style = 'background: #F4F7FE;';
@@ -40,6 +42,9 @@ function ProjectForm() {
   // http://localhost:3000/editproject/6416dc43cad8fb40da3f85a5
 
   const [fileArray, setFileArray] = useState("");
+  const [singleBannerArray, setSingleBannerArray] = useState("");
+  const [keepImagesChecked, setKeepImagesChecked] = useState(true);
+  const [keepBannerChecked, setKeepBannerChecked] = useState(true);
 
   const { id } = useParams();
 
@@ -55,6 +60,7 @@ function ProjectForm() {
     description: "",
     videoLink: "",
     images: [],
+    bannerImage:[],
     category: "",
     tags: [],
   });
@@ -67,16 +73,19 @@ function ProjectForm() {
       .then((response) => {
         // console.log(response.data)
         setInFillData({
+          id: response.data._id,
           title: response.data.title,
           groupMembers: response.data.groupMembers,
           supervisors: response.data.supervisors,
           description: response.data.description,
           videoLink: response.data.videoLink,
           images: response.data.images,
+          bannerImage:response.data.bannerImage,
           category: response.data.category,
           tags: response.data.tags,
         });
         setLoading(false);
+        // console.log(inFillData.images)
       })
       .catch((error) => {
         console.log(error);
@@ -95,7 +104,8 @@ function ProjectForm() {
     const formJson = Object.fromEntries(formData.entries());
     // for multi-selects, we need special handling
     formJson.tags = formJson.tags.split(',');
-    formJson.images = fileArray;
+    formJson.images = keepImagesChecked?inFillData.images.concat(fileArray):fileArray;
+    formJson.bannerImage = keepBannerChecked?inFillData.bannerImage:singleBannerArray;
     console.log(formJson);
     console.log(fileArray);
     axios.put(`http://localhost:8080/api/projects/${id}`, formJson)
@@ -119,7 +129,7 @@ function ProjectForm() {
   return (
     <form className='ProjectForm' onSubmit={handleSubmit}>
       <h1>Edit Project</h1>
-      <Forms passData={setFileArray} fillData={inFillData}/>
+      <Forms passData={[setFileArray,setSingleBannerArray]} fillData={inFillData} checks={[keepImagesChecked,setKeepImagesChecked,keepBannerChecked, setKeepBannerChecked]}/>
       {changePage && <Navigate to={'/editproject'} /> }
       {/* <div className="SubmitButton">
         <Button variant="contained" type="submit">Submit</Button>
@@ -134,7 +144,7 @@ function Forms(props){
   return (
     <div className="Forms">
       <FormLeft fillData={props.fillData}/>
-      <FormRight passData={props.passData} fillData={props.fillData} />
+      <FormRight passData={props.passData} fillData={props.fillData} checks={props.checks} />
     </div>
   )
 
@@ -151,7 +161,7 @@ function FormLeft(props) {
       <h3>Supervisors</h3>
       <TextField name='supervisors' label="Enter Supervisors Here" defaultValue={props.fillData.supervisors}/>
       <h3>Project Description</h3>
-      <TextField name='description' label="Enter Description Here" multiline="true" minRows="5" defaultValue={props.fillData.description}/>
+      <TextField name='description' label="Enter Description Here" multiline={true} minRows="5" defaultValue={props.fillData.description}/>
     </div>
 
   )
@@ -163,12 +173,26 @@ function FormRight(props) {
       <h3>Project Video Link</h3>
       <TextField name='videoLink' label="Enter Youtube Link Here" defaultValue={props.fillData.videoLink}/>
       <h3>Project Images</h3>
-      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL images in one go. Change image selections by re-click (overriding).</div>
+      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Current uploaded images. Choose to keep or discard.</div>
+      <div>
+        {props.fillData.images.map((img, i) => {
+          return (
+            <img style={{margin:"0.25rem"}} className="preview" src={`http://localhost:8080/api/images/${props.fillData.id}/${img}`} alt={"image-" + i} key={i} height="100rem" />
+          );
+        })}
+      </div>
+      <FormControlLabel control={<Switch defaultChecked onChange={(event) => {props.checks[1](event.target.checked)}} />} label="Keep All Uploaded Project Images" />
+      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL other images in one go. Change image selections by re-click (overriding).</div>
       {/*Only .jpg files. 5MB Max Each.*/}
-      <UploadImages passData={props.passData} />
+      <UploadImages passData={props.passData[0]} multi={true} />
       <h3>Video Banner Image</h3>
-      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select one image for video banner.</div> 
-      <UploadImages /*passData={props.passData}.*//>
+      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Current uploaded banner image. Choose to keep or discard.</div>
+      <div>
+        <img style={{margin:"0.25rem"}} className="preview" src={`http://localhost:8080/api/images/${props.fillData.id}/${props.fillData.bannerImage[0]}`} alt={"banner"} height="100rem" />
+      </div>
+      <FormControlLabel control={<Switch defaultChecked onChange={(event) => {props.checks[3](event.target.checked)}} />} label="Keep Uploaded Banner Images" />
+      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select one image for video banner.</div>
+      {props.checks[2]? <div style={{fontStyle: "italic"}}>Disable using uploaded banner toggle to upload new banner image.</div>:<UploadImages passData={props.passData[1]}/>} 
       <h3>Project Category</h3>
       <CategorySelect fillData={props.fillData} />
       <h3>Project #HashTags</h3>
