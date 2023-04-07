@@ -185,12 +185,26 @@ export default function DataTable({ searchTerm, filterTerm }) {
       navigate(`/editproject/${row._id}`);
     };
     const [open, setOpen] = useState(false);
+    const [open2, setOpen2] = useState(false);
+
     const handleClickOpen = () => {
-      setOpen(true);
+      if (row.placement !== "None") {
+        // alert("You can't delete a row that has a placement other than None")
+        setOpen2(true);
+      } else{
+        setOpen(true);
+      }
+      
     };
+
     const handleClose = () => {
       setOpen(false);
     };
+
+    const handleClose2 = () => {
+      setOpen2(false);
+    };
+
     const handleDelete = (event) => {  
       // event.stopPropagation();  
       axios.delete(`http://localhost:8080/api/projects/${row._id}`)
@@ -228,6 +242,17 @@ export default function DataTable({ searchTerm, filterTerm }) {
               Delete
             </Button>
           </DialogActions>
+        </Dialog>
+
+        <Dialog open={open2} onClose={handleClose2}>
+          <DialogContent>
+          You can't delete a row that has a placement other than "None".
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose2} color="primary">
+              Cancel
+            </Button>
+            </DialogActions>
         </Dialog>
       </>
     );
