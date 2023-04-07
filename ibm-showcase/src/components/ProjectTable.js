@@ -4,7 +4,7 @@ import { DataGrid,GRID_CHECKBOX_SELECTION_COL_DEF } from '@mui/x-data-grid';
 import Container from '@mui/material/Container';
 import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar,
   IconButton, Typography, Autocomplete, TextField, Paper, InputBase, Divider, Stack,
-  Grid, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material'
+  Grid, Dialog, DialogTitle, DialogContent, DialogActions, Alert } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate, navigate } from 'react-router-dom';
@@ -20,13 +20,17 @@ export default function DataTable({ searchTerm, filterTerm }) {
 
     const categories = ["AI/ML", "Back-End", "Cloud", "Cyber-Security", "Data Science", "FinTech", "Front-End", "Healthcare", "Quantum", "Sustaianability"]
 
+    const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(null)
+
     useEffect(() => {
       axios.get('http://localhost:8080/api/projects')
       .then(res => {
         setTableData(res.data)
         // console.log(res.data)
       }).catch(err => {
-        console.log(err)
+        // console.log(err)
+        setError(err.response.data.message)
       })
      
     },[]);
@@ -59,8 +63,9 @@ export default function DataTable({ searchTerm, filterTerm }) {
           // setTableData(normalisedData);
           setTableData(response.data);
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((e) => {
+          // console.log(error);
+          setError(e.response.data.message)
         });
     }
 
@@ -130,7 +135,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
             })
             .catch(e => {
               console.log(e);
-              alert(e.response.data.message)
+              setError(e.response.data.message)
             });
 
           // save the updated status to the backend
@@ -140,22 +145,22 @@ export default function DataTable({ searchTerm, filterTerm }) {
               axios.put(`http://localhost:8080/api/projects/${row._id}`, response.data)
                 .then(response => {
                   // console.log(response.data);
-                  alert('Successfully edited the placement of this project.')
+                  setSuccess('Successfully edited the placement of this project.')
                   Reload();
                 })
                 .catch(e => {
                   console.log(e);
-                  alert(e.response.data.message)
+                  setError(e.response.data.message)
                 });
           });
         } else {
-          alert("You can't change this value as there needs to be at least one of each kind of placement!!")
+          setError("You can't change this value as there needs to be at least one of each kind of placement!!")
           setPlacement(row.placement);
         }
       })
       .catch(e => {
         console.log(e);
-        alert(e.response.data.message)
+        setError(e.response.data.message)
       });
 
       
@@ -189,7 +194,6 @@ export default function DataTable({ searchTerm, filterTerm }) {
 
     const handleClickOpen = () => {
       if (row.placement !== "None") {
-        // alert("You can't delete a row that has a placement other than None")
         setOpen2(true);
       } else{
         setOpen(true);
@@ -209,14 +213,13 @@ export default function DataTable({ searchTerm, filterTerm }) {
       // event.stopPropagation();  
       axios.delete(`http://localhost:8080/api/projects/${row._id}`)
         .then(response => {
-          alert(`Successfully deleted the ${row.title} project`)
+          setSuccess(`Successfully deleted the ${row.title} project`)
           // this.setState({changePage: true})
           Reload();
           
         })
         .catch(e => {
-          // console.log(e);
-          alert(e.response.data.message)
+          setError(e.response.data.message)
         });
       setOpen(false);
     };
@@ -261,6 +264,16 @@ export default function DataTable({ searchTerm, filterTerm }) {
 
   return (
     <Container className='projectTable' style={{ height: "567px", width: "1078px"}}>
+            {error && (
+              <Alert severity="error" onClose={() => setError(null)}>
+                {error}
+              </Alert>
+            )}
+            {success && (
+              <Alert severity="success" onClose={() => setSuccess(null)}>
+                {success}
+              </Alert>
+            )}
             <Grid container spacing={0}>
             <Grid xs={0}>
                 {/* <Button
