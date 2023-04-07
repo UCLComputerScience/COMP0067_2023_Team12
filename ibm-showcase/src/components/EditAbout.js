@@ -27,9 +27,11 @@ export default EditAbout;
 function AboutEditContent() {
   const [content, setContent] = useState(''); 
 
-  axios.get(`http://localhost:8080/api/about/`)
+  useEffect(()=>{
+    axios.get(`http://localhost:8080/api/about/`)
     .then((response) => {setContent(response.data.content)})
     .catch((error) => {console.log(error)});
+  })
 
   return (
     <section style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>
