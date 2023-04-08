@@ -182,7 +182,7 @@ export default function ListAllProjects({ searchTerm }) {
               />
               <CardContent sx={{ flexGrow: 1 }}>
                 <Button component={Link} to={`/projects/${item._id}`} sx={{ textDecoration: 'none' }}>
-                <Typography gutterBottom variant="body1" component="h2" fontWeight="bold" sx={{ color: 'blue', textDecoration: 'none' }}>
+                <Typography gutterBottom variant="body1" component="h2" fontWeight="bold" sx={{ color: 'blue', textDecoration: 'none', textTransform: 'none' }}>
                 {item.title}
                 </Typography>
                   </Button>
