@@ -19,6 +19,7 @@ function IndividualProjectPage() {
   const {id} = useParams();
   const [project, setProject] = useState("");
   const [shouldRenderSimilarProjects, setShouldRenderSimilarProjects] = useState(false);
+  const [isUseEffectCompleted, setIsUseEffectCompleted] = useState(false);
   useEffect(() => {
     axios
     .get(`http://localhost:8080/api/projects/${id}`)
@@ -27,8 +28,14 @@ function IndividualProjectPage() {
         setProject(response.data);
         setShouldRenderSimilarProjects(true);
         window.scrollTo(0, 0);
+        setIsUseEffectCompleted(true);
     });
   },[id]);
+
+  if (!isUseEffectCompleted) {
+    return null;
+  }
+
   return (
     <div className="IndividualProjectPage">
       <Header />

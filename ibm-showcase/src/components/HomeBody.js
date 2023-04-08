@@ -14,11 +14,34 @@ import axios from "axios";
 
 function HomeBody() {
   const [mainProject, setMainProject] = useState("");
+  const [first, setFirst] = useState("");
+  const [second, setSecond] = useState("");
+  const [third, setThird] = useState("");
+
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/projects/level/Main`)
     .then((response) => {setMainProject(response.data)})
     .catch((error) => {console.log(error)});
-  })
+
+    axios.get(`http://localhost:8080/api/projects/level/1`)
+    .then((response) => {setFirst(response.data)})
+    .catch((error) => {console.log(error)});
+
+    axios.get(`http://localhost:8080/api/projects/level/2`)
+      .then((response) => {setSecond(response.data)})
+      .catch((error) => {console.log(error)});
+
+    axios.get(`http://localhost:8080/api/projects/level/3`)
+      .then((response) => {setThird(response.data)})
+      .catch((error) => {console.log(error)});
+      
+  }, [])
+
+  const projects = [first, second, third];
+
+  if (!mainProject || !first || !second || !third) {
+    return null;
+  }
 
   return (
   <div className="HomeBody">
@@ -37,7 +60,7 @@ function HomeBody() {
       Read More
       </Button></Link>
     </Box>
-    <ThreeProjectTiles />
+    <ThreeProjectTiles projects={projects}/>
     <div style={{display:'flex', flexDirection:'row-reverse'}}>
       <Link to="/projects" style={{textDecoration:'none',color:'inherit'}} ><Button size="large" variant="text"
         sx={{textTransform: "none", fontSize:'2rem', padding:'0 0 0 0.7rem', margin:'1rem 0'}}
@@ -53,7 +76,7 @@ function HomeBody() {
 export default HomeBody;
 
 function normalizeDescription(description) {
-  const maxLength = 100; 
+  const maxLength = 200; 
   if (description.length <= maxLength) {
     return description;
   } else {
@@ -94,45 +117,15 @@ export function ProjectTile(props){
   );
 }
 
-export function ThreeProjectTiles(){
+export function ThreeProjectTiles(props){ 
 
-  const [first, setFirst] = useState("");
-  const [second, setSecond] = useState("");
-  const [third, setThird] = useState("");
-
-  const [hasLoaded, setHasLoaded] = useState(false);
-
-  useEffect(() => {
-    axios.get(`http://localhost:8080/api/projects`)
-                .then((response) => {                
-                  const firsts = response.data.filter(entry => entry.placement === "1")
-                  const seconds = response.data.filter(entry => entry.placement === "2")
-                  const thirds = response.data.filter(entry => entry.placement === "3")
-
-                  setFirst(firsts[0])
-                  setSecond(seconds[0])
-                  setThird(thirds[0])
-
-                  setHasLoaded(true)
-                  
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-              })
+  console.log(props)
 
   return(
     <section style={{display: 'flex', flexDirection: 'row', columnGap: '2%'}}>
-      {/* <ProjectTile img={ProjectPic2} title='Franklin Immersive Social Engagement (FISE)'/>
-      <ProjectTile img={ProjectPic3} title='IBM Watson Project'/>
-      <ProjectTile img={ProjectPic4} title='HMI: Haptic Icons Design'/> */}
-      {hasLoaded && (
-        <>
-      <ProjectTile img={`http://localhost:8080/api/images/${first._id}/${first.images[0]}`} title={first.title} description={first.description} id={first._id}/>
-      <ProjectTile img={`http://localhost:8080/api/images/${second._id}/${second.images[0]}`} title={second.title} description={second.description} id={second._id}/>
-      <ProjectTile img={`http://localhost:8080/api/images/${third._id}/${third.images[0]}`} title={third.title} description={third.description} id={third._id}/>
-      </>
-      )}
+      <ProjectTile img={`http://localhost:8080/api/images/${props.projects[0]._id}/${props.projects[0].images[0]}`} title={props.projects[0].title} description={props.projects[0].description} id={props.projects[0]._id}/>
+      <ProjectTile img={`http://localhost:8080/api/images/${props.projects[1]._id}/${props.projects[1].images[0]}`} title={props.projects[1].title} description={props.projects[1].description} id={props.projects[1]._id}/>
+      <ProjectTile img={`http://localhost:8080/api/images/${props.projects[2]._id}/${props.projects[2].images[0]}`} title={props.projects[2].title} description={props.projects[2].description} id={props.projects[2]._id}/>
     </section>
   );
 }
