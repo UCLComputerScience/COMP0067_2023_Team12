@@ -188,9 +188,9 @@ export default function ListAllProjects({ searchTerm }) {
                   </Button>
                 <Typography variant="body2" style={{ color: 'grey' }}>
                   {item.description}
-                  <IconButton fontSize="inherit">
+                  <IconButton fontSize="xx-small">
                     <Link to={`/projects/${item._id}`}>
-                    <ArrowForwardIcon fontSize="small" />
+                    <ArrowForwardIcon fontSize="xx-small" />
                     </Link>
                   </IconButton>
                 </Typography>

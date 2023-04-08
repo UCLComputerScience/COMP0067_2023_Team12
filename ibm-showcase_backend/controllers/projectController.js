@@ -10,6 +10,8 @@ module.exports.upload = (req, res) => {
 
   const file = req.files.file;
 
+  file.name = file.name.replace(/\s+/g, "_")
+
   //Move the file to the specified directory
   //TO-DO: Rename to ID to ensure unique filename and easier to read
   file.mv(`./uploads/${file.name}`, err => {
@@ -42,10 +44,25 @@ module.exports.create = (req, res) => {
       console.log('File Moved Successfully!');
       });
     }
-  }
+    }
+
+  const modifiedImages = req.body.images.map(image => {
+    const modifiedFilename = image.replace(/\s+/g, "_"); 
+    return modifiedFilename;
+  });
+
+  const modifiedBanner = req.body.bannerImage.map(image => {
+    const modifiedFilename = image.replace(/\s+/g, "_"); 
+    return modifiedFilename;
+  });
+
+  // const modifiedBanner = req.body.bannerImage.replace(/\s+/g, "_");
+
+  const projectData = {...req.body, images: modifiedImages, bannerImage: modifiedBanner};
 
   // Create a Project
-  const project = new projectModel(req.body,"throw");
+  // const project = new projectModel(req.body,"throw");
+  const project = new projectModel(projectData,"throw");
   // Save the Project in the database
   project
     .save()
@@ -59,6 +76,51 @@ module.exports.create = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while creating the Project."
+      });
+    });
+};
+
+// Update a Project by the id in the request
+module.exports.update = (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Data to update can not be empty!"
+    });
+  }
+
+  function filemove(fileArray, projectID){
+    if (!fs.existsSync(`./public/uploads/${projectID}/`)) {
+      fs.mkdirSync(`./public/uploads/${projectID}/`, { recursive: true });
+    }
+    for (let filename of fileArray) {
+      if (!fs.existsSync(`./public/uploads/${projectID}/${filename}`)) {
+        fs.rename(`./uploads/${filename}`, `./public/uploads/${projectID}/${filename}`, function (err) {
+        if (err) throw err;
+        console.log('File Moved Successfully!');
+        });
+    }
+    }
+    }
+
+  const id = req.params.id;
+
+  console.log(req.body)
+
+  projectModel.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Project with id=${id}. Maybe Project was not found!`
+        });
+      } else {
+        filemove(req.body.images,data._id.toString())
+        filemove(req.body.bannerImage,data._id.toString())
+        res.send({ message: "Project was updated successfully." });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating Project with id=" + id
       });
     });
 };
@@ -230,31 +292,6 @@ module.exports.findSimilar = (req, res) => {
     });
 };
 
-// Update a Project by the id in the request
-module.exports.update = (req, res) => {
-  if (!req.body) {
-    return res.status(400).send({
-      message: "Data to update can not be empty!"
-    });
-  }
-
-  const id = req.params.id;
-
-  projectModel.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then(data => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update Project with id=${id}. Maybe Project was not found!`
-        });
-      } else res.send({ message: "Project was updated successfully." });
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Error updating Project with id=" + id
-      });
-    });
-};
-
 // Delete a Project with the specified id in the request
 module.exports.delete = (req, res) => {
   const id = req.params.id;
@@ -265,7 +302,10 @@ module.exports.delete = (req, res) => {
         res.status(404).send({
           message: `Cannot delete Project with id=${id}. Maybe Project was not found!`
         });
-      } else {
+      } else {        
+        fs.rmSync(`./public/uploads/${id}`, { recursive: true });
+        console.log('Directory removed!');
+        
         res.send({
           message: "Project was deleted successfully!"
         });

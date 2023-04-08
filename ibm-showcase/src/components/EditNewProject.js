@@ -17,6 +17,7 @@ import { useLocation, useParams, Navigate, Link } from 'react-router-dom';
 import Footer from './Footer'
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { Toolbar, Alert } from '@mui/material';
 
 function EditNewProject() {
   document.body.style = 'background: #F4F7FE;';
@@ -48,6 +49,9 @@ function ProjectForm() {
 
   const { id } = useParams();
 
+  const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(null)
+
   // const [images, setImages] = useState('');
   // const [category, setCategory] = useState('');
   // const [tags, setTags] = useState('');
@@ -68,7 +72,6 @@ function ProjectForm() {
   const [changePage, setChangePage] = useState(false);
 
   useEffect(() => {
-    // this extracts data altough will also increase popularity count, should we change this?
     axios.get(`http://localhost:8080/api/projects/${id}/popularity/`)
       .then((response) => {
         // console.log(response.data)
@@ -106,17 +109,29 @@ function ProjectForm() {
     formJson.tags = formJson.tags.split(',');
     formJson.images = keepImagesChecked?inFillData.images.concat(fileArray):fileArray;
     formJson.bannerImage = keepBannerChecked?inFillData.bannerImage:singleBannerArray;
-    console.log(formJson);
-    console.log(fileArray);
-    axios.put(`http://localhost:8080/api/projects/${id}`, formJson)
+  
+    const modifiedImages = formJson.images.map(image => {
+      const modifiedFilename = image.replace(/\s+/g, "_"); 
+      return modifiedFilename;
+    });
+  
+    const modifiedBanner = formJson.bannerImage.map(image => {
+      const modifiedFilename = image.replace(/\s+/g, "_"); 
+      return modifiedFilename;
+    });
+
+    const newForm = {...formJson, images: modifiedImages, bannerImage: modifiedBanner};
+
+    // console.log(fileArray);
+    axios.put(`http://localhost:8080/api/projects/${id}`, newForm)
     .then(response => {
       console.log(response.data);
-      alert('Successfully edited this project')
-      setChangePage(true)
+      setSuccess('Successfully edited this project.')
+      // setChangePage(true)
     })
     .catch(e => {
       console.log(e);
-      alert(e.response.data.message)
+      setError(e.response.data.message)
     });
   }
 
@@ -129,6 +144,24 @@ function ProjectForm() {
   return (
     <form className='ProjectForm' onSubmit={handleSubmit}>
       <h1>Edit Project</h1>
+      {error && (
+      <Alert severity="error" onClose={() => setError(null)}>
+        {error}
+      </Alert>
+      )}
+      {success && (
+        <Alert severity="success" onClose={() => setSuccess(null)} 
+        action={
+          <Button color="inherit" size="small" onClick={() => {
+            setSuccess(null);
+            setChangePage(true)
+          }}>
+            Continue
+          </Button>
+        }>
+          {success}
+        </Alert>
+      )}
       <Forms passData={[setFileArray,setSingleBannerArray]} fillData={inFillData} checks={[keepImagesChecked,setKeepImagesChecked,keepBannerChecked, setKeepBannerChecked]}/>
       {changePage && <Navigate to={'/editproject'} /> }
       {/* <div className="SubmitButton">
