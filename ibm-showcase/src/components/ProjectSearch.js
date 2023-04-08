@@ -4,14 +4,15 @@ import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar
     Grid } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import styled from 'styled-components';
-import IBM_IMG from './ibm_ai4.avif';
+import IBM_IMG from './Projectsearch3.jpg';
 
 
 const StyledGrid = styled(Grid)`
   background-image: url(${IBM_IMG});
   background-repeat: no-repeat;
-  background-size:cover;
-  background-position: right;
+  background-size:cover
+  
+  
   
   
 
