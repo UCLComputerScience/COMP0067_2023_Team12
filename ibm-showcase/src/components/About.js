@@ -2,8 +2,13 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 import Header from './Header';
 import './About.css';
 import Footer from './Footer'
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import { Action } from '@remix-run/router';
+
+
 
 function About() {
   return (
@@ -66,7 +71,12 @@ function AboutLeft() {
   )
 }
 
+
+
 const AboutRight = () => {
+
+  const [showAlert,setShowAlert] = useState(false);
+
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -76,6 +86,8 @@ const AboutRight = () => {
       .then((result) => {
           console.log(result.text);
           console.log("message sent")
+          form.current.reset();
+          setShowAlert(true);
       }, (error) => {
           console.log(error.text);
       });
@@ -105,6 +117,7 @@ const AboutRight = () => {
   };
   return (
       <form ref = {form} onSubmit = {sendEmail} style={styles.styleright}>
+
         <Typography variant="h1" style={styles.abouttitle}>Get Involved</Typography>
         <Typography variant="h3" style={styles.aboutsubtitle}>Name</Typography>
         <TextField label="Enter Your Name Here" name="from_name" required style={styles.abouttextfield}/>
@@ -117,6 +130,11 @@ const AboutRight = () => {
         <div>
           <Button type = "submit" value = "Send" variant="contained" size="large" style={styles.aboutbutton} >Submit</Button >
         </div>
+        {showAlert && ( // render the success alert if the state variable is true
+        <Stack sx={{ width: '100%',postion: 'fixed',top:0,left:0 }} spacing={2}>
+          <Alert onClose={() => setShowAlert(false)}>Email was sent successfully!</Alert>
+        </Stack>
+      )}
       </form>
   )
 }
