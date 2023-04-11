@@ -34,6 +34,7 @@ function ProjectForm() {
 
   const [fileArray, setFileArray] = useState("");
   const [singleBannerArray, setSingleBannerArray] = useState("");
+  const [titleValue, setTitleValue] = useState('');
 
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
@@ -76,7 +77,7 @@ function ProjectForm() {
   return (
     <form className='ProjectForm' onSubmit={handleSubmit}>
       <Typography variant="h4" sx={{marginTop:'2rem'}}>Create a New Project</Typography>
-      <Forms passData={[setFileArray,setSingleBannerArray]}/>
+      <Forms passData={[setFileArray,setSingleBannerArray]} titlehook={[titleValue, setTitleValue]}/>
     </form>
 
   )
@@ -85,19 +86,23 @@ function ProjectForm() {
 function Forms(props){
   return (
     <div className="Forms">
-      <FormLeft />
-      <FormRight passData={props.passData} />
+      <FormLeft titlehook={props.titlehook} />
+      <FormRight passData={props.passData} titlehook={props.titlehook} />
     </div>
   )
 
 }
 
 function FormLeft(props) {
+  const handleInputChange = (event) => {
+    props.titlehook[1](event.target.value);
+  };
+
   // console.log(props.fillData.title)
   return (
     <div className="FormLeft" style={{margin:'2rem 0 5rem 0'}}>
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Title</Typography>
-      <TextField name='title' label="Enter Title Here" />
+      <TextField name='title' label="Enter Title Here" value={props.titlehook[0]} onChange={handleInputChange}/>
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Group Members</Typography>
       <TextField name='groupMembers' label="Enter Group Members Here" />
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Supervisors</Typography>
@@ -127,7 +132,7 @@ function FormRight(props) {
       <TagSelect />
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "3rem" }}>
         <Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined" sx={{textTransform: "none", margin: "0 1rem 0 1rem"}} >Cancel</Button></Link>
-        <Button variant="contained" type="submit" sx={{textTransform: "none"}}>Submit</Button>
+        <Button variant="contained" type="submit" sx={{textTransform: "none"}} disabled={!props.titlehook[0]}>Submit</Button>
       </div>
 
     </div>
