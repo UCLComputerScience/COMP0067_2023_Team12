@@ -1,12 +1,7 @@
 import axios from "axios";
 import AdminHeader from './AdminHeader'
 import './CreateNewProject.css';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import { Typography, Select, FormControl, MenuItem, InputLabel, TextField, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -79,8 +74,8 @@ function ProjectForm() {
   // console.log(inFillData)
 
   return (
-    <form className='ProjectForm' style={{marginTop:'2rem'}} onSubmit={handleSubmit}>
-      <h1 >Create a New Project</h1>
+    <form className='ProjectForm' onSubmit={handleSubmit}>
+      <Typography variant="h4" sx={{marginTop:'2rem'}}>Create a New Project</Typography>
       <Forms passData={[setFileArray,setSingleBannerArray]}/>
     </form>
 
@@ -101,13 +96,13 @@ function FormLeft(props) {
   // console.log(props.fillData.title)
   return (
     <div className="FormLeft" style={{margin:'2rem 0 5rem 0'}}>
-      <h3>Project Title</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Title</Typography>
       <TextField name='title' label="Enter Title Here" />
-      <h3>Group Members</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Group Members</Typography>
       <TextField name='groupMembers' label="Enter Group Members Here" />
-      <h3>Supervisors</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Supervisors</Typography>
       <TextField name='supervisors' label="Enter Supervisors Here" />
-      <h3>Project Description</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Description</Typography>
       <TextField name='description' label="Enter Description Here" multiline={true} minRows="5" />
     </div>
 
@@ -116,19 +111,19 @@ function FormLeft(props) {
 
 function FormRight(props) {
   return (
-    <div className="FormRight"  style={{margin:'2rem 0 5rem 0'}}>
-      <h3>Project Video Link</h3>
+    <div className="FormRight"  style={{margin:'2rem 0 2rem 0'}}>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Video Link</Typography>
       <TextField name='videoLink' label="Enter Youtube Link Here" />
-      <h3>Project Images</h3>
-      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL images in one go. Change image selections by re-click (overriding).</div>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Images</Typography>
+      <Typography sx={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL images in one go. Change image selections by re-click (overriding).</Typography>
       {/*Only .jpg files. 5MB Max Each.*/}
       <UploadImages passData={props.passData[0]} multi={true} />
-      <h3>Wide Banner Image</h3>
-      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select one image suitable for wide banner. Image would be cropped to ultra wide.</div> 
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Wide Banner Image</Typography>
+      <Typography sx={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select one image suitable for wide banner. Image would be cropped to ultra wide.</Typography>
       <UploadImages passData={props.passData[1]}/>
-      <h3>Project Category</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Category</Typography>
       <CategorySelect />
-      <h3>Project #HashTags</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project #HashTags</Typography>
       <TagSelect />
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "3rem" }}>
         <Button variant="contained" type="submit" sx={{textTransform: "none"}}>Submit</Button>

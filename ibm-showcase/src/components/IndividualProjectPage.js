@@ -3,17 +3,16 @@ import ReactPlayer from 'react-player';
 import './IndividualProjectPage.css';
 import Header from './Header'
 import {ProjectTile} from './HomeBody'
-import Box from '@mui/material/Box';
 import ProjectPic1 from './Project1.png';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { Twitter, Reddit, Facebook, LinkedIn, Print } from '@mui/icons-material';
-import IconButton from '@mui/material/IconButton';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import {useParams} from 'react-router-dom'
 import axios from "axios";
-import Footer from './Footer'
+import Footer from './Footer';
+import { Typography,Box,IconButton } from '@mui/material';
 
 function IndividualProjectPage() {
   const {id} = useParams();
@@ -74,8 +73,8 @@ function ProjectVideoSection(props) {
       ) : (
         <div>
           <PlayCircleIcon sx={{fontSize: '5rem', color: 'white', position:'absolute', left: '50%', top: '50%', transform:`translate(-50%, -50%)`,cursor: 'pointer'}} onClick={handlePlayClick}/>
-          <div style={{position:'absolute',fontSize: '1.5rem', color: 'white', bottom:'7rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.groupMembers}</div>
-          <div style={{position:'absolute',fontSize: '3rem', color: 'white', bottom:'3rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.title}</div>
+          <Typography sx={{position:'absolute',fontSize: '1.5rem', color: 'white', bottom:'7rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.groupMembers}</Typography>
+          <Typography sx={{position:'absolute',fontSize: '3rem', color: 'white', bottom:'3rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.title}</Typography>
         </div>
       )}
       
@@ -88,13 +87,13 @@ function ProjectVideoSection(props) {
 function ProjectDetail(props) {
   return (
     <section style={{margin:'auto', padding:'0 7rem', maxWidth:'130rem',fontSize:'2rem', lineHeight:'90%', position:'relative'}}>
-      <p style={{fontSize:'3rem'}}>{props.project.title}</p>
+      <Typography variant="body1" sx={{fontSize:'3rem',padding:'2rem 0' }}>{props.project.title}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
-      <p><b>Group Members</b></p>
-      <p>{props.project.groupMembers}</p>
+      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',fontWeight:  "bold" }}>Group Members</Typography>
+      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',}}>{props.project.groupMembers}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
-      <p><b>Supervisors</b></p>
-      <p>{props.project.supervisors}</p>
+      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',fontWeight:  "bold" }}>Supervisors</Typography>
+      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',}}>{props.project.supervisors}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
       <ProjectDescription project={props.project}/>
     </section>
@@ -118,8 +117,8 @@ function ProjectDescription(props) {
   return (
     <div style={{display:'flex', flex:'1'}}>
       <section style={{width:'50%'}}>
-        <p><b>Description</b></p>
-        <div style={{whiteSpace: 'pre-wrap'}}>{props.project.description}</div>
+        <Typography variant="body1" sx={{fontSize:'2rem',padding:'1rem 0',fontWeight:  "bold" }}>Description</Typography>
+        <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',}}>{props.project.description}</Typography>
        {/* <text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
         <br/><br/>*/}
       </section>

@@ -1,12 +1,7 @@
 import axios from "axios";
 import AdminHeader from './AdminHeader'
 import './CreateNewProject.css';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import { Typography, Select, FormControl, MenuItem, InputLabel, TextField, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -143,7 +138,7 @@ function ProjectForm() {
 
   return (
     <form className='ProjectForm' onSubmit={handleSubmit}>
-      <h1>Edit Project</h1>
+      <Typography variant="h4" sx={{marginTop:'2rem'}}>Edit Project</Typography>
       {error && (
       <Alert severity="error" onClose={() => setError(null)}>
         {error}
@@ -187,13 +182,13 @@ function FormLeft(props) {
   // console.log(props.fillData.title)
   return (
     <div className="FormLeft" style={{margin:'2rem 0 5rem 0'}}>
-      <h3>Project Title</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Title</Typography>
       <TextField name='title' label="Enter Title Here" defaultValue={props.fillData.title}/>
-      <h3>Group Members</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Group Members</Typography>
       <TextField name='groupMembers' label="Enter Group Members Here" defaultValue={props.fillData.groupMembers}/>
-      <h3>Supervisors</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Supervisors</Typography>
       <TextField name='supervisors' label="Enter Supervisors Here" defaultValue={props.fillData.supervisors}/>
-      <h3>Project Description</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Description</Typography>
       <TextField name='description' label="Enter Description Here" multiline={true} minRows="5" defaultValue={props.fillData.description}/>
     </div>
 
@@ -203,10 +198,10 @@ function FormLeft(props) {
 function FormRight(props) {
   return (
     <div className="FormRight" style={{margin:'2rem 0 5rem 0'}}>
-      <h3>Project Video Link</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Video Link</Typography>
       <TextField name='videoLink' label="Enter Youtube Link Here" defaultValue={props.fillData.videoLink}/>
-      <h3>Project Images</h3>
-      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Current uploaded images. Choose to keep or discard.</div>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Images</Typography>
+      <Typography sx={{color:"grey", padding:"0 0 0.5rem 0"}}>Current uploaded images. Choose to keep or discard.</Typography>
       <div>
         {props.fillData.images.map((img, i) => {
           return (
@@ -215,20 +210,20 @@ function FormRight(props) {
         })}
       </div>
       <FormControlLabel control={<Switch defaultChecked onChange={(event) => {props.checks[1](event.target.checked)}} />} label="Keep All Uploaded Project Images" />
-      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL other images in one go. Change image selections by re-click (overriding).</div>
+      <Typography sx={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select ALL other images in one go. Change image selections by re-click (overriding).</Typography>
       {/*Only .jpg files. 5MB Max Each.*/}
       <UploadImages passData={props.passData[0]} multi={true} />
-      <h3>Video Banner Image</h3>
-      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Current uploaded banner image. Choose to keep or discard.</div>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Video Banner Image</Typography>
+      <Typography sx={{color:"grey", padding:"0 0 0.5rem 0"}}>Current uploaded banner image. Choose to keep or discard.</Typography>
       <div>
         <img style={{margin:"0.25rem"}} className="preview" src={`http://localhost:8080/api/images/${props.fillData.id}/${props.fillData.bannerImage[0]}`} alt={"banner"} height="100rem" />
       </div>
       <FormControlLabel control={<Switch defaultChecked onChange={(event) => {props.checks[3](event.target.checked)}} />} label="Keep Uploaded Banner Images" />
-      <div style={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select one image for video banner.</div>
+      <Typography sx={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select one image for video banner.</Typography>
       {props.checks[2]? <div style={{fontStyle: "italic"}}>Disable using uploaded banner toggle to upload new banner image.</div>:<UploadImages passData={props.passData[1]}/>} 
-      <h3>Project Category</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Category</Typography>
       <CategorySelect fillData={props.fillData} />
-      <h3>Project #HashTags</h3>
+      <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project #HashTags</Typography>
       <TagSelect fillData={props.fillData} />
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "3rem" }}>
         <Button variant="contained" type="submit">Submit</Button>
