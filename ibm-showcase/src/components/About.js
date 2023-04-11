@@ -8,6 +8,7 @@ import emailjs from '@emailjs/browser';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import { Action } from '@remix-run/router';
+import ReactMarkdown from 'react-markdown';
 
 
 
@@ -80,7 +81,7 @@ function AboutLeft(props) {
       If you would like to see more, click on the link below. If you would like to get involved in any project or have ideas of your own, please fill in the form on the right
       </Typography> */}
       <Typography variant="h3" style={styles.abouttext}>
-        {props.description}
+        <ReactMarkdown children={props.description} />
       </Typography>
     </Box>
   )

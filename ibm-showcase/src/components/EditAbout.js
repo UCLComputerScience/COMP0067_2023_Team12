@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Footer from './Footer'
 import {Link} from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
+import ReactMarkdown from 'react-markdown';
 
 function EditAbout() {
   document.body.style = 'background: #F4F7FE;';
@@ -65,7 +66,7 @@ function AboutLeft(props) {
     <Box style={styles.styleleft}>
       <Typography variant="h1" style={styles.abouttitle}>Current About Description</Typography>
       <Typography variant="h3" style={styles.abouttext}>
-      {props.content}
+        <ReactMarkdown children= {props.content} />
       </Typography>
     </Box>
   )
