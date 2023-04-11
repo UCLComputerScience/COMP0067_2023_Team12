@@ -37,11 +37,13 @@ function IndividualProjectPage() {
 
   return (
     <div className="IndividualProjectPage">
-      <Header />
-      <ProjectVideoSection project={project}/>
-      <ProjectDetail project={project}/>
-      {shouldRenderSimilarProjects && <SimilarProjects project={project}/>}
-      <Footer />
+      <div className="IndividualBody">
+        <Header />
+        <ProjectVideoSection project={project}/>
+        <ProjectDetail project={project}/>
+        {shouldRenderSimilarProjects && <SimilarProjects project={project}/>}
+      </div>
+        <Footer />
     </div>
   );
 }

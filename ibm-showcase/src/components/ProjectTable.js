@@ -175,7 +175,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
       
     };
     return (
-      <FormControl>
+      <FormControl >
         <Select value={placement} onChange={handleChange}>
           {statusOptions.map((option) => (
             <MenuItem key={option} value={option}>
@@ -334,7 +334,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
         
 
   return (
-    <Container className='projectTable' style={{ height: "567px", maxWidth: "1042px"}}>
+    <Container className='projectTable' style={{ height: "567px", maxWidth: "1042px" ,marginBottom:"5rem"}}>
             {error && (
               <Alert severity="error" onClose={() => setError(null)}>
                 {error}
