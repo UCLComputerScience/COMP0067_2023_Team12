@@ -11,6 +11,7 @@ Grid } from '@mui/material'
 import { Container } from '@mui/system';
 
 
+
 function Search({ onSubmit, onSubmit2 }) {
 //   const { sections, title } = props;
 
@@ -42,12 +43,13 @@ function Search({ onSubmit, onSubmit2 }) {
   return (
     
         
-        <Grid container spacing={2} sx ={{width:"100%"}}>
-        <Grid item xs ={10}>
-            <Box 
+            <Grid container spacing={2} sx ={{width:"100%",justifyContent:'center'}}
+            >
+        <Grid item sx={{display:'flex',width:850}}>
+        <Box 
             component="form"    
-            sx={{display: 'flex', alignItems: 'center', maxWidth:900,height:51,mt:10,
-            backgroundColor: 'white',flexShrink:1,mx:"auto",
+            sx={{display: 'flex', alignItems: 'center',height:51,mt:10,width:"100%",ml:2,
+            backgroundColor: 'white',flexShrink:1,flexGrow:0,
             position: 'relative',}}
             onSubmit={handleSubmit}
             >
@@ -66,9 +68,8 @@ function Search({ onSubmit, onSubmit2 }) {
             </Grid>
 
 
-            {/* <Grid item xs = {2}> */}
-            <Grid item xs={2} sx={{ width: "100%" }}>
-            <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",maxWidth:140,mt:10, height: 51}}>
+            <Grid item sx={{display:'flex'}}>
+            <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:"100%",flexGrow:0,height:51,mt:10,textAlign:"center"}}>
                         
             <InputLabel>Category</InputLabel>
             <Select value={selectedFilter} onChange={selectionChangeHandlerFilter} input={<InputBase sx={{borderRadius: '30px',height:51,fontSize:15,textAlign:"center"}}/>} >

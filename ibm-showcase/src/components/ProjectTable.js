@@ -8,13 +8,17 @@ import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate, navigate } from 'react-router-dom';
-
 import { Button } from '@mui/material';
 import axios from "axios";
+import jsPDF from 'jspdf';
+import pdfbackground from './pdfbackground.jpg';
+import projectbackground from './projectbackground.jpg';
+import { PictureAsPdf } from '@mui/icons-material';
 
 
 export default function DataTable({ searchTerm, filterTerm }) {
 
+    const [selectedRowData, setSelectedRowData] = useState([])
 
     const [tableData,setTableData] = useState([])
 
@@ -34,6 +38,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
       })
      
     },[]);
+
 
     useEffect(() => {  
       Reload();
@@ -69,20 +74,18 @@ export default function DataTable({ searchTerm, filterTerm }) {
         });
     }
 
-    function normalizeDescription(description) {
-      const maxLength = 100; 
-      if (description.length <= maxLength) {
-        return description;
-      } else {
-        const truncated = description.slice(0, maxLength); 
-        const lastSpaceIndex = truncated.lastIndexOf(' '); 
-        const normalized = truncated.slice(0, lastSpaceIndex) + '...'; 
-        return normalized;
-      }
-    }
+    // function normalizeDescription(description) {
+    //   const maxLength = 100; 
+    //   if (description.length <= maxLength) {
+    //     return description;
+    //   } else {
+    //     const truncated = description.slice(0, maxLength); 
+    //     const lastSpaceIndex = truncated.lastIndexOf(' '); 
+    //     const normalized = truncated.slice(0, lastSpaceIndex) + '...'; 
+    //     return normalized;
+    //   }
+    // }
 
-    
-  
     
   const statusOptions = ["None", "Main", "1", "2", "3"];
   
@@ -113,6 +116,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
         return <HeaderCell row={params.row} />
       },
     },
+  
   ];
 
   function HeaderCell({ row }) {
@@ -157,7 +161,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
           setError("You can't change this value as there needs to be at least one of each kind of placement!!")
           setPlacement(row.placement);
         }
-      })
+      }) 
       .catch(e => {
         // console.log(e);
         setError(e.response.data.message)
@@ -260,10 +264,77 @@ export default function DataTable({ searchTerm, filterTerm }) {
       </>
     );
   }
+
+
+    
+  function ExportToPDF2(selectedRowData) {
+    const doc = new jsPDF();
+      doc.addImage(pdfbackground,'JPEG',0,0,doc.internal.pageSize.width, doc.internal.pageSize.height);
+      doc.setFontSize(34)
+      doc.text("IBM Project Showcase",10,doc.internal.pageSize.height-30)
+      doc.setFontSize(15)
+      doc.text("Project Workbook",10,doc.internal.pageSize.height-15)
+      doc.addPage()
+
+      doc.page = 1
+
+      for (let i = 0; i < selectedRowData.length; i++){
+        doc.addImage(projectbackground,'JPEG',0,0,doc.internal.pageSize.width, doc.internal.pageSize.height);
+        const startX = 10;
+        let startY = 25;
+        let imgStartY = 25;
+        const lineHeight = 10;
+       
+  
+  
+        doc.setLineWidth(0.5);
+        doc.setDrawColor(192, 192, 192);
+        doc.line(105, 20, 105, doc.internal.pageSize.height - 20, 'S');
+        
+        
+        doc.setFontSize(14)
+        doc.text(`Project Title: ${selectedRowData[i].title}`, 115, startY)
+        startY += lineHeight;
+    
+        doc.text(`Group Members: ${selectedRowData[i].groupMembers}`, 115, startY);
+        startY += lineHeight;
+
+        const maxDescriptionWidth = 80;
+        const maxWidth = 190; // Width of the area where the text should appear
+        const descriptionLines = doc.splitTextToSize(`Description: ${selectedRowData[i].description}`, maxDescriptionWidth);
+        let lineCount = 0;
+        descriptionLines.forEach(line => {
+          const lines = doc.splitTextToSize(line, maxWidth);
+          lines.forEach((line, index) => {
+            doc.text(line, 115, startY + (lineCount * lineHeight) + (index * lineHeight));
+          });
+          lineCount += lines.length;
+        });
+        startY += lineHeight * lineCount;
+
+        for (let j = 0; j < 3; j++){
+          const imageData = `http://localhost:8080/api/images/${selectedRowData[i]._id}/${selectedRowData[i].images[j]}`
+          doc.addImage(imageData, 'JPEG', startX,imgStartY, 75, 75);
+          imgStartY += lineHeight+75;
+        }
+        doc.setFontSize(10)
+        doc.text(`${doc.page}`,104,10);//print number bottom right
+        doc.page ++;
+        doc.setFontSize('normal')
+        doc.addPage()
+      }      
+      
+      var pageCount = doc.internal.getNumberOfPages();
+      doc.deletePage(pageCount)
+      doc.save('ProjectWorkbook.pdf');
+    
+  }
   
 
+        
+
   return (
-    <Container className='projectTable' style={{ height: "567px", width: "1078px"}}>
+    <Container className='projectTable' style={{ height: "567px", maxWidth: "1042px"}}>
             {error && (
               <Alert severity="error" onClose={() => setError(null)}>
                 {error}
@@ -297,8 +368,10 @@ export default function DataTable({ searchTerm, filterTerm }) {
                     Delete
                 </Button> */}
             </Grid>
-            <Grid xs={10}>
+            <Grid xs={11}>
                 <Button 
+                    onClick={() => ExportToPDF2(selectedRowData)}
+                    disabled = {selectedRowData.length === 0}
                     variant='contained'
                     size='medium'
                     color="inherit"
@@ -322,10 +395,10 @@ export default function DataTable({ searchTerm, filterTerm }) {
           const selectedRowData = tableData.filter((row) => 
           selectedIDs.has(row._id)
           
+          
           );
         
-
-          // console.log(selectedRowData);
+          setSelectedRowData(selectedRowData)
         }}
         columns={columns}
         pageSize={9}
