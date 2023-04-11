@@ -24,9 +24,10 @@ function AdminHeader() {
           <NavLink to="/createproject" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: isActive ? "0.20em" : "0",
+                          textUnderlineOffset: isActive ? "0.35em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
+                          lineHeight: isActive ? "1.5" : "",
                           color: isActive ? "#191970" : "black",})}>
                           Create Projects
           </NavLink>
@@ -34,18 +35,20 @@ function AdminHeader() {
           <NavLink to="/editproject" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: isActive ? "0.20em" : "0",
+                          textUnderlineOffset: isActive ? "0.35em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
+                          lineHeight: isActive ? "1.5" : "",
                           color: isActive ? "#191970" : "black",})}>
                           Edit Projects
           </NavLink>
           <NavLink to="/editabout" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: isActive ? "0.20em" : "0",
+                          textUnderlineOffset: isActive ? "0.35em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
+                          lineHeight: isActive ? "1.5" : "",
                           color: isActive ? "#191970" : "black",})}>
                           Edit About
           </NavLink>
