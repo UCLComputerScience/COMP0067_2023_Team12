@@ -139,7 +139,10 @@ function FormRight(props) {
       <TagSelect />
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "3rem" }}>
         {/*<Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined" sx={{textTransform: "none", margin: "0 1rem 0 1rem"}} >Cancel</Button></Link>*/}
-        <Button variant="outlined" onClick={() => {setOpenAlert(true)}} sx={{textTransform: "none", margin: "0 1rem 0 1rem"}}>Cancel</Button>
+        {props.titlehook[0] 
+          ? <Button variant="outlined" onClick={() => {setOpenAlert(true)}} sx={{textTransform: "none", margin: "0 1rem 0 1rem"}}>Cancel</Button> 
+          : <Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined" sx={{textTransform: "none", margin: "0 1rem 0 1rem"}} >Cancel</Button></Link>
+        }
         <Dialog open={openAlert} onClose={() => {setOpenAlert(false)}}>
           <DialogTitle>Cancel Changes</DialogTitle>
           <DialogContent>
@@ -156,7 +159,6 @@ function FormRight(props) {
                 Yes
               </Button>
             </Link>
-            
           </DialogActions>
         </Dialog>
         <Button variant="contained" type="submit" sx={{textTransform: "none"}} disabled={!props.titlehook[0]}>Submit</Button>
