@@ -17,10 +17,10 @@ function Footer() {
     .catch((error) => {console.log(error)});
   })
 
-  const YoutubeUrl = ``;
-  const twitterUrl = ``;
-  const facebookUrl = ``;
-  const LinkedInUrl = ``;
+  const YoutubeUrl = `https://www.youtube.com/ibm`;
+  const twitterUrl = `https://twitter.com/IBM`;
+  const facebookUrl = `https://www.facebook.com/IBM`;
+  const LinkedInUrl = `https://www.linkedin.com/company/ibm/`;
 
   return (
     <Grid container className="footer">

@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 import {useParams} from 'react-router-dom'
 import axios from "axios";
 import Footer from './Footer';
-import { Typography,Box,IconButton } from '@mui/material';
+import { Typography,Box,IconButton,Grid} from '@mui/material';
 
 function IndividualProjectPage() {
   const {id} = useParams();
@@ -50,6 +50,7 @@ function IndividualProjectPage() {
 
 export default IndividualProjectPage;
 
+
 function ProjectVideoSection(props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const handlePlayClick = () => {
@@ -59,8 +60,8 @@ function ProjectVideoSection(props) {
     setIsPlaying(false);
   };
   return (
-    
-    <Box sx={{position:'relative',minHeight: '40rem',backgroundImage:`url(http://localhost:8080/api/images/${props.project._id}/${props.project?props.project.bannerImage[0]:null})`, backgroundSize: 'cover'}}>
+    <Box sx={{position:'relative',minHeight: '40rem',backgroundImage:`url(http://localhost:8080/api/images/${props.project._id}/${props.project?props.project.bannerImage[0]:null})`,
+     backgroundSize: 'cover'}}>
       {isPlaying ? (
         <div style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}}>
           <ReactPlayer
@@ -74,28 +75,29 @@ function ProjectVideoSection(props) {
         </div>
       ) : (
         <div>
-          <PlayCircleIcon sx={{fontSize: '5rem', color: 'white', position:'absolute', left: '50%', top: '50%', transform:`translate(-50%, -50%)`,cursor: 'pointer'}} onClick={handlePlayClick}/>
-          <Typography sx={{position:'absolute',fontSize: '1.5rem', color: 'white', bottom:'7rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.groupMembers}</Typography>
-          <Typography sx={{position:'absolute',fontSize: '3rem', color: 'white', bottom:'3rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.title}</Typography>
+          <PlayCircleIcon sx={{fontSize: '5rem', color: 'gray', position:'absolute', left: '50%', top: '50%', transform:`translate(-80%, -80%)`,cursor: 'pointer'}} onClick={handlePlayClick}/>
+          {/* <Typography sx={{position:'absolute',fontSize: '1.5rem', color: 'white', bottom:'7rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.groupMembers}</Typography>
+          <Typography sx={{position:'absolute',fontSize: '3rem', color: 'white', bottom:'3rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.title}</Typography> */}
         </div>
       )}
       
       
       
     </Box>
+
   );
 }
 
 function ProjectDetail(props) {
   return (
-    <section style={{margin:'auto', padding:'0 7rem', maxWidth:'130rem',fontSize:'2rem', lineHeight:'90%', position:'relative'}}>
-      <Typography variant="body1" sx={{fontSize:'3rem',padding:'2rem 0' }}>{props.project.title}</Typography>
+    <section className="projectDetailSection">
+      <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1.5rem',md: '2rem'},padding:'2rem 0' }}>{props.project.title}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
-      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',fontWeight:  "bold" }}>Group Members</Typography>
-      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',}}>{props.project.groupMembers}</Typography>
+      <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',fontWeight:  "bold" }}>Group Members</Typography>
+      <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',}}>{props.project.groupMembers}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
-      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',fontWeight:  "bold" }}>Supervisors</Typography>
-      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',}}>{props.project.supervisors}</Typography>
+      <Typography variant="body1"sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',fontWeight:  "bold" }}>Supervisors</Typography>
+      <Typography variant="body1"sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',}}>{props.project.supervisors}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
       <ProjectDescription project={props.project}/>
     </section>
@@ -117,14 +119,14 @@ function ProjectDescription(props) {
 
   // const onlineimg = `http://localhost:8080/api/images/${props.project._id}/${props.project.images[0]}`;
   return (
-    <div style={{display:'flex', flex:'1'}}>
-      <section style={{width:'50%'}}>
-        <Typography variant="body1" sx={{fontSize:'2rem',padding:'1rem 0',fontWeight:  "bold" }}>Description</Typography>
-        <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',}}>{props.project.description}</Typography>
+    <div className="projectSections">
+      <section className="projectSection">
+        <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',fontWeight:  "bold" }}>Description</Typography>
+        <Typography variant="body1"sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',}}>{props.project.description}</Typography>
        {/* <text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
         <br/><br/>*/}
       </section>
-      <section style={{width:'50%',margin:'6rem 0 1rem 1rem'}}>
+      <section className="projectSlider" >
         <SimpleSlider project={props.project}/>
         <div style={{fontSize:'1.5rem', padding:'2rem'}}>Share on social media or print:
           <IconButton href={twitterUrl} ><Twitter style={{fontSize: '3rem'}}/></IconButton>
@@ -165,7 +167,7 @@ function SimpleSlider(props) {
 
 function SimilarProjects(props) {
   return (
-    <section style={{margin:'auto', padding:'4rem 7rem 8rem 7rem', maxWidth:'130rem',fontSize:'2rem', lineHeight:'90%', position:'relative'}}>
+    <section className="SimilarProject">
       <p style={{fontSize:'3rem', marginBottom:'2rem', textAlign: 'center'}}>Similar Projects</p>
       <hr style={{margin:'0 0 4rem 0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
       <ThreeProjectTiles project={props.project}/>
@@ -209,9 +211,17 @@ export function ThreeProjectTiles(props){
 
   return(
     <section style={{display: 'flex', flexDirection: 'row', columnGap: '2%'}}>
-      <ProjectTile img={`http://localhost:8080/api/images/${projects[0]._id}/${projects[0].images[0]}`} title={projects[0].title} description={projects[0].description} id={projects[0]._id}/>
-      <ProjectTile img={`http://localhost:8080/api/images/${projects[1]._id}/${projects[1].images[0]}`} title={projects[1].title} description={projects[1].description} id={projects[1]._id}/>
-      <ProjectTile img={`http://localhost:8080/api/images/${projects[2]._id}/${projects[2].images[0]}`} title={projects[2].title} description={projects[2].description} id={projects[2]._id}/>
+      <Grid container spacing={1} sx={{ width: "100%" ,padding: "0 1rem",margin:"auto"}} >
+        <Grid item xs={12} sm={12} md={4} container justifyContent="center">
+          <ProjectTile img={`http://localhost:8080/api/images/${projects[0]._id}/${projects[0].images[0]}`} title={projects[0].title} description={projects[0].description} id={projects[0]._id}/>
+        </Grid>
+        <Grid item xs={12} sm={12} md={4} container justifyContent="center">
+         <ProjectTile img={`http://localhost:8080/api/images/${projects[1]._id}/${projects[1].images[0]}`} title={projects[1].title} description={projects[1].description} id={projects[1]._id}/>
+        </Grid>
+        <Grid item xs={12} sm={12} md={4} container justifyContent="center">
+          <ProjectTile img={`http://localhost:8080/api/images/${projects[2]._id}/${projects[2].images[0]}`} title={projects[2].title} description={projects[2].description} id={projects[2]._id}/>
+        </Grid>
+      </Grid>
     </section>
   );
 }
