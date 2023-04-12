@@ -27,17 +27,18 @@ export default function DataTable({ searchTerm, filterTerm }) {
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
 
-    useEffect(() => {
-      axios.get('http://localhost:8080/api/projects')
-      .then(res => {
-        setTableData(res.data)
-        // console.log(res.data)
-      }).catch(err => {
-        // console.log(err)
-        setError(err.response.data.message)
-      })
+    // unsure if need this
+    // useEffect(() => {
+    //   axios.get('http://localhost:8080/api/projects')
+    //   .then(res => {
+    //     setTableData(res.data)
+    //     // console.log(res.data)
+    //   }).catch(err => {
+    //     // console.log(err)
+    //     setError(err.response.data.message)
+    //   })
      
-    },[]);
+    // },[]);
 
 
     useEffect(() => {  
@@ -64,9 +65,17 @@ export default function DataTable({ searchTerm, filterTerm }) {
           //     description: normalizeDescription(item.description)
           //   }
           // });
+
+          // console.log(response.data)
+
+          const modifiedData = response.data.map(entry => {
+            const slicedDateCreated = entry.createdAt.slice(0, 10);
+            const slicedDateUpdated = entry.updatedAt.slice(0, 10);
+            return { ...entry, createdAt: slicedDateCreated, updatedAt: slicedDateUpdated };
+          });
           
-          // setTableData(normalisedData);
-          setTableData(response.data);
+          setTableData(modifiedData);
+          // setTableData(response.data);
         })
         .catch((e) => {
           // console.log(error);
@@ -91,27 +100,17 @@ export default function DataTable({ searchTerm, filterTerm }) {
   
   const columns = [
     { field: '_id',headerName: 'ID', width: 130 },
-    { field: 'title', headerclassName: 'super-app-theme--header', headerName: 'Project Title', width: 130 },
-    { field: 'description',headerName: 'Description', width: 130 },
-    { field: 'groupMembers', headerclassName: 'super-app-theme--header', headerName: 'Group Members', width: 90 },
-    { field: 'createdAt',headerName: 'Date Created',width:130 },
-    {
-      field: 'updatedAt',
-      headerName: 'Last Edited',
-      width: 130,
-    },
-    {
-      field: 'actions',
-      headerName: 'Actions',
-      width: 90,
+    { field: 'title', headerclassName: 'super-app-theme--header', headerName: 'Project Title', width: 285 },
+    // { field: 'description',headerName: 'Description', width: 130 },
+    { field: 'groupMembers', headerclassName: 'super-app-theme--header', headerName: 'Group Members', width: 120 },
+    { field: 'createdAt',headerName: 'Date Created',width:98 },
+    {field: 'updatedAt', headerName: 'Last Edited', width: 98 },
+    {field: 'actions', headerName: 'Actions', width: 90,
       renderCell: (params) => {
         return <ActionsCell row={params.row} />
       },
     },
-    {
-      field: "status",
-      headerName: "Placement",
-      width: 120,
+    {field: "status", headerName: "Placement", width: 120,
       renderCell: (params) => {
         return <HeaderCell row={params.row} />
       },
