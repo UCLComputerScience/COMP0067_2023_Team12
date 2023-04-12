@@ -1,0 +1,31 @@
+.footer {
+  background-color: #F4F4F4;
+  display: flex;
+  justify-content: space-around;
+  padding: 3rem;
+}
+
+.logobox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.logo1 {
+  height: 4.0rem;
+  width: 4.0rem;
+}
+
+.icon {
+  font-size: 30px;
+}
+
+.lockIcon {
+  font-size: 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}

@@ -11,16 +11,21 @@ import UploadImages from './UploadImages'
 import { useLocation, useParams } from 'react-router-dom';
 import Footer from './Footer'
 import {Link} from 'react-router-dom';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 function CreateNewProject() {
   document.body.style = 'background: #F4F7FE;';
   
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <div style={{ flex: 1 }}>
+    <div className="main-container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div className="header-container" style={{ flex: 1 }}>
         <AdminHeader />
       </div>
-      <div style={{ flex: 1 }}>
+      <div className="homebody-container" style={{ flex: 1 }}>
         <ProjectForm />
       </div>
       <Footer />
@@ -34,6 +39,7 @@ function ProjectForm() {
 
   const [fileArray, setFileArray] = useState("");
   const [singleBannerArray, setSingleBannerArray] = useState("");
+  const [titleValue, setTitleValue] = useState('');
 
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
@@ -76,7 +82,7 @@ function ProjectForm() {
   return (
     <form className='ProjectForm' onSubmit={handleSubmit}>
       <Typography variant="h4" sx={{marginTop:'2rem'}}>Create a New Project</Typography>
-      <Forms passData={[setFileArray,setSingleBannerArray]}/>
+      <Forms passData={[setFileArray,setSingleBannerArray]} titlehook={[titleValue, setTitleValue]}/>
     </form>
 
   )
@@ -85,19 +91,34 @@ function ProjectForm() {
 function Forms(props){
   return (
     <div className="Forms">
-      <FormLeft />
-      <FormRight passData={props.passData} />
+      <FormLeft titlehook={props.titlehook} />
+      <FormRight passData={props.passData} titlehook={props.titlehook} />
     </div>
   )
 
 }
-
+// function Forms(props) {
+//   return (
+//     <Grid container spacing={2}>
+//       <Grid item xs={12} md={6}>
+//         <FormLeft titlehook={props.titlehook} />
+//       </Grid>
+//       <Grid item xs={12} md={6}>
+//         <FormRight passData={props.passData} titlehook={props.titlehook} />
+//       </Grid>
+//     </Grid>
+//   );
+// }
 function FormLeft(props) {
+  const handleInputChange = (event) => {
+    props.titlehook[1](event.target.value);
+  };
+
   // console.log(props.fillData.title)
   return (
     <div className="FormLeft" style={{margin:'2rem 0 5rem 0'}}>
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Title</Typography>
-      <TextField name='title' label="Enter Title Here" />
+      <TextField name='title' label="Enter Title Here" value={props.titlehook[0]} onChange={handleInputChange}/>
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Group Members</Typography>
       <TextField name='groupMembers' label="Enter Group Members Here" />
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Supervisors</Typography>
@@ -110,6 +131,8 @@ function FormLeft(props) {
 }
 
 function FormRight(props) {
+  const [openAlert, setOpenAlert] = React.useState(false);
+
   return (
     <div className="FormRight"  style={{margin:'2rem 0 2rem 0'}}>
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Video Link</Typography>
@@ -126,8 +149,30 @@ function FormRight(props) {
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project #HashTags</Typography>
       <TagSelect />
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "3rem" }}>
-        <Button variant="contained" type="submit" sx={{textTransform: "none"}}>Submit</Button>
-        <Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined" sx={{textTransform: "none"}} >Cancel</Button></Link>
+        {/*<Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined" sx={{textTransform: "none", margin: "0 1rem 0 1rem"}} >Cancel</Button></Link>*/}
+        {props.titlehook[0] 
+          ? <Button variant="outlined" onClick={() => {setOpenAlert(true)}} sx={{textTransform: "none", margin: "0 1rem 0 1rem"}}>Cancel</Button> 
+          : <Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined" sx={{textTransform: "none", margin: "0 1rem 0 1rem"}} >Cancel</Button></Link>
+        }
+        <Dialog open={openAlert} onClose={() => {setOpenAlert(false)}}>
+          <DialogTitle>Cancel Changes</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to cancel? All the filled data will be lost.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => {setOpenAlert(false)}} color="primary">
+              No
+            </Button>
+            <Link to="/editproject" style={{textDecoration:'none'}}>
+              <Button color="secondary">
+                Yes
+              </Button>
+            </Link>
+          </DialogActions>
+        </Dialog>
+        <Button variant="contained" type="submit" sx={{textTransform: "none"}} disabled={!props.titlehook[0]}>Submit</Button>
       </div>
 
     </div>

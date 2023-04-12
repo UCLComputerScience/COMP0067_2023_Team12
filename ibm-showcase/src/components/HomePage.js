@@ -8,10 +8,12 @@ import Footer from './Footer'
 function HomePage() {
   return (
     <div className="HomePage" >
-      <div className="HomeBody">
+      <div className="HomeHeader"> 
         <Header />
+      </div>
+      <div className="HomeBody">
         <HomeBody />
-      </div> 
+      </div>  
       <HomeAbout />
       <Footer />
     </div>

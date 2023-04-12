@@ -4,6 +4,8 @@
     flex-direction: column;
     min-height: 100vh;
   }
-.HomeBody {
+  
+.HomeHeader,
+.HomeBody{
   flex: 1;
 }

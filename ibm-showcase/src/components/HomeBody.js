@@ -50,7 +50,7 @@ function HomeBody() {
     <Box sx={{minHeight: '30.5rem', borderRadius:'1.5rem',backgroundImage:`linear-gradient(90deg, rgba(0,0,0,0.15) 25%, rgba(255,255,255,0) 40%),url(http://localhost:8080/api/images/${mainProject._id}/${mainProject?mainProject.bannerImage[0]:null})`, backgroundSize: 'cover',backgroundPosition:'center', margin:'0 0 4rem 0', position:'relative'}}>
       <Typography sx={{fontSize: '3rem', color: 'white', padding: '3rem 3rem 1rem 3rem', lineHeight:'90%'}}>{mainProject.title}</Typography>
       <Typography sx={{fontSize: '1.4rem', color: 'white', padding: '0 0 6rem 3rem ', width: '30%', textAlign: 'justify', maxHeight: '50%'}}> 
-      {mainProject ? mainProject.description.slice(0,300)+'...':null}
+      {mainProject ? mainProject.description.slice(0,120)+'...':null}
       </Typography>
       <Link to={`/projects/${mainProject._id}`}><Button 
         size="large" variant="contained" endIcon={<ChevronRightIcon />}

@@ -1,38 +1,40 @@
 import logo from './Skunk_works_Logo.svg.png';
-import Button from '@mui/material/Button';
-import './AdminHeader.css';
+import './Header.css';
 import {NavLink} from 'react-router-dom';
 
 function Header() {
 
   return (
-  <header className='Header' style={{maxWidth:'124rem',margin:'auto'}}>
-        <img src={logo}  alt="logo" style={{height:'3.5rem',width:'3.5rem',padding:"0 0 0 5rem"}} />
-        <section style={{padding:"0 5rem 0 0"}}>
-          <NavLink to="/" style={({ isActive}) => ({ 
+  <header className='header' style={{margin:'auto'}}>
+        <img src={logo}  alt="logo" className="logo"  />
+        <section className="nav-section" >
+          <NavLink to="/" className="nav-link" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: isActive ? "0.20em" : "0",
+                          textUnderlineOffset: isActive ? "0.35em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
+                          lineHeight: isActive ? "1.5" : "",
                           color: isActive ? "#191970" : "black",})}>
                           Home
           </NavLink>
-          <NavLink to="/projects" style={({ isActive}) => ({ 
+          <NavLink to="/projects" className="nav-link" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: isActive ? "0.20em" : "0",
+                          textUnderlineOffset: isActive ? "0.35em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
+                          lineHeight: isActive ? "1.5" : "",
                           color: isActive ? "#191970" : "black",})}>
                           Projects
           </NavLink>
-          <NavLink to="/about" style={({ isActive}) => ({ 
+          <NavLink to="/about" className="nav-link" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
-                          textUnderlineOffset: isActive ? "0.20em" : "0",
+                          textUnderlineOffset: isActive ? "0.35em" : "0",
                           textDecorationThickness: "3px",
                           fontWeight: isActive ? "bold" : "",
+                          lineHeight: isActive ? "1.5" : "",
                           color: isActive ? "#191970" : "black",})}>
                           About/Contact Us
           </NavLink>

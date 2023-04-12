@@ -6,16 +6,16 @@ import Footer from './Footer'
 import {Link} from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
+import './EditAbout.css';
 
 function EditAbout() {
-  document.body.style = 'background: #F4F7FE;';
   
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <div style={{ flex: 1 }}>
+    <div className="EditAbout">
+      <div className="EditAboutHeader">
         <AdminHeader />
       </div>
-      <div style={{ flex: 1 }}>
+      <div className="EditAboutBody" >
         <AboutEditContent />
       </div>
       <Footer />
@@ -35,7 +35,7 @@ function AboutEditContent() {
   })
 
   return (
-    <section style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>
+    <section className="Forms">
       <AboutLeft content={content}/>
       <AboutRight content={content}/>
     </section>
@@ -44,13 +44,6 @@ function AboutEditContent() {
 
 function AboutLeft(props) {
   const styles = {
-    styleleft:{
-      display:'flex',
-      flexDirection:'column',
-      width:"40%",
-      padding:'0 0 0 1rem',
-      marginBottom:'5rem'
-    },
     abouttitle:{
       fontSize: '3rem',
       padding:'5rem 0'
@@ -63,7 +56,7 @@ function AboutLeft(props) {
     },
   };
   return (
-    <Box style={styles.styleleft}>
+    <Box className="FormLeft">
       <Typography variant="h1" style={styles.abouttitle}>Current About Description</Typography>
       <Typography variant="h3" style={styles.abouttext}>
         <ReactMarkdown children= {props.content} />
@@ -74,12 +67,6 @@ function AboutLeft(props) {
 
 function AboutRight(props){
   const styles = {
-    about:{
-      display:'flex',
-      flexDirection:'column',
-      width:"40%",
-      padding:'0 0 0 1rem'
-    },
     abouttitle:{
       fontSize: '3rem',
       padding:'5rem 0 5rem 0'
@@ -121,15 +108,15 @@ function AboutRight(props){
   };
 
   return (
-    <Box style={styles.about} >
+    <Box className="FormRight">
       <Typography variant="h1" style={styles.abouttitle}>Edit About Description</Typography>
       <Box sx={styles.textFieldWrapper} >
         <TextField label="Edit About Description Here" multiline={true} minRows="15" required fullWidth inputProps={inputProps} value={newContent}
           onChange={handleInputChange}/>
       </Box>
       <div style={styles.aboutbutton}>
+        <Link to="/editproject" style={{textDecoration:'none'}}><Button style={{textTransform: 'none', margin: "0 1rem 0 1rem"}}variant="outlined">Cancel</Button></Link>
         <Button variant="contained" onClick={handleSubmit} type="submit" style={{textTransform: 'none'}}>Update</Button>
-        <Link to="/editproject" style={{textDecoration:'none'}}><Button style={{textTransform: 'none'}}variant="outlined">Cancel</Button></Link>
       </div>
     </Box>
   )

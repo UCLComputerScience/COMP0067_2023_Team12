@@ -7,7 +7,6 @@ hr {
 }
 
 h1, h3 {
-  font-family: "Segoe UI"; 
   font-weight: normal; 
   color: #1A2834;
 }
@@ -17,7 +16,7 @@ h3 {
 }
 
 .ProjectForm {
-  margin:0.5rem 6rem;
+  margin:0.5rem 10rem;
   display: flex;
   flex-direction: column;
 }
@@ -40,9 +39,33 @@ h3 {
 .FormLeft, .FormRight {
   display: flex;
   flex-direction: column;
-  width:42%;
+  width:47%;
 }
 
 .SubmitButton {
   margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+  .header-container,
+  .homebody-container {
+    width: 100%;
+  }
+  
+  .main-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  .ProjectForm {
+    margin: 0.5rem 1rem;
+  }
+
+  .Forms {
+    flex-direction: column;
+  }
+
+  .FormLeft, .FormRight {
+    width: 100%;
+  }
 }

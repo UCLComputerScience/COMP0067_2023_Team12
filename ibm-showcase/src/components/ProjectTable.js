@@ -174,7 +174,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
       
     };
     return (
-      <FormControl>
+      <FormControl >
         <Select value={placement} onChange={handleChange}>
           {statusOptions.map((option) => (
             <MenuItem key={option} value={option}>
@@ -282,7 +282,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
         const startX = 10;
         let startY = 25;
         let imgStartY = 25;
-        const lineHeight = 10;
+        const lineHeight = 5;
        
   
   
@@ -291,12 +291,28 @@ export default function DataTable({ searchTerm, filterTerm }) {
         doc.line(105, 20, 105, doc.internal.pageSize.height - 20, 'S');
         
         
-        doc.setFontSize(14)
-        doc.text(`Project Title: ${selectedRowData[i].title}`, 115, startY)
-        startY += lineHeight;
-    
-        doc.text(`Group Members: ${selectedRowData[i].groupMembers}`, 115, startY);
-        startY += lineHeight;
+        doc.setFontSize(13)
+        const maxTitleWidth = 80;
+        const titleLines = doc.setFont(undefined,'bold').splitTextToSize(selectedRowData[i].title, maxTitleWidth);
+        let titleLineCount = 0;
+        titleLines.forEach(line => {
+          doc.text(line, 115, startY + (titleLineCount * lineHeight));
+          titleLineCount++;
+        });
+        startY += lineHeight * titleLineCount;
+        startY += 3;
+
+        
+        doc.setFontSize(11);
+        const maxGroupMembersWidth = 80;
+        const groupMembersLines = doc.setFont(undefined,'normal').splitTextToSize(`Group Members: ${selectedRowData[i].groupMembers}`, maxGroupMembersWidth);
+        groupMembersLines.forEach(line => {
+          doc.text(line, 115, startY);
+          startY += lineHeight;
+        });
+        startY +=3;
+
+        
 
         const maxDescriptionWidth = 80;
         const maxWidth = 190; // Width of the area where the text should appear
@@ -333,7 +349,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
         
 
   return (
-    <Container className='projectTable' style={{ height: "567px", maxWidth: "1042px"}}>
+    <Container className='projectTable' style={{ height: "567px", maxWidth: "1042px" ,marginBottom:"5rem"}}>
             {error && (
               <Alert severity="error" onClose={() => setError(null)}>
                 {error}

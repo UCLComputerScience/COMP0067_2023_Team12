@@ -1,3 +1,10 @@
 .IndividualProjectPage {
-  background: #FFFFFF
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.IndividualBody {
+flex: 1;
 }

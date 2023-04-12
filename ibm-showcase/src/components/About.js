@@ -27,6 +27,16 @@ function About() {
 
 export default About;
 
+{/* <div className="main-container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div className="header-container" style={{ flex: 1 }}>
+        <AdminHeader />
+      </div>
+      <div className="homebody-container" style={{ flex: 1 }}>
+        <ProjectForm />
+      </div>
+      <Footer />
+    </div> */}
+
 function AboutContent() {
   const [description, setDescription] = useState(''); 
 
@@ -36,7 +46,7 @@ function AboutContent() {
   
 
   return (
-    <section style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>
+    <section className="Forms" >
       <AboutLeft description={description}/>
       <AboutRight />
     </section>
@@ -47,12 +57,6 @@ function AboutContent() {
 
 function AboutLeft(props) {
   const styles = {
-    styleleft:{
-      display:'flex',
-      flexDirection:'column',
-      width:"50%",
-      padding:'0 0 0 1rem'
-    },
     abouttitle:{
       fontSize: '4rem',
       padding:'5rem 0'
@@ -65,7 +69,7 @@ function AboutLeft(props) {
     },
   };
   return (
-    <Box style={styles.styleleft}>
+    <Box className="FormLeft" >
       <Typography variant="h1" style={styles.abouttitle}>About</Typography>
       {/* <Typography variant="h3" style={styles.abouttext}>
       IBM and UCL (University College London) have collaborated on various technology projects over the years. The IBM-UCL partnership has produced several cutting-edge technology projects and research initiatives, which have the potential to drive innovation and impact in various fields.      </Typography>
@@ -110,12 +114,6 @@ const AboutRight = () => {
   };
 
   const styles = {
-    styleright:{
-      display:'flex',
-      flexDirection:'column',
-      width:"35%",
-      padding:'0 1rem 0 0'
-    },
     abouttitle:{
       fontSize: '4rem',
       padding:'5rem 0'
@@ -134,7 +132,7 @@ const AboutRight = () => {
     },
   };
   return (
-      <form ref = {form} onSubmit = {sendEmail} style={styles.styleright}>
+      <form ref = {form} onSubmit = {sendEmail} className="FormRight" >
 
         <Typography variant="h1" style={styles.abouttitle}>Get Involved</Typography>
         <Typography variant="h3" style={styles.aboutsubtitle}>Name</Typography>
