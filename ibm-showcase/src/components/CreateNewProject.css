@@ -41,3 +41,27 @@ h3 {
   flex-direction: column;
   width:47%;
 }
+
+@media (max-width: 768px) {
+  .header-container,
+  .homebody-container {
+    width: 100%;
+  }
+  
+  .main-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  .ProjectForm {
+    margin: 0.5rem 1rem;
+  }
+
+  .Forms {
+    flex-direction: column;
+  }
+
+  .FormLeft, .FormRight {
+    width: 100%;
+  }
+}

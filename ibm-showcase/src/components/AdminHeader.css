@@ -5,22 +5,6 @@ header {
   background: white; 
 }
 
-header > section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-/*  background: darkgray; */
-  /*debugging*/
-
-}
-
-header > section > a {
-  margin: 0.5rem 0;
-  padding: 0 1.5rem;
-  font-size: 1.2rem;
-/*    background: lime; */
-  /*debugging*/
-}
 
 
 header > img {
@@ -35,26 +19,58 @@ header > img {
 }
 
 .logo {
-  height: 3.5rem;
-  width: 3.5rem;
+  height: 3.0rem;
+  width: 3.0rem;
   padding: 0 0 0 7.5rem;
 }
-@media screen and (max-width: 768px) {
+
+.nav-link {
+  font-size: 1rem;
+  padding: 0 0.75rem;
+}
+
+@media screen and (min-width: 375px) and (max-width: 768px) {
 
   .nav-section {
     display: flex;
     justify-content: flex-end;
-    padding: 0rem;
+    padding: 0 0 0 0rem;
   }
 
   .nav-link {
-    font-size: 14px;
-    padding: 0 0.75rem;
+    font-size: 1rem;
+    padding: 0 0 0 0rem;
   }
 
   .logo {
-    height: 2.0rem;
-    width: 2.0rem;
+    height: 1.0rem;
+    width: 1.0rem;
+    padding: 0 0 0 0rem;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nav-section {
+    display: flex;
+    justify-content: center;
     padding: 0rem;
+  }
+  
+  .nav-link {
+    font-size: 0.5rem;
+    padding: 0.25rem 0;
+    text-align: center;
+  }
+  
+  .logo {
+    height: 0.5rem;
+    width: 0.5rem;
+    padding: 0.5rem 0;
   }
 }

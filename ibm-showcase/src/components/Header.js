@@ -1,12 +1,11 @@
 import logo from './Skunk_works_Logo.svg.png';
-import Button from '@mui/material/Button';
 import './Header.css';
 import {NavLink} from 'react-router-dom';
 
 function Header() {
 
   return (
-  <header className='Header' style={{margin:'auto'}}>
+  <header className='header' style={{margin:'auto'}}>
         <img src={logo}  alt="logo" className="logo"  />
         <section className="nav-section" >
           <NavLink to="/" className="nav-link" style={({ isActive}) => ({ 

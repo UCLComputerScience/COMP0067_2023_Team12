@@ -21,11 +21,11 @@ function CreateNewProject() {
   document.body.style = 'background: #F4F7FE;';
   
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <div style={{ flex: 1 }}>
+    <div className="main-container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div className="header-container" style={{ flex: 1 }}>
         <AdminHeader />
       </div>
-      <div style={{ flex: 1 }}>
+      <div className="homebody-container" style={{ flex: 1 }}>
         <ProjectForm />
       </div>
       <Footer />
@@ -97,7 +97,18 @@ function Forms(props){
   )
 
 }
-
+// function Forms(props) {
+//   return (
+//     <Grid container spacing={2}>
+//       <Grid item xs={12} md={6}>
+//         <FormLeft titlehook={props.titlehook} />
+//       </Grid>
+//       <Grid item xs={12} md={6}>
+//         <FormRight passData={props.passData} titlehook={props.titlehook} />
+//       </Grid>
+//     </Grid>
+//   );
+// }
 function FormLeft(props) {
   const handleInputChange = (event) => {
     props.titlehook[1](event.target.value);
