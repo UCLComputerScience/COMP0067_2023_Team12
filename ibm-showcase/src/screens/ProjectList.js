@@ -11,7 +11,7 @@ function ProjectList() {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchTerm2, setSearchTerm2] = useState('');
-  console.log(searchTerm)
+  // console.log(searchTerm)
 
     return (
       <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
