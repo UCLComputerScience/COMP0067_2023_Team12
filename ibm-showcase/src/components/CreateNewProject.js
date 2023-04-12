@@ -199,9 +199,21 @@ function CategorySelect() {
           label="Select Project Category"
           onChange={handleChange}
         >
-          <MenuItem value={'AI'}>AI</MenuItem>
-          <MenuItem value={'VR'}>VR</MenuItem>
-          <MenuItem value={'Other'}>Other</MenuItem>
+          <MenuItem value={"AI"}>AI</MenuItem>
+          <MenuItem value={"Asset Management"}>Asset Management</MenuItem>
+          <MenuItem value={"Automation"}>Automation</MenuItem>
+          <MenuItem value={"Blockchain"}>Blockchain</MenuItem>
+          <MenuItem value={"Capstone"}>Capstone</MenuItem>
+          <MenuItem value={"Cloud"}>Cloud</MenuItem>
+          <MenuItem value={"Data Science"}>Data Science</MenuItem>
+          <MenuItem value={"Design Thinking"}>Design Thinking</MenuItem>
+          <MenuItem value={"Healthcare"}>Healthcare</MenuItem>
+          <MenuItem value={"IT"}>IT</MenuItem>
+          <MenuItem value={"Security"}>Security</MenuItem>
+          <MenuItem value={"Supply Chain"}>Supply Chain</MenuItem>
+          {/* <MenuItem value={'AI'}>AI</MenuItem> */}
+          {/* <MenuItem value={'VR'}>VR</MenuItem> */}
+          {/* <MenuItem value={'Other'}>Other</MenuItem> */}
         </Select>
       </FormControl>
     </Box>
@@ -221,9 +233,26 @@ function TagSelect() {
   };
 
   const tags = [
-  'Tag A',
-  'Tag B',
-  'Tag C',
+    "AI/ML", 
+    "Asset Management", 
+    "Automation", 
+    "Back-End", 
+    "Blockchain", 
+    "Capstone", 
+    "Cloud", 
+    "Data Science", 
+    "Design Thinking", 
+    "FinTech", 
+    "Front-End", 
+    "Healthcare", 
+    "IT", 
+    "Security", 
+    "Supply Chain", 
+    "Sustainability"
+  
+    // 'Tag A',
+    // 'Tag B',
+    // 'Tag C',
   ];
 
   function getStyles(tag, tags_selected, theme) {

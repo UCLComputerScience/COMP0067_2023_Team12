@@ -22,7 +22,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
 
     const [tableData,setTableData] = useState([])
 
-    const categories = ["AI/ML", "Back-End", "Cloud", "Cyber-Security", "Data Science", "FinTech", "Front-End", "Healthcare", "Quantum", "Sustaianability"]
+    const categories = ["AI", "Asset Management", "Automation", "Blockchain", "Capstone", "Cloud", "Data Science", "Design Thinking", "Healthcare", "IT", "Security", "Supply Chain"]
 
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)

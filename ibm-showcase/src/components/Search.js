@@ -17,7 +17,7 @@ function Search({ onSubmit, onSubmit2 }) {
 
     // const [selected, setSelected] = useState('');
 
-    const categories = ["AI/ML", "Back-End", "Cloud", "Cyber-Security", "Data Science", "FinTech", "Front-End", "Healthcare", "Quantum", "Sustaianability"]
+    const categories = ["AI", "Asset Management", "Automation", "Blockchain", "Capstone", "Cloud", "Data Science", "Design Thinking", "Healthcare", "IT", "Security", "Supply Chain"]
 
     const [selectedFilter, setSelectedFilter] = useState(1);
 

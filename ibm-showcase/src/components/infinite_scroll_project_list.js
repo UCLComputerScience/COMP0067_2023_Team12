@@ -20,6 +20,7 @@ import axios from "axios";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import sortAndFilterData from './sortingandfiltering';
 import {Link, useHistory, useNavigate, Navigate} from 'react-router-dom';
+import Chip from '@mui/material/Chip';
 
 export default function ListAllProjects({ searchTerm }) {
   const [items, setItems] = useState([]);
@@ -32,7 +33,7 @@ export default function ListAllProjects({ searchTerm }) {
 
   const [noResults, setNoResults] = useState(false);
 
-  const categories = ["AI/ML", "Back-End", "Cloud", "Cyber-Security", "Data Science", "FinTech", "Front-End", "Healthcare", "Quantum", "Sustainability"]
+  const categories = ["AI", "Asset Management", "Automation", "Blockchain", "Capstone", "Cloud", "Data Science", "Design Thinking", "Healthcare", "IT", "Security", "Supply Chain"]
 
 
 
@@ -47,7 +48,7 @@ export default function ListAllProjects({ searchTerm }) {
   const observer = useRef(null);
 
   function normalizeDescription(description) {
-    const maxLength = 100; 
+    const maxLength = 200; 
     if (description.length <= maxLength) {
       return description;
     } else {
@@ -194,7 +195,18 @@ export default function ListAllProjects({ searchTerm }) {
                     </Link>
                   </IconButton>
                 </Typography>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px', justifyContent: 'center' }}>
+                {item.tags.map((tag, index) => (
+                  <Chip
+                    key={index}
+                    label={tag}
+                  />
+                ))}
+              </div>
               </CardContent>
+
+              
+
             </Card>
           </Grid>
         ))}
