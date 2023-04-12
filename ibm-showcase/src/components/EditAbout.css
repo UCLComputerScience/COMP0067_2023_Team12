@@ -1,13 +1,14 @@
-.About {
-  background: #FFFFFF;
+.EditAbout {  
+  background-color: #F4F7FE;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
-.AboutBody,
-.AboutContent {
+.EditAboutHeader,
+.EditAboutBody{
 flex: 1;
 }
+
 .Forms {
   display: flex;
   flex-direction: row;
@@ -16,16 +17,16 @@ flex: 1;
 .FormLeft {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 40%;
   padding: 0 0 0 1rem;
+  margin-bottom: 5rem;
 }
 .FormRight {
   display: flex;
   flex-direction: column;
-  width: 35%;
-  padding: 0 1rem 0 0;
+  width: 40%;
+  padding: 0 0 0 1rem;
 }
-
 @media screen and (max-width: 768px) {
 
   .Forms {
