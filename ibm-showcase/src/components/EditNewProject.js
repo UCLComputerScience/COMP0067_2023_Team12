@@ -17,11 +17,11 @@ import { Toolbar, Alert } from '@mui/material';
 function EditNewProject() {
   document.body.style = 'background: #F4F7FE;';
   return (
-    <div  style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <div style={{ flex: 1 }}>
+    <div  className="main-container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div className="header-container" style={{ flex: 1 }}>
         <AdminHeader />
       </div>
-      <div style={{ flex: 1 }}>
+      <div className="homebody-container" style={{ flex: 1 }}>
         <ProjectForm />
       </div>
       <Footer />
@@ -135,7 +135,6 @@ function ProjectForm() {
   if (loading) {
     return <div>Loading...</div>;
   }
-
   return (
     <form className='ProjectForm' onSubmit={handleSubmit}>
       <Typography variant="h4" sx={{marginTop:'2rem'}}>Edit Project</Typography>
@@ -226,8 +225,8 @@ function FormRight(props) {
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project #HashTags</Typography>
       <TagSelect fillData={props.fillData} />
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "3rem" }}>
+        <Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined" sx={{textTransform: "none", margin: "0 1rem 0 1rem"}} >Cancel</Button></Link>
         <Button variant="contained" type="submit">Submit</Button>
-        <Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined">Cancel</Button></Link>
       </div>
 
     </div>

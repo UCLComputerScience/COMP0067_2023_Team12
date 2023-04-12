@@ -3,20 +3,18 @@
   display: flex;
   justify-content: space-around;
   padding: 3rem;
-  font-size: 1.2rem;
 }
 
 .logobox {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1.5rem;
+  margin-top: 5rem;
 }
 
 .logo1 {
   height: 4.0rem;
   width: 4.0rem;
-  padding: 3rem 0;
 }
 
 .icon {
