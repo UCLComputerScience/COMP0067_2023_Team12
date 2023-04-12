@@ -10,14 +10,15 @@ function ProjectList() {
   document.body.style = 'background: white;';
 
   const [searchTerm, setSearchTerm] = useState('');
-  // console.log(searchTerm)
+  const [searchTerm2, setSearchTerm2] = useState('');
+  console.log(searchTerm)
 
     return (
       <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <div style={{ flex: 1 }}>
           <Header  />
-          <ProjectSearch onSubmit={setSearchTerm} />
-          <ListAllProjects searchTerm={searchTerm}/>
+          <ProjectSearch onSubmit={setSearchTerm} searchInput={searchTerm2} />
+          <ListAllProjects searchTerm={searchTerm} searchTermBack={setSearchTerm2}/>
         </div>
         <Footer />
         {/* <AddProject/> */}

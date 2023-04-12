@@ -22,7 +22,7 @@ import sortAndFilterData from './sortingandfiltering';
 import {Link, useHistory, useNavigate, Navigate} from 'react-router-dom';
 import Chip from '@mui/material/Chip';
 
-export default function ListAllProjects({ searchTerm }) {
+export default function ListAllProjects({ searchTerm, searchTermBack }) {
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,6 +35,13 @@ export default function ListAllProjects({ searchTerm }) {
 
   const categories = ["AI", "Asset Management", "Automation", "Blockchain", "Capstone", "Cloud", "Data Science", "Design Thinking", "Healthcare", "IT", "Security", "Supply Chain"]
 
+  const tagList = ["AI/ML", "Asset Management", "Automation", "Back-End", "Blockchain", "Capstone", "Cloud", "Data Science", "Design Thinking", "FinTech", "Front-End", "Healthcare", "IT", "Security", "Supply Chain", "Sustainability"]
+
+  const [searchInput, setSearchInput] = React.useState('');
+  const handleChipClick = (tag) => {
+    setSearchInput(tag);
+    searchTermBack(tag)
+  };
 
 
   const selectionChangeHandlerSort = (event) => {
@@ -64,8 +71,12 @@ export default function ListAllProjects({ searchTerm }) {
 
     if (!searchTerm) {
       var url = `http://localhost:8080/api/projects`
+    } else { if (tagList.includes(searchTerm)) {
+      // console.log("THIS")
+      var url = `http://localhost:8080/api/projects`
     } else {
       var url = `http://localhost:8080/api/projects?title=${searchTerm}`
+    }
     }
 
     axios.get(url)
@@ -83,6 +94,13 @@ export default function ListAllProjects({ searchTerm }) {
         if (filter_val > 0) {
           response.data = response.data.filter((item) => item.category === categories[filter_val-1]);
         }
+
+        if (tagList.includes(searchTerm)) {
+          response.data = response.data.filter((item) =>
+            item.tags.includes(searchTerm)
+          );
+        }
+        console.log(searchTerm)
 
          const normalisedData = response.data.map((item) => {
           return {
@@ -200,6 +218,7 @@ export default function ListAllProjects({ searchTerm }) {
                   <Chip
                     key={index}
                     label={tag}
+                    onClick={() => handleChipClick(tag)}
                   />
                 ))}
               </div>
