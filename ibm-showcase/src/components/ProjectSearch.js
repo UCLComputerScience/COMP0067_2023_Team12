@@ -37,6 +37,7 @@ function ProjectSearch({ onSubmit, searchInput }) {
     useEffect(() => {
         setInputValue(searchInput)
         onSubmit(searchInput);
+        window.scrollTo(0, 0);
     }, [searchInput]);
 
     // console.log(inputValue)
