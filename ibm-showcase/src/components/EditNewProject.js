@@ -362,7 +362,10 @@ function TagSelect(props) {
             input={<OutlinedInput id="select-multiple-chip" label="Project Tags" />}
             renderValue={(selected) => (
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                {selected.map((value) => (
+                {selected
+                .slice() 
+                .sort((a, b) => a.localeCompare(b)) 
+                .map((value) => (
                   <Chip key={value} label={value} />
                 ))}
               </Box>
