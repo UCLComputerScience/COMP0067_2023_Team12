@@ -214,7 +214,10 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
                   </IconButton>
                 </Typography>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px', justifyContent: 'center' }}>
-                {item.tags.map((tag, index) => (
+                {item.tags
+                .slice() 
+                .sort((a, b) => a.localeCompare(b)) 
+                .map((tag, index) => (
                   <Chip
                     key={index}
                     label={tag}
