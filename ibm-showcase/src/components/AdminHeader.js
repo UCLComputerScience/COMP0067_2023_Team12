@@ -17,11 +17,11 @@ function AdminHeader() {
   };
 
   return (
-  <header style={{margin:'auto'}}>
-        <img src={logo} alt="logo" style={{height:'3.5rem',width:'3.5rem',padding:'0 0 0 7.5rem'}} />
-        <section style={{padding:'0 8rem 0 0'}} >
+  <header className="header" style={{margin:'auto'}}>
+        <img src={logo} alt="logo" className="logo"/>
+        <section className="nav-section" >
           
-          <NavLink to="/createproject" style={({ isActive}) => ({ 
+          <NavLink to="/createproject" className="nav-link" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
                           textUnderlineOffset: isActive ? "0.35em" : "0",
@@ -32,7 +32,7 @@ function AdminHeader() {
                           Create Projects
           </NavLink>
          
-          <NavLink to="/editproject" style={({ isActive}) => ({ 
+          <NavLink to="/editproject" className="nav-link" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
                           textUnderlineOffset: isActive ? "0.35em" : "0",
@@ -42,7 +42,7 @@ function AdminHeader() {
                           color: isActive ? "#191970" : "black",})}>
                           Edit Projects
           </NavLink>
-          <NavLink to="/editabout" style={({ isActive}) => ({ 
+          <NavLink to="/editabout" className="nav-link" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
                           textUnderlineOffset: isActive ? "0.35em" : "0",
