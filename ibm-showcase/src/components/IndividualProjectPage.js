@@ -61,7 +61,7 @@ function ProjectVideoSection(props) {
   };
   return (
     <Box sx={{position:'relative',minHeight: '40rem',backgroundImage:`url(http://localhost:8080/api/images/${props.project._id}/${props.project?props.project.bannerImage[0]:null})`,
-     backgroundSize: 'cover'}}>
+     backgroundSize: 'cover', display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
       {isPlaying ? (
         <div style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}}>
           <ReactPlayer
@@ -75,7 +75,7 @@ function ProjectVideoSection(props) {
         </div>
       ) : (
         <div>
-          <PlayCircleIcon sx={{fontSize: '5rem', color: 'gray', position:'absolute', left: '50%', top: '50%', transform:`translate(-80%, -80%)`,cursor: 'pointer'}} onClick={handlePlayClick}/>
+          <PlayCircleIcon sx={{fontSize: '5rem', color: 'lightgray',cursor: 'pointer'}} onClick={handlePlayClick}/>
         </div>
       )}
       
