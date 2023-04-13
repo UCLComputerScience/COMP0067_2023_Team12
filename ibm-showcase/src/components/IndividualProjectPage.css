@@ -39,7 +39,12 @@ flex: 1;
   margin: 6rem 0 1rem 1rem;
 }
 
-@media (max-width: 768px) {
+.iconlogo {
+  width: 3rem;
+  height: 3rem;
+}
+
+@media (max-width: 1280px) {
 
   .projectSections {
     flex-direction: column;
@@ -65,6 +70,9 @@ flex: 1;
   .projectSlider {
     width: 100%;
     margin: auto;
+  }
+  .iconlogo {
+    font-size: 2rem;
   }
 }
 

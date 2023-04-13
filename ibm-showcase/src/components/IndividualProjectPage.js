@@ -76,8 +76,6 @@ function ProjectVideoSection(props) {
       ) : (
         <div>
           <PlayCircleIcon sx={{fontSize: '5rem', color: 'gray', position:'absolute', left: '50%', top: '50%', transform:`translate(-80%, -80%)`,cursor: 'pointer'}} onClick={handlePlayClick}/>
-          {/* <Typography sx={{position:'absolute',fontSize: '1.5rem', color: 'white', bottom:'7rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.groupMembers}</Typography>
-          <Typography sx={{position:'absolute',fontSize: '3rem', color: 'white', bottom:'3rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.title}</Typography> */}
         </div>
       )}
       
@@ -93,11 +91,11 @@ function ProjectDetail(props) {
     <section className="projectDetailSection">
       <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1.5rem',md: '2rem'},padding:'2rem 0' }}>{props.project.title}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
-      <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',fontWeight:  "bold" }}>Group Members</Typography>
-      <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',}}>{props.project.groupMembers}</Typography>
+      <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1.2rem',md: '1.5rem'},padding:'1rem 0',fontWeight:  "bold" }}>Group Members</Typography>
+      <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1.2rem',md: '1.5rem'},padding:'1rem 0',}}>{props.project.groupMembers}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
-      <Typography variant="body1"sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',fontWeight:  "bold" }}>Supervisors</Typography>
-      <Typography variant="body1"sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',}}>{props.project.supervisors}</Typography>
+      <Typography variant="body1"sx={{fontSize:{xs: '1rem',sm: '1.2rem',md: '1.5rem'},padding:'1rem 0',fontWeight:  "bold" }}>Supervisors</Typography>
+      <Typography variant="body1"sx={{fontSize:{xs: '1rem',sm: '1.2rem',md: '1.5rem'},padding:'1rem 0',}}>{props.project.supervisors}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
       <ProjectDescription project={props.project}/>
     </section>
@@ -107,8 +105,7 @@ function ProjectDetail(props) {
 function ProjectDescription(props) {
   const shareUrl = 'https://www.ibm.com/blogs/think/uk-en/this-is-john-creating-collaborative-projects-with-universities/';
   const tweetText = 'Check out this innovative project!';
-  const tweethashtags = ['hashtag1', 'hashtag2', 'hashtag3'];
-  const twitterUrl = `https://twitter.com/share?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareUrl)}&hashtags=${encodeURIComponent(tweethashtags.join(' #'))}`;
+  const twitterUrl = `https://twitter.com/share?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareUrl)}`;
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
   const LinkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
   
@@ -121,18 +118,18 @@ function ProjectDescription(props) {
   return (
     <div className="projectSections">
       <section className="projectSection">
-        <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',fontWeight:  "bold" }}>Description</Typography>
-        <Typography variant="body1"sx={{fontSize:{xs: '1rem',sm: '1rem',md: '1.5rem'},padding:'1rem 0',}}>{props.project.description}</Typography>
+        <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1.2rem',md: '1.5rem'},padding:'1rem 0',fontWeight:  "bold" }}>Description</Typography>
+        <Typography variant="body1"sx={{fontSize:{xs: '1rem',sm: '1.2rem',md: '1.5rem'},padding:'1rem 0',}}>{props.project.description}</Typography>
        {/* <text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
         <br/><br/>*/}
       </section>
       <section className="projectSlider" >
         <SimpleSlider project={props.project}/>
         <div style={{fontSize:'1.5rem', padding:'2rem'}}>Share on social media or print:
-          <IconButton href={twitterUrl} ><Twitter style={{fontSize: '3rem'}}/></IconButton>
-          <IconButton href={facebookUrl}><Facebook style={{fontSize: '3rem'}} /></IconButton>
-          <IconButton href={LinkedInUrl}><LinkedIn style={{fontSize: '3rem'}} /></IconButton>
-          <IconButton onClick={handlePrint}><Print style={{fontSize: '3rem'}} /></IconButton>
+          <IconButton href={twitterUrl} ><Twitter style={{fontSize: '2rem'}} /></IconButton>
+          <IconButton href={facebookUrl}><Facebook style={{fontSize: '2rem'}}  /></IconButton>
+          <IconButton href={LinkedInUrl}><LinkedIn style={{fontSize: '2rem'}} /></IconButton>
+          <IconButton onClick={handlePrint}><Print style={{fontSize: '2rem'}} /></IconButton>
         </div>
       </section>
     </div>
@@ -212,13 +209,13 @@ export function ThreeProjectTiles(props){
   return(
     <section style={{display: 'flex', flexDirection: 'row', columnGap: '2%'}}>
       <Grid container spacing={1} sx={{ width: "100%" ,padding: "0 1rem",margin:"auto"}} >
-        <Grid item xs={12} sm={12} md={4} container justifyContent="center">
+        <Grid item xs={12} sm={12} md={12} lg={4} container justifyContent="center">
           <ProjectTile img={`http://localhost:8080/api/images/${projects[0]._id}/${projects[0].images[0]}`} title={projects[0].title} description={projects[0].description} id={projects[0]._id}/>
         </Grid>
-        <Grid item xs={12} sm={12} md={4} container justifyContent="center">
+        <Grid item xs={12} sm={12} md={12} lg={4} container justifyContent="center">
          <ProjectTile img={`http://localhost:8080/api/images/${projects[1]._id}/${projects[1].images[0]}`} title={projects[1].title} description={projects[1].description} id={projects[1]._id}/>
         </Grid>
-        <Grid item xs={12} sm={12} md={4} container justifyContent="center">
+        <Grid item xs={12} sm={12} md={12} lg={4} container justifyContent="center">
           <ProjectTile img={`http://localhost:8080/api/images/${projects[2]._id}/${projects[2].images[0]}`} title={projects[2].title} description={projects[2].description} id={projects[2]._id}/>
         </Grid>
       </Grid>

@@ -3,3 +3,24 @@
   height:100%;
   background: linear-gradient(180deg, #131F30 35rem, #FFFFFF 0)
 }
+.HomeSection {
+  margin: auto; 
+  padding: 0 7rem; 
+  max-width: 110rem;
+  }
+.HomeAboutSection {
+  margin: auto;
+  padding: 0 7rem;
+  max-width: 110rem;
+}
+
+  @media (max-width: 900px) {
+    .HomeSection {
+      padding: 0 1rem; 
+      max-width: 110rem;
+      }
+    .HomeAboutSection {
+      padding: 0 1rem;
+      max-width: 110rem;
+    }
+  }
