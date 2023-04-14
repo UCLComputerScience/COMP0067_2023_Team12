@@ -64,7 +64,7 @@ function AdminHeader() {
           </NavLink>
           
           <Button variant="text"size="small"><SupervisorAccountIcon onClick={handleIconClick}/>
-            <Select open={open} onClose={handleClose} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
+            <Select open={open} onClick={handleIconClick} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
             <Link to="/changepassword" style={{textDecoration: "none",color:'inherit'}}><MenuItem value={1}><SettingsIcon/>Change Password</MenuItem></Link>
             <MenuItem value={2} onClick={handleLogout}><LogoutIcon/>Log out</MenuItem>
             </Select>
