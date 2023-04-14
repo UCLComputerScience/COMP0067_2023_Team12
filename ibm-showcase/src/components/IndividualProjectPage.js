@@ -119,7 +119,7 @@ function ProjectDescription(props) {
     <div className="projectSections">
       <section className="projectSection">
         <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1.2rem',md: '1.5rem'},padding:'1rem 0',fontWeight:  "bold" }}>Description</Typography>
-        <Typography variant="body1"sx={{fontSize:{xs: '1rem',sm: '1.2rem',md: '1.5rem'},padding:'1rem 0',}}>{props.project.description}</Typography>
+        <Typography variant="body1" sx={{fontSize:{xs: '1rem',sm: '1.2rem',md: '1.5rem'},padding:'1rem 0', whiteSpace: 'pre-wrap'}}>{props.project.description}</Typography>
        {/* <text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
         <br/><br/>*/}
       </section>
