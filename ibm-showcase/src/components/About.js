@@ -58,11 +58,11 @@ function AboutContent() {
 function AboutLeft(props) {
   const styles = {
     abouttitle:{
-      fontSize: '4rem',
+      fontSize: '3.5rem',
       padding:'5rem 0'
     },
     abouttext:{
-      fontSize: '1.5rem', 
+      fontSize: '1.3rem', 
       lineHeight: '150%',
       textAlign: 'justify',
       whiteSpace: 'pre-wrap',
@@ -115,18 +115,18 @@ const AboutRight = () => {
 
   const styles = {
     abouttitle:{
-      fontSize: '4rem',
+      fontSize: '3.5rem',
       padding:'5rem 0'
     },
     aboutsubtitle:{
-      fontSize: '2rem',
+      fontSize: '1.5rem',
       marginBottom:'1rem'
     },
     abouttextfield:{
       marginBottom:'1.5rem'
     },
     aboutbutton:{
-      fontSize:'1.5em',
+      fontSize:'1em',
       textTransform: "none",
       marginBottom:'1.5rem'
     },
