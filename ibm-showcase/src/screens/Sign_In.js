@@ -16,6 +16,7 @@ import Header from '../components/Header';
 import { Toolbar, Alert } from '@mui/material';
 import axios from "axios";
 import {Link, useHistory, useNavigate, Navigate} from 'react-router-dom';
+
 // import { toast, ToastContainer } from 'react-toastify';
 
 
@@ -162,7 +163,7 @@ export default class Sign_In extends Component {
                 marginTop: 8,
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
+                alignItems: 'center', 
             }}
             >
             {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -181,14 +182,21 @@ export default class Sign_In extends Component {
                     // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}
                     variant='outlined'
                     sx={{
-                      width: '600px',
+                      width: { xs: '100%', sm: '600px' },
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#3D70B200',
                         backgroundColor: '#3D70B225',
                         borderRadius: '50px !important',},
                       "& .MuiInputLabel-root": {
-                        transform: labelStateUser ? 'translate(14px, -6px) scale(0.75)' : 'translate(265px, 16px) scale(1)',
+                        transform: labelStateUser ? 'translate(14px, -6px) scale(0.75)' :  { xs: 'translate(200%, 16px) scale(1)', sm: 'translate(265px, 16px) scale(1)' },
                         transformOrigin: 'top left',
+                      },
+                      "& .Mui-focused .MuiInputLabel-root": {
+                        transform: 'translate(14px, -6px) scale(0.75)',
+                        transformOrigin: 'top left',
+                      },
+                      "@media (max-width: 400px)": {
+                        "& .MuiInputLabel-root": {transform: labelStateUser? 'translate(14px, -6px) scale(0.75)': 'translate(180%, 16px) scale(1)'},
                       },
                       "& .Mui-focused .MuiInputLabel-root": {
                         transform: 'translate(14px, -6px) scale(0.75)',
@@ -222,19 +230,26 @@ export default class Sign_In extends Component {
                 />
                 <TextField
                     sx={{
-                      width: '600px',
+                      width: { xs: '100%', sm: '600px' },
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#3D70B200',
                         backgroundColor: '#3D70B225',
                         borderRadius: '50px !important',},
                       "& .MuiInputLabel-root": {
-                        transform: labelStatePass ? 'translate(14px, -6px) scale(0.75)' : 'translate(265px, 16px) scale(1)',
+                        transform: labelStatePass ? 'translate(14px, -6px) scale(0.75)' : { xs: 'translate(210%, 16px) scale(1)', sm: 'translate(265px, 16px) scale(1)' },
                         transformOrigin: 'top left',
                       },
                       "& .Mui-focused .MuiInputLabel-root": {
                         transform: 'translate(14px, -6px) scale(0.75)',
                         transformOrigin: 'top left',
-                      }
+                      },
+                      "@media (max-width: 400px)": {
+                        "& .MuiInputLabel-root": {transform: labelStateUser? 'translate(14px, -6px) scale(0.75)': 'translate(190%, 16px) scale(1)'},
+                      },
+                      "& .Mui-focused .MuiInputLabel-root": {
+                        transform: 'translate(14px, -6px) scale(0.75)',
+                        transformOrigin: 'top left',
+                      },
                     }}
                     margin="normal"
                     // required
@@ -259,9 +274,11 @@ export default class Sign_In extends Component {
                       ref: this.inputRef,
                     }}
                 />
-                <Link to='/forgotpassword'>
-                  Forgot password?
-                </Link>
+                <Box>
+                  <Link to='/forgotpassword'>
+                    Forgot password?
+                  </Link>
+                </Box>
                 <Box 
                 sx={{
                   display: 'flex', 

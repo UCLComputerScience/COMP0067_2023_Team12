@@ -195,13 +195,13 @@ export default class ForgotPassword extends Component {
                     // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}
                     variant='outlined'
                     sx={{
-                      width: '600px',
+                      width: { xs: '100%', sm: '600px' },
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#3D70B200',
                         backgroundColor: '#3D70B225',
                         borderRadius: '50px !important',},
                       "& .MuiInputLabel-root": {
-                        transform: labelStateUser ? 'translate(14px, -6px) scale(0.75)' : 'translate(265px, 16px) scale(1)',
+                        transform: labelStateUser ? 'translate(14px, -6px) scale(0.75)' :  { xs: 'translate(85%, 16px) scale(1)', sm: 'translate(265px, 16px) scale(1)' },
                         transformOrigin: 'top left',
                       },
                       "& .Mui-focused .MuiInputLabel-root": {
@@ -245,7 +245,7 @@ export default class ForgotPassword extends Component {
                 // fullWidth
                 variant="contained"
                 sx={{ 
-                  width: '200px',
+                  width: { xs: '120px', sm: '200px' },
                   borderRadius: '50px',
                   mt: 2, mb: 2,
                   // display: 'flex', 
