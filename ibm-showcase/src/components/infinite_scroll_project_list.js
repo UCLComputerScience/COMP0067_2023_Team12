@@ -178,7 +178,7 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
                 
         </Grid>
         <Grid sx={{ py: 3}} />
-      <Grid container spacing={4} sx={{px:10}} >
+      <Grid container spacing={4} sx={{ px: { xs: 4, sm: 10 } }} >
         {noResults && (
           <Grid item xs={18} sx={{ textAlign: "center", pb: 4 }}>
               <Typography fontWeight="bold" variant="h3">There are no results.</Typography>
