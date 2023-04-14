@@ -102,7 +102,8 @@ export default function DataTable({ searchTerm, filterTerm }) {
     { field: '_id',headerName: 'ID', width: 130 },
     { field: 'title', headerclassName: 'super-app-theme--header', headerName: 'Project Title', width: 285 },
     // { field: 'description',headerName: 'Description', width: 130 },
-    { field: 'groupMembers', headerclassName: 'super-app-theme--header', headerName: 'Group Members', width: 120 },
+    {field:'supervisors',headerName:'Supervisor',width:160},
+    { field: 'groupMembers', headerclassName: 'super-app-theme--header', headerName: 'Group Members', width: 243 },
     { field: 'createdAt',headerName: 'Date Created',width:98 },
     {field: 'updatedAt', headerName: 'Last Edited', width: 98 },
     {field: 'actions', headerName: 'Actions', width: 90,
@@ -349,7 +350,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
         
 
   return (
-    <Container className='projectTable' style={{ height: "567px", maxWidth: "1042px" ,marginBottom:"5rem"}}>
+    <Container className='projectTable' style={{ height: "567px", maxWidth: "1300px" ,marginBottom:"5rem"}}>
             {error && (
               <Alert severity="error" onClose={() => setError(null)}>
                 {error}
