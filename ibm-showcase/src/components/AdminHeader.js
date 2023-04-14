@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import logo from './Skunk_works_Logo.svg.png';
 import './AdminHeader.css';
 import {Link, NavLink,useNavigate} from 'react-router-dom';
@@ -10,10 +11,19 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 function AdminHeader() {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
     navigate('/');
+  };
+  const handleIconClick = (event) => {
+    event.stopPropagation();
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -52,8 +62,9 @@ function AdminHeader() {
                           color: isActive ? "#191970" : "black",})}>
                           Edit About
           </NavLink>
-          <Button variant="text"size="small"><SupervisorAccountIcon/>
-            <Select input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
+          
+          <Button variant="text"size="small"><SupervisorAccountIcon onClick={handleIconClick}/>
+            <Select open={open} onClose={handleClose} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
             <Link to="/changepassword" style={{textDecoration: "none",color:'inherit'}}><MenuItem value={1}><SettingsIcon/>Change Password</MenuItem></Link>
             <MenuItem value={2} onClick={handleLogout}><LogoutIcon/>Log out</MenuItem>
             </Select>
