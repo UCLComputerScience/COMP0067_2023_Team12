@@ -28,6 +28,16 @@ function Header() {
                           color: isActive ? "#191970" : "black",})}>
                           Projects
           </NavLink>
+          <NavLink to="/learn" className="nav-link" style={({ isActive}) => ({ 
+                          textDecoration: isActive ? "underline":"none",
+                          textDecorationColor: isActive ? "#191970" :"none",
+                          textUnderlineOffset: isActive ? "0.35em" : "0",
+                          textDecorationThickness: "3px",
+                          fontWeight: isActive ? "bold" : "",
+                          lineHeight: isActive ? "1.5" : "",
+                          color: isActive ? "#191970" : "black",})}>
+                          Get Involved
+          </NavLink>
           <NavLink to="/about" className="nav-link" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
                           textDecorationColor: isActive ? "#191970" :"none",
@@ -36,7 +46,7 @@ function Header() {
                           fontWeight: isActive ? "bold" : "",
                           lineHeight: isActive ? "1.5" : "",
                           color: isActive ? "#191970" : "black",})}>
-                          About/Contact Us
+                          About & Contact Us
           </NavLink>
         </section>
   </header>
