@@ -20,7 +20,7 @@
   display: block;
 }
 
-@media screen and (min-width: 375px) and (max-width: 768px) {
+@media screen and (min-width: 428px) and (max-width: 768px) {
 
   .nav-section {
     display: flex;
@@ -41,7 +41,7 @@
 }
 
 
-@media screen and (max-width: 374px) {
+@media screen and (max-width: 428px) {
   .header {
     display: flex;
     flex-direction: column;
