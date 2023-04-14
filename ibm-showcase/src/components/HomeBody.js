@@ -45,7 +45,7 @@ function HomeBody() {
   return (
   <div className="HomeBody">
   <section style={{margin:'auto', padding:'0 7rem', maxWidth:'110rem'}}>
-    <Typography variant="h3" sx={{color:'white', fontSize:'4rem', marginBottom:'1rem', marginTop:0, paddingTop:'3rem'}}><PagesIcon sx={{fontSize:'3rem', padding: '0 0.5rem'}}/>Featured Projects</Typography>
+    <Typography variant="h3" sx={{color:'white', fontSize:'3.5rem', marginBottom:'1rem', marginTop:0, paddingTop:'3rem'}}><PagesIcon sx={{fontSize:'3rem', padding: '0 0.5rem'}}/>Featured Projects</Typography>
     <hr style={{margin:'0 0 3rem 0',  height:'1px', color: '#E6E6E6', backgroundColor: '#E6E6E6', border: 'none'}}/>
     <Box sx={{minHeight: '30.5rem', borderRadius:'1.5rem',backgroundImage:`linear-gradient(90deg, rgba(0,0,0,0.15) 25%, rgba(255,255,255,0) 40%),url(http://localhost:8080/api/images/${mainProject._id}/${mainProject?mainProject.bannerImage[0]:null})`, backgroundSize: 'cover',backgroundPosition:'center', margin:'0 0 4rem 0', position:'relative'}}>
       <Typography sx={{fontSize: '3rem', color: 'white', padding: '3rem 3rem 1rem 3rem', lineHeight:'90%'}}>{mainProject.title}</Typography>
@@ -62,9 +62,9 @@ function HomeBody() {
     <ThreeProjectTiles projects={projects}/>
     <div style={{display:'flex', flexDirection:'row-reverse'}}>
       <Link to="/projects" style={{textDecoration:'none',color:'inherit'}} ><Button size="large" variant="text"
-        sx={{textTransform: "none", fontSize:'2rem', padding:'0 0 0 0.7rem', margin:'1rem 0'}}
+        sx={{textTransform: "none", fontSize:'1.3rem', padding:'0 0 0 0.7rem', margin:'1rem 0'}}
       >
-        Explore All Projects<ChevronRightIcon sx={{fontSize:'2.2rem'}}/>
+        Explore All Projects<ChevronRightIcon sx={{fontSize:'2.0rem'}}/>
       </Button></Link>
     </div>
   </section>
@@ -100,17 +100,17 @@ export function ProjectTile(props){
       '&:hover': {backgroundImage:`linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(${props.img})`}}}
     >
       {isShown && (
-        <section style={{color:'white', padding: '1.5rem 1.5rem 5rem 1.5rem', textAlign: 'justify', fontSize:'1.5rem'}}> 
+        <section style={{color:'white', padding: '1.5rem 1.5rem 5rem 1.5rem', textAlign: 'justify', fontSize:'1rem'}}> 
         {normalisedDescription}
         {/* Description Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. */}
         </section>)
       }
       
       <Link to={`/projects/${props.id}`}><Button size='large' variant="text" 
-      sx={{fontSize: '2.2rem', color: 'white', textTransform: "none", padding:'0.5rem 0.5rem', textAlign:'left', margin:'0.5rem 1rem', lineHeight:'1.21', 
+      sx={{fontSize: '1.5rem', color: 'white', textTransform: "none", padding:'0.5rem 0.5rem', textAlign:'left', margin:'0.5rem 1rem', lineHeight:'1.21', 
            position:'absolute', bottom:'0', fontWeight:'bold'}}
       >
-        <span>{props.title}<ChevronRightIcon sx={{fontSize:'2.2rem', margin:'0 0 -0.4rem 0.5rem', padding:"0"}}/></span>
+        <span>{props.title}<ChevronRightIcon sx={{fontSize:'2rem', margin:'0 0 -0.4rem 0.5rem', padding:"0"}}/></span>
       </Button></Link>
     </Box>
   );

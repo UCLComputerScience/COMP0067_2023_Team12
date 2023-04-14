@@ -75,8 +75,8 @@ function ProjectVideoSection(props) {
       ) : (
         <div>
           <PlayCircleIcon sx={{fontSize: '5rem', color: 'white', position:'absolute', left: '50%', top: '50%', transform:`translate(-50%, -50%)`,cursor: 'pointer'}} onClick={handlePlayClick}/>
-          <Typography sx={{position:'absolute',fontSize: '1.5rem', color: 'white', bottom:'7rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.groupMembers}</Typography>
-          <Typography sx={{position:'absolute',fontSize: '3rem', color: 'white', bottom:'3rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.title}</Typography>
+          <Typography sx={{position:'absolute',fontSize: '1.5rem', color: 'white', bottom:'10rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.groupMembers}</Typography>
+          <Typography sx={{position:'absolute',fontSize: '3rem',color: 'white', bottom:'1.5rem', left: '50%', transform: `translateX(-50%)`}}>{props.project.title}</Typography>
         </div>
       )}
       
@@ -89,13 +89,13 @@ function ProjectVideoSection(props) {
 function ProjectDetail(props) {
   return (
     <section style={{margin:'auto', padding:'0 7rem', maxWidth:'130rem',fontSize:'2rem', lineHeight:'90%', position:'relative'}}>
-      <Typography variant="body1" sx={{fontSize:'3rem',padding:'2rem 0' }}>{props.project.title}</Typography>
+      <Typography variant="body1" sx={{fontSize:'2.5rem',padding:'2rem 0' }}>{props.project.title}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
-      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',fontWeight:  "bold" }}>Group Members</Typography>
-      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',}}>{props.project.groupMembers}</Typography>
+      <Typography variant="body1"sx={{fontSize:'1.5rem',padding:'1rem 0',fontWeight:  "bold" }}>Group Members</Typography>
+      <Typography variant="body1"sx={{fontSize:'1.5rem',padding:'1rem 0',}}>{props.project.groupMembers}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
-      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',fontWeight:  "bold" }}>Supervisors</Typography>
-      <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',}}>{props.project.supervisors}</Typography>
+      <Typography variant="body1"sx={{fontSize:'1.5rem',padding:'1rem 0',fontWeight:  "bold" }}>Supervisors</Typography>
+      <Typography variant="body1"sx={{fontSize:'1.5rem',padding:'1rem 0',}}>{props.project.supervisors}</Typography>
       <hr style={{margin:'0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
       <ProjectDescription project={props.project}/>
     </section>
@@ -119,18 +119,18 @@ function ProjectDescription(props) {
   return (
     <div style={{display:'flex', flex:'1'}}>
       <section style={{width:'50%'}}>
-        <Typography variant="body1" sx={{fontSize:'2rem',padding:'1rem 0',fontWeight:  "bold" }}>Description</Typography>
-        <Typography variant="body1"sx={{fontSize:'2rem',padding:'1rem 0',}}>{props.project.description}</Typography>
+        <Typography variant="body1" sx={{fontSize:'1.5rem',padding:'1rem 0',fontWeight:  "bold" }}>Description</Typography>
+        <Typography variant="body1"sx={{fontSize:'1.5rem',padding:'1rem 0',}}>{props.project.description}</Typography>
        {/* <text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
         <br/><br/>*/}
       </section>
       <section style={{width:'50%',margin:'6rem 0 1rem 1rem'}}>
         <SimpleSlider project={props.project}/>
-        <div style={{fontSize:'1.5rem', padding:'2rem'}}>Share on social media or print:
-          <IconButton href={twitterUrl} ><Twitter style={{fontSize: '3rem'}}/></IconButton>
-          <IconButton href={facebookUrl}><Facebook style={{fontSize: '3rem'}} /></IconButton>
-          <IconButton href={LinkedInUrl}><LinkedIn style={{fontSize: '3rem'}} /></IconButton>
-          <IconButton onClick={handlePrint}><Print style={{fontSize: '3rem'}} /></IconButton>
+        <div style={{fontSize:'1rem', padding:'2rem'}}>Share on social media or print:
+          <IconButton href={twitterUrl} ><Twitter style={{fontSize: '2rem'}}/></IconButton>
+          <IconButton href={facebookUrl}><Facebook style={{fontSize: '2rem'}} /></IconButton>
+          <IconButton href={LinkedInUrl}><LinkedIn style={{fontSize: '2rem'}} /></IconButton>
+          <IconButton onClick={handlePrint}><Print style={{fontSize: '2rem'}} /></IconButton>
         </div>
       </section>
     </div>
@@ -166,7 +166,7 @@ function SimpleSlider(props) {
 function SimilarProjects(props) {
   return (
     <section style={{margin:'auto', padding:'4rem 7rem 8rem 7rem', maxWidth:'130rem',fontSize:'2rem', lineHeight:'90%', position:'relative'}}>
-      <p style={{fontSize:'3rem', marginBottom:'2rem', textAlign: 'center'}}>Similar Projects</p>
+      <p style={{fontSize:'2.5rem', marginBottom:'2rem', textAlign: 'center'}}>Similar Projects</p>
       <hr style={{margin:'0 0 4rem 0',  height:'0.1rem', color: '#858282', backgroundColor: '#858282', border: 'none'}}/>
       <ThreeProjectTiles project={props.project}/>
     </section>
