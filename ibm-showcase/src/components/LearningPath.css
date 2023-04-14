@@ -1,0 +1,46 @@
+.Learning {
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.LearningBody {
+flex: 1;
+}
+
+.Forms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.FormLeft {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 0 0 0 1rem;
+}
+.FormRight {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  padding: 0 1rem 0 0;
+}
+
+@media screen and (max-width: 768px) {
+  .Forms {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .FormLeft {
+    width: 80%;
+    flex: 1;
+    padding: 0 !important;
+  }
+  .FormRight {
+    width: 80%;
+    flex: 1;
+    padding: 0;
+  }
+}
