@@ -16,6 +16,7 @@
   height: 3.0rem;
   width: 3.0rem;
   padding: 0 0 0 7.5rem;
+  margin: 1rem 2rem;
 }
 
 @media screen and (min-width: 375px) and (max-width: 768px) {

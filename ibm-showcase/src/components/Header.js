@@ -6,7 +6,7 @@ function Header() {
 
   return (
   <header className='header' style={{margin:'auto'}}>
-        <img src={logo}  alt="logo" className="logo"  />
+        <NavLink to="/" className="logonav"><img src={logo}  alt="logo" className="logo"/></NavLink>
         <section className="nav-section" >
           <NavLink to="/" className="nav-link" style={({ isActive}) => ({ 
                           textDecoration: isActive ? "underline":"none",
