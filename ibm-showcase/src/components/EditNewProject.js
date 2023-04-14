@@ -13,6 +13,11 @@ import Footer from './Footer'
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Toolbar, Alert } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 function EditNewProject() {
   document.body.style = 'background: #F4F7FE;';
@@ -195,6 +200,8 @@ function FormLeft(props) {
 }
 
 function FormRight(props) {
+  const [openAlert, setOpenAlert] = React.useState(false);
+  
   return (
     <div className="FormRight" style={{margin:'2rem 0 5rem 0'}}>
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project Video Link</Typography>
@@ -225,8 +232,27 @@ function FormRight(props) {
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Project #HashTags</Typography>
       <TagSelect fillData={props.fillData} />
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "3rem" }}>
-        <Link to="/editproject" style={{textDecoration:'none'}}><Button variant="outlined" sx={{textTransform: "none", margin: "0 1rem 0 1rem"}} >Cancel</Button></Link>
-        <Button variant="contained" type="submit">Submit</Button>
+        <Button variant="outlined" onClick={() => {setOpenAlert(true)}} sx={{textTransform: "none", margin: "0 1rem 0 1rem"}}>Cancel</Button>
+        <Dialog open={openAlert} onClose={() => {setOpenAlert(false)}}>
+          <DialogTitle>Cancel Changes</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to cancel? All new changes you made will be lost.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => {setOpenAlert(false)}} color="primary">
+              No
+            </Button>
+            <Link to="/editproject" style={{textDecoration:'none'}}>
+              <Button color="secondary">
+                Yes
+              </Button>
+            </Link>
+            
+          </DialogActions>
+        </Dialog>
+        <Button variant="contained" type="submit" sx={{textTransform: "none"}}>Submit</Button>
       </div>
 
     </div>
