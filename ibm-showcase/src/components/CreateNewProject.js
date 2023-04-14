@@ -16,6 +16,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Backdrop from '@mui/material/Backdrop';
+import Alert from '@mui/material/Alert';
+import { Navigate } from "react-router-dom";
 
 function CreateNewProject() {
   document.body.style = 'background: #F4F7FE;';
@@ -40,6 +43,8 @@ function ProjectForm() {
   const [fileArray, setFileArray] = useState("");
   const [singleBannerArray, setSingleBannerArray] = useState("");
   const [titleValue, setTitleValue] = useState('');
+  const [info, setInfo] = useState()
+  const [shouldNavigate, setShouldNavigate] = useState(false); 
 
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
@@ -56,25 +61,30 @@ function ProjectForm() {
     console.log(formJson);
     console.log(fileArray);
     console.log(singleBannerArray);
-    axios.post('http://localhost:8080/api/projects', formJson)  
-    //   .catch(function (error) {
-    //     if (error.response) {
-    //       // The request was made and the server responded with a status code
-    //       // that falls out of the range of 2xx
-    //       console.log(error.response.data);
-    //       console.log(error.response.status);
-    //       console.log(error.response.headers);
-    //     } else if (error.request) {
-    //       // The request was made but no response was received
-    //       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-    //       // http.ClientRequest in node.js
-    //       console.log(error.request);
-    //     } else {
-    //       // Something happened in setting up the request that triggered an Error
-    //       console.log('Error', error.message);
-    //     }
-    //     console.log(error.config);
-    // });
+    axios.post('http://localhost:8080/api/projects', formJson)
+      .then(response => {
+        console.log(response.data);
+        setInfo('Submitted Successfully!')})
+      .catch(function (error) {
+        setInfo('Sorry, Error Occured.')
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
+        }
+        console.log(error.config);
+    });
+    setTimeout(() => {setShouldNavigate(true)}, 3000);
   }
 
   // console.log(inFillData)
@@ -82,7 +92,7 @@ function ProjectForm() {
   return (
     <form className='ProjectForm' onSubmit={handleSubmit}>
       <Typography variant="h4" sx={{marginTop:'2rem'}}>Create a New Project</Typography>
-      <Forms passData={[setFileArray,setSingleBannerArray]} titlehook={[titleValue, setTitleValue]}/>
+      <Forms passData={[setFileArray,setSingleBannerArray]} titlehook={[titleValue, setTitleValue]} info={info} navigate={shouldNavigate}/>
     </form>
 
   )
@@ -92,7 +102,7 @@ function Forms(props){
   return (
     <div className="Forms">
       <FormLeft titlehook={props.titlehook} />
-      <FormRight passData={props.passData} titlehook={props.titlehook} />
+      <FormRight passData={props.passData} titlehook={props.titlehook} info={props.info} navigate={props.navigate}/>
     </div>
   )
 
@@ -132,6 +142,7 @@ function FormLeft(props) {
 
 function FormRight(props) {
   const [openAlert, setOpenAlert] = React.useState(false);
+  const [openDrop, setOpenDrop] = React.useState(false);
 
   return (
     <div className="FormRight"  style={{margin:'2rem 0 2rem 0'}}>
@@ -172,7 +183,15 @@ function FormRight(props) {
             </Link>
           </DialogActions>
         </Dialog>
-        <Button variant="contained" type="submit" sx={{textTransform: "none"}} disabled={!props.titlehook[0]}>Submit</Button>
+        <Button variant="contained" type="submit" onClick={() => {setOpenDrop(true)}} sx={{textTransform: "none"}} disabled={!props.titlehook[0]}>Submit</Button>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={openDrop}
+        >
+        <Alert severity="info" sx={{fontSize:'1rem', padding:'1.35rem 2.35rem', lineHeight:'1.5'}}>Processing... <br/>You will be redirected in 3 seconds... <br/>
+        {props.info}</Alert>
+        {props.navigate && <Navigate to={'/editproject'} />}
+        </Backdrop>
       </div>
 
     </div>
