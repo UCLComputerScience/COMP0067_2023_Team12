@@ -157,7 +157,6 @@ export default class Sign_In extends Component {
           minHeight: '90vh',
           // not 100vh since this window height includes the browser search bar and stuff so using 90% instead as this avoids the issue
         }}>  
-            <CssBaseline />
             <Box
             sx={{
                 marginTop: 8,
