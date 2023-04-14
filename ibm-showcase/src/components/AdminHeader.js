@@ -12,18 +12,12 @@ import SettingsIcon from '@mui/icons-material/Settings';
 function AdminHeader() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
     navigate('/');
   };
-  const handleIconClick = (event) => {
-    event.stopPropagation();
+  const handleIconClick = () => {
     setOpen((prevOpen) => !prevOpen);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   return (
