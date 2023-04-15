@@ -180,14 +180,25 @@ export default class ChangePassword extends Component {
                     // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}
                     variant='outlined'
                     sx={{
-                      width: '600px',
+                      width: { xs: '100%', sm: '600px' },
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#3D70B200',
                         backgroundColor: '#3D70B225',
                         borderRadius: '50px !important',},
                       "& .MuiInputLabel-root": {
-                        transform: labelStateUser ? 'translate(14px, -6px) scale(0.75)' : 'translate(265px, 16px) scale(1)',
+                        transform: labelStateUser ? 'translate(14px, -6px) scale(0.75)' :  { xs: 'translate(210%, 16px) scale(1)', sm: 'translate(265px, 16px) scale(1)' },
                         transformOrigin: 'top left',
+                      },
+                      "& .Mui-focused .MuiInputLabel-root": {
+                        transform: 'translate(14px, -6px) scale(0.75)',
+                        transformOrigin: 'top left',
+                      },
+                      "& .Mui-focused .MuiInputLabel-root": {
+                        transform: 'translate(14px, -6px) scale(0.75)',
+                        transformOrigin: 'top left',
+                      },
+                      "@media (max-width: 400px)": {
+                        "& .MuiInputLabel-root": {transform: labelStateUser? 'translate(14px, -6px) scale(0.75)': 'translate(200%, 16px) scale(1)'},
                       },
                       "& .Mui-focused .MuiInputLabel-root": {
                         transform: 'translate(14px, -6px) scale(0.75)',
@@ -221,19 +232,26 @@ export default class ChangePassword extends Component {
                 />
                 <TextField
                     sx={{
-                      width: '600px',
+                      width: { xs: '100%', sm: '600px' },
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#3D70B200',
                         backgroundColor: '#3D70B225',
                         borderRadius: '50px !important',},
                       "& .MuiInputLabel-root": {
-                        transform: labelStatePass ? 'translate(14px, -6px) scale(0.75)' : 'translate(232px, 16px) scale(1)',
+                        transform: labelStatePass ? 'translate(14px, -6px) scale(0.75)' :  { xs: 'translate(100%, 16px) scale(1)', sm: 'translate(232px, 16px) scale(1)' },
                         transformOrigin: 'top left',
                       },
                       "& .Mui-focused .MuiInputLabel-root": {
                         transform: 'translate(14px, -6px) scale(0.75)',
                         transformOrigin: 'top left',
-                      }
+                      },
+                      "@media (max-width: 400px)": {
+                        "& .MuiInputLabel-root": {transform: labelStateUser? 'translate(14px, -6px) scale(0.75)': 'translate(90%, 16px) scale(1)'},
+                      },
+                      "& .Mui-focused .MuiInputLabel-root": {
+                        transform: 'translate(14px, -6px) scale(0.75)',
+                        transformOrigin: 'top left',
+                      },
                     }}
                     margin="normal"
                     // required
