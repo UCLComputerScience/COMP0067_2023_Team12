@@ -107,7 +107,7 @@ function ProjectForm() {
     const formJson = Object.fromEntries(formData.entries());
     // for multi-selects, we need special handling
     formJson.tags = formJson.tags.split(',');
-    formJson.images = keepImagesChecked?inFillData.images.concat(fileArray):fileArray;
+    formJson.images = keepImagesChecked?(fileArray?inFillData.images.concat(fileArray):inFillData.images):fileArray;
     formJson.bannerImage = keepBannerChecked?inFillData.bannerImage:singleBannerArray;
   
     const modifiedImages = formJson.images.map(image => {
