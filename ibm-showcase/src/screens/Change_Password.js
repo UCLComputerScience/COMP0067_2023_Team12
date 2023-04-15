@@ -311,7 +311,7 @@ export default class ChangePassword extends Component {
                 sx={{
                   width: '200px',
                   borderRadius: '50px',
-                  mt: 2, mb: 2, mr: 10,
+                  mt: 2, mb: 2, mr: 8,
                   // display: 'flex', 
                   justifyContent: 'center',
                   textTransform: "none"

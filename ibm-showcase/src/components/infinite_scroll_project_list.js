@@ -167,7 +167,7 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
                     
                     <InputLabel></InputLabel>
                     <Select value={selectedFilter} onChange={selectionChangeHandlerFilter} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
-                        <MenuItem value={1}>No Category</MenuItem>
+                        <MenuItem value={1}>All Categories</MenuItem>
                         {categories.map((category, index) => (
                           <MenuItem key={index+2} value={index+2}>{category}</MenuItem>
                         ))}
