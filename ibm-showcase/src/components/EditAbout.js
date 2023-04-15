@@ -29,7 +29,7 @@ function AboutEditContent() {
   const [content, setContent] = useState(''); 
 
   useEffect(()=>{
-    axios.get(`http://localhost:8080/api/about/`)
+    axios.get(process.env.REACT_APP_API_URL+`about`)
     .then((response) => {setContent(response.data.content)})
     .catch((error) => {console.log(error)});
   })
@@ -97,7 +97,7 @@ function AboutRight(props){
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8080/api/about`, { "content": newContent })
+      .put(process.env.REACT_APP_API_URL+`about`, { "content": newContent })
       .catch((e) => {
         console.error(e);
       });

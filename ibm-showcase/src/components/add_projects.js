@@ -94,7 +94,7 @@ export default class AddProject extends Component {
 
     console.log(data)
 
-    axios.post('http://localhost:8080/api/projects', data)
+    axios.post(process.env.REACT_APP_API_URL+'projects', data)
       .then(response => {
         this.setState({
           id: response.data.id,

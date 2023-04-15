@@ -61,7 +61,7 @@ function ProjectForm() {
     console.log(formJson);
     console.log(fileArray);
     console.log(singleBannerArray);
-    axios.post('http://localhost:8080/api/projects', formJson)
+    axios.post(process.env.REACT_APP_API_URL+'projects', formJson)
       .then(response => {
         console.log(response.data);
         setInfo('Submitted Successfully!')})

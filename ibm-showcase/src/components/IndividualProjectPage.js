@@ -21,7 +21,7 @@ function IndividualProjectPage() {
   const [isUseEffectCompleted, setIsUseEffectCompleted] = useState(false);
   useEffect(() => {
     axios
-    .get(`http://localhost:8080/api/projects/${id}`)
+    .get(process.env.REACT_APP_API_URL+`/projects/${id}`)
     .then(response => {
         console.log(response.data);
         setProject(response.data);
@@ -60,7 +60,7 @@ function ProjectVideoSection(props) {
     setIsPlaying(false);
   };
   return (
-    <Box sx={{position:'relative',minHeight: '40rem',backgroundImage:`url(http://localhost:8080/api/images/${props.project._id}/${props.project?props.project.bannerImage[0]:null})`,
+    <Box sx={{position:'relative',minHeight: '40rem',backgroundImage:`url(${process.env.REACT_APP_API_URL}images/${props.project._id}/${props.project?props.project.bannerImage[0]:null})`,
      backgroundSize: 'cover', display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
       {isPlaying ? (
         <div style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}}>
@@ -150,7 +150,7 @@ function SimpleSlider(props) {
       <Slider {...settings}>
       {props.project.images && props.project.images.map((image)=>(
         <div>
-          <Box sx={{aspectRatio:'16/10', borderRadius:'1rem',backgroundImage:`url(http://localhost:8080/api/images/${props.project._id}/${image})`, backgroundSize: 'cover', backgroundPosition:'center', position:'relative'}} />
+          <Box sx={{aspectRatio:'16/10', borderRadius:'1rem',backgroundImage:`url(${process.env.REACT_APP_API_URL}images/${props.project._id}/${image})`, backgroundSize: 'cover', backgroundPosition:'center', position:'relative'}} />
         </div>
       ))}
 {/*        <div>
@@ -177,12 +177,12 @@ export function ThreeProjectTiles(props){
   // console.log(props)
   useEffect(() => {
       axios
-      .get(`http://localhost:8080/api/projects/${props.project._id}/similar`)
+      .get(process.env.REACT_APP_API_URL+`projects/${props.project._id}/similar`)
       .then(response => {
           // adding failcase if dont have 3 similar projects
           if (response.data.length < 3) {
             const project_list = response.data.slice(0,response.data.length);
-            axios.get(`http://localhost:8080/api/projects`)
+            axios.get(process.env.REACT_APP_API_URL+`projects`)
               .then((response_2) => {                
                 const project_list_other = response_2.data.slice(0, (3 - response.data.length))
                 const final_list = [...project_list, ...project_list_other]
@@ -210,13 +210,13 @@ export function ThreeProjectTiles(props){
     <section style={{display: 'flex', flexDirection: 'row', columnGap: '2%'}}>
       <Grid container spacing={1} sx={{ width: "100%" ,padding: "0 1rem",margin:"auto"}} >
         <Grid item xs={12} sm={12} md={12} lg={4} container justifyContent="center">
-          <ProjectTile img={`http://localhost:8080/api/images/${projects[0]._id}/${projects[0].images[0]}`} title={projects[0].title} description={projects[0].description} id={projects[0]._id}/>
+          <ProjectTile img={`${process.env.REACT_APP_API_URL}images/${projects[0]._id}/${projects[0].images[0]}`} title={projects[0].title} description={projects[0].description} id={projects[0]._id}/>
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={4} container justifyContent="center">
-         <ProjectTile img={`http://localhost:8080/api/images/${projects[1]._id}/${projects[1].images[0]}`} title={projects[1].title} description={projects[1].description} id={projects[1]._id}/>
+         <ProjectTile img={`${process.env.REACT_APP_API_URL}images/${projects[1]._id}/${projects[1].images[0]}`} title={projects[1].title} description={projects[1].description} id={projects[1]._id}/>
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={4} container justifyContent="center">
-          <ProjectTile img={`http://localhost:8080/api/images/${projects[2]._id}/${projects[2].images[0]}`} title={projects[2].title} description={projects[2].description} id={projects[2]._id}/>
+          <ProjectTile img={`${process.env.REACT_APP_API_URL}images/${projects[2]._id}/${projects[2].images[0]}`} title={projects[2].title} description={projects[2].description} id={projects[2]._id}/>
         </Grid>
       </Grid>
     </section>

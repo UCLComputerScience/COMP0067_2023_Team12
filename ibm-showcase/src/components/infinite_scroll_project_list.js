@@ -70,12 +70,12 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
     setIsLoading(true);
 
     if (!searchTerm) {
-      var url = `http://localhost:8080/api/projects`
+      var url = process.env.REACT_APP_API_URL+`projects`
     } else { if (tagList.includes(searchTerm)) {
       // console.log("THIS")
-      var url = `http://localhost:8080/api/projects`
+      var url = process.env.REACT_APP_API_URL+`projects`
     } else {
-      var url = `http://localhost:8080/api/projects?title=${searchTerm}`
+      var url = process.env.REACT_APP_API_URL+`projects?title=${searchTerm}`
     }
     }
 
@@ -195,7 +195,7 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
                   height: '200px',
                   objectFit: 'cover',
                 }}
-                image={`http://localhost:8080/api/images/${item._id}/${item.images[0]}`}
+                image={`${process.env.REACT_APP_API_URL}images/${item._id}/${item.images[0]}`}
                 alt="image"
                 // alt={item.title}
               />

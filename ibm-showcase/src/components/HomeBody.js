@@ -18,19 +18,19 @@ function HomeBody() {
   const [third, setThird] = useState("");
 
   useEffect(()=>{
-    axios.get(`http://localhost:8080/api/projects/level/Main`)
+    axios.get(process.env.REACT_APP_API_URL+`projects/level/Main`)
     .then((response) => {setMainProject(response.data)})
     .catch((error) => {console.log(error)});
 
-    axios.get(`http://localhost:8080/api/projects/level/1`)
+    axios.get(process.env.REACT_APP_API_URL+`projects/level/1`)
     .then((response) => {setFirst(response.data)})
     .catch((error) => {console.log(error)});
 
-    axios.get(`http://localhost:8080/api/projects/level/2`)
+    axios.get(process.env.REACT_APP_API_URL+`projects/level/2`)
       .then((response) => {setSecond(response.data)})
       .catch((error) => {console.log(error)});
 
-    axios.get(`http://localhost:8080/api/projects/level/3`)
+    axios.get(process.env.REACT_APP_API_URL+`projects/level/3`)
       .then((response) => {setThird(response.data)})
       .catch((error) => {console.log(error)});
       
@@ -47,7 +47,7 @@ function HomeBody() {
   <section className="HomeSection">
     <Typography variant="h3" sx={{color:'white', fontSize:{xs: '2rem',sm: '3rem',md: '4rem'}, marginBottom:'1rem', marginTop:0, paddingTop:'3rem'}}><PagesIcon sx={{fontSize:{xs: '2rem',sm: '2.5rem',md: '3rem'}, padding: '0 0.5rem'}}/>Featured Projects</Typography>
     <hr style={{margin:'0 0 3rem 0',  height:'1px', color: '#E6E6E6', backgroundColor: '#E6E6E6', border: 'none'}}/>
-    <Box sx={{minHeight: '30.5rem', borderRadius:'1.5rem',backgroundImage:`linear-gradient(90deg, rgba(0,0,0,0.15) 25%, rgba(255,255,255,0) 40%),url(http://localhost:8080/api/images/${mainProject._id}/${mainProject?mainProject.bannerImage[0]:null})`, backgroundSize: 'cover',backgroundPosition:'center', margin:'0 0 4rem 0', position:'relative'}}>
+    <Box sx={{minHeight: '30.5rem', borderRadius:'1.5rem',backgroundImage:`linear-gradient(90deg, rgba(0,0,0,0.15) 25%, rgba(255,255,255,0) 40%),url(${process.env.REACT_APP_API_URL}images/${mainProject._id}/${mainProject?mainProject.bannerImage[0]:null})`, backgroundSize: 'cover',backgroundPosition:'center', margin:'0 0 4rem 0', position:'relative'}}>
       <Typography sx={{fontSize: {xs: '1.7rem',sm: '2.5rem',md: '3rem'}, color: 'white', padding: '3rem 3rem 1rem 3rem', lineHeight:'90%'}}>{mainProject.title}</Typography>
       <Typography sx={{fontSize:  {xs: '1rem',sm: '1.2rem',md: '1.4rem'}, color: 'white', padding: '0 0 6rem 3rem ', width: '30%', textAlign: 'justify', maxHeight: '50%'}}> 
       {mainProject ? mainProject.description.slice(0,120)+'...':null}
@@ -124,13 +124,13 @@ export function ThreeProjectTiles(props){
     <section style={{display: 'flex', flexDirection: 'row', columnGap: '2%',margin:"auto"}}>
       <Grid container spacing={2}sx={{width: "120%" , padding: 0}}>
         <Grid item xs={12} sm={12} md={12} lg={4} container justifyContent="center">
-          <ProjectTile img={`http://localhost:8080/api/images/${props.projects[0]._id}/${props.projects[0].images[0]}`} title={props.projects[0].title} description={props.projects[0].description} id={props.projects[0]._id}/>
+          <ProjectTile img={`${process.env.REACT_APP_API_URL}images/${props.projects[0]._id}/${props.projects[0].images[0]}`} title={props.projects[0].title} description={props.projects[0].description} id={props.projects[0]._id}/>
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={4} container justifyContent="center">
-          <ProjectTile img={`http://localhost:8080/api/images/${props.projects[1]._id}/${props.projects[1].images[0]}`} title={props.projects[1].title} description={props.projects[1].description} id={props.projects[1]._id}/>
+          <ProjectTile img={`${process.env.REACT_APP_API_URL}images/${props.projects[1]._id}/${props.projects[1].images[0]}`} title={props.projects[1].title} description={props.projects[1].description} id={props.projects[1]._id}/>
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={4} container justifyContent="center">
-          <ProjectTile img={`http://localhost:8080/api/images/${props.projects[2]._id}/${props.projects[2].images[0]}`} title={props.projects[2].title} description={props.projects[2].description} id={props.projects[2]._id}/>
+          <ProjectTile img={`${process.env.REACT_APP_API_URL}images/${props.projects[2]._id}/${props.projects[2].images[0]}`} title={props.projects[2].title} description={props.projects[2].description} id={props.projects[2]._id}/>
         </Grid>
       </Grid>
     </section>

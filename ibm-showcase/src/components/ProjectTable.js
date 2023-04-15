@@ -47,9 +47,9 @@ export default function DataTable({ searchTerm, filterTerm }) {
 
     function Reload() {
       if (!searchTerm) {
-        var url = `http://localhost:8080/api/projects`
+        var url = process.env.REACT_APP_API_URL+`projects`
       } else {
-        var url = `http://localhost:8080/api/projects?title=${searchTerm}`
+        var url = process.env.REACT_APP_API_URL+`projects?title=${searchTerm}`
       }
   
       axios.get(url)
@@ -125,7 +125,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
       setPlacement(event.target.value);
       
       // check if any other projects have the value you want to change to
-      axios.get(`http://localhost:8080/api/projects`)
+      axios.get(process.env.REACT_APP_API_URL+`projects`)
       .then(response => {
         response.data = response.data.filter((item) => item.placement === event.target.value && item.placement !== "None");
         if (response.data.length !== 0) {
@@ -133,7 +133,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
           // console.log(old_data)
           // console.log(placement)
           old_data.placement = placement
-          axios.put(`http://localhost:8080/api/projects/${old_data._id}`, old_data)
+          axios.put(process.env.REACT_APP_API_URL+`projects/${old_data._id}`, old_data)
             .then(response => {
               // console.log(response.data);
             })
@@ -143,10 +143,10 @@ export default function DataTable({ searchTerm, filterTerm }) {
             });
 
           // save the updated status to the backend
-          axios.get(`http://localhost:8080/api/projects/${row._id}`)
+          axios.get(process.env.REACT_APP_API_URL+`projects/${row._id}`)
           .then(response => {
               response.data.placement = event.target.value;
-              axios.put(`http://localhost:8080/api/projects/${row._id}`, response.data)
+              axios.put(process.env.REACT_APP_API_URL+`projects/${row._id}`, response.data)
                 .then(response => {
                   // console.log(response.data);
                   setSuccess('Successfully edited the placement of this project.')
@@ -211,7 +211,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
 
     const handleDelete = (event) => {  
       // event.stopPropagation();  
-      axios.delete(`http://localhost:8080/api/projects/${row._id}`)
+      axios.delete(process.env.REACT_APP_API_URL+`projects/${row._id}`)
         .then(response => {
           setSuccess(`Successfully deleted the ${row.title} project`)
           // this.setState({changePage: true})
@@ -325,7 +325,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
         startY += lineHeight * lineCount;
 
         for (let j = 0; j < 3; j++){
-          const imageData = `http://localhost:8080/api/images/${selectedRowData[i]._id}/${selectedRowData[i].images[j]}`
+          const imageData = process.env.REACT_APP_API_URL+`images/${selectedRowData[i]._id}/${selectedRowData[i].images[j]}`
           doc.addImage(imageData, 'JPEG', startX,imgStartY, 75, 75);
           imgStartY += lineHeight+75;
         }
