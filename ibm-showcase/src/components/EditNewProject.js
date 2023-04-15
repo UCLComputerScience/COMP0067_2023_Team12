@@ -127,6 +127,7 @@ function ProjectForm() {
     .then(response => {
       console.log(response.data);
       setSuccess('Successfully edited this project.')
+      window.scrollTo(0, 0);
       // setChangePage(true)
     })
     .catch(e => {
