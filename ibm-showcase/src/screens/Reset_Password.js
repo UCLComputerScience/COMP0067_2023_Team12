@@ -75,7 +75,7 @@ class ResetPassword extends Component {
 
     console.log(data)
 
-    axios.post('http://localhost:8080/api/users/verify_link', data)
+    axios.post(process.env.REACT_APP_API_URL+'users/verify_link', data)
       .then(response => {
         console.log(response.data);
         // alert('The verifying link is correct')
@@ -110,7 +110,7 @@ class ResetPassword extends Component {
     };
   
     //Not correct one. In progress
-    axios.post('http://localhost:8080/api/users/change_password', data)
+    axios.post(process.env.REACT_APP_API_URL+'users/change_password', data)
       .then(response => {
         this.setState({
           id: response.data.id,

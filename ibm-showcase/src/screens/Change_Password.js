@@ -78,7 +78,7 @@ export default class ChangePassword extends Component {
     };
   
     //Not correct one. In progress
-    axios.post('http://localhost:8080/api/users/change_password', data)
+    axios.post(process.env.REACT_APP_API_URL+'users/change_password', data)
       .then(response => {
         this.setState({
           id: response.data.id,

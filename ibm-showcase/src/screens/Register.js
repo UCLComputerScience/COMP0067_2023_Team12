@@ -73,7 +73,7 @@ export default class Sign_In extends Component {
     };
   
     //Not correct one. In progress
-    axios.post('http://localhost:8080/api/users/register', data)
+    axios.post(process.env.REACT_APP_API_URL+'users/register', data)
       .then(response => {
         this.setState({
           id: response.data.id,
