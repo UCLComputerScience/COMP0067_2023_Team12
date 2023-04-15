@@ -13,8 +13,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Header from '../components/Header';
-import { Toolbar } from '@mui/material';
+// import Header from '../components/Header';
+import AdminHeader from '../components/AdminHeader'
+import { Toolbar, Alert } from '@mui/material';
 import axios from "axios";
 import {Link, Navigate} from 'react-router-dom';
 
@@ -53,7 +54,9 @@ export default class ChangePassword extends Component {
       labelStatePass: false,
 
       submitted: false,
-      changePage: false
+      changePage: false,
+      error: null,
+      success: null,
     };
   }
 
@@ -92,12 +95,12 @@ export default class ChangePassword extends Component {
           submitted: true
         });
         console.log(response.data);
-        alert('Successfully changed your password')
-        this.setState({changePage: true})
+        this.setState({ success: 'Successfully changed your password' });
+        // this.setState({changePage: true})
       })
       .catch(e => {
         console.log(e);
-        alert(e.response.data.message)
+        this.setState({ error: e.response.data.message });
       });
   }
 
@@ -151,7 +154,7 @@ export default class ChangePassword extends Component {
     const { labelStatePass } = this.state;
   return (
     <ThemeProvider theme={theme}>
-        <Header title="Blog" sections={sections} />
+        <AdminHeader title="Blog" sections={sections} />
         <Container component="main" maxWidth="xs" justify="flex-end" alignItems="center" 
         style={{
           display: 'flex',
@@ -173,8 +176,28 @@ export default class ChangePassword extends Component {
                 <LockOutlinedIcon />
             </Avatar> */}
             <Typography component="h1" variant="h5">
-                Change Password
+                Change Password 
             </Typography>
+            {this.state.error && (
+              <Alert severity="error" onClose={() => this.setState({ error: null })}>
+                {this.state.error}
+              </Alert>
+            )}
+            {this.state.success && (
+              <Alert severity="success" onClose={() => this.setState({
+                success: null,
+              })}
+              action={
+                <Button color="inherit" size="small" onClick={() => {
+                  this.setState({ success: null });
+                  this.setState({ changePage: true });
+                }}>
+                  Continue
+                </Button>
+              }>
+                {this.state.success}
+              </Alert>
+            )}
             <Box component="form" sx={{ mt: 1 }}>
                 <TextField
                     // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}
@@ -282,25 +305,38 @@ export default class ChangePassword extends Component {
                   justifyContent: 'center'
                 }}>
                 {this.state.changePage && <Navigate to={'/editproject'} /> }
+                <Link to="/editproject" style={{textDecoration:'none'}}>
                 <Button
-                // type="submit"
-                // fullWidth
-                variant="contained"
-                sx={{ 
+                variant="outlined"
+                sx={{
                   width: '200px',
                   borderRadius: '50px',
-                  mt: 2, mb: 2,
+                  mt: 2, mb: 2, mr: 10,
                   // display: 'flex', 
                   justifyContent: 'center',
-                  backgroundColor: '#0062FF',
                   textTransform: "none"
-                 }}
-                onClick={this.saveProject}
-                >
-                Submit
-                </Button>
-                {/* </Link> */}
-                </Box>
+                }}
+              >
+                Cancel
+              </Button>
+              </Link>
+              <Button
+              variant="contained"
+              sx={{ 
+                width: '200px',
+                borderRadius: '50px',
+                mt: 2, mb: 2,
+                // display: 'flex', 
+                justifyContent: 'center',
+                backgroundColor: '#0062FF',
+                textTransform: "none"
+                }}
+              onClick={this.saveProject}
+              >
+              Submit
+              </Button>
+              {/* </Link> */}
+              </Box>
           </Box>
         </Box>
       </Container>
