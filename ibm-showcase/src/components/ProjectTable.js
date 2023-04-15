@@ -103,7 +103,7 @@ export default function DataTable({ searchTerm, filterTerm }) {
     { field: 'title', headerclassName: 'super-app-theme--header', headerName: 'Project Title', width: 285 },
     // { field: 'description',headerName: 'Description', width: 130 },
     {field:'supervisors',headerName:'Supervisor',width:160},
-    { field: 'groupMembers', headerclassName: 'super-app-theme--header', headerName: 'Group Members', width: 243 },
+    { field: 'groupMembers', headerclassName: 'super-app-theme--header', headerName: 'Group Members', width: 230 },
     { field: 'createdAt',headerName: 'Date Created',width:98 },
     {field: 'updatedAt', headerName: 'Last Edited', width: 98 },
     {field: 'actions', headerName: 'Actions', width: 90,
@@ -111,15 +111,15 @@ export default function DataTable({ searchTerm, filterTerm }) {
         return <ActionsCell row={params.row} />
       },
     },
-    {field: "status", headerName: "Placement", width: 120,
+    {field: "status", headerName: "Placement", width: 105,
       renderCell: (params) => {
-        return <HeaderCell row={params.row} />
+        return <HeaderCell row={params.row} columnWidth={params.colDef.width} />
       },
     },
   
   ];
 
-  function HeaderCell({ row }) {
+  function HeaderCell({ row, columnWidth }) {
     const [placement, setPlacement] = useState(row.placement || "None");
     const handleChange = (event) => {
       setPlacement(event.target.value);
@@ -165,20 +165,16 @@ export default function DataTable({ searchTerm, filterTerm }) {
       .catch(e => {
         // console.log(e);
         setError(e.response.data.message)
-      });
-
-      
-
-
-     
-
+      });   
       
     };
     return (
-      <FormControl >
-        <Select value={placement} onChange={handleChange}>
+      <FormControl sx={{
+        width: `${columnWidth}px`, 
+      }}>
+        <Select value={placement} onChange={handleChange} sx={{width: '100%', textAlign: 'center'}} inputProps={{sx: {textAlign: 'center'},}}>
           {statusOptions.map((option) => (
-            <MenuItem key={option} value={option}>
+            <MenuItem key={option} value={option} sx={{ textAlign: 'center' }}>
               {option}
             </MenuItem>
           ))}

@@ -72,7 +72,7 @@ function Search({ onSubmit, onSubmit2 }) {
             <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:"100%",flexGrow:0,height:51,mt:10,textAlign:"center"}}>
                         
             <InputLabel>Category</InputLabel>
-            <Select value={selectedFilter} onChange={selectionChangeHandlerFilter} input={<InputBase sx={{borderRadius: '30px',height:51,fontSize:15,textAlign:"center",ml:1}}/>} >
+            <Select value={selectedFilter} onChange={selectionChangeHandlerFilter} input={<InputBase sx={{borderRadius: '30px',height:51,fontSize:15,textAlign:"center",ml:1, width: '170px',}}/>}>
                         <MenuItem value={1}>No Category</MenuItem>
                         {categories.map((category, index) => (
                           <MenuItem key={index+2} value={index+2}>{category}</MenuItem>
