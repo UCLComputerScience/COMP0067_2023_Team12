@@ -12,7 +12,7 @@ import axios from "axios";
 function Footer() {
   const [mainProject, setMainProject] = useState("");
   useEffect(()=>{
-    axios.get(`http://localhost:8080/api/projects/level/Main`)
+    axios.get(process.env.REACT_APP_API_URL+`projects/level/Main`)
     .then((response) => {setMainProject(response.data)})
     .catch((error) => {console.log(error)});
   })

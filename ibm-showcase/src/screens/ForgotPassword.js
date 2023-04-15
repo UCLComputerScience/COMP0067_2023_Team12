@@ -75,7 +75,7 @@ export default class ForgotPassword extends Component {
       password: this.state.password,
     };
   
-    axios.post('http://localhost:8080/api/users/send_password_link', data)
+    axios.post(process.env.REACT_APP_API_URL+'users/send_password_link', data)
       .then(response => {
         this.setState({
           id: response.data.id,

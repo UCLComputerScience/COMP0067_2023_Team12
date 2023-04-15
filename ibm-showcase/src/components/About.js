@@ -40,7 +40,7 @@ export default About;
 function AboutContent() {
   const [description, setDescription] = useState(''); 
 
-  axios.get(`http://localhost:8080/api/about/`)
+  axios.get(process.env.REACT_APP_API_URL+`about/`)
     .then((response) => {setDescription(response.data.content)})
     .catch((error) => {console.log(error)});
   

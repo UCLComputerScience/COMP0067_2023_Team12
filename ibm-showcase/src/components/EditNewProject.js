@@ -72,7 +72,7 @@ function ProjectForm() {
   const [changePage, setChangePage] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/projects/${id}/popularity/`)
+    axios.get(process.env.REACT_APP_API_URL+`projects/${id}/popularity/`)
       .then((response) => {
         // console.log(response.data)
         setInFillData({
@@ -123,7 +123,7 @@ function ProjectForm() {
     const newForm = {...formJson, images: modifiedImages, bannerImage: modifiedBanner};
 
     // console.log(fileArray);
-    axios.put(`http://localhost:8080/api/projects/${id}`, newForm)
+    axios.put(process.env.REACT_APP_API_URL+`projects/${id}`, newForm)
     .then(response => {
       console.log(response.data);
       setSuccess('Successfully edited this project.')
@@ -212,7 +212,7 @@ function FormRight(props) {
       <div>
         {props.fillData.images.map((img, i) => {
           return (
-            <img style={{margin:"0.25rem"}} className="preview" src={`http://localhost:8080/api/images/${props.fillData.id}/${img}`} alt={"image-" + i} key={i} height="100rem" />
+            <img style={{margin:"0.25rem"}} className="preview" src={`${process.env.REACT_APP_API_URL}images/${props.fillData.id}/${img}`} alt={"image-" + i} key={i} height="100rem" />
           );
         })}
       </div>
@@ -223,7 +223,7 @@ function FormRight(props) {
       <Typography variant="h6" sx={{padding:'0.5rem 0'}}>Video Banner Image</Typography>
       <Typography sx={{color:"grey", padding:"0 0 0.5rem 0"}}>Current uploaded banner image. Choose to keep or discard.</Typography>
       <div>
-        <img style={{margin:"0.25rem"}} className="preview" src={`http://localhost:8080/api/images/${props.fillData.id}/${props.fillData.bannerImage[0]}`} alt={"banner"} height="100rem" />
+        <img style={{margin:"0.25rem"}} className="preview" src={`${process.env.REACT_APP_API_URL}images/${props.fillData.id}/${props.fillData.bannerImage[0]}`} alt={"banner"} height="100rem" />
       </div>
       <FormControlLabel control={<Switch defaultChecked onChange={(event) => {props.checks[3](event.target.checked)}} />} label="Keep Uploaded Banner Images" />
       <Typography sx={{color:"grey", padding:"0 0 0.5rem 0"}}>Please select one image for video banner.</Typography>
