@@ -21,7 +21,7 @@ function IndividualProjectPage() {
   const [isUseEffectCompleted, setIsUseEffectCompleted] = useState(false);
   useEffect(() => {
     axios
-    .get(process.env.REACT_APP_API_URL+`/projects/${id}`)
+    .get(process.env.REACT_APP_API_URL+`projects/${id}`)
     .then(response => {
         console.log(response.data);
         setProject(response.data);
