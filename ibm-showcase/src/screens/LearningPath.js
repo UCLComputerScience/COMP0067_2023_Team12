@@ -1,6 +1,6 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import emailjs from '@emailjs/browser';
 import Alert from '@mui/material/Alert';
@@ -18,7 +18,7 @@ export default function LearningPath(){
 			<section className="Forms">
 				<Box className="FormLeft" >
 					<Typography variant="h1" sx={{fontSize: '3.5rem', padding:'2rem 0'}}>Learning Path</Typography>
-					<iframe src="https://prezi.com/p/embed/lEJRPrWc3hLGGhVWIt1m?autoplay=1" frameborder='0' allow='autoplay' style={{width:'100%',aspectRatio: '16/9.5'}} ></iframe>
+					<iframe title='Prezi_LearningPath' src="https://prezi.com/p/embed/lEJRPrWc3hLGGhVWIt1m?autoplay=1" frameborder='0' allow='autoplay' style={{width:'100%',aspectRatio: '16/9.5'}} ></iframe>
 				</Box>
 				<LearnRight />
 			</section>

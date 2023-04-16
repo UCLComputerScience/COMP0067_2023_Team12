@@ -7,7 +7,6 @@ import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-import { Action } from '@remix-run/router';
 import ReactMarkdown from 'react-markdown';
 
 
@@ -26,7 +25,7 @@ function About() {
 
 export default About;
 
-{/* <div className="main-container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+/* <div className="main-container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <div className="header-container" style={{ flex: 1 }}>
         <AdminHeader />
       </div>
@@ -34,7 +33,7 @@ export default About;
         <ProjectForm />
       </div>
       <Footer />
-    </div> */}
+    </div> */
 
 function AboutContent() {
   const [description, setDescription] = useState(''); 
