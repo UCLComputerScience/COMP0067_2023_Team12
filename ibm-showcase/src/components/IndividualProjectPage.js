@@ -103,7 +103,7 @@ function ProjectDetail(props) {
 }
 
 function ProjectDescription(props) {
-  const shareUrl = 'https://www.ibm.com/blogs/think/uk-en/this-is-john-creating-collaborative-projects-with-universities/';
+  const shareUrl = `https://20.108.41.92/projects/${props.project._id}`;
   const tweetText = 'Check out this innovative project!';
   const twitterUrl = `https://twitter.com/share?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareUrl)}`;
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
