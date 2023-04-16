@@ -1,8 +1,10 @@
-import { React, useState} from 'react'
-import ProjectSearch from '../components/ProjectSearch'
-import Header from '../components/Header'
-import ListAllProjects from '../components/infinite_scroll_project_list'
-import Footer from '../components/Footer'
+// React-related imports
+import { React, useState } from 'react';
+// Local component imports
+import Header from '../components/Header';
+import ProjectSearch from '../components/ProjectSearch';
+import ListAllProjects from '../components/infinite_scroll_project_list';
+import Footer from '../components/Footer';
 
 
 function ProjectList() {

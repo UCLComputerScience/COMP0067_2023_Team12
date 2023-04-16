@@ -1,17 +1,20 @@
+// React-related imports
 import React, { Component } from "react";
+import { Link, Navigate } from 'react-router-dom';
+// Third-party library imports
+import axios from "axios";
+// UI component imports
+import { Alert } from '@mui/material';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+// Local component imports
+import AdminHeader from '../components/AdminHeader';
+// Style imports
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import AdminHeader from '../components/AdminHeader'
-import { Alert } from '@mui/material';
-import axios from "axios";
-import {Link, Navigate} from 'react-router-dom';
-
-
 
 
 const sections = [
@@ -203,16 +206,8 @@ export default class ChangePassword extends Component {
                         transform: 'translate(14px, -6px) scale(0.75)',
                         transformOrigin: 'top left',
                       },
-                      "& .Mui-focused .MuiInputLabel-root": {
-                        transform: 'translate(14px, -6px) scale(0.75)',
-                        transformOrigin: 'top left',
-                      },
                       "@media (max-width: 400px)": {
                         "& .MuiInputLabel-root": {transform: labelStateUser? 'translate(14px, -6px) scale(0.75)': 'translate(200%, 16px) scale(1)'},
-                      },
-                      "& .Mui-focused .MuiInputLabel-root": {
-                        transform: 'translate(14px, -6px) scale(0.75)',
-                        transformOrigin: 'top left',
                       },
                     }}
                     
@@ -257,10 +252,6 @@ export default class ChangePassword extends Component {
                       },
                       "@media (max-width: 400px)": {
                         "& .MuiInputLabel-root": {transform: labelStateUser? 'translate(14px, -6px) scale(0.75)': 'translate(90%, 16px) scale(1)'},
-                      },
-                      "& .Mui-focused .MuiInputLabel-root": {
-                        transform: 'translate(14px, -6px) scale(0.75)',
-                        transformOrigin: 'top left',
                       },
                     }}
                     margin="normal"

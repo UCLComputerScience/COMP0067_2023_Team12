@@ -1,9 +1,14 @@
+// React-related imports
+import React, { useRef } from 'react';
+// Third-party library imports
+import emailjs from '@emailjs/browser';
+// UI component imports
+import { Box, Button, TextField, Typography } from '@mui/material';
+import Alert from '@mui/material/Alert';
+// Local component imports
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import React, { useRef } from 'react';
-import { Box, Button, TextField, Typography } from '@mui/material';
-import emailjs from '@emailjs/browser';
-import Alert from '@mui/material/Alert';
+// Style imports
 import './LearningPath.css';
 
 export default function LearningPath(){

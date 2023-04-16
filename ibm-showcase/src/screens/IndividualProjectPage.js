@@ -1,17 +1,22 @@
+// React-related imports
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+// Third-party library imports
 import ReactPlayer from 'react-player';
-import './IndividualProjectPage.css';
-import Header from '../components/Header'
-import {ProjectTile} from '../components/HomeBody'
+import axios from "axios";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+// UI component imports
+import { Typography, Box, IconButton, Grid } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { Twitter, Facebook, LinkedIn, Print } from '@mui/icons-material';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-import {useParams} from 'react-router-dom'
-import axios from "axios";
+// Local component imports
+import Header from '../components/Header';
+import { ProjectTile } from '../components/HomeBody';
 import Footer from '../components/Footer';
-import { Typography,Box,IconButton,Grid} from '@mui/material';
+// Style imports
+import './IndividualProjectPage.css';
 
 function IndividualProjectPage() {
   const {id} = useParams();

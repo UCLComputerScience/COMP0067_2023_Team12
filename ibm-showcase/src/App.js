@@ -12,7 +12,7 @@ import SignIn from './screens/SignIn'
 // import Sign_In from './screens/Register'
 import LearningPath from './screens/LearningPath'
 import PrivateRoute from './components/PrivateRoute';
-import ChangePassword from './screens/Change_Password';
+import ChangePassword from './screens/ChangePassword';
 import ResetPassword from './screens/Reset_Password';
 import EditAbout from './screens/EditAbout'
 // Different Page Views End

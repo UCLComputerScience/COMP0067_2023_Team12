@@ -1,23 +1,20 @@
-import axios from "axios";
-import AdminHeader from '../components/AdminHeader'
-import './CreateNewProject.css';
-import { Typography, Select, FormControl, MenuItem, InputLabel, TextField, Button } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import Chip from '@mui/material/Chip';
+// React-related imports
 import React, { useState } from 'react';
-import UploadImages from '../components/UploadImages'
-import Footer from '../components/Footer'
-import {Link} from 'react-router-dom';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Backdrop from '@mui/material/Backdrop';
-import Alert from '@mui/material/Alert';
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from 'react-router-dom';
+// Third-party library imports
+import axios from "axios";
+// UI component imports
+import {Typography,Select,FormControl,MenuItem,InputLabel,TextField,Button,
+Box,OutlinedInput,Chip,Dialog,DialogActions,DialogContent,DialogContentText,
+DialogTitle,Backdrop,Alert,} from '@mui/material';
+// Material UI style hook import
+import { useTheme } from '@mui/material/styles';
+// Local component imports
+import AdminHeader from '../components/AdminHeader';
+import UploadImages from '../components/UploadImages';
+import Footer from '../components/Footer';
+// Style imports
+import './CreateNewProject.css';
 
 function CreateNewProject() {
   document.body.style = 'background: #F4F7FE;';

@@ -1,16 +1,14 @@
+// React-related imports
 import React, { Component } from "react";
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Header from '../components/Header';
-import { Alert } from '@mui/material';
+import { Navigate } from 'react-router-dom';
+// Third-party library imports
 import axios from "axios";
-import {Navigate} from 'react-router-dom';
-
+// UI component imports
+import {Button,CssBaseline,TextField,Box,Typography,Container,Alert} from '@mui/material';
+// Material UI theme imports
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+// Local component imports
+import Header from '../components/Header';
 
 
 const theme = createTheme();

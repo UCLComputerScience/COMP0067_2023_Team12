@@ -1,9 +1,12 @@
-import {React, useState} from 'react'
-import './Admin.css';
+// React-related imports
+import React, { useState } from 'react';
+// Local component imports
+import AdminHeader from '../components/AdminHeader';
 import DataTable from '../components/ProjectTable';
 import Search from '../components/Search';
-import AdminHeader from '../components/AdminHeader'
-import Footer from '../components/Footer'
+import Footer from '../components/Footer';
+// Style imports
+import './Admin.css';
 
 
 function EditProject() {

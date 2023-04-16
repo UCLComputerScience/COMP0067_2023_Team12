@@ -1,11 +1,16 @@
-import axios from "axios";
-import AdminHeader from '../components/AdminHeader'
-import './CreateNewProject.css';
+// React-related imports
 import React, { useState, useEffect } from 'react';
-import Footer from '../components/Footer'
-import {Link} from 'react-router-dom';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+// Third-party library imports
+import axios from "axios";
 import ReactMarkdown from 'react-markdown';
+// UI component imports
+import { Box, Button, TextField, Typography } from '@mui/material';
+// Local component imports
+import AdminHeader from '../components/AdminHeader';
+import Footer from '../components/Footer';
+// Style imports
+import './CreateNewProject.css';
 import './EditAbout.css';
 
 function EditAbout() {

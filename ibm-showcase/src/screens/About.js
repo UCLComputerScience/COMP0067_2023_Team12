@@ -1,13 +1,16 @@
-import axios from "axios";
-import { Box, Button, TextField, Typography } from '@mui/material';
-import './About.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer'
+// React-related imports
 import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
 import ReactMarkdown from 'react-markdown';
+// Third-party library imports
+import axios from 'axios';
+import emailjs from '@emailjs/browser';
+// UI component imports
+import { Box, Button, TextField, Typography, Alert, Stack } from '@mui/material';
+// Local component imports
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+// Style imports
+import './About.css';
 
 
 function About() {
