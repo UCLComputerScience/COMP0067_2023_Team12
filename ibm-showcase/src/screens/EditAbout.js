@@ -1,8 +1,8 @@
 import axios from "axios";
-import AdminHeader from './AdminHeader'
+import AdminHeader from '../components/AdminHeader'
 import './CreateNewProject.css';
 import React, { useState, useEffect } from 'react';
-import Footer from './Footer'
+import Footer from '../components/Footer'
 import {Link} from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import ReactMarkdown from 'react-markdown';

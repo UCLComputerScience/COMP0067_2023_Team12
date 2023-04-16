@@ -1,5 +1,5 @@
 import axios from "axios";
-import AdminHeader from './AdminHeader'
+import AdminHeader from '../components/AdminHeader'
 import './CreateNewProject.css';
 import { Typography, Select, FormControl, MenuItem, InputLabel, TextField, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -7,9 +7,9 @@ import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Chip from '@mui/material/Chip';
 import React, { useState, useEffect } from 'react';
-import UploadImages from './UploadImages'
+import UploadImages from '../components/UploadImages'
 import { useParams, Navigate, Link } from 'react-router-dom';
-import Footer from './Footer'
+import Footer from '../components/Footer'
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Alert } from '@mui/material';

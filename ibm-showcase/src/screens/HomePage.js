@@ -1,8 +1,8 @@
 import './HomePage.css';
-import Header from './Header'
-import HomeBody from './HomeBody'
-import HomeAbout from './HomeAbout'
-import Footer from './Footer'
+import Header from '../components/Header'
+import HomeBody from '../components/HomeBody'
+import HomeAbout from '../components/HomeAbout'
+import Footer from '../components/Footer'
 
 
 function HomePage() {

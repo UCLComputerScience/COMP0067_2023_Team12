@@ -1,20 +1,20 @@
 import './App.css';
 // Different Page Views
-import CreateNewProject from './components/CreateNewProject'
-import EditNewProject from './components/EditNewProject'
-import HomePage from './components/HomePage'
-import IndividualProjectPage from './components/IndividualProjectPage'
-import About from './components/About'
+import CreateNewProject from './screens/CreateNewProject'
+import EditNewProject from './screens/EditNewProject'
+import HomePage from './screens/HomePage'
+import IndividualProjectPage from './screens/IndividualProjectPage'
+import About from './screens/About'
 import ProjectList from './screens/ProjectList'
 import EditProject from './screens/EditProject'
 import ForgotPassword from './screens/ForgotPassword';
-import Sign_In from './screens/Sign_In'
+import SignIn from './screens/SignIn'
 // import Sign_In from './screens/Register'
-import LearningPath from './components/LearningPath'
-import PrivateRoute from './screens/PrivateRoute';
+import LearningPath from './screens/LearningPath'
+import PrivateRoute from './components/PrivateRoute';
 import ChangePassword from './screens/Change_Password';
 import ResetPassword from './screens/Reset_Password';
-import EditAbout from './components/EditAbout'
+import EditAbout from './screens/EditAbout'
 // Different Page Views End
 import { Routes,Route } from 'react-router-dom';
 
@@ -35,7 +35,7 @@ function App() {
     <Route element={<PrivateRoute/>}>
       <Route path="/editproject" element={<EditProject />} />
     </Route>
-    <Route path="/signin" element={<Sign_In />} />
+    <Route path="/signin" element={<SignIn />} />
     <Route element={<PrivateRoute/>}>
       <Route path="/changepassword"element={<ChangePassword />} />
     </Route>

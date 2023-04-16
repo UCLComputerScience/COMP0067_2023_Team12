@@ -17,7 +17,7 @@ import {Link, Navigate} from 'react-router-dom';
 
 
 const sections = [
-    { title: 'Sign In', url: './Sign_In.js'},
+    { title: 'Sign In', url: './SignIn.js'},
     { title: 'Create Projects', url: '#' },
     { title: 'Edit Projects', url: '#' },
     { title: 'Create Workbook', url: '#' },
@@ -27,7 +27,7 @@ const sections = [
 
 const theme = createTheme();
 
-export default class Sign_In extends Component {
+export default class SignIn extends Component {
   constructor(props) {
     super(props);
     this.onChangeUser = this.onChangeUser.bind(this);

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import './IndividualProjectPage.css';
-import Header from './Header'
-import {ProjectTile} from './HomeBody'
+import Header from '../components/Header'
+import {ProjectTile} from '../components/HomeBody'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { Twitter, Facebook, LinkedIn, Print } from '@mui/icons-material';
 import Slider from "react-slick";
@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {useParams} from 'react-router-dom'
 import axios from "axios";
-import Footer from './Footer';
+import Footer from '../components/Footer';
 import { Typography,Box,IconButton,Grid} from '@mui/material';
 
 function IndividualProjectPage() {
