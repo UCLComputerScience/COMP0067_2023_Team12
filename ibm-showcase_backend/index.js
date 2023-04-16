@@ -2,6 +2,9 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 const fileUpload = require('express-fileupload');
+//Serving Built React Web App Files
+const path = __dirname + '/views/';
+app.use(express.static(path));
 
 require("dotenv").config();
 
@@ -10,6 +13,11 @@ var corsOptions = {
   origin: "*"
 };
 app.use(cors(corsOptions));
+
+//Serving Built React Web App HomePage
+app.get("/", (req, res) => {
+  res.sendFile(path + "index.html");
+});
 
 // parse requests of content-type - application/json
 app.use(express.json());
