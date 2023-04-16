@@ -1,21 +1,13 @@
-// import * as React from 'react';
 import React, { Component } from "react";
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-// import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import Header from '../components/Header';
 import AdminHeader from '../components/AdminHeader'
-import { Toolbar, Alert } from '@mui/material';
+import { Alert } from '@mui/material';
 import axios from "axios";
 import {Link, Navigate} from 'react-router-dom';
 
@@ -73,14 +65,12 @@ export default class ChangePassword extends Component {
   }
 
   saveProject() {
-    // alert("Submitted")
     var data = {
       user: this.state.user,
       password: this.state.password,
       token: localStorage.getItem('token')
     };
   
-    //Not correct one. In progress
     axios.post(process.env.REACT_APP_API_URL+'users/change_password', data)
       .then(response => {
         this.setState({
@@ -94,12 +84,9 @@ export default class ChangePassword extends Component {
 
           submitted: true
         });
-        console.log(response.data);
         this.setState({ success: 'Successfully changed your password' });
-        // this.setState({changePage: true})
       })
       .catch(e => {
-        console.log(e);
         this.setState({ error: e.response.data.message });
       });
   }

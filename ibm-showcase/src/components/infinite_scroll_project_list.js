@@ -4,8 +4,6 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
-  Box,
-  Toolbar,
   Container,
   Grid,
   Card,
@@ -18,8 +16,7 @@ import {
 } from '@mui/material';
 import axios from "axios";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import sortAndFilterData from './sortingandfiltering';
-import {Link, useHistory, useNavigate, Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Chip from '@mui/material/Chip';
 
 export default function ListAllProjects({ searchTerm, searchTermBack }) {
@@ -100,7 +97,7 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
             item.tags.includes(searchTerm)
           );
         }
-        console.log(searchTerm)
+        // console.log(searchTerm)
 
          const normalisedData = response.data.map((item) => {
           return {

@@ -8,11 +8,11 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Chip from '@mui/material/Chip';
 import React, { useState, useEffect } from 'react';
 import UploadImages from './UploadImages'
-import { useLocation, useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import Footer from './Footer'
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { Toolbar, Alert } from '@mui/material';
+import { Alert } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';

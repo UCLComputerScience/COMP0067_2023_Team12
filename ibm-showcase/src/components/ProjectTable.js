@@ -1,19 +1,16 @@
 // import React, { useState, useEffect, useRef } from 'react';
-import React, { useState, useEffect, useRef } from 'react';
-import { DataGrid,GRID_CHECKBOX_SELECTION_COL_DEF } from '@mui/x-data-grid';
+import React, { useState, useEffect} from 'react';
+import { DataGrid} from '@mui/x-data-grid';
 import Container from '@mui/material/Container';
-import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar,
-  IconButton, Typography, Autocomplete, TextField, Paper, InputBase, Divider, Stack,
-  Grid, Dialog, DialogTitle, DialogContent, DialogActions, Alert } from '@mui/material'
+import { Select, MenuItem,  FormControl, IconButton, Grid, Dialog, DialogTitle, DialogContent, DialogActions, Alert } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useNavigate, navigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { Button } from '@mui/material';
 import axios from "axios";
 import jsPDF from 'jspdf';
 import pdfbackground from './pdfbackground.jpg';
 import projectbackground from './projectbackground.jpg';
-import { PictureAsPdf } from '@mui/icons-material';
 
 
 export default function DataTable({ searchTerm, filterTerm }) {

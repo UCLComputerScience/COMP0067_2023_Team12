@@ -1,32 +1,16 @@
-// import * as React from 'react';
 import React, { Component } from "react";
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../components/Header';
-import { Toolbar, Alert } from '@mui/material';
+import { Alert } from '@mui/material';
 import axios from "axios";
-import {Link, useHistory, useNavigate, Navigate} from 'react-router-dom';
-// import { toast, ToastContainer } from 'react-toastify';
+import {Navigate} from 'react-router-dom';
 
-
-
-// const sections = [
-//     { title: 'Sign In', url: './Sign_In.js'},
-//     { title: 'Create Projects', url: '#' },
-//     { title: 'Edit Projects', url: '#' },
-//     { title: 'Create Workbook', url: '#' },
-//     { title: 'Log Out & Back To Home', url: '#' },
-//   ];
 
 
 const theme = createTheme();
@@ -87,13 +71,10 @@ export default class ForgotPassword extends Component {
           token: response.data.token
         });
         localStorage.setItem('token', response.data)
-        // alert('Password reset link sent to your email account')
         this.setState({ success: 'Password reset link sent to your email account' });
         
       })
       .catch(e => {
-        console.log(e);
-        // alert(e.response.data.message)
         this.setState({ error: e.response.data.message });
       });
   }

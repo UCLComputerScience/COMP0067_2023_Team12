@@ -1,14 +1,9 @@
 import './HomeBody.css';
-import ProjectPic1 from './Project1s.png';
-import ProjectPic2 from './Project2.jpeg';
-import ProjectPic3 from './Project3.png';
-import ProjectPic4 from './Project4.jpg';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { createTheme } from '@mui/material/styles';
 import { Typography,Box,Button,Grid } from '@mui/material';
 import PagesIcon from '@mui/icons-material/Pages';
 import React, { useState, useEffect } from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from "axios";
 
 function HomeBody() {

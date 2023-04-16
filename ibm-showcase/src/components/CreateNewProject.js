@@ -8,7 +8,6 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Chip from '@mui/material/Chip';
 import React, { useState } from 'react';
 import UploadImages from './UploadImages'
-import { useLocation, useParams } from 'react-router-dom';
 import Footer from './Footer'
 import {Link} from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';

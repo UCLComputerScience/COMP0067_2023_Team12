@@ -1,22 +1,16 @@
 // import * as React from 'react';
 import React, { Component } from "react";
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-// import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../components/Header';
-import { Toolbar, Alert } from '@mui/material';
+import { Alert } from '@mui/material';
 import axios from "axios";
-import {Link, Navigate} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import withRouter from './withRouter';
 
 
@@ -40,11 +34,7 @@ class ResetPassword extends Component {
     this.saveProject = this.saveProject.bind(this);
     this.newProject = this.newProject.bind(this);
 
-    // unsure if this is best place to put this function
     this.verifyURL()
-
-	  // this.param = useParams();
-	  // this.url = `http://localhost:8080/api/resetpassword/${param.user}/${param.token}`;
 
     this.state = {
       id: null,
@@ -73,17 +63,11 @@ class ResetPassword extends Component {
       token: this.props.params.token,
     };
 
-    console.log(data)
-
     axios.post(process.env.REACT_APP_API_URL+'users/verify_link', data)
       .then(response => {
-        console.log(response.data);
-        // alert('The verifying link is correct')
         this.setState({ success: 'The verifying link is correct' });
-        // this.setState({changePage: true})
       })
       .catch(e => {
-        console.log(e);
         this.setState({ error: e.response.data.message });
         this.setState({changePage2: true})
       });
@@ -102,7 +86,6 @@ class ResetPassword extends Component {
   }
 
   saveProject() {
-    // alert("Submitted")
     var data = {
       user: this.state.user,
       password: this.state.password,
@@ -123,13 +106,9 @@ class ResetPassword extends Component {
 
           submitted: true
         });
-        console.log(response.data);
-        // alert('Successfully changed your password')
         this.setState({ success2: 'Successfully changed your password' });
       })
       .catch(e => {
-        console.log(e);
-        // alert({ error: e.response.data.message });
         this.setState(e.response.data.message);
       });
   }
@@ -182,10 +161,6 @@ class ResetPassword extends Component {
   render () {
     const { labelStateUser } = this.state;
     const { labelStatePass } = this.state;
-    // const { user } = this.props.match.params;
-    // const { location, history } = this.props;
-    // console.log(this.props.params.user)
-    // console.log(user)
   return (
     <ThemeProvider theme={theme}>
         <Header title="Blog" sections={sections} />
@@ -206,9 +181,6 @@ class ResetPassword extends Component {
                 alignItems: 'center',
             }}
             >
-            {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-            </Avatar> */}
             <Typography component="h1" variant="h5">
                 Reset Password
             </Typography>

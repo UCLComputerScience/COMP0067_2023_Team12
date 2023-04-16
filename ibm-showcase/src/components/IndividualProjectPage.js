@@ -3,9 +3,8 @@ import ReactPlayer from 'react-player';
 import './IndividualProjectPage.css';
 import Header from './Header'
 import {ProjectTile} from './HomeBody'
-import ProjectPic1 from './Project1.png';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import { Twitter, Reddit, Facebook, LinkedIn, Print } from '@mui/icons-material';
+import { Twitter, Facebook, LinkedIn, Print } from '@mui/icons-material';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";

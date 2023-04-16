@@ -1,6 +1,5 @@
-import {React, useState, useRef, useEffect} from 'react';
-import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar, Button,
-    IconButton, Typography, Autocomplete, TextField, Paper, InputBase, Divider, Stack,
+import {React, useState, useEffect} from 'react';
+import { Box, IconButton, Typography, InputBase, 
     Grid } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import styled from 'styled-components';

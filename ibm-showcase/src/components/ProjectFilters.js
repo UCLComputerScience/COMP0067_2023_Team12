@@ -1,9 +1,5 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
-import SearchIcon from '@mui/icons-material/Search';
-import { Select, MenuItem, FormHelperText, FormControl, InputLabel, Box, Toolbar, Button,
-    IconButton, Typography, Autocomplete, TextField, Paper, InputBase, Divider, Stack,
-    Grid } from '@mui/material'
+import { Select, MenuItem, FormControl, InputLabel, InputBase, Grid } from '@mui/material'
 
 
     function ProjectFilter() {
