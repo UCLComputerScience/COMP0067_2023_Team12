@@ -1,19 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Container,
-  Grid,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  IconButton,
-  Button,
-  InputBase
-} from '@mui/material';
+import {Select, MenuItem, FormControl, InputLabel, Container, Grid, Card, CardMedia,
+        CardContent, Typography, IconButton, Button, InputBase} from '@mui/material';
 import axios from "axios";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {Link} from 'react-router-dom';
@@ -34,9 +21,7 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
 
   const tagList = ["AI/ML", "Asset Management", "Automation", "Back-End", "Blockchain", "Capstone", "Cloud", "Data Science", "Design Thinking", "FinTech", "Front-End", "Healthcare", "IT", "Security", "Supply Chain", "Sustainability"]
 
-  const [searchInput, setSearchInput] = React.useState('');
   const handleChipClick = (tag) => {
-    setSearchInput(tag);
     searchTermBack(tag)
   };
 
@@ -66,15 +51,7 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
   useEffect(() => {
     setIsLoading(true);
 
-    if (!searchTerm) {
-      var url = process.env.REACT_APP_API_URL+`projects`
-    } else { if (tagList.includes(searchTerm)) {
-      // console.log("THIS")
-      var url = process.env.REACT_APP_API_URL+`projects`
-    } else {
-      var url = process.env.REACT_APP_API_URL+`projects?title=${searchTerm}`
-    }
-    }
+    const url = process.env.REACT_APP_API_URL + ( !searchTerm || tagList.includes(searchTerm) ? 'projects' : `projects?title=${searchTerm}` );
 
     axios.get(url)
       .then((response) => {
@@ -97,7 +74,6 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
             item.tags.includes(searchTerm)
           );
         }
-        // console.log(searchTerm)
 
          const normalisedData = response.data.map((item) => {
           return {
@@ -115,8 +91,7 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
           setNoResults(false);
         }
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((e) => {
         setIsLoading(false);
       });
   }, [currentPage, searchTerm, selectedSort, selectedFilter]);
@@ -153,15 +128,12 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
                         <MenuItem value={1}>Newest</MenuItem>
                         <MenuItem value={2}>Oldest</MenuItem>
                         <MenuItem value={3}>Most Popular</MenuItem>
-                        {/* <MenuItem value={1}>Popular</MenuItem> */}
                     </Select>
                 </FormControl>
                 </Grid>
 
-
                 <Grid item xs = {4} sx ={{display:'flex',justifyContent:'flex-end'}}>
                 <FormControl variant='outlined' sx={{bgcolor:'white',display:"flex",width:142,borderRadius:"30px",mt:-5,border:'1px solid #6E6D7A',textAlign:"center"}}>
-                    
                     <InputLabel></InputLabel>
                     <Select value={selectedFilter} onChange={selectionChangeHandlerFilter} input={<InputBase sx={{borderRadius: '30px',height:40,fontSize:15,textAlign:"center"}}/>} >
                         <MenuItem value={1}>All Categories</MenuItem>
@@ -170,9 +142,7 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
                         ))}
                     </Select>
                 </FormControl>
-                </Grid>
-
-                
+                </Grid>                
         </Grid>
         <Grid sx={{ py: 3}} />
       <Grid container spacing={4} sx={{ px: { xs: 4, sm: 10 } }} >
@@ -187,14 +157,12 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
               <CardMedia
                 component="img"
                 sx={{
-                  // 16:9
                   borderRadius: '8%',
                   height: '200px',
                   objectFit: 'cover',
                 }}
                 image={`${process.env.REACT_APP_API_URL}images/${item._id}/${item.images[0]}`}
                 alt="image"
-                // alt={item.title}
               />
               <CardContent sx={{ flexGrow: 1 }}>
                 <Button component={Link} to={`/projects/${item._id}`} sx={{ textDecoration: 'none' }}>
@@ -223,9 +191,6 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
                 ))}
               </div>
               </CardContent>
-
-              
-
             </Card>
           </Grid>
         ))}

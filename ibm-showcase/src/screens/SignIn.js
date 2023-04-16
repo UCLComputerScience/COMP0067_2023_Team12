@@ -61,7 +61,6 @@ export default class SignIn extends Component {
   saveProject(e) {
     console.log("123456")
     e.preventDefault();
-    // alert("Submitted")
     var data = {
       user: this.state.user,
       password: this.state.password,
@@ -80,14 +79,12 @@ export default class SignIn extends Component {
           token: response.data.token
         });
         localStorage.setItem('token', response.data)
-        // alert('Success')
         this.setState({changePage: true})
         localStorage.setItem('isLoggedIn', 'true');
       })
       .catch(e => {
         console.log(e);
         this.setState({ error: e.response.data.message });
-        // alert(e.response.data.message)
       });
   }
 
@@ -155,9 +152,6 @@ export default class SignIn extends Component {
                 alignItems: 'center', 
             }}
             >
-            {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-            </Avatar> */}
             <Typography component="h1" variant="h5">
                 Login as Admin
             </Typography>
@@ -168,7 +162,6 @@ export default class SignIn extends Component {
             )}
             <Box component="form" sx={{ mt: 1 }} onSubmit={this.saveProject}>
                 <TextField
-                    // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}
                     variant='outlined'
                     sx={{
                       width: { xs: '100%', sm: '600px' },
@@ -190,12 +183,10 @@ export default class SignIn extends Component {
                     }}
                     
                     margin="normal"
-                    // required
                     fullWidth
                     id="user"
                     label="Username"
                     name="email"
-                    // autoComplete="email"
                     value={this.state.user}
                     onChange={this.onChangeUser}
                     autoFocus
@@ -233,13 +224,11 @@ export default class SignIn extends Component {
                       },
                     }}
                     margin="normal"
-                    // required
                     fullWidth
                     name="password"
                     label="Password"
                     type="password"
                     id="password"
-                    // autoComplete="current-password"
                     value={this.state.password}
                     onChange={this.onChangePassword}
 
@@ -268,18 +257,15 @@ export default class SignIn extends Component {
                 {this.state.changePage && <Navigate to={'/editproject'} /> }
                 <Button
                 type="submit"
-                // fullWidth
                 variant="contained"
                 sx={{ 
                   width: '200px',
                   borderRadius: '50px',
                   mt: 2, mb: 2,
-                  // display: 'flex', 
                   justifyContent: 'center',
                   backgroundColor: '#0062FF',
                   textTransform: "none"
                  }}
-                // onClick={this.saveProject}
                 >
                 Login
                 </Button>
