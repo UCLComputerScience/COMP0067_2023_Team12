@@ -5,7 +5,7 @@ const authConfig = require("../config/authConfig.js");
 
 const tokenModel = require("../models/tokenModel.js");
 const userModel = require("../models/userModel.js");
-const sendEmail = require("../sendEmail");
+const sendEmail = require("../services/sendEmail");
 
 
 module.exports.SendPasswordLink = (req, res) => {
