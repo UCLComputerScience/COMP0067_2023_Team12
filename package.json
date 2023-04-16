@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@emailjs/browser": "^3.10.0",
-    "@react-pdf/renderer": "^3.1.9",
-    "jspdf": "^2.5.1",
-    "jspdf-autotable": "^3.5.28",
-    "react-toastify": "^9.1.1"
-  }
-}

@@ -1,0 +1,241 @@
+[{
+  "_id": {
+    "$oid": "642f2ac87015d8fd362c6ea9"
+  },
+  "title": "UCL Demo Project",
+  "groupMembers": "Minhaz Hassan, James Rudd Jones, Ziyu Xu, Nozomu Kitamura",
+  "supervisors": "Dr John McNamara",
+  "description": "Motioninput is a pioneering touchless computing technology devleoped by UCL Computer Science students.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  "videoLink": "https://www.youtube.com/watch?v=r8KicPCYlDg",
+  "images": [
+    "Project2.png",
+    "Project3.png",
+    "Project4.jpg"
+  ],
+  "bannerImage": [
+    "Project1s.png"
+  ],
+  "category": "AI",
+  "tags": [
+    "AI/ML",
+    "Automation",
+    "Data Science",
+    "Design Thinking",
+    "Healthcare"
+  ],
+  "popularity": 177,
+  "placement": "Main",
+  "createdAt": {
+    "$date": "2023-04-06T20:25:44.911Z"
+  },
+  "updatedAt": {
+    "$date": "2023-04-16T05:43:20.737Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643133fa0f80c2ec5582bb20"
+  },
+  "title": "VisualMQ: 3D Visualization of IBM MQ",
+  "groupMembers": "Lukas Cerny, Mohamed Diallo, Yifan Hu, Shucheng Tian, Yue Xu, Xu Zhang",
+  "supervisors": "Dr Nicolas Gold ",
+  "description": "IBM MQ is the messaging backbone of commercial enterprise. Some 85% of the Fortune 100 rely on IBM's messaging technology along with 96 out of the top 100 banks. To a team of Masters students from UCL - IBM MQ also offered a way to explore the practicalities of enterprise messaging, while also showcasing their ability to collaborate, innovate and to finally create something remarkable.\n\nVisualMQ is a new interactive interface to IBM MQ developed in a university collaboration with UCL. Built using a game engine, VisualMQ creates a 3D graphical representation of IBM MQ systems. For this purpose, we have designed novel 3D models representing different components of IBM MQ. One of the major innovations of VisualMQ is that, as opposed to the existing tools for IBM MQ, it focuses on relationships between different components and visualize them in such a way that makes it as intuitive as possible to understand IBM MQ’s current state and inner workings.\n\nAchieving that was not only an intriguing challenge, it is also valuable for IBM MQ, which is a powerful, mature, and complex product. With development dating back to the early 90s, it has undergone decades of feature expansions to support an increasing range of use cases and tools that are used to interact with the systems. These tools, such as MQSC (command line interface), MQ Explorer or MQ Console, are partially what inspired our project’s requirements. We set ourselves the goal to build an interface to complement these by improving understanding of the entire IBM MQ system together.\n",
+  "videoLink": "https://www.youtube.com/watch?v=2cDtLXmSkIw",
+  "images": [
+    "1643363000786.png",
+    "1643362677585.png",
+    "Screenshot_2023-04-15_111742.png"
+  ],
+  "bannerImage": [
+    "1643362516237.png"
+  ],
+  "category": "Automation",
+  "tags": [
+    "Cloud",
+    "Design Thinking",
+    "Front-End",
+    "IT",
+    "Automation"
+  ],
+  "popularity": 104,
+  "placement": "1",
+  "createdAt": {
+    "$date": "2023-04-08T09:29:30.920Z"
+  },
+  "updatedAt": {
+    "$date": "2023-04-16T10:30:06.729Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64316ad558238b1b3309ec00"
+  },
+  "title": "Nudge Share - Speech Analysis Tool",
+  "groupMembers": "Dinesh Anantharaja, Jay McCaughrean, Nicholas Daskalovic",
+  "supervisors": "NA",
+  "description": "Speech analysis has proven to be useful in diagnosing conditions such as depression and lung disease. Our client had a pre-existing solution called Mobile V, which was only available on Android, limiting its uses and effectiveness in the real world. Our work focused on implementing a new front-end for Mobile V, upgrading it to a progressive web app so that more users can access it on any device. We addressed major requirements such as recording journal entries up to 10 minutes, viewing and editing recordings, optimizing display for desktop and mobile, user login and authentication, displaying scores and usage graphs, viewing transcripts and word clouds of recordings, and providing offline functionality.\n\nWe are proud to have achieved all of these key requirements. The front-end is built on React, using packages such as idb keyval for storing app data in IndexedDB and Workbox for enabling PWA capabilities. The back-end, written in Python, uses Flask as its web framework and IBM Watson SDK for transcription and word cloud generation. A MySQL database stores and manages data, while both the front-end and back-end are delivered on an Nginx web server running on an Ubuntu 21.10 virtual machine. The app offers a seamless experience on various devices, including desktops and mobile devices, with a responsive design that adjusts navigation for a native feel.",
+  "videoLink": "https://www.youtube.com/watch?v=asF0bRAHuWo&t=1s",
+  "images": [
+    "Screenshot_2023-04-08_104429.png",
+    "Screenshot_2023-04-15_111953.png",
+    "Screenshot_2023-04-15_112041.png"
+  ],
+  "bannerImage": [
+    "Screenshot_2023-04-08_104514.png"
+  ],
+  "category": "AI",
+  "tags": [
+    "Automation",
+    "Data Science",
+    "Healthcare",
+    "AI/ML"
+  ],
+  "popularity": 51,
+  "placement": "2",
+  "createdAt": {
+    "$date": "2023-04-08T13:23:33.998Z"
+  },
+  "updatedAt": {
+    "$date": "2023-04-15T17:32:46.035Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64317f79ae6a7c9909326de6"
+  },
+  "title": "Financial Document Analyser",
+  "groupMembers": "Ashley See Jun Yin, Jialu Gan, Bichun Li, Yaman Xu, Davinderpal Bassan, Jiakang Jiang",
+  "supervisors": "Dr Earl Barr",
+  "description": "Company reports consist of a comprehensive report on the activities of a company in the preceding year. These reports are tedious to read, and key information tends to be difficult to find, making it hard for relevant stakeholders to extract anything of meaning from them. We developed a portal to automate this process and identify key information to be analysed automatically. \n\nThe system extracts pieces of key information from the report uploaded by the user and visualises important data on a card-based UI. We also provided a search functionality for the Company report so the user can query for any other bits of information they wish to see. The user can also specify to search through the wider web, where other pieces of related information such as news articles or documents will be analysed and displayed. ",
+  "videoLink": "https://www.youtube.com/watch?v=-r3M-pklp9k&t=20s",
+  "images": [
+    "Screenshot_2023-04-08_105316.png",
+    "Screenshot_2023-04-08_105301.png",
+    "Screenshot_2023-04-08_105214.png"
+  ],
+  "bannerImage": [
+    "Screenshot_2023-04-08_105233.png"
+  ],
+  "category": "Asset Management",
+  "tags": [
+    "Automation",
+    "AI/ML",
+    "Data Science",
+    "Design Thinking",
+    "FinTech",
+    "IT",
+    "Asset Management"
+  ],
+  "popularity": 26,
+  "placement": "None",
+  "createdAt": {
+    "$date": "2023-04-08T14:51:37.971Z"
+  },
+  "updatedAt": {
+    "$date": "2023-04-15T10:44:52.517Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6431807eae6a7c9909326e18"
+  },
+  "title": "IBM – UCL Wapets",
+  "groupMembers": "Natalia del Mar ",
+  "supervisors": "Dr Dean Mohamedally",
+  "description": "A multi-pet chatbot AI architecture for supporting social isolation and loneliness in elder people.\n\nSocial isolation and loneliness are common problems in the elder. There is an opportunity to combine the findings on animal-assisted therapy and conversational agents to create a computer-based conintoersational pet for the elder that would not only behave as a friend but also as a helper to access web applications that would be otherwise inaccessible by them. In this project, a multi-pet chatbot architecture called ’Wapets’ was developed. \n\nThe requirements included basic topics like greetings, as well as complex topics like messaging via Facebook Messenger and browsing YouTube videos. Agile methodologies were used to finish the project on time. IBM WatsoDras used as the natural language understanding and conversational AI service and it was integrated to the application and external services using Node-RED. The application resulted to be a strong starting point to\nexplore the benefits of conversational pets in the elder. This project has infinite potential extensions for the benefit of the elder and their integration with society, improving their wellbeing and health and keeping them more time with us. ",
+  "videoLink": "https://www.youtube.com/watch?v=CWXjrlhYtak&t=3s",
+  "images": [
+    "Screenshot_2023-04-08_155546.png",
+    "Screenshot_2023-04-08_155532.png",
+    "Screenshot_2023-04-08_155518.png",
+    "Screenshot_2023-04-08_155459.png"
+  ],
+  "bannerImage": [
+    "Screenshot_2023-04-08_155440.png"
+  ],
+  "category": "Healthcare",
+  "tags": [
+    "AI/ML",
+    "Automation",
+    "Data Science",
+    "Design Thinking",
+    "Healthcare"
+  ],
+  "popularity": 88,
+  "placement": "3",
+  "createdAt": {
+    "$date": "2023-04-08T14:55:58.369Z"
+  },
+  "updatedAt": {
+    "$date": "2023-04-15T16:15:16.734Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64318179ae6a7c9909326e1e"
+  },
+  "title": "Intelligent Application Review System",
+  "groupMembers": "James Haworth Wheatman ",
+  "supervisors": "Dr Graham Roberts ",
+  "description": "Using IBM Watson with Node-RED to Assess Resumes.\n\nRecruiting employees to an organisation is a costly and resource-intensive task which is, in part, due to the large volume of candidates applying for each position. This project proposes a prototype system that could reduce the excessive expenditure of resources which is required to assess candidates for job positions. This system allows applicants to upload a resume, which is analysed using machine learning, so it can be assessed against different job descriptions. \n\nThe system presents recruiters with a summary of extracted insights from each applicant and ranks applicants against one another based on their predicted suitability for the role. Additionally, the system extracts a personality profile from each user to compare the personalities of candidates to current employees of that position; this profile is obtained by collecting users’ responses to typical interview-style questions. The project makes use of IBM Watson’s machine learning tools, including the Natural Language Understanding, Tone Analyzer, and Personality Insights API resources. These services are accessed through the browser-based visual programming tool Node-RED, and a containerised Django website is the interface between the user and these resources. ",
+  "videoLink": "https://www.youtube.com/watch?v=MbyyFSLOMTQ",
+  "images": [
+    "Screenshot_2023-04-08_155959.png",
+    "Screenshot_2023-04-08_155941.png",
+    "Screenshot_2023-04-08_155925.png"
+  ],
+  "bannerImage": [
+    "Screenshot_2023-04-08_155911.png"
+  ],
+  "category": "AI",
+  "tags": [
+    "Asset Management",
+    "Automation",
+    "Cloud",
+    "Design Thinking",
+    "Front-End",
+    "AI/ML"
+  ],
+  "popularity": 28,
+  "placement": "None",
+  "createdAt": {
+    "$date": "2023-04-08T15:00:09.852Z"
+  },
+  "updatedAt": {
+    "$date": "2023-04-15T15:07:16.297Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6431826eae6a7c9909326e24"
+  },
+  "title": "IBM Watson Powered Voice Interactive AR Avatar over Physical Business Cards",
+  "groupMembers": "Henry (Ziheng) Zhang, John (Zhiwei) Zhang, Jiayi Chen",
+  "supervisors": "Dr John McNamara",
+  "description": "Business cards are very common during any meeting and networking events, it is a quick and easy way for people to exchange their information and contacts. However, many people found physical cards are quite hard to organize, as it tends to lose and being forgotten. It is also limited and outdated to share any useful information compared to today’s internet-enabled services like LinkedIn, making it harder and harder for those who would like to use a business card to showcase themselves and make themselves stand out.\n\nPowered by IBM’s Watson AI, the user can interact with the avatar with natural language by directly asking questions regarding their job, education and interests etc, and the avatar will reply naturally, even creating conversations. The user can ask the avatar for contact info, and the app would automatically open the email or the phone app for the user to contact. The application also provides a favourite and history card list, which will sync across web and devices when the user is signed in. The user\ncan easily manage their favourite cards and view the card profile anytime in the app, or even in the browser with our web application. The app also keeps track of the user’s scan history, letting the user save as many physical card info as they want, as they can simply scan all the card to save them in the app, and view or mark them as favourite later.\n\nIn the future, we can also add connections with LinkedIn, to parse the info automatically. Users can generate and download their unique QR code in the app very easily, to print it on the physical business card and share them widely.",
+  "videoLink": "https://www.youtube.com/watch?v=pxXM_Y-umRs&t=252s",
+  "images": [
+    "Screenshot_2023-04-08_160402.png",
+    "Screenshot_2023-04-08_160332.png",
+    "Screenshot_2023-04-08_160319.png"
+  ],
+  "bannerImage": [
+    "Screenshot_2023-04-08_160251.png"
+  ],
+  "category": "AI",
+  "tags": [
+    "Asset Management",
+    "Automation",
+    "Design Thinking",
+    "AI/ML"
+  ],
+  "popularity": 82,
+  "placement": "None",
+  "createdAt": {
+    "$date": "2023-04-08T15:04:14.891Z"
+  },
+  "updatedAt": {
+    "$date": "2023-04-15T17:40:05.054Z"
+  },
+  "__v": 0
+}]
