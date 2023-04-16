@@ -26,7 +26,7 @@ function Footer() {
     <Grid container className="footer">
       <Grid item xs={6} sm={6} md={3}>
         <Box  className="logobox">
-          <img src={logo}  className="logo1"/>
+          <img src={logo} alt="logo" className="logo1"/>
         </Box>
       </Grid>
       <Grid item xs={6} sm={6} md={3}>

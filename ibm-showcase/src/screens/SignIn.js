@@ -187,10 +187,6 @@ export default class SignIn extends Component {
                       "@media (max-width: 400px)": {
                         "& .MuiInputLabel-root": {transform: labelStateUser? 'translate(14px, -6px) scale(0.75)': 'translate(180%, 16px) scale(1)'},
                       },
-                      "& .Mui-focused .MuiInputLabel-root": {
-                        transform: 'translate(14px, -6px) scale(0.75)',
-                        transformOrigin: 'top left',
-                      },
                     }}
                     
                     margin="normal"
@@ -234,10 +230,6 @@ export default class SignIn extends Component {
                       },
                       "@media (max-width: 400px)": {
                         "& .MuiInputLabel-root": {transform: labelStateUser? 'translate(14px, -6px) scale(0.75)': 'translate(190%, 16px) scale(1)'},
-                      },
-                      "& .Mui-focused .MuiInputLabel-root": {
-                        transform: 'translate(14px, -6px) scale(0.75)',
-                        transformOrigin: 'top left',
                       },
                     }}
                     margin="normal"
