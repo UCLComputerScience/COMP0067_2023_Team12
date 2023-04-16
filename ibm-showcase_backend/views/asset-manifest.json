@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5f352163.css",
+    "main.js": "/static/js/main.bcdb9e8b.js",
+    "static/js/498.eba28208.chunk.js": "/static/js/498.eba28208.chunk.js",
+    "static/js/703.fbd7ad52.chunk.js": "/static/js/703.fbd7ad52.chunk.js",
+    "static/js/598.06650018.chunk.js": "/static/js/598.06650018.chunk.js",
+    "static/js/787.aab46a7f.chunk.js": "/static/js/787.aab46a7f.chunk.js",
+    "static/media/Projectsearch3.jpg": "/static/media/Projectsearch3.798199fddf6c06ff8645.jpg",
+    "static/media/pdfbackground.jpg": "/static/media/pdfbackground.028ec1f1a5255bb221c4.jpg",
+    "static/media/projectbackground.jpg": "/static/media/projectbackground.8ebe934a6a73537070e1.jpg",
+    "static/media/Skunk_works_Logo.svg.png": "/static/media/Skunk_works_Logo.svg.7656cc53b67b3a45f16b.png",
+    "static/media/IBM_About.jpg": "/static/media/IBM_About.7fc5e4877aadede02bf0.jpg",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html",
+    "main.5f352163.css.map": "/static/css/main.5f352163.css.map",
+    "main.bcdb9e8b.js.map": "/static/js/main.bcdb9e8b.js.map",
+    "498.eba28208.chunk.js.map": "/static/js/498.eba28208.chunk.js.map",
+    "703.fbd7ad52.chunk.js.map": "/static/js/703.fbd7ad52.chunk.js.map",
+    "598.06650018.chunk.js.map": "/static/js/598.06650018.chunk.js.map",
+    "787.aab46a7f.chunk.js.map": "/static/js/787.aab46a7f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5f352163.css",
+    "static/js/main.bcdb9e8b.js"
+  ]
+}
