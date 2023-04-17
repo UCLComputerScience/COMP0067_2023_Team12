@@ -107,7 +107,7 @@ function ProjectDetail(props) {
 }
 
 function ProjectDescription(props) {
-  const shareUrl = `http://20.108.41.92/projects/${props.project._id}`;
+  const shareUrl = `${window.location.origin}/projects/${props.project._id}`;
   const tweetText = 'Check out this innovative project!';
   const twitterUrl = `https://twitter.com/share?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareUrl)}`;
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
