@@ -121,7 +121,7 @@ export default class ForgotPassword extends Component {
 
   render () {
     const { labelStateUser } = this.state;
-    const { labelStatePass } = this.state;
+    // const { labelStatePass } = this.state;
   return (
     <ThemeProvider theme={theme}>
         <Header title="Blog"  />
@@ -142,9 +142,6 @@ export default class ForgotPassword extends Component {
                 alignItems: 'center',
             }}
             >
-            {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-            </Avatar> */}
             <Typography component="h1" variant="h5">
                 Forgot Password
             </Typography>
@@ -171,7 +168,6 @@ export default class ForgotPassword extends Component {
             )}
             <Box component="form" sx={{ mt: 1 }}>
                 <TextField
-                    // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}
                     variant='outlined'
                     sx={{
                       width: { xs: '100%', sm: '600px' },
