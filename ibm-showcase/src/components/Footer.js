@@ -15,7 +15,7 @@ function Footer() {
     axios.get(process.env.REACT_APP_API_URL+`projects/level/Main`)
     .then((response) => {setMainProject(response.data)})
     .catch((error) => {console.log(error)});
-  })
+  },[])
 
   const YoutubeUrl = `https://www.youtube.com/ibm`;
   const twitterUrl = `https://twitter.com/IBM`;

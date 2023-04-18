@@ -55,7 +55,7 @@ function UploadImages(props) {
     }
 
     //May need to change API URL on Deployment?
-    return axios.post(process.env.REACT_APP_API_URL+'upload', formData2, config)
+    return axios.post(process.env.REACT_APP_API_URL+'projects/upload', formData2, config)
       .then(() => {
         setMessage((prevMessage) => [
           ...prevMessage,
