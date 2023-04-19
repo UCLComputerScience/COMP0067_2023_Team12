@@ -153,7 +153,6 @@ export default class ChangePassword extends Component {
           minHeight: '90vh',
           // not 100vh since this window height includes the browser search bar and stuff so using 90% instead as this avoids the issue
         }}>  
-            <CssBaseline />
             <Box
             sx={{
                 marginTop: 8,
@@ -287,7 +286,7 @@ export default class ChangePassword extends Component {
                 <Button
                 variant="outlined"
                 sx={{
-                  width: '200px',
+                  width: { xs: '100px', sm: '200px' },
                   borderRadius: '50px',
                   mt: 2, mb: 2, mr: 8,
                   // display: 'flex', 
@@ -301,7 +300,7 @@ export default class ChangePassword extends Component {
               <Button
               variant="contained"
               sx={{ 
-                width: '200px',
+                width: { xs: '100px', sm: '200px' },
                 borderRadius: '50px',
                 mt: 2, mb: 2,
                 // display: 'flex', 
