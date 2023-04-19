@@ -36,7 +36,7 @@ module.exports.SendPasswordLink = (req, res) => {
                 var TOKEN = token.token;
 
                 // const url = `http://localhost:3000/resetpassword/${req.body.user}/${TOKEN}/`;
-                const url = `${process.env.BASE_URL}resetpassword/${req.body.user}/${TOKEN}/`;
+                const url = `${process.env.BASE_URL}#/resetpassword/${req.body.user}/${TOKEN}/`;
 
                 sendEmail(req.body.user, "Password Reset", url); 
                 res.status(200).send({ message: "Password reset link sent to your email account"});
