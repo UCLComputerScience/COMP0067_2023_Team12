@@ -53,9 +53,9 @@ function ProjectSearch({ onSubmit, searchInput }) {
             
 
 
-            <Box sx={{maxWidth:600,mx:"auto"}}>
+            <Box sx={{maxWidth:600,mx:"auto",display:'flex'}}>
             <Typography variant='subtitle' gutterBottom sx = {{color:"white",textAlign:"center"}}>
-            Explore all the exciting projects IBM and UCL have worked on. From Artificial Intelligence to Healthcare
+            Explore all the exciting projects IBM and UCL have worked on. From Artificial Intelligence to Healthcare.
             </Typography>
             </Box>
 

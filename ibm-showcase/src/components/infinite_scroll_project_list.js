@@ -148,7 +148,7 @@ export default function ListAllProjects({ searchTerm, searchTermBack }) {
       <Grid container spacing={4} sx={{ px: { xs: 4, sm: 10 } }} >
         {noResults && (
           <Grid item xs={18} sx={{ textAlign: "center", pb: 4 }}>
-              <Typography fontWeight="bold" variant="h3">There are no results.</Typography>
+              <Typography fontWeight="bold" variant="h3">No Results.</Typography>
           </Grid>
         )}
         {items.map((item) => (
