@@ -26,6 +26,7 @@ module.exports.upload = (req, res) => {
   })
 };
 
+// The function create is adapated from https://github.com/bezkoder/node-express-mongodb
 // Create and Save a new Project to DB
 module.exports.create = (req, res) => {
   // Validate request
@@ -56,12 +57,9 @@ module.exports.create = (req, res) => {
     return modifiedFilename;
   });
 
-  // const modifiedBanner = req.body.bannerImage.replace(/\s+/g, "_");
-
   const projectData = {...req.body, images: modifiedImages, bannerImage: modifiedBanner};
 
   // Create a Project
-  // const project = new projectModel(req.body,"throw");
   const project = new projectModel(projectData,"throw");
   // Save the Project in the database
   project
@@ -80,6 +78,7 @@ module.exports.create = (req, res) => {
     });
 };
 
+// The function update is adapated from https://github.com/bezkoder/node-express-mongodb
 // Update a Project by the id in the request
 module.exports.update = (req, res) => {
   if (!req.body) {
@@ -125,10 +124,10 @@ module.exports.update = (req, res) => {
     });
 };
 
+// The function findAll is adapated from https://github.com/bezkoder/node-express-mongodb
 // Retrieve all Projects from the database.
 module.exports.findAll = (req, res) => {
   const term = req.query.title;
-  // var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
   var condition = term ? {
     $or: [
       { title: { $regex: new RegExp(term, "i") } },
@@ -137,21 +136,6 @@ module.exports.findAll = (req, res) => {
   } : {};
 
   projectModel.find(condition)
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving Projects."
-      });
-    });
-};
-
-// Following code has not been tested.
-// Find all published Projects
-module.exports.findAllPublished = (req, res) => {
-  projectModel.find({ published: true })
     .then(data => {
       res.send(data);
     })
@@ -196,6 +180,7 @@ module.exports.findOneByLevel = (req, res) => {
       });
 };
 
+// The function findOne is adapated from https://github.com/bezkoder/node-express-mongodb
 // Find a single Project with an id
 module.exports.findOne = (req, res) => {
   const id = req.params.id;
@@ -292,6 +277,7 @@ module.exports.findSimilar = (req, res) => {
     });
 };
 
+// The function delete is adapated from https://github.com/bezkoder/node-express-mongodb
 // Delete a Project with the specified id in the request
 module.exports.delete = (req, res) => {
   const id = req.params.id;
@@ -317,25 +303,3 @@ module.exports.delete = (req, res) => {
       });
     });
 };
-
-// Delete all Projects from the database.
-module.exports.deleteAll = (req, res) => {
-  projectModel.deleteMany({})
-    .then(data => {
-      res.send({
-        message: `${data.deletedCount} Projects were deleted successfully!`
-      });
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while removing all Projects."
-      });
-    });
-};
-
-
-// module.exports =  {
-//     create,
-//     findAll
-// };

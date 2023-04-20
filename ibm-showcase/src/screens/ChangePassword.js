@@ -28,6 +28,7 @@ const sections = [
 
 const theme = createTheme();
 
+// The function ChangePassword is adapated from https://github.com/bezkoder/react-crud-web-api
 export default class ChangePassword extends Component {
   constructor(props) {
     super(props);
@@ -154,16 +155,7 @@ export default class ChangePassword extends Component {
           // not 100vh since this window height includes the browser search bar and stuff so using 90% instead as this avoids the issue
         }}>  
             <Box
-            sx={{
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-            }}
-            >
-            {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-            </Avatar> */}
+            sx={{marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
             <Typography component="h1" variant="h5">
                 Change Password 
             </Typography>
@@ -189,47 +181,29 @@ export default class ChangePassword extends Component {
             )}
             <Box component="form" sx={{ mt: 1 }}>
                 <TextField
-                    // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}
                     variant='outlined'
                     sx={{
                       width: { xs: '100%', sm: '600px' },
-                      '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#3D70B200',
-                        backgroundColor: '#3D70B225',
-                        borderRadius: '50px !important',},
+                      '& .MuiOutlinedInput-notchedOutline': {borderColor: '#3D70B200',backgroundColor: '#3D70B225',borderRadius: '50px !important',},
                       "& .MuiInputLabel-root": {
                         transform: labelStateUser ? 'translate(14px, -6px) scale(0.75)' :  { xs: 'translate(210%, 16px) scale(1)', sm: 'translate(265px, 16px) scale(1)' },
                         transformOrigin: 'top left',
                       },
-                      "& .Mui-focused .MuiInputLabel-root": {
-                        transform: 'translate(14px, -6px) scale(0.75)',
-                        transformOrigin: 'top left',
+                      "& .Mui-focused .MuiInputLabel-root": {transform: 'translate(14px, -6px) scale(0.75)',transformOrigin: 'top left',
                       },
                       "@media (max-width: 400px)": {
                         "& .MuiInputLabel-root": {transform: labelStateUser? 'translate(14px, -6px) scale(0.75)': 'translate(200%, 16px) scale(1)'},
                       },
                     }}
-                    
-                    margin="normal"
-                    // required
-                    fullWidth
-                    id="user"
-                    label="Password"
-                    name="user"
-                    type="password"
+                    margin="normal" fullWidth id="user" label="Password" name="user" type="password"
                     value={this.state.user}
                     onChange={this.onChangeUser}
                     autoFocus
 
-                    InputLabelProps={{
-                      shrink: labelStateUser,
-                    }}
+                    InputLabelProps={{shrink: labelStateUser,}}
                     onFocus={this.handleFocusUser}
                     onBlur={this.handleBlurUser}
-                    inputProps={{
-                      style: {
-                        caretColor: labelStateUser ? 'green' : 'blue',
-                      },
+                    inputProps={{style: {caretColor: labelStateUser ? 'green' : 'blue',},
                       ref: this.inputRef,
                     }}
 
@@ -237,30 +211,24 @@ export default class ChangePassword extends Component {
                 <TextField
                     sx={{
                       width: { xs: '100%', sm: '600px' },
-                      '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#3D70B200',
-                        backgroundColor: '#3D70B225',
-                        borderRadius: '50px !important',},
+                      '& .MuiOutlinedInput-notchedOutline': {borderColor: '#3D70B200', backgroundColor: '#3D70B225',borderRadius: '50px !important',},
                       "& .MuiInputLabel-root": {
                         transform: labelStatePass ? 'translate(14px, -6px) scale(0.75)' :  { xs: 'translate(100%, 16px) scale(1)', sm: 'translate(232px, 16px) scale(1)' },
                         transformOrigin: 'top left',
                       },
                       "& .Mui-focused .MuiInputLabel-root": {
-                        transform: 'translate(14px, -6px) scale(0.75)',
-                        transformOrigin: 'top left',
+                        transform: 'translate(14px, -6px) scale(0.75)',transformOrigin: 'top left',
                       },
                       "@media (max-width: 400px)": {
                         "& .MuiInputLabel-root": {transform: labelStateUser? 'translate(14px, -6px) scale(0.75)': 'translate(90%, 16px) scale(1)'},
                       },
                     }}
                     margin="normal"
-                    // required
                     fullWidth
                     name="confirmpassword"
                     label="Confirm Password"
                     type="password"
                     id="password"
-                    // autoComplete="current-password"
                     value={this.state.password}
                     onChange={this.onChangePassword}
 
@@ -285,13 +253,7 @@ export default class ChangePassword extends Component {
                 <Link to="/editproject" style={{textDecoration:'none'}}>
                 <Button
                 variant="outlined"
-                sx={{
-                  width: { xs: '100px', sm: '200px' },
-                  borderRadius: '50px',
-                  mt: 2, mb: 2, mr: 8,
-                  // display: 'flex', 
-                  justifyContent: 'center',
-                  textTransform: "none"
+                sx={{width: { xs: '100px', sm: '200px' },borderRadius: '50px', mt: 2, mb: 2, mr: 8,justifyContent: 'center',textTransform: "none"
                 }}
               >
                 Cancel
@@ -299,20 +261,12 @@ export default class ChangePassword extends Component {
               </Link>
               <Button
               variant="contained"
-              sx={{ 
-                width: { xs: '100px', sm: '200px' },
-                borderRadius: '50px',
-                mt: 2, mb: 2,
-                // display: 'flex', 
-                justifyContent: 'center',
-                backgroundColor: '#0062FF',
-                textTransform: "none"
+              sx={{ width: { xs: '100px', sm: '200px' },borderRadius: '50px',mt: 2, mb: 2,justifyContent: 'center',backgroundColor: '#0062FF',textTransform: "none"
                 }}
               onClick={this.saveProject}
               >
               Submit
               </Button>
-              {/* </Link> */}
               </Box>
           </Box>
         </Box>

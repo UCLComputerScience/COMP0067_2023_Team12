@@ -13,6 +13,7 @@ import Header from '../components/Header';
 
 const theme = createTheme();
 
+// The function ForgotPassword is adapated from https://github.com/bezkoder/react-crud-web-api
 export default class ForgotPassword extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +52,6 @@ export default class ForgotPassword extends Component {
   }
 
   saveProject() {
-    // alert("Submitted")
     var data = {
       user: this.state.user,
       password: this.state.password,
@@ -121,7 +121,6 @@ export default class ForgotPassword extends Component {
 
   render () {
     const { labelStateUser } = this.state;
-    // const { labelStatePass } = this.state;
   return (
     <ThemeProvider theme={theme}>
         <Header title="Blog"  />
@@ -186,12 +185,10 @@ export default class ForgotPassword extends Component {
                     }}
                     
                     margin="normal"
-                    // required
                     fullWidth
                     id="user"
                     label="Username"
                     name="email"
-                    // autoComplete="email"
                     value={this.state.user}
                     onChange={this.onChangeUser}
                     autoFocus
@@ -216,14 +213,11 @@ export default class ForgotPassword extends Component {
                 }}>
                 {this.state.changePage && <Navigate to={'/signin'} /> }
                 <Button
-                // type="submit"
-                // fullWidth
                 variant="contained"
                 sx={{ 
                   width: { xs: '120px', sm: '200px' },
                   borderRadius: '50px',
                   mt: 2, mb: 2,
-                  // display: 'flex', 
                   justifyContent: 'center',
                   backgroundColor: '#0062FF',
                   textTransform: "none",
