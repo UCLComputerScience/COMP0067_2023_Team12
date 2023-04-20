@@ -1,3 +1,4 @@
+// The fucntion sendEmail is adapated from https://www.youtube.com/watch?v=bMq2riFCF90
 // React-related imports
 import React, { useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
