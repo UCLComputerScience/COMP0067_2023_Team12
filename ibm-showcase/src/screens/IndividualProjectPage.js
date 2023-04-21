@@ -64,8 +64,9 @@ function ProjectVideoSection(props) {
     setIsPlaying(false);
   };
   return (
-    <Box sx={{position:'relative',minHeight: '40rem',backgroundImage:`url(${process.env.REACT_APP_API_URL}images/${props.project._id}/${props.project?props.project.bannerImage[0]:null})`,
-     backgroundSize: 'cover', display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
+    <Box sx={{position:'relative',minHeight: '40rem',
+    backgroundImage:`url(${process.env.REACT_APP_API_URL}images/${props.project._id}/${props.project?props.project.bannerImage[0]:null})`,
+    backgroundSize: 'cover', display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
       {isPlaying ? (
         <div style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}}>
           <ReactPlayer
@@ -82,11 +83,7 @@ function ProjectVideoSection(props) {
           <PlayCircleIcon sx={{fontSize: '5rem', color: 'lightgray',cursor: 'pointer'}} onClick={handlePlayClick}/>
         </div>
       )}
-      
-      
-      
     </Box>
-
   );
 }
 
@@ -109,8 +106,11 @@ function ProjectDetail(props) {
 function ProjectDescription(props) {
   const shareUrl = `${window.location.origin}/#/projects/${props.project._id}`;
   const tweetText = 'Check out this innovative project!';
+  // The function UploadImages is adapated from https://stackoverflow.com/questions/19227702/twitter-share-button-dynamic-url-share
   const twitterUrl = `https://twitter.com/share?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareUrl)}`;
+  // The function UploadImages is adapated from https://stackoverflow.com/questions/21215676/facebook-share-button-for-dynamic-url
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+  // The function UploadImages is adapated from https://stackoverflow.com/questions/71613355/have-linkedin-deprecated-the-share-offsite-url-sharing-method-or-is-it-just-brok
   const LinkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
   
 
@@ -118,7 +118,6 @@ function ProjectDescription(props) {
     window.print();
   };
 
-  // const onlineimg = `http://localhost:8080/api/images/${props.project._id}/${props.project.images[0]}`;
   return (
     <div className="projectSections">
       <section className="projectSection">
@@ -157,9 +156,6 @@ function SimpleSlider(props) {
           <Box sx={{aspectRatio:'16/10', borderRadius:'1rem',backgroundImage:`url(${process.env.REACT_APP_API_URL}images/${props.project._id}/${image})`, backgroundSize: 'cover', backgroundPosition:'center', position:'relative'}} />
         </div>
       ))}
-{/*        <div>
-          <Box sx={{aspectRatio:'16/10', borderRadius:'1rem',backgroundImage:`url(${ProjectPic1})`, backgroundSize: 'cover', backgroundPosition:'center', position:'relative'}} />
-        </div>*/}
       </Slider>
       <p></p>
     </section>
@@ -201,15 +197,10 @@ export function ThreeProjectTiles(props){
           }          
       });
   },[props.project._id]);
-  
-  // useEffect(() => {
-  //   console.log(projects);
-  // }, [projects]);
 
   if (projects === "") {
     return <div>Loading...</div>;
   }
-
   return(
     <section style={{display: 'flex', flexDirection: 'row', columnGap: '2%'}}>
       <Grid container spacing={1} sx={{ width: "100%" ,padding: "0 1rem",margin:"auto"}} >
