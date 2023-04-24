@@ -24,6 +24,7 @@ const sections = [
 
 const theme = createTheme();
 
+// The function ResetPassword is adapated from https://github.com/bezkoder/react-crud-web-api
 class ResetPassword extends Component {
   constructor(props) {
     super(props);
@@ -212,7 +213,6 @@ class ResetPassword extends Component {
             )}
             <Box component="form" sx={{ mt: 1 }}>
                 <TextField
-                    // sx={{ '& .MuiInputLabel-root': { textAlign: 'center' } }}
                     variant='outlined'
                     sx={{
                       width: '600px',
@@ -231,7 +231,6 @@ class ResetPassword extends Component {
                     }}
                     
                     margin="normal"
-                    // required
                     fullWidth
                     id="user"
                     label="Password"
@@ -240,7 +239,6 @@ class ResetPassword extends Component {
                     value={this.state.user}
                     onChange={this.onChangeUser}
                     autoFocus
-
                     InputLabelProps={{
                       shrink: labelStateUser,
                     }}
@@ -271,13 +269,11 @@ class ResetPassword extends Component {
                       }
                     }}
                     margin="normal"
-                    // required
                     fullWidth
                     name="confirmpassword"
                     label="Confirm Password"
                     type="password"
                     id="password"
-                    // autoComplete="current-password"
                     value={this.state.password}
                     onChange={this.onChangePassword}
 
@@ -294,30 +290,17 @@ class ResetPassword extends Component {
                     }}
                 />
                 <Box 
-                sx={{
-                  display: 'flex', 
-                  justifyContent: 'center'
+                sx={{display: 'flex', justifyContent: 'center'
                 }}>
                 {this.state.changePage && <Navigate to={'/signin'} /> }
                 {this.state.changePage2 && <Navigate to={'/signin'} /> }
                 <Button
-                // type="submit"
-                // fullWidth
                 variant="contained"
-                sx={{ 
-                  width: '200px',
-                  borderRadius: '50px',
-                  mt: 2, mb: 2,
-                  // display: 'flex', 
-                  justifyContent: 'center',
-                  backgroundColor: '#0062FF',
-                  textTransform: "none"
-                 }}
+                sx={{ width: '200px', borderRadius: '50px', mt: 2, mb: 2, justifyContent: 'center', backgroundColor: '#0062FF', textTransform: "none"}}
                 onClick={this.saveProject}
                 >
                 Submit
                 </Button>
-                {/* </Link> */}
                 </Box>
           </Box>
         </Box>

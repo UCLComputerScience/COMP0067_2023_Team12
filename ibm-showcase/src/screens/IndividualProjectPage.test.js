@@ -4,7 +4,6 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { render, screen } from '@testing-library/react';
 
-// Defines the project data used for testing
 const project = {
   id: 1,
   title: 'Test Project',
@@ -20,8 +19,7 @@ const project = {
   placement: 'None',
   published: true,
 };
-
-// MSW (Mock Service Worker) is used to set up a server to mock API requests.
+// The function UploadImages is adapated from https://mswjs.io/docs/api/setup-server/reset-handlers
 const mockserver = setupServer(
   rest.get('http://localhost:8080/api/projects/:id', (req, res, ctx) => {
     return res(
@@ -32,7 +30,6 @@ const mockserver = setupServer(
     );
   }),
 );
-
 beforeAll(() => mockserver.listen());
 afterEach(() => mockserver.resetHandlers());
 afterAll(() => mockserver.close());
@@ -45,10 +42,7 @@ describe('Integration Tesing: IndividualProjectPage', () => {
       </BrowserRouter>,
       { initialState: { project } }
     );
-
     await screen.findByText(project.title);
-
-    // Verify that the project title is displayed correctly
     expect(screen.getByText(project.title)).toBeInTheDocument();
   });
 });

@@ -7,7 +7,7 @@ const tokenModel = require("../models/tokenModel.js");
 const userModel = require("../models/userModel.js");
 const sendEmail = require("../services/sendEmail");
 
-
+// The fucntion SendPasswordLink is adapated from https://github.com/mehulmpt/node-auth-youtube
 module.exports.SendPasswordLink = (req, res) => {
     if (!req.body.user) {
         res.status(400).send({ message: "Content can not be empty!" });
@@ -35,7 +35,6 @@ module.exports.SendPasswordLink = (req, res) => {
 
                 var TOKEN = token.token;
 
-                // const url = `http://localhost:3000/resetpassword/${req.body.user}/${TOKEN}/`;
                 const url = `${process.env.BASE_URL}#/resetpassword/${req.body.user}/${TOKEN}/`;
 
                 sendEmail(req.body.user, "Password Reset", url); 
@@ -47,9 +46,7 @@ module.exports.SendPasswordLink = (req, res) => {
                     message:
                     err.message || "Some error occurred while creating the Token."
                 });
-                });
-            // var token = jwt.sign({id: req.body.user}, authConfig.secret, {expiresIn: 86400}).save();
-            
+                });            
         } else {  
             tokenModel.findByIdAndRemove(data._id, { useFindAndModify: false })
                 .then(data => {
@@ -64,14 +61,12 @@ module.exports.SendPasswordLink = (req, res) => {
                         token: jwt.sign({id: req.body.user}, authConfig.secret, {expiresIn: 86400})
                     });
                     
-                    // console.log(newToken)
                     // Save the User in the database
                     newToken
                         .save()
                         .then(data => {
                             var TOKEN = newToken.token;
 
-                            // const url = `http://localhost:3000/resetpassword/${req.body.user}/${TOKEN}/`;
                             const url = `${process.env.BASE_URL}#/resetpassword/${req.body.user}/${TOKEN}/`;
             
                             sendEmail(req.body.user, "Password Reset", url); 
@@ -124,59 +119,3 @@ module.exports.VerifyLink = (req, res) => {
             .send({ message: "Internal Server Error" });
         });
 }
-
-
-
-
-
-// verify password reset link
-// router.get("/:id/:token", async (req, res) => {
-// 	try {
-// 		const user = await User.findOne({ _id: req.params.id });
-// 		if (!user) return res.status(400).send({ message: "Invalid link" });
-
-// 		const token = await Token.findOne({
-// 			userId: user._id,
-// 			token: req.params.token,
-// 		});
-// 		if (!token) return res.status(400).send({ message: "Invalid link" });
-
-// 		res.status(200).send("Valid Url");
-// 	} catch (error) {
-// 		res.status(500).send({ message: "Internal Server Error" });
-// 	}
-// });
-
-// //  set new password
-// router.post("/:id/:token", async (req, res) => {
-// 	try {
-// 		const passwordSchema = Joi.object({
-// 			password: passwordComplexity().required().label("Password"),
-// 		});
-// 		const { error } = passwordSchema.validate(req.body);
-// 		if (error)
-// 			return res.status(400).send({ message: error.details[0].message });
-
-// 		const user = await User.findOne({ _id: req.params.id });
-// 		if (!user) return res.status(400).send({ message: "Invalid link" });
-
-// 		const token = await Token.findOne({
-// 			userId: user._id,
-// 			token: req.params.token,
-// 		});
-// 		if (!token) return res.status(400).send({ message: "Invalid link" });
-
-// 		if (!user.verified) user.verified = true;
-
-// 		const salt = await bcrypt.genSalt(Number(process.env.SALT));
-// 		const hashPassword = await bcrypt.hash(req.body.password, salt);
-
-// 		user.password = hashPassword;
-// 		await user.save();
-// 		await token.remove();
-
-// 		res.status(200).send({ message: "Password reset successfully" });
-// 	} catch (error) {
-// 		res.status(500).send({ message: "Internal Server Error" });
-// 	}
-// });

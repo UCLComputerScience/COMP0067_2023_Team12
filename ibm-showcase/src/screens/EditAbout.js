@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import ReactMarkdown from 'react-markdown';
 // UI component imports
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography, Alert, Stack } from '@mui/material';
 // Local component imports
 import AdminHeader from '../components/AdminHeader';
 import Footer from '../components/Footer';
@@ -97,12 +97,16 @@ function AboutRight(props){
   };
   
   const [newContent, setNewContent] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   useEffect(() => {setNewContent(props.content)},[props.content]);
   
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .put(process.env.REACT_APP_API_URL+`about`, { "content": newContent })
+      .then((response) => {
+        setShowAlert(true);
+      })
       .catch((e) => {
         console.error(e);
       });
@@ -123,6 +127,20 @@ function AboutRight(props){
         <Link to="/editproject" style={{textDecoration:'none'}}><Button style={{textTransform: 'none', margin: "0 1rem 0 1rem"}}variant="outlined">Cancel</Button></Link>
         <Button variant="contained" onClick={handleSubmit} type="submit" style={{textTransform: 'none'}}>Update</Button>
       </div>
+      {showAlert && (
+        <Stack
+          sx={{ width: "100%", marginTop: "1rem" }}
+          spacing={2}
+        >
+          <Alert
+            onClose={() => setShowAlert(false)}
+            severity="success"
+          >
+            The update is now complete!
+          </Alert>
+        </Stack>
+      )}
     </Box>
   )
 }
+

@@ -1,9 +1,10 @@
+// The fucntion sendEmail is adapated from https://www.youtube.com/watch?v=bMq2riFCF90
 // React-related imports
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 // Third-party library imports
 import emailjs from '@emailjs/browser';
 // UI component imports
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography, Stack  } from '@mui/material';
 import Alert from '@mui/material/Alert';
 // Local component imports
 import Header from '../components/Header';
@@ -36,6 +37,8 @@ export default function LearningPath(){
 const LearnRight = () => {
   const form = useRef();
 
+  const [showAlert, setShowAlert] = useState(false);
+
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -43,6 +46,8 @@ const LearnRight = () => {
       .then((result) => {
           console.log(result.text);
           console.log("message sent")
+          form.current.reset();
+          setShowAlert(true);
       }, (error) => {
           console.log(error.text);
       });
@@ -80,6 +85,13 @@ const LearnRight = () => {
         <div>
           <Button type = "submit" value = "Send" variant="contained" size="medium" style={styles.aboutbutton} >Submit</Button >
         </div>
+        {showAlert && (// render the success alert if the state variable is true
+          <Stack sx={{ width: '100%', marginTop: '1rem' }} spacing={2}>
+            <Alert onClose={() => setShowAlert(false)} severity="success">
+              Email was sent successfully!
+            </Alert>
+          </Stack>
+        )}
       </form>
   )
 }

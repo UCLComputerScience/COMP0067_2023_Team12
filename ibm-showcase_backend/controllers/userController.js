@@ -6,7 +6,6 @@ const authConfig = require("../config/authConfig.js");
 const userModel = require("../models/userModel.js");
 
 
-
 // Create and Save a new User to DB
 module.exports.Register = (req, res) => {
   // Validate request
@@ -45,11 +44,7 @@ module.exports.Login = (req, res) => {
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
         data.password
-      );
-      // console.log(passwordIsValid);
-
-      // console.log(data);
-    
+      );    
       if (passwordIsValid) {
         var token = jwt.sign({id: data.user}, authConfig.secret, {expiresIn: 86400});
         return res.status(200).send(token);

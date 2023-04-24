@@ -13,7 +13,7 @@ router.post("/upload", projectController.upload);
 router.get("/", projectController.findAll);
 
 // Retrieve all published projects
-router.get("/published", projectController.findAllPublished);
+// router.get("/published", projectController.findAllPublished);
 
 // Retrieve a single project with placement level
 router.get("/level/:level", projectController.findOneByLevel);
@@ -34,7 +34,7 @@ router.put("/:id", projectController.update);
 router.delete("/:id", projectController.delete);
 
 // Delete all projects (Alert?)
-router.delete("/", projectController.deleteAll);
+// router.delete("/", projectController.deleteAll);
 
 //More to add according to design. Search by keyword or tags or categories etc.
 

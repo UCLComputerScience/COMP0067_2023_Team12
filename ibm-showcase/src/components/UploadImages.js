@@ -23,6 +23,7 @@ function LinearProgressWithLabel(props) {
 
 //Why const instead of func?
 // const UploadImages = () => {
+// The function UploadImages is adapated from https://www.bezkoder.com/react-image-upload-preview/
 function UploadImages(props) {
   const [imagePreviews, setImagePreviews] = useState([]);
   const [progressInfos, setProgressInfos] = useState({ val: [] });

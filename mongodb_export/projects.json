@@ -23,13 +23,13 @@
     "Design Thinking",
     "Healthcare"
   ],
-  "popularity": 177,
+  "popularity": 198,
   "placement": "Main",
   "createdAt": {
     "$date": "2023-04-06T20:25:44.911Z"
   },
   "updatedAt": {
-    "$date": "2023-04-16T05:43:20.737Z"
+    "$date": "2023-04-20T23:18:36.012Z"
   },
   "__v": 0
 },{
@@ -57,13 +57,13 @@
     "IT",
     "Automation"
   ],
-  "popularity": 104,
+  "popularity": 114,
   "placement": "1",
   "createdAt": {
     "$date": "2023-04-08T09:29:30.920Z"
   },
   "updatedAt": {
-    "$date": "2023-04-16T10:30:06.729Z"
+    "$date": "2023-04-20T23:22:25.115Z"
   },
   "__v": 0
 },{
@@ -90,13 +90,13 @@
     "Healthcare",
     "AI/ML"
   ],
-  "popularity": 51,
+  "popularity": 59,
   "placement": "2",
   "createdAt": {
     "$date": "2023-04-08T13:23:33.998Z"
   },
   "updatedAt": {
-    "$date": "2023-04-15T17:32:46.035Z"
+    "$date": "2023-04-19T17:41:09.892Z"
   },
   "__v": 0
 },{
@@ -126,13 +126,13 @@
     "IT",
     "Asset Management"
   ],
-  "popularity": 26,
+  "popularity": 31,
   "placement": "None",
   "createdAt": {
     "$date": "2023-04-08T14:51:37.971Z"
   },
   "updatedAt": {
-    "$date": "2023-04-15T10:44:52.517Z"
+    "$date": "2023-04-21T12:08:22.664Z"
   },
   "__v": 0
 },{
@@ -161,13 +161,13 @@
     "Design Thinking",
     "Healthcare"
   ],
-  "popularity": 88,
+  "popularity": 95,
   "placement": "3",
   "createdAt": {
     "$date": "2023-04-08T14:55:58.369Z"
   },
   "updatedAt": {
-    "$date": "2023-04-15T16:15:16.734Z"
+    "$date": "2023-04-19T18:12:53.881Z"
   },
   "__v": 0
 },{
@@ -196,13 +196,13 @@
     "Front-End",
     "AI/ML"
   ],
-  "popularity": 28,
+  "popularity": 36,
   "placement": "None",
   "createdAt": {
     "$date": "2023-04-08T15:00:09.852Z"
   },
   "updatedAt": {
-    "$date": "2023-04-15T15:07:16.297Z"
+    "$date": "2023-04-20T23:19:10.187Z"
   },
   "__v": 0
 },{
@@ -229,13 +229,13 @@
     "Design Thinking",
     "AI/ML"
   ],
-  "popularity": 82,
+  "popularity": 87,
   "placement": "None",
   "createdAt": {
     "$date": "2023-04-08T15:04:14.891Z"
   },
   "updatedAt": {
-    "$date": "2023-04-15T17:40:05.054Z"
+    "$date": "2023-04-20T23:22:57.686Z"
   },
   "__v": 0
 }]

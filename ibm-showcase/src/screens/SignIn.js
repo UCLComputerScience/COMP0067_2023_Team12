@@ -22,6 +22,7 @@ const sections = [
 
 const theme = createTheme();
 
+// The function SignIn is adapated from https://github.com/bezkoder/react-crud-web-api
 export default class SignIn extends Component {
   constructor(props) {
     super(props);

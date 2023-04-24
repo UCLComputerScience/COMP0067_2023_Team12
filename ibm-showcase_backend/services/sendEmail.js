@@ -23,24 +23,12 @@ try {
 }
 }
 
+// The fucntion sendEmail is adapated from https://nodemailer.com/smtp/oauth2/ and https://dev.to/jlong4223/how-to-implement-email-functionality-with-node-js-react-js-nodemailer-and-oauth2-2h7m
 module.exports = async (email, subject, text) => {
 	try {
 		const accessToken = await updateAccessToken();
 
 		const transporter = nodemailer.createTransport({
-			// service: "gmail",
-			// auth: {
-			// 	type: "OAuth2",
-			// 	user: process.env.EMAIL,
-			// 	// pass: process.env.WORD,
-			// 	clientId: process.env.OAUTH_CLIENTID,
-			// 	clientSecret: process.env.OAUTH_CLIENT_SECRET,
-			// 	refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-			// 	// clientId: clientId,
-			// 	// clientSecret: clientSecret,
-			// 	// refreshToken: refreshToken,
-			// 	accessToken: accessToken,
-			// },
 			host: "smtp.gmail.com",
 			port: 465,
 			secure: true,
