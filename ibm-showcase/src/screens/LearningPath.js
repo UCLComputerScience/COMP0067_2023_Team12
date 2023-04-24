@@ -78,7 +78,7 @@ const LearnRight = () => {
         <TextField label="Enter Your Name Here" name="from_name" required style={styles.abouttextfield}/>
         <Typography variant="h3" style={styles.aboutsubtitle}>Email</Typography>
         <TextField label="Enter Your Email Here"  name = "user_email" required style={styles.abouttextfield}/>
-        <Typography variant="h3" style={styles.aboutsubtitle}>Company/Institution</Typography>
+        <Typography variant="h3" style={styles.aboutsubtitle}>University/Institution</Typography>
         <TextField label="Enter Your Company/Institution Name Here" name = "company" required style={styles.abouttextfield}/>
         <Typography variant="h3" style={styles.aboutsubtitle}>Message(Optional)</Typography>
         <TextField label="Input Message Here" multiline="true" name="message" minRows="5" style={styles.abouttextfield} />
